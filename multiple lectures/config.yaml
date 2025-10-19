@@ -1,0 +1,175 @@
+# Smart LMS Configuration
+
+app:
+  name: "Smart LMS"
+  version: "1.0.0"
+  debug: true
+  port: 8501
+
+# Storage paths
+storage:
+  base_path: "./storage"
+  users: "./storage/users.json"
+  courses: "./storage/courses.json"
+  lectures: "./storage/lectures.json"
+  engagement_logs: "./storage/engagement_logs.json"
+  feedback: "./storage/feedback.json"
+  grades: "./storage/grades.json"
+  evaluation: "./storage/evaluation.json"
+  attendance: "./storage/attendance.json"
+  teacher_activity: "./storage/teacher_activity.json"
+  progress: "./storage/progress.json"
+
+# Engagement tracking
+engagement:
+  mode: "realtime"  # Options: "realtime" (MediaPipe), "offline" (OpenFace)
+  sampling_rate: 0.5  # seconds between frame captures
+  min_confidence: 0.7
+  features:
+    - gaze_score
+    - attention_score
+    - head_pose_stability
+    - blink_frequency
+  weights:
+    gaze: 0.35
+    attention: 0.30
+    head_pose: 0.20
+    blink: 0.15
+
+# OpenFace configuration (offline mode)
+openface:
+  executable_path: "./OpenFace/FeatureExtraction.exe"  # Update with actual path
+  output_dir: "./storage/openface_output"
+  features:
+    - AU01_r  # Inner brow raiser
+    - AU02_r  # Outer brow raiser
+    - AU04_r  # Brow lowerer
+    - AU05_r  # Upper lid raiser
+    - AU06_r  # Cheek raiser
+    - AU07_r  # Lid tightener
+    - AU09_r  # Nose wrinkler
+    - AU10_r  # Upper lip raiser
+    - AU12_r  # Lip corner puller
+    - AU14_r  # Dimpler
+    - AU15_r  # Lip corner depressor
+    - AU17_r  # Chin raiser
+    - AU20_r  # Lip stretcher
+    - AU23_r  # Lip tightener
+    - AU25_r  # Lips part
+    - AU26_r  # Jaw drop
+    - AU45_r  # Blink
+    - gaze_0_x
+    - gaze_0_y
+    - gaze_0_z
+    - gaze_1_x
+    - gaze_1_y
+    - gaze_1_z
+    - pose_Tx
+    - pose_Ty
+    - pose_Tz
+    - pose_Rx
+    - pose_Ry
+    - pose_Rz
+
+# NLP configuration
+nlp:
+  sentiment_model: "vader"  # Options: "vader", "distilbert"
+  distilbert_model: "distilbert-base-uncased-finetuned-sst-2-english"
+  min_feedback_length: 10
+  bias_correction:
+    enabled: true
+    method: "residual"  # Options: "residual", "covariate"
+    control_variables:
+      - expected_grade
+      - course_difficulty
+      - avg_engagement
+
+# Teacher evaluation
+evaluation:
+  model: "xgboost"  # Options: "xgboost", "random_forest"
+  features:
+    - avg_engagement_score
+    - avg_feedback_sentiment
+    - avg_quiz_score
+    - avg_assignment_score
+    - feedback_count
+    - upload_frequency
+    - login_frequency
+    - material_update_count
+    - response_time
+    - attendance_rate
+  shap:
+    enabled: true
+    max_display: 10
+  retrain_interval: 7  # days
+
+# Attendance tracking
+attendance:
+  method: "face_detection"  # Options: "face_detection", "manual", "hybrid"
+  min_presence_threshold: 0.75  # 75% of lecture duration
+  face_detection_interval: 30  # seconds
+
+# Privacy & Security
+privacy:
+  require_consent: true
+  store_raw_video: false  # Only store derived features
+  data_retention_days: 365
+  allow_data_deletion: true
+  anonymize_after_days: 180
+
+security:
+  bcrypt_rounds: 12
+  session_timeout: 3600  # seconds
+  max_login_attempts: 5
+  lockout_duration: 900  # seconds
+
+# UI/UX
+ui:
+  theme: "light"  # Options: "light", "dark", "auto"
+  primary_color: "#1f77b4"
+  secondary_color: "#ff7f0e"
+  layout: "wide"
+  sidebar_state: "expanded"
+
+# Analytics
+analytics:
+  charts:
+    - engagement_timeseries
+    - sentiment_distribution
+    - quiz_performance
+    - attendance_heatmap
+    - teacher_evaluation_comparison
+  export_formats:
+    - csv
+    - pdf
+  update_interval: 60  # seconds
+
+# Logging
+logging:
+  level: "INFO"  # Options: "DEBUG", "INFO", "WARNING", "ERROR"
+  file: "./logs/smart_lms.log"
+  max_size: 10485760  # 10 MB
+  backup_count: 5
+
+# Database migration (future)
+database:
+  enabled: false
+  type: "postgresql"  # Options: "postgresql", "mysql", "sqlite"
+  host: "localhost"
+  port: 5432
+  name: "smart_lms"
+  user: "lms_user"
+  password: ""  # Use environment variable
+
+# Feature flags
+features:
+  webcam_tracking: true
+  nlp_feedback: true
+  teacher_evaluation: true
+  attendance_tracking: true
+  progress_tracking: true
+  teacher_activity_logs: true
+  adaptive_recommendations: false  # Future feature
+  gamification: false  # Future feature
+  ethical_ai_dashboard: true
+  predictive_analytics: false  # Future feature

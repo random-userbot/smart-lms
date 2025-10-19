@@ -1,0 +1,1001 @@
+StudentID,PauseCount,TabSwitchCount,Total WatchTime,SeekCount,Quiz Score,EngagementLabel
+S142,0,0,52.2,3,8,Engaged
+S143,1,1,45.53,1,9,Engaged
+S144,2,0,44.85,1,8,Engaged
+S145,2,1,42.47,1,8,Engaged
+S146,0,2,45.32,1,10,Engaged
+S147,2,1,41.53,2,10,Engaged
+S148,0,2,52.3,1,10,Engaged
+S149,2,2,46.13,1,7,Engaged
+S150,2,1,43.38,4,10,Engaged
+S151,2,2,36.37,1,10,Engaged
+S152,0,1,42.28,5,9,Engaged
+S153,1,2,56.2,5,7,Engaged
+S154,2,2,53.5,1,8,Engaged
+S155,2,0,50.69,2,9,Engaged
+S156,1,2,46.17,1,9,Engaged
+S157,0,2,57.51,2,8,Engaged
+S158,1,2,38.08,1,9,Engaged
+S159,2,0,36.3,1,10,Engaged
+S160,1,1,35.81,1,9,Engaged
+S161,1,2,52.94,1,9,Engaged
+S162,0,1,53.69,1,8,Engaged
+S163,0,2,47.66,2,10,Engaged
+S164,2,1,47.11,2,10,Engaged
+N116,0,0,51.11,1,8,Engaged
+N117,2,1,50.34,1,8,Engaged
+N118,1,1,36.89,1,7,Engaged
+N119,2,0,44.21,2,7,Engaged
+N120,0,0,50.2,1,8,Engaged
+N121,1,1,35.72,3,9,Engaged
+N122,1,1,42.64,2,10,Engaged
+N123,1,2,49.97,2,9,Engaged
+N124,0,2,47.03,2,10,Engaged
+N125,2,1,41.18,2,10,Engaged
+N126,2,2,35.51,1,8,Engaged
+N127,2,0,40.92,2,10,Engaged
+N128,2,2,38.64,2,10,Engaged
+N129,0,2,52.87,1,9,Engaged
+N130,1,0,55.79,1,10,Engaged
+N131,0,0,43.17,1,8,Engaged
+N132,1,2,58.55,1,7,Engaged
+N133,0,1,53.63,2,9,Engaged
+N134,2,0,48.62,1,9,Engaged
+N135,1,1,35.08,2,7,Engaged
+N136,1,0,41.05,3,8,Engaged
+N137,0,2,49.8,3,8,Engaged
+N138,0,0,41.25,1,9,Engaged
+N139,2,0,43.02,1,7,Engaged
+N140,1,2,54.72,2,8,Engaged
+N141,2,2,37.89,3,8,Engaged
+N142,2,1,51.12,5,7,Engaged
+N143,2,1,52.5,1,10,Engaged
+N144,0,1,49.33,2,9,Engaged
+N145,2,0,37.69,4,10,Engaged
+N146,1,2,54.19,4,7,Engaged
+N147,2,1,42.15,2,8,Engaged
+N148,2,2,37.43,4,8,Engaged
+N149,1,1,39.38,2,7,Engaged
+N150,1,0,42.81,3,10,Engaged
+N151,2,0,50.38,4,10,Engaged
+N152,2,2,59.15,2,9,Engaged
+N153,1,0,41.59,3,7,Engaged
+N154,2,2,39.2,2,8,Engaged
+N155,1,1,37.2,1,10,Engaged
+N156,2,1,39.33,5,8,Engaged
+N157,2,2,36.87,2,9,Engaged
+N158,0,2,56.67,4,10,Engaged
+CN01,0,0,51.49,3,7,Engaged
+CN02,2,1,41.67,3,10,Engaged
+CN03,0,0,50.76,1,10,Engaged
+CN04,1,2,55.54,1,8,Engaged
+CN05,0,1,55.53,4,10,Engaged
+CN06,0,1,49.29,1,10,Engaged
+CN07,1,0,40.43,5,9,Engaged
+CN08,2,0,51.22,5,7,Engaged
+CN09,2,1,44.74,1,7,Engaged
+CN10,0,1,51.94,2,7,Engaged
+CN11,0,0,49.64,1,7,Engaged
+CN12,0,0,54.14,2,10,Engaged
+CN13,2,2,46.46,1,9,Engaged
+CN14,2,0,56.62,1,9,Engaged
+CN15,1,1,56.95,1,9,Engaged
+CN16,2,0,40.08,1,8,Engaged
+CN17,0,2,56.36,1,9,Engaged
+CN18,2,0,36.19,2,10,Engaged
+CN19,0,1,52.95,2,7,Engaged
+CN20,1,0,48.24,1,10,Engaged
+CN21,0,2,49.41,1,7,Engaged
+CN22,1,2,58.8,1,10,Engaged
+CN23,1,0,48.45,2,9,Engaged
+CN24,1,1,42.91,1,9,Engaged
+CN25,0,0,43.45,3,8,Engaged
+CN26,1,2,58.45,2,10,Engaged
+CN27,0,2,54.11,2,9,Engaged
+CN28,2,0,55.2,2,10,Engaged
+CN29,1,1,53.41,2,10,Engaged
+CN30,1,2,51.28,1,10,Engaged
+CN31,1,2,59.23,2,8,Engaged
+CN32,1,2,56.16,5,8,Engaged
+CN33,0,0,53.94,1,7,Engaged
+CN34,2,2,54.58,2,10,Engaged
+CN35,2,0,51.07,4,9,Engaged
+CN36,0,2,44.95,4,7,Engaged
+CN37,1,2,35.23,2,7,Engaged
+CN38,1,2,52.86,4,10,Engaged
+CN39,1,0,43.63,2,9,Engaged
+CN40,2,2,45.52,3,7,Engaged
+CN41,0,2,51.71,4,10,Engaged
+CN42,0,1,45.77,2,7,Engaged
+CN43,1,2,48.17,3,7,Engaged
+CN44,2,1,35.26,2,9,Engaged
+CN45,2,0,44.54,1,9,Engaged
+CN46,0,1,47.45,5,8,Engaged
+CN47,0,2,54.14,2,7,Engaged
+CN48,0,0,52.32,4,7,Engaged
+CN49,1,2,44.58,3,10,Engaged
+CN50,1,1,53.89,3,7,Engaged
+CN51,2,0,37.73,1,10,Engaged
+CN52,1,2,57.02,1,10,Engaged
+CN53,0,0,42.24,5,7,Engaged
+CN54,1,1,44.08,1,7,Engaged
+CN55,2,2,37.05,2,10,Engaged
+CN56,1,0,37.1,4,8,Engaged
+CN57,2,1,41.89,4,10,Engaged
+CN58,2,2,38.7,2,7,Engaged
+CN59,1,2,40.67,4,7,Engaged
+CN60,0,2,51.21,2,7,Engaged
+CN61,0,0,41,3,7,Engaged
+CN62,0,0,37.15,4,7,Engaged
+CN63,1,2,44.17,2,7,Engaged
+CN64,1,2,45.04,3,10,Engaged
+CN65,1,1,40.17,2,9,Engaged
+CN66,0,0,57.32,1,7,Engaged
+CN67,2,2,57.13,5,10,Engaged
+CN68,1,1,50.98,2,9,Engaged
+CN69,1,1,40.15,4,8,Engaged
+CN70,0,1,42.06,3,7,Engaged
+IN71,2,1,57.72,3,8,Engaged
+IN72,2,1,44.81,1,9,Engaged
+IN73,0,0,42.75,1,10,Engaged
+IN74,2,2,48.71,1,7,Engaged
+IN75,1,1,50.34,1,7,Engaged
+IN76,1,2,58.06,1,9,Engaged
+IN77,2,1,47.68,2,9,Engaged
+IN78,0,1,53.43,2,10,Engaged
+IN79,0,0,54.31,1,9,Engaged
+IN80,1,0,56.3,1,9,Engaged
+IN81,1,2,37.44,1,7,Engaged
+IN82,1,1,44.4,2,7,Engaged
+IN83,2,1,35.83,1,9,Engaged
+IN84,1,2,37.25,3,9,Engaged
+IN85,1,2,49.97,2,7,Engaged
+IN86,2,2,45.06,2,9,Engaged
+IN87,1,1,39.62,2,7,Engaged
+IN88,1,1,58.47,2,9,Engaged
+IN89,0,0,48.45,1,8,Engaged
+IN90,2,0,51.59,2,10,Engaged
+IN91,2,2,44.3,5,10,Engaged
+IN92,1,0,45.59,1,10,Engaged
+IN93,1,0,52.82,2,9,Engaged
+IN94,2,2,55.58,4,9,Engaged
+IN95,0,0,42.56,4,8,Engaged
+IN96,2,2,46.86,2,9,Engaged
+IN97,2,0,56.29,1,9,Engaged
+IN98,0,0,57.35,1,10,Engaged
+IN99,1,1,39.42,1,10,Engaged
+IN100,0,1,43.68,2,10,Engaged
+IN101,1,0,44.81,2,9,Engaged
+IN102,2,1,51.47,1,8,Engaged
+IN103,1,1,56.18,1,7,Engaged
+IN104,1,0,38.87,1,8,Engaged
+IN105,2,0,49.73,2,10,Engaged
+IN106,2,2,40.68,1,7,Engaged
+IN107,1,0,58.23,3,7,Engaged
+IN108,1,2,40.07,2,9,Engaged
+IN109,2,1,38.49,2,8,Engaged
+IN110,1,1,50.76,2,7,Engaged
+IN111,1,1,46.23,2,7,Engaged
+IN112,1,2,57.61,1,10,Engaged
+IN113,2,0,55.05,2,7,Engaged
+IN114,2,1,40.54,5,10,Engaged
+IN115,1,1,56.01,1,7,Engaged
+IN116,1,2,50.89,2,10,Engaged
+IN117,0,0,45.16,4,7,Engaged
+IN118,1,2,43.89,4,9,Engaged
+IN119,1,1,46.8,2,10,Engaged
+IN120,0,2,54.58,1,9,Engaged
+IN121,1,2,46.27,1,9,Engaged
+IN122,1,2,47.52,1,7,Engaged
+IN123,1,2,53.86,2,10,Engaged
+IN124,1,0,49.51,2,8,Engaged
+IN125,1,1,38.14,1,10,Engaged
+IN126,0,0,54.36,1,10,Engaged
+IN127,0,0,48.43,1,9,Engaged
+IN128,2,0,48.21,2,10,Engaged
+IN129,1,1,53.42,1,10,Engaged
+IN130,0,2,55.79,3,7,Engaged
+IN131,1,1,40.53,2,8,Engaged
+IN132,1,1,57.16,2,10,Engaged
+IN133,0,1,45.96,2,7,Engaged
+IN134,2,0,51.73,2,7,Engaged
+IN135,4,3,27.26,1,4,Confused
+IN136,6,5,23.64,2,5,Confused
+IN137,5,3,22.55,5,6,Confused
+IN138,5,6,22.9,1,3,Confused
+IN139,4,5,22.21,2,6,Confused
+IN140,8,4,24.38,4,4,Confused
+IN141,7,6,26.84,4,3,Confused
+CS112,7,5,26.91,2,3,Confused
+CS113,6,6,20.63,2,3,Confused
+CS114,6,4,26.88,3,6,Confused
+CS115,7,5,24.03,2,3,Confused
+CS116,5,6,29.39,1,3,Confused
+CS117,5,3,26.2,5,4,Confused
+CS118,6,3,21.33,2,4,Confused
+CS119,6,6,29.16,4,3,Confused
+CS120,6,4,22.27,3,6,Confused
+CS121,8,6,20.41,3,5,Confused
+CS122,8,6,21.32,1,5,Confused
+CS123,4,5,24.26,1,6,Confused
+CS124,7,4,29.86,1,6,Confused
+CS125,6,3,23.23,1,6,Confused
+CS126,7,3,26.11,1,3,Confused
+CS127,4,3,28.11,2,3,Confused
+CS128,7,3,24.93,2,4,Confused
+CS129,4,6,27.39,1,5,Confused
+CS130,6,6,21.37,1,5,Confused
+CS131,5,3,20.92,1,5,Confused
+CS132,7,6,24.5,2,5,Confused
+CS133,6,6,21.82,1,3,Confused
+CS134,8,3,20.44,3,5,Confused
+CS135,5,5,25.98,2,6,Confused
+CS136,6,5,28.36,2,6,Confused
+CS137,6,4,27.79,2,3,Confused
+CS138,7,5,25.72,2,6,Confused
+CS139,6,6,21.96,1,3,Confused
+CS140,8,5,23,2,4,Confused
+CS141,4,5,26.92,5,5,Confused
+CS142,6,4,24.12,1,4,Confused
+CS143,6,5,23.71,2,4,Confused
+CS144,8,3,22.35,4,3,Confused
+CS145,5,5,29.18,5,3,Confused
+CS146,7,5,27.09,4,4,Confused
+CS147,5,4,20.86,5,5,Confused
+CS148,5,3,24.22,6,3,Confused
+CS149,8,6,27.67,5,5,Confused
+CS150,7,5,24.17,4,4,Confused
+CS151,8,4,22.77,6,4,Confused
+CS152,8,4,27.65,5,6,Confused
+CS153,5,6,20.15,4,6,Confused
+CS154,5,3,22.15,5,6,Confused
+CS155,4,4,23.09,6,3,Confused
+CS156,5,3,27.04,5,3,Confused
+CS157,6,6,25.93,6,5,Confused
+CS158,6,5,24.51,5,5,Confused
+CS159,5,4,22.4,4,6,Confused
+CS160,4,5,22.95,6,6,Confused
+CS161,6,4,21.8,5,3,Confused
+CS162,5,4,26.94,4,4,Confused
+CS163,4,6,22.58,5,5,Confused
+CS164,8,6,28.86,6,3,Confused
+CS165,8,5,21.96,5,6,Confused
+CS166,4,6,24.67,6,3,Confused
+CS167,4,5,26,5,6,Confused
+CS168,4,3,29.03,4,6,Confused
+CS169,4,3,22.24,6,4,Confused
+CS170,4,3,23.57,5,4,Confused
+CS171,8,3,24.29,4,5,Confused
+CS172,8,4,21.62,5,6,Confused
+CS173,6,4,21.91,6,6,Confused
+CS174,7,4,22.51,5,5,Confused
+CS175,8,6,25.74,6,3,Confused
+CS176,7,4,25.97,5,3,Confused
+CS177,5,4,20.72,4,6,Confused
+CS178,4,6,27.73,6,3,Confused
+CS179,5,6,29.01,5,5,Confused
+CS180,4,4,26.52,4,6,Confused
+CS181,4,5,20.67,5,5,Confused
+CS182,4,6,23.9,6,3,Confused
+CS183,4,5,28.71,4,3,Confused
+CS184,4,6,22.07,4,6,Confused
+CS185,4,3,29.29,4,5,Confused
+CS186,7,4,27.25,4,4,Confused
+CS187,8,4,25.42,4,4,Confused
+CS188,7,3,23.27,4,4,Confused
+CS189,7,4,25.25,5,6,Confused
+CS190,4,4,24.95,5,5,Confused
+CS191,8,5,21.92,4,5,Confused
+CS192,4,3,28.84,5,3,Confused
+CS193,7,5,24.26,6,6,Confused
+CS194,4,6,24.11,6,3,Confused
+CS195,8,5,21.24,6,5,Confused
+CS196,7,6,23.28,6,6,Confused
+CS197,5,6,25.71,6,5,Confused
+CS198,8,3,29.95,6,5,Confused
+CS199,6,6,29.65,6,6,Confused
+CS200,7,4,28.83,5,4,Confused
+CS201,5,3,23.17,6,6,Confused
+CS202,7,5,24.3,4,5,Confused
+CS203,5,5,25.73,5,4,Confused
+CS204,4,4,21.44,6,6,Confused
+CS205,5,5,29.61,6,4,Confused
+CS206,7,3,21.48,7,4,Confused
+CS207,7,6,27.28,4,5,Confused
+CS208,8,3,29.78,4,4,Confused
+CS209,6,4,26.1,4,3,Confused
+CS210,8,3,28.3,4,4,Confused
+CS211,4,6,26.38,5,3,Confused
+CS212,4,4,27.85,5,4,Confused
+CS213,4,5,24.96,4,6,Confused
+CS214,6,5,27.65,5,4,Confused
+CS215,5,6,28.58,6,5,Confused
+CS216,5,4,25.45,6,3,Confused
+CS217,6,4,25.53,6,4,Confused
+CS218,7,3,25.69,6,6,Confused
+CS219,8,4,25.36,6,5,Confused
+CS220,5,3,28.4,6,5,Confused
+CS221,8,4,28.18,6,3,Confused
+CS222,4,3,27.79,5,4,Confused
+CS223,8,3,22.48,6,6,Confused
+CS224,6,4,26.3,4,3,Confused
+CS225,7,5,24.23,5,6,Confused
+CS226,8,3,25.67,6,3,Confused
+CS227,6,3,23.62,6,3,Confused
+CS228,5,3,22.73,7,5,Confused
+CS229,5,3,22.21,4,6,Confused
+CS230,5,5,22.05,4,3,Confused
+CS231,8,5,23.98,4,4,Confused
+CS232,4,4,27.37,4,5,Confused
+CS233,4,6,29.22,5,3,Confused
+CS234,4,4,28.88,5,6,Confused
+CS235,4,3,20.15,4,3,Confused
+CS236,5,6,24.57,5,4,Confused
+CS237,5,5,24.65,6,5,Confused
+CS238,6,6,22.19,6,5,Confused
+CS239,4,4,29.39,6,5,Confused
+CS240,5,5,29.93,6,5,Confused
+CS241,8,4,29.46,6,3,Confused
+CS242,5,3,24.44,6,5,Confused
+CS243,7,6,20.96,6,4,Confused
+CS244,4,4,20.77,5,4,Confused
+CS245,5,5,27.61,6,3,Confused
+CS246,4,3,24.8,4,4,Confused
+CS247,4,4,21.63,5,3,Confused
+CS248,8,5,21.13,6,4,Confused
+CS249,6,4,26.65,6,6,Confused
+CS250,7,4,24.79,7,5,Confused
+CS251,8,4,20.15,4,5,Confused
+CS252,8,4,23.81,4,6,Confused
+CS253,5,4,24.73,4,3,Confused
+CS254,6,5,25.96,4,6,Confused
+CS255,5,6,24.03,5,5,Confused
+CS256,7,5,22.29,5,4,Confused
+CS257,6,3,24.45,4,3,Confused
+CS258,4,4,26.4,5,3,Confused
+CS259,7,6,26.46,6,6,Confused
+CS260,4,6,25.7,6,3,Confused
+CS261,7,6,29.81,6,5,Confused
+CS262,4,5,23.76,6,3,Confused
+CS263,6,6,27.17,6,6,Confused
+CS264,7,3,26.72,6,6,Confused
+CS265,4,3,23.47,6,3,Confused
+CS266,5,5,24.31,5,6,Confused
+CS267,4,6,21.63,6,6,Confused
+CS268,8,4,24.1,4,3,Confused
+CS269,4,6,25.35,5,3,Confused
+CS270,6,3,26.24,6,3,Confused
+CM21,4,4,21.36,6,6,Confused
+CM22,7,6,24.19,7,4,Confused
+CM23,7,5,25.33,6,4,Confused
+CM24,4,5,21.93,6,3,Confused
+CM25,7,6,26.73,6,6,Confused
+CM26,8,6,20.43,6,4,Confused
+CM27,8,3,20.34,5,6,Confused
+CM28,4,3,26.8,6,4,Confused
+CM29,4,6,20.78,4,5,Confused
+CM30,8,5,26.59,5,3,Confused
+CM31,8,4,28.29,6,5,Confused
+CM32,6,4,23.76,6,3,Confused
+CM33,6,4,27.63,7,5,Confused
+CM34,7,5,28.14,4,5,Confused
+CM35,5,6,23.95,4,6,Confused
+CM36,4,5,21.52,4,6,Confused
+CM37,7,5,21.85,4,6,Confused
+CM38,6,5,27.76,5,4,Confused
+CM39,6,4,20.03,5,6,Confused
+CM40,4,5,23.47,4,5,Confused
+CM41,6,4,29.79,5,3,Confused
+CM42,6,3,22.22,6,5,Confused
+CM43,7,6,20.02,6,4,Confused
+CM44,8,6,23.83,6,4,Confused
+CM45,6,6,25.24,6,5,Confused
+CM46,5,4,22.7,6,6,Confused
+CM47,8,3,29.7,6,3,Confused
+CM48,7,6,23.15,6,6,Confused
+CM49,4,4,23.45,5,4,Confused
+CM50,4,3,23.56,6,5,Confused
+CM51,4,3,27.11,4,3,Confused
+CM52,5,4,29.06,5,6,Confused
+CM53,4,3,21.3,6,4,Confused
+CM54,7,3,27.5,6,3,Confused
+CM55,4,9,20.92,7,6,Distracted
+CM56,1,8,10.1,4,5,Distracted
+CM57,3,10,18.05,4,6,Distracted
+CM58,4,6,20.37,4,4,Distracted
+CM59,1,10,24.77,4,5,Distracted
+CM60,4,6,22.8,5,4,Distracted
+CM61,4,7,21.66,5,5,Distracted
+CM62,2,9,24.66,4,5,Distracted
+CM63,1,6,20,4,5,Distracted
+CM64,3,9,17.51,4,5,Distracted
+CM65,3,6,16.43,4,4,Distracted
+CM66,4,10,18.6,5,4,Distracted
+CM67,1,8,14.17,4,4,Distracted
+CM68,2,6,23.33,5,6,Distracted
+CM69,1,9,19.21,5,4,Distracted
+CM70,2,8,11.41,3,4,Distracted
+CM71,4,10,21.47,4,5,Distracted
+CM72,2,8,19.48,4,5,Distracted
+CM73,3,8,16.98,5,4,Distracted
+CM74,3,8,15.67,4,6,Distracted
+CM75,2,9,11.6,5,4,Distracted
+CM76,2,6,23.55,5,6,Distracted
+CM77,4,7,24.79,4,6,Distracted
+CM78,4,8,14.2,3,4,Distracted
+CM79,2,8,18.44,4,5,Distracted
+CM80,4,7,18.81,5,6,Distracted
+CM81,1,10,18.62,5,4,Distracted
+CM82,4,7,10.19,7,6,Distracted
+CM83,4,6,21.82,4,4,Distracted
+CM84,4,8,23.58,4,4,Distracted
+CM85,2,9,10.78,4,5,Distracted
+CM86,3,8,12.57,4,4,Distracted
+CM87,2,10,12.91,5,6,Distracted
+CM88,2,10,13.46,5,6,Distracted
+DS01,3,8,16.59,4,5,Distracted
+DS02,1,9,23.69,4,6,Distracted
+DS03,1,8,20.78,4,6,Distracted
+DS04,2,9,18.59,4,4,Distracted
+DS05,2,9,10.38,5,4,Distracted
+DS06,3,8,19.19,4,5,Distracted
+DS07,4,9,17.16,5,4,Distracted
+DS08,4,7,20.36,5,5,Distracted
+DS09,1,6,10.28,3,4,Distracted
+DS10,4,9,18.03,4,5,Distracted
+DS11,1,8,17.76,4,4,Distracted
+DS12,1,7,21.83,5,6,Distracted
+DS13,4,7,15,4,5,Distracted
+DS14,3,7,24.74,5,6,Distracted
+DS15,4,7,11.47,5,6,Distracted
+DS16,1,10,20.25,4,4,Distracted
+DS17,3,8,12.05,3,6,Distracted
+DS18,3,9,15.21,4,6,Distracted
+DS19,4,8,19.01,5,6,Distracted
+DS20,4,7,10.56,5,5,Distracted
+DS21,3,7,13.79,7,4,Distracted
+DS22,1,8,25,4,4,Distracted
+DS23,4,9,20.01,4,6,Distracted
+DS24,2,10,22.67,4,5,Distracted
+DS25,1,9,19.4,4,5,Distracted
+DS26,4,7,10.59,5,4,Distracted
+DS27,2,6,23.08,5,5,Distracted
+DS28,2,6,20.18,4,4,Distracted
+DS29,3,8,16.22,4,6,Distracted
+DS30,2,7,23.17,4,5,Distracted
+DS31,3,6,13.51,4,4,Distracted
+DS32,4,9,14.68,5,6,Distracted
+DS33,4,8,16.07,4,6,Distracted
+DS34,1,8,13.05,5,4,Distracted
+DS35,1,7,23.52,5,4,Distracted
+DS36,2,7,12.27,3,6,Distracted
+DS37,2,6,10.47,4,5,Distracted
+DS38,3,8,11.54,4,5,Distracted
+DS39,4,10,19.08,5,4,Distracted
+DS40,4,6,21.08,4,4,Distracted
+DS41,3,8,17.83,5,6,Distracted
+DS42,1,7,23.05,5,5,Distracted
+DS43,4,6,13.81,4,4,Distracted
+DS44,3,10,10.99,3,6,Distracted
+DS45,2,10,23.39,4,6,Distracted
+DS46,1,9,20.75,5,5,Distracted
+DS47,1,7,22.98,5,5,Distracted
+DS48,3,7,24.11,7,5,Distracted
+DS49,2,6,21.12,4,6,Distracted
+DS50,4,9,10.5,4,5,Distracted
+DS51,2,10,22.67,4,4,Distracted
+DS52,3,8,16.14,4,5,Distracted
+DS53,4,8,20.14,5,6,Distracted
+DS54,1,9,11.09,5,6,Distracted
+DS55,2,10,13.66,4,5,Distracted
+DS56,4,7,11.02,4,4,Distracted
+DS57,1,9,11.67,4,6,Distracted
+DS58,2,7,20.54,4,5,Distracted
+DS59,1,10,13.73,5,4,Distracted
+DS60,4,6,14,4,6,Distracted
+DS61,1,9,15.55,5,5,Distracted
+DS62,3,10,22.05,5,6,Distracted
+DS63,3,6,15.36,3,4,Distracted
+DS64,2,6,16.72,4,5,Distracted
+DS65,1,6,23.51,4,4,Distracted
+DS66,4,10,11.26,5,5,Distracted
+DS67,2,6,20.11,4,4,Distracted
+DS68,2,9,14.23,5,5,Distracted
+DS69,2,10,11.11,5,5,Distracted
+DS70,4,10,10.31,4,5,Distracted
+DS71,4,10,13.75,3,6,Distracted
+DS72,3,6,15.02,4,5,Distracted
+DS73,4,9,20.35,5,4,Distracted
+DS74,4,6,13.12,5,6,Distracted
+DS75,3,7,19.29,4,6,Distracted
+DS76,3,8,24.4,5,4,Distracted
+DS77,4,8,20,4,5,Distracted
+DS78,1,10,11.39,5,6,Distracted
+DS79,3,9,17.75,5,6,Distracted
+DS80,4,9,10.83,4,5,Distracted
+DS81,1,8,20.31,3,6,Distracted
+DS82,1,6,10.79,4,4,Distracted
+DS83,1,9,23.83,5,5,Distracted
+DS84,4,9,10.55,5,6,Distracted
+DS85,3,7,23.46,7,6,Distracted
+DS86,4,8,20.37,4,4,Distracted
+DS87,3,10,22.62,4,5,Distracted
+DS88,4,10,16.53,4,4,Distracted
+DS89,2,7,16.19,4,5,Distracted
+DS90,1,10,11.08,5,4,Distracted
+DS91,1,8,23.9,5,6,Distracted
+DS92,1,6,21.16,4,5,Distracted
+DS93,1,9,11.74,4,5,Distracted
+DS94,2,6,13.2,4,4,Distracted
+DS95,2,10,10.61,4,6,Distracted
+DS96,4,9,24.48,5,5,Distracted
+DS97,3,7,22.65,4,4,Distracted
+DS98,4,6,12.08,5,4,Distracted
+DS99,2,10,23.46,5,5,Distracted
+DS100,4,6,10.43,3,4,Distracted
+DS101,1,7,10.04,4,4,Distracted
+DS102,1,10,24.53,4,4,Distracted
+DS103,3,9,24.33,5,6,Distracted
+DS104,4,6,23.87,4,6,Distracted
+DS105,2,6,17.66,5,5,Distracted
+DS106,1,7,14,5,6,Distracted
+DS107,4,10,13,4,5,Distracted
+DS108,3,6,21,3,5,Distracted
+DS109,2,7,20.52,4,5,Distracted
+DS110,3,6,11.35,5,4,Distracted
+DS111,2,7,11.65,5,5,Distracted
+DS112,2,7,22.73,4,4,Distracted
+DS113,2,7,10.38,5,6,Distracted
+DS114,2,8,12.09,4,6,Distracted
+DS115,1,10,16.23,5,5,Distracted
+DS116,1,6,21.88,5,4,Distracted
+DS117,4,10,17.64,4,4,Distracted
+DS118,2,10,11.11,3,6,Distracted
+DS119,3,10,15.81,4,5,Distracted
+DS120,3,6,12.23,5,6,Distracted
+DS121,4,9,14.79,5,6,Distracted
+DS122,3,7,23.43,7,5,Distracted
+DS123,1,9,22.29,4,5,Distracted
+DS124,3,6,20.43,4,6,Distracted
+DS125,1,10,16.08,4,4,Distracted
+DS126,3,8,22.87,4,5,Distracted
+DS127,2,9,24.6,5,5,Distracted
+DS128,3,8,14.36,5,4,Distracted
+DS129,1,8,20.71,4,5,Distracted
+DS130,1,6,11.37,4,6,Distracted
+DS131,2,9,10.58,4,5,Distracted
+DS132,1,9,22.97,4,5,Distracted
+DS133,2,6,11.03,5,4,Distracted
+DS134,2,9,17.95,4,4,Distracted
+DS135,1,10,21.4,5,4,Distracted
+DS136,2,9,22.36,5,6,Distracted
+DS137,2,7,17.86,3,4,Distracted
+DS138,2,7,18.27,4,5,Distracted
+DS139,2,8,22.57,4,5,Distracted
+DS140,3,10,23.24,5,5,Distracted
+DS141,1,8,21.65,4,4,Distracted
+DS142,3,9,16.5,5,4,Distracted
+DS143,3,6,12.45,5,4,Distracted
+DS144,3,8,16.6,4,6,Distracted
+DS145,4,10,15.13,3,6,Distracted
+DS146,4,7,21.02,4,6,Distracted
+DS147,3,7,22.09,5,6,Distracted
+DS148,4,8,13.82,5,4,Distracted
+DS149,1,10,13.44,,4,Distracted
+DS150,3,8,11.34,4,5,Distracted
+DS151,2,10,11.48,5,4,Distracted
+DS152,1,7,19.73,4,6,Distracted
+DS153,2,7,10.6,5,5,Distracted
+DS154,1,7,12.27,5,6,Distracted
+DS155,2,9,18.47,4,5,Distracted
+DS156,3,6,18.73,3,5,Distracted
+DS157,2,7,13.89,4,4,Distracted
+DS158,1,7,17.97,5,4,Distracted
+DS159,2,10,24.09,5,6,Distracted
+DS160,1,10,22.94,7,6,Distracted
+DS161,4,10,22.54,4,5,Distracted
+DS162,3,7,14.66,4,4,Distracted
+DS163,4,7,15.22,4,5,Distracted
+DS164,3,6,22.41,4,6,Distracted
+DS165,4,10,22.44,5,6,Distracted
+DS166,4,7,11.22,5,5,Distracted
+DS167,3,5,17.81,4,1,Bored
+DS168,1,7,13.12,4,0,Bored
+DS169,2,4,8.8,4,1,Bored
+DS170,1,6,10.55,4,1,Bored
+DS171,1,8,16.06,5,4,Bored
+DS172,3,7,15.59,4,4,Bored
+DS173,1,8,11.87,5,4,Bored
+DS174,1,4,8.82,5,0,Bored
+DS175,0,6,6.25,3,3,Bored
+DS176,3,7,7.25,4,4,Bored
+DS177,3,6,14.18,4,2,Bored
+DS178,3,8,11.32,5,4,Bored
+DS179,0,7,15.96,4,1,Bored
+DS180,0,5,10.35,5,0,Bored
+DS181,3,8,9.35,5,0,Bored
+DS182,1,4,17.05,4,4,Bored
+DS183,2,4,15.57,3,1,Bored
+DS184,2,8,16.43,4,4,Bored
+DS185,3,8,9.4,5,4,Bored
+DS186,2,7,11.14,5,4,Bored
+DS187,2,8,13.73,4,2,Bored
+DS188,2,5,12.89,5,0,Bored
+DS189,1,6,16.2,4,4,Bored
+DS190,0,4,18.32,5,4,Bored
+DS191,2,5,17.08,5,0,Bored
+DS192,1,8,5.23,4,4,Bored
+DS193,3,8,17.06,3,4,Bored
+DS194,1,5,10.19,4,1,Bored
+DS195,0,7,7.48,5,0,Bored
+DS196,2,6,8,5,1,Bored
+DS197,1,8,12.17,7,4,Bored
+DS198,3,6,14.66,4,0,Bored
+DS199,0,7,10.07,4,3,Bored
+DS200,2,5,9.86,4,3,Bored
+DS201,3,6,15.31,4,4,Bored
+DS202,3,6,9.19,5,3,Bored
+DS203,2,6,17.2,5,1,Bored
+DS204,3,4,11.68,4,0,Bored
+DS205,2,6,8.89,4,0,Bored
+DS206,1,6,16.01,4,0,Bored
+DS207,0,7,8.89,4,0,Bored
+DS208,1,8,6.11,5,0,Bored
+DS209,2,4,18.17,4,0,Bored
+DS210,1,5,13.65,5,0,Bored
+DS211,3,7,13.55,5,1,Bored
+DS212,2,5,18.04,3,3,Bored
+DS213,1,8,14.8,4,0,Bored
+DS214,3,7,5.26,4,3,Bored
+DS215,2,6,9.57,5,3,Bored
+DS216,1,8,7.75,4,4,Bored
+DS217,0,8,8.77,5,4,Bored
+DS218,0,6,15.65,5,3,Bored
+DS219,0,4,19.61,4,4,Bored
+DS220,3,5,6.24,3,2,Bored
+DS221,3,4,11.4,4,3,Bored
+DS222,3,8,8.3,5,0,Bored
+DS223,2,8,7.61,5,1,Bored
+DS224,1,5,16.34,4,2,Bored
+DS225,0,8,15.69,5,0,Bored
+DS226,3,8,14.1,4,3,Bored
+DS227,0,4,10.53,5,3,Bored
+DS228,0,5,16.68,5,4,Bored
+DS229,1,4,14.15,4,2,Bored
+DS230,0,8,14.27,3,3,Bored
+DS231,2,6,9.53,4,0,Bored
+DS232,1,7,11.87,5,0,Bored
+DS233,1,8,13.93,5,3,Bored
+DS234,1,8,14.73,7,4,Bored
+DS235,3,7,5.55,4,4,Bored
+DS236,1,7,8.5,4,3,Bored
+DS237,0,8,18.12,4,4,Bored
+DS238,1,5,16.34,4,4,Bored
+DS239,0,4,9.93,5,1,Bored
+DS240,0,6,5.01,5,4,Bored
+DS241,3,8,5.04,4,3,Bored
+DS242,2,7,7.6,4,2,Bored
+DS243,1,7,15.09,4,2,Bored
+DS244,0,6,11.43,4,1,Bored
+DS245,3,4,5.4,5,1,Bored
+DS246,3,7,15.6,4,4,Bored
+DS247,3,7,13.51,5,0,Bored
+DS248,2,6,10.1,5,3,Bored
+DS249,1,4,19.52,3,3,Bored
+DS250,1,5,13.46,4,1,Bored
+DS251,1,8,8.76,4,2,Bored
+DS252,3,6,14.75,5,4,Bored
+DS253,1,5,5.45,4,2,Bored
+DS254,0,4,6.9,5,3,Bored
+DS255,1,4,18.3,5,4,Bored
+DS256,1,8,17.75,4,1,Bored
+DS257,1,5,13.39,3,4,Bored
+DS258,3,7,16.38,4,1,Bored
+DS259,1,6,16.32,5,2,Bored
+DS260,3,5,5.49,5,2,Bored
+DS261,1,5,18.18,4,4,Bored
+DS262,2,4,10.72,5,4,Bored
+DS263,0,4,18.7,4,2,Bored
+DS264,2,7,8.34,5,0,Bored
+DS265,0,5,6.89,5,0,Bored
+DS266,3,8,7.72,4,3,Bored
+DS267,2,7,6.99,3,1,Bored
+DS268,3,4,5.47,4,0,Bored
+DS269,2,5,14.7,5,2,Bored
+DS270,3,7,12.33,5,0,Bored
+DS271,2,8,19.22,7,0,Bored
+DS272,0,6,8.83,4,0,Bored
+DS273,3,6,14.48,4,4,Bored
+DS274,3,7,9.1,4,2,Bored
+DS275,0,7,18.63,4,4,Bored
+DS276,1,6,9.65,5,4,Bored
+DS277,1,8,18.59,5,3,Bored
+DS278,3,7,6.46,4,1,Bored
+DS279,1,6,16.27,4,3,Bored
+DS280,2,7,5.51,4,3,Bored
+DS281,3,6,11.69,4,4,Bored
+DS282,3,7,13.09,5,3,Bored
+DS283,0,8,11.68,4,4,Bored
+DS284,3,4,11.16,5,1,Bored
+DS285,2,7,17.19,5,1,Bored
+DS286,3,6,17.8,3,3,Bored
+DS287,0,6,8.43,4,3,Bored
+DS288,3,7,11.86,4,4,Bored
+DS289,1,5,10.8,5,4,Bored
+DS290,2,7,8.64,4,3,Bored
+DS291,0,8,16.88,5,4,Bored
+DS292,0,4,13.63,5,2,Bored
+DS293,3,7,8.04,4,2,Bored
+DS294,0,5,9.09,3,1,Bored
+DS295,2,4,17.42,4,2,Bored
+DS296,0,7,14.96,5,2,Bored
+DS297,1,7,5.52,5,4,Bored
+DS298,0,8,16.96,4,2,Bored
+DS299,0,6,12.46,5,1,Bored
+DS300,0,8,6.69,4,0,Bored
+DS301,3,4,8.01,5,1,Bored
+DS302,1,7,6.95,5,0,Bored
+DS303,2,7,9.34,4,4,Bored
+DS304,0,6,12.79,3,4,Bored
+DS305,1,8,9.39,4,3,Bored
+DS306,2,5,17.37,5,4,Bored
+DS307,2,6,16.3,5,0,Bored
+DS308,0,8,16.19,7,2,Bored
+DS309,1,4,19.12,4,1,Bored
+DS310,0,4,11.46,4,4,Bored
+DS311,0,6,14.98,4,1,Bored
+DS312,2,8,10.05,4,4,Bored
+DS313,1,7,11.77,5,4,Bored
+DS314,0,8,13.75,5,0,Bored
+DS315,2,8,14.33,4,2,Bored
+DS316,1,4,11.22,4,0,Bored
+DS317,3,4,15.34,4,4,Bored
+DS318,0,5,16.81,4,2,Bored
+DS319,1,8,9.68,5,3,Bored
+DS320,0,5,6.86,4,4,Bored
+DS321,1,7,7.47,5,1,Bored
+DS322,1,6,7.81,5,2,Bored
+DS323,0,5,17.09,3,3,Bored
+DS324,3,7,15.48,4,3,Bored
+DS325,2,5,17.71,4,1,Bored
+DS326,1,6,18.23,5,3,Bored
+DS327,3,4,5.8,4,3,Bored
+DS328,3,4,13.05,5,0,Bored
+DS329,1,7,7.02,5,0,Bored
+DS330,0,7,19.43,4,2,Bored
+DS331,1,4,18.15,3,0,Bored
+DS332,2,5,8.72,4,4,Bored
+DS333,1,8,16.54,5,2,Bored
+DS334,1,6,18.71,5,4,Bored
+DS335,1,4,18.04,4,4,Bored
+DS336,3,4,7.23,5,3,Bored
+DS337,2,5,9.52,4,2,Bored
+DS338,0,8,14.24,5,1,Bored
+DS339,2,6,11.82,5,2,Bored
+DS340,3,8,11.42,4,2,Bored
+DS341,3,7,14.5,3,3,Bored
+DS342,1,4,7.93,4,0,Bored
+DS343,2,8,14.61,5,1,Bored
+DS344,2,5,17.41,5,3,Bored
+DS345,0,8,13.88,7,4,Bored
+DS346,1,8,19.7,4,4,Bored
+DS347,2,5,8.22,4,3,Bored
+DS348,2,7,12.28,4,0,Bored
+DS349,1,4,6.63,4,1,Bored
+DS350,1,7,19.19,5,0,Bored
+DS351,3,4,14.42,5,3,Bored
+DS352,0,8,17.38,4,0,Bored
+DS353,1,4,13.16,4,3,Bored
+DS354,2,7,9.12,4,2,Bored
+DS355,2,8,18.73,4,0,Bored
+DS356,1,7,5.19,5,1,Bored
+DS357,3,5,19.22,4,1,Bored
+DS358,0,6,11.95,5,2,Bored
+DS359,3,5,9.06,5,3,Bored
+DS360,1,6,15.42,3,4,Bored
+DS361,3,8,19.15,4,4,Bored
+DS362,2,7,8.32,4,2,Bored
+DS363,3,8,10.92,5,0,Bored
+DS364,3,7,19.43,4,2,Bored
+DS365,2,8,12.95,5,0,Bored
+DS366,3,4,13.12,5,1,Bored
+DS367,1,10,6.06,4,2,Not Engaged
+DS368,1,7,6.54,3,1,Not Engaged
+DS369,0,8,5.99,4,2,Not Engaged
+DS370,0,9,1.64,5,0,Not Engaged
+DS371,1,6,8.76,5,3,Not Engaged
+DS372,1,6,5.19,2,2,Not Engaged
+DS373,1,10,8.53,2,3,Not Engaged
+DS374,0,8,5.02,3,3,Not Engaged
+DS375,1,6,9.98,2,1,Not Engaged
+DS376,0,10,9.81,1,3,Not Engaged
+DS377,1,7,6.87,1,0,Not Engaged
+DS378,1,8,8.7,1,0,Not Engaged
+DS379,2,6,6.23,1,2,Not Engaged
+DS380,2,8,8.58,2,2,Not Engaged
+DS381,1,7,2.14,2,2,Not Engaged
+DS382,2,7,9.03,3,2,Not Engaged
+DS383,2,8,8.56,3,0,Not Engaged
+DS384,2,10,2.08,1,0,Not Engaged
+DS385,0,6,5.28,2,0,Not Engaged
+DS386,1,9,5.3,1,3,Not Engaged
+DS387,0,8,6.25,2,2,Not Engaged
+DS388,2,6,4.64,2,3,Not Engaged
+DS389,1,8,2.46,3,3,Not Engaged
+DS390,2,9,6.77,2,3,Not Engaged
+DS391,2,8,5.68,1,3,Not Engaged
+DS392,2,10,5.26,2,2,Not Engaged
+DS393,0,10,5.99,1,1,Not Engaged
+DS394,1,8,5.45,2,0,Not Engaged
+DS395,0,9,6.96,1,0,Not Engaged
+DS396,0,10,8.86,3,3,Not Engaged
+DS397,1,6,3.22,1,3,Not Engaged
+DS398,0,8,7.75,1,3,Not Engaged
+DS399,1,6,5.14,1,0,Not Engaged
+DS400,2,7,1.71,1,3,Not Engaged
+DS401,0,6,1.99,1,1,Not Engaged
+DS402,1,6,6.79,1,3,Not Engaged
+DS403,0,7,4.06,1,0,Not Engaged
+DS404,2,7,6.64,1,1,Not Engaged
+DS405,0,10,5.23,1,3,Not Engaged
+DS406,1,7,4.51,1,2,Not Engaged
+DS407,0,10,2.59,2,1,Not Engaged
+DS408,1,6,4.62,1,2,Not Engaged
+DS409,2,6,7.86,2,3,Not Engaged
+DS410,0,10,8.57,1,3,Not Engaged
+DS411,1,9,6.76,1,0,Not Engaged
+DS412,0,10,9.89,2,2,Not Engaged
+DS413,1,6,5.15,1,2,Not Engaged
+DS414,2,9,7.35,2,2,Not Engaged
+DS415,0,6,2.36,2,3,Not Engaged
+DS416,0,7,2.97,1,0,Not Engaged
+DS417,0,7,9.81,2,2,Not Engaged
+DS418,0,8,2.23,1,3,Not Engaged
+DS419,0,6,2.01,1,1,Not Engaged
+DS420,0,10,8.6,2,3,Not Engaged
+DS421,1,6,4.06,1,0,Not Engaged
+DS422,1,7,6.79,2,2,Not Engaged
+DS423,2,6,6.98,1,1,Not Engaged
+DS424,1,6,6.96,1,1,Not Engaged
+DS425,0,6,6.6,2,2,Not Engaged
+DS426,2,8,7.21,1,1,Not Engaged
+DS427,1,8,3.01,1,2,Not Engaged
+DS428,0,7,8.33,2,1,Not Engaged
+DS429,2,10,3.04,3,1,Not Engaged
+DS430,1,9,5.31,1,1,Not Engaged
+DS431,2,8,7.24,2,3,Not Engaged
+DS432,0,9,6.16,1,2,Not Engaged
+DS433,0,9,8.58,2,1,Not Engaged
+DS434,0,9,3.44,1,0,Not Engaged
+DS435,1,6,9.44,2,2,Not Engaged
+DS436,1,7,4.04,1,2,Not Engaged
+DS437,1,9,3.95,2,2,Not Engaged
+DS438,1,10,3.95,1,2,Not Engaged
+DS439,1,6,7.23,2,1,Not Engaged
+DS440,1,7,8.9,1,3,Not Engaged
+DS441,2,8,4.45,2,3,Not Engaged
+DS442,0,7,7.31,1,3,Not Engaged
+DS443,0,6,1.26,2,0,Not Engaged
+DS444,1,6,2.36,1,1,Not Engaged
+DS445,1,6,9.26,2,1,Not Engaged
+DS446,0,6,4.43,1,1,Not Engaged
+DS447,1,10,1.71,2,0,Not Engaged
+DS448,2,8,1.59,2,1,Not Engaged
+DS449,0,7,5.09,1,3,Not Engaged
+DS450,0,9,6.37,2,1,Not Engaged
+DS451,2,10,4.1,2,1,Not Engaged
+DS452,0,8,8.61,1,3,Not Engaged
+DS453,2,6,1.37,2,0,Not Engaged
+DS454,2,10,8.98,1,0,Not Engaged
+DS455,1,9,5.93,2,1,Not Engaged
+DS456,1,8,4.65,1,0,Not Engaged
+DS457,0,7,3.47,2,3,Not Engaged
+DS458,0,9,4.26,1,0,Not Engaged
+DS459,1,10,2.74,2,0,Not Engaged
+DS460,1,8,8.24,1,0,Not Engaged
+DS461,2,7,4.14,2,0,Not Engaged
+DS462,1,8,9.35,1,2,Not Engaged
+DS463,1,9,1.16,2,2,Not Engaged
+DS464,1,6,3.49,1,3,Not Engaged
+DS465,1,7,9.16,2,0,Not Engaged
+DS466,1,8,1.96,2,0,Not Engaged
+DS467,2,7,6.83,1,2,Not Engaged
+DS468,2,10,2.53,2,1,Not Engaged
+DS469,0,7,6.39,2,0,Not Engaged
+DS470,0,7,3.86,1,3,Not Engaged
+DS471,1,8,2.31,2,1,Not Engaged
+DS472,1,7,6,1,0,Not Engaged
+DS473,1,7,2.94,2,3,Not Engaged
+DS474,1,10,9.84,1,3,Not Engaged
+DS475,2,7,8.4,2,1,Not Engaged
+DS476,1,10,2.96,1,0,Not Engaged
+DS477,1,6,1.84,2,2,Not Engaged
+DS478,0,7,8.81,1,2,Not Engaged
+DS479,1,7,5,2,2,Not Engaged
+DS480,1,10,7.75,1,1,Not Engaged
+DS481,0,10,7.92,2,1,Not Engaged
+DS482,1,10,5.62,1,1,Not Engaged
+DS483,0,8,6.54,2,3,Not Engaged
+DS484,1,6,7.96,2,1,Not Engaged
+DS485,0,10,9.41,1,3,Not Engaged
+DS486,2,8,3.56,2,3,Not Engaged
+DS487,1,10,4.04,2,0,Not Engaged
+DS488,0,8,2.15,1,3,Not Engaged
+DS489,2,10,1.2,2,1,Not Engaged
+DS490,1,7,2.98,1,1,Not Engaged
+DS491,2,7,6.21,2,3,Not Engaged
+DS492,1,6,2.05,1,3,Not Engaged
+DS493,1,7,8.48,2,3,Not Engaged
+DS494,0,10,1.48,1,3,Not Engaged
+DS495,1,7,9.73,2,2,Not Engaged
+DS496,2,10,5.26,1,2,Not Engaged
+DS497,2,7,4.36,2,0,Not Engaged
+DS498,2,7,4.5,1,3,Not Engaged
+DS499,0,10,5.1,2,2,Not Engaged
+DS500,0,7,1.1,1,2,Not Engaged
+DS501,2,7,8.56,2,0,Not Engaged
+DS502,2,8,8.26,1,2,Not Engaged
+DS503,1,6,1.47,2,3,Not Engaged
+DS504,1,10,2.12,1,1,Not Engaged
+DS505,0,9,8.35,2,0,Not Engaged
+DS506,0,10,1.59,2,1,Not Engaged
+DS507,0,7,6.5,1,0,Not Engaged
+DS508,1,10,3.2,2,0,Not Engaged
+DS509,2,6,3.22,1,2,Not Engaged
+DS510,0,9,1.69,2,1,Not Engaged
+DS511,1,6,6.27,1,0,Not Engaged
+DS512,0,7,2.48,2,3,Not Engaged
+DS513,2,8,6.18,1,2,Not Engaged
+DS514,0,6,1.54,2,1,Not Engaged
+DS515,1,9,1.54,1,1,Not Engaged
+DS516,0,8,1.57,2,0,Not Engaged
+DS517,1,6,2.29,1,0,Not Engaged
+DS518,1,6,9.42,2,0,Not Engaged
+DS519,0,10,5.23,1,1,Not Engaged
+DS520,2,10,1.11,2,3,Not Engaged
+DS521,1,7,2.76,1,1,Not Engaged
+DS522,0,6,8.31,2,3,Not Engaged
+DS523,0,9,4.74,1,2,Not Engaged
+DS524,2,10,3.29,2,0,Not Engaged
+DS525,0,8,9.91,1,3,Not Engaged
+DS526,1,7,4.23,2,0,Not Engaged
+DS527,0,10,5.34,1,2,Not Engaged
+DS528,0,7,1.32,2,2,Not Engaged
+DS529,1,8,2.54,1,1,Not Engaged
+DS530,0,7,2.55,2,0,Not Engaged
+DS531,1,9,3.05,3,1,Not Engaged
+DS532,0,9,6.87,4,0,Not Engaged
+DS533,2,9,5.5,5,2,Not Engaged
+DS534,2,6,6.78,5,0,Not Engaged
+DS535,1,9,6.79,2,1,Not Engaged
+DS536,1,6,6.23,2,3,Not Engaged
+DS537,1,8,2.64,3,3,Not Engaged
+DS538,1,10,1.6,2,2,Not Engaged
+DS539,0,10,2.82,1,3,Not Engaged
+DS540,1,8,7.97,1,2,Not Engaged
+DS541,0,6,2.99,1,0,Not Engaged
+DS542,1,6,5.78,1,0,Not Engaged
+DS543,2,6,5.6,2,2,Not Engaged
+DS544,1,7,3.32,2,1,Not Engaged
+DS545,0,10,8.76,3,2,Not Engaged
+DS546,1,9,3.11,3,2,Not Engaged
+DS547,1,9,7.31,1,3,Not Engaged
+DS548,0,9,3.26,2,0,Not Engaged
+DS549,1,8,5.81,1,3,Not Engaged
+DS550,1,8,7.58,2,0,Not Engaged
+DS551,1,10,8.81,2,1,Not Engaged
+DS552,1,8,6.8,3,3,Not Engaged
+DS553,0,7,5.61,2,2,Not Engaged
+DS554,2,8,6.26,1,1,Not Engaged
+DS555,0,7,3.53,2,2,Not Engaged
+DS556,1,6,3.31,1,1,Not Engaged
+DS557,2,8,8.92,2,1,Not Engaged
+DS558,2,10,8.24,1,2,Not Engaged
+IN22-1,2,6,3.81,3,0,Not Engaged
+IN22-2,1,8,2.61,1,3,Not Engaged
+IN22-3,2,7,1.37,1,0,Not Engaged
+IN22-4,0,10,5.25,1,2,Not Engaged
+IN22-5,0,10,9.62,1,3,Not Engaged
+IN22-6,0,6,5,1,3,Not Engaged
+IN22-7,0,10,8.67,1,3,Not Engaged
+IN22-8,0,10,6.99,2,1,Not Engaged

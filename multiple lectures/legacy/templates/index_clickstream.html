@@ -1,0 +1,170 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>SmartLMS -Portal</title>
+  <style>
+    body { font-family: Arial, sans-serif; background: #f2f3f5; margin: 0; padding: 0; }
+    .header { background: #007bff; color: white; padding: 20px; font-size: 24px; position: relative; }
+    .header span { position: absolute; top: 20px; right: 30px; font-size: 16px; }
+    .container { padding: 30px; }
+    .subject-list, .module-list { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 20px; }
+    .card { background: white; padding: 20px; border-radius: 10px; box-shadow: 0 2px 6px rgba(0,0,0,0.1); cursor: pointer; }
+    .card:hover { background: #e9f3ff; }
+    .video-section { display: none; margin-top: 30px; }
+    video { width: 100%; max-width: 720px; border-radius: 10px; margin-top: 20px; display: block; }
+    .side-panel { float: left; width: 20%; padding: 10px; }
+    .main-panel { float: right; width: 75%; }
+    .actions { margin-top: 20px; }
+    .actions button, .actions a { display: inline-block; margin: 10px 10px 0 0; padding: 10px 15px; border: none; border-radius: 5px; background-color: #007bff; color: white; text-decoration: none; cursor: pointer; }
+    .actions button:hover, .actions a:hover { background-color: #0056b3; }
+    .hidden { display: none; }
+    .clearfix::after { content: ""; clear: both; display: table; }
+  </style>
+</head>
+<body>
+  <div class="header">
+    📘 SmartLMS Portal
+    <span>
+      👤 Student: {{ student_id }} |
+      <a href="/logout" style="color:white; text-decoration:underline;">Logout</a>
+    </span>
+  </div>
+
+  <div class="container">
+    <!-- Subject Selection -->
+    <div id="subjectSection">
+      <h2>Select a Subject</h2>
+      <div class="subject-list">
+        <div class="card" onclick="loadModules('Computer Vision')">Computer Vision</div>
+        <div class="card" onclick="loadModules('Cryptography and Network Security')">Cryptography & Network Security</div>
+        <div class="card" onclick="loadModules('Data Science')">Data Science</div>
+      </div>
+    </div>
+
+    <!-- Module Selection -->
+    <div id="moduleSection" class="hidden">
+      <h2 id="moduleTitle">Modules in <span id="selectedSubject"></span></h2>
+      <div class="module-list" id="moduleList"></div>
+      <button onclick="backToSubjects()">← Back</button>
+    </div>
+
+    <!-- Video Viewer Section -->
+    <div class="video-section clearfix" id="videoSection">
+      <div class="side-panel">
+        <a href="#" class="actions">📄 Course Materials</a><br>
+        <a href="/templates/assignment.html" class="actions">📤 Submit Assignment</a>
+      </div>
+      <div class="main-panel">
+        <h3 id="videoTitle"></h3>
+        <video id="lectureVideo" controls>
+          <source id="videoSource" src="" type="video/mp4">
+          Your browser does not support the video tag.
+        </video>
+        <div class="actions">
+          <button id="quizBtn" class="hidden" onclick="startQuiz()">Take Quiz</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    const subjects = {
+      "Computer Vision": ["Lec_video.mp4", "CV_L2.mp4"],
+      "Cryptography and Network Security": ["CNS_Lec_1.mp4", "CNS_Lec_2.mp4"],
+      "Data Science": ["Lec_1.mp4", "CNS_Lec_2.mp4"]
+    };
+
+
+
+    let currentSubject = "";
+    let currentModule = "";
+    let videoStartTime = null;
+    let quizStartTime = null;
+
+    function logEvent(eventType, info = '') {
+      fetch('/log', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          studentId: studentId,
+          subjectId: currentSubject,
+          lectureId: currentModule,
+          eventType: eventType,
+          timestamp: new Date().toISOString(),
+          additionalInfo: info
+        })
+      });
+    }
+
+    function loadModules(subject) {
+      currentSubject = subject;
+      document.getElementById("subjectSection").classList.add("hidden");
+      document.getElementById("moduleSection").classList.remove("hidden");
+      document.getElementById("selectedSubject").textContent = subject;
+      const moduleList = document.getElementById("moduleList");
+      moduleList.innerHTML = "";
+      subjects[subject].forEach((file, i) => {
+        const div = document.createElement("div");
+        div.className = "card";
+        div.innerText = `Module ${i + 1}`;
+        div.onclick = () => loadVideo(file, i + 1);
+        moduleList.appendChild(div);
+      });
+    }
+
+    function backToSubjects() {
+      document.getElementById("moduleSection").classList.add("hidden");
+      document.getElementById("subjectSection").classList.remove("hidden");
+    }
+
+    function loadVideo(file, moduleNum) {
+      currentModule = file;
+      const video = document.getElementById("lectureVideo");
+      const videoSource = document.getElementById("videoSource");
+      videoSource.src = "/static/videos/" + file;
+      video.load();
+      videoStartTime = new Date();
+      document.getElementById("videoTitle").innerText = `${currentSubject} – Module ${moduleNum}`;
+      document.getElementById("moduleSection").classList.add("hidden");
+      document.getElementById("videoSection").style.display = "block";
+      document.getElementById("quizBtn").classList.add("hidden");
+      logEvent("LectureOpened", "Started video: " + file);
+    }
+
+    function startQuiz() {
+      quizStartTime = new Date();
+      logEvent("QuizStarted");
+      const score = prompt("Enter your quiz score:");
+      const end = new Date();
+      const duration = (end - quizStartTime) / 1000;
+      logEvent("QuizCompleted", "Score=" + score + "|Duration=" + duration + "s");
+    }
+
+    const video = document.getElementById("lectureVideo");
+
+    video.addEventListener("play", () => logEvent("Play"));
+    video.addEventListener("pause", () => logEvent("Pause"));
+    video.addEventListener("ratechange", () => logEvent("RateChange", "Speed=" + video.playbackRate));
+    video.addEventListener("seeking", () => logEvent("Seeking", "To=" + video.currentTime));
+    video.addEventListener("seeked", () => logEvent("Seeked", "At=" + video.currentTime));
+    video.addEventListener("ended", () => {
+      const end = new Date();
+      const duration = (end - videoStartTime) / 1000;
+      logEvent("VideoEnded", "Duration=" + duration + "s");
+      document.getElementById("quizBtn").classList.remove("hidden");
+    });
+
+    document.addEventListener("visibilitychange", () => {
+      if (document.hidden) {
+        video.pause();
+        logEvent("TabSwitch");
+        alert("⚠️ Tab switching detected. Video paused.");
+      }
+    });
+
+    window.addEventListener("beforeunload", () => logEvent("PageClosed"));
+  </script>
+</body>
+</html>

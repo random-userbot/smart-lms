@@ -1,0 +1,6 @@
+# Ignore all mp4 files
+*.mp4
+
+# Or ignore specific folders
+legacy/multiple/static/videos/
+legacy/static/videos/

@@ -1,0 +1,108 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Lecture Portal</title>
+  <style>
+    body { font-family: Arial, sans-serif; background: #f2f3f5; margin: 0; padding: 0; }
+    .container { padding: 40px; }
+    .header { background: #007bff; color: white; padding: 20px; text-align: center; font-size: 24px; }
+    .subjects-container { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 20px; margin-top: 30px; }
+    .subject-card { background: white; border: 1px solid #ddd; padding: 20px; border-radius: 10px; box-shadow: 0 0 10px rgba(0,0,0,0.05); }
+    .subject-card h4 { color: #007bff; }
+    .subject-card a { display: block; background: #007bff; color: white; padding: 10px; margin-top: 8px; text-align: center; text-decoration: none; border-radius: 5px; }
+    .subject-card a:hover { background: #0056b3; }
+    video { width: 100%; max-width: 700px; margin: 30px auto; display: block; border-radius: 10px; }
+  </style>
+</head>
+<body>
+  <div class="header">📚 Lecture Selection Portal</div>
+  <div class="container">
+    <div class="subjects-container">
+      <div class="subject-card">
+        <h4>📘 Computer Vision</h4>
+        <a href="#" onclick="loadVideo('Computer Vision', 'Lec_video.mp4')">Lecture 1</a>
+        <a href="#" onclick="loadVideo('Computer Vision', 'CV_L2.mp4')">Lecture 2</a>
+      </div>
+      <div class="subject-card">
+        <h4>📗 Data Structures</h4>
+        <a href="#" onclick="loadVideo('Data Structures', 'CNS_Lec_1.mp4')">Lecture 1</a>
+        <a href="#" onclick="loadVideo('Data Structures', 'CNS_Lec_2.mp4')">Lecture 2</a>
+      </div>
+      <div class="subject-card">
+        <h4>📙 Data Science</h4>
+        <a href="#" onclick="loadVideo('Data Science', 'Lec_1.mp4')">Lecture 1</a>
+        <a href="#" onclick="loadVideo('Data Science', 'CNS_Lec_2.mp4')">Lecture 2</a>
+      </div>
+    </div>
+    <video id="lectureVideo" controls style="display:none;">
+      <source id="videoSource" src="" type="video/mp4">
+      Your browser does not support the video tag.
+    </video>
+  </div>
+
+  <script>
+    const video = document.getElementById("lectureVideo");
+    const videoSource = document.getElementById("videoSource");
+    let studentId = prompt("Enter your Student ID:");
+    let pauseCount = 0;
+    let subjectName = "";
+    let lectureName = "";
+
+    if (!studentId) {
+      alert("Student ID is required!");
+      location.reload();
+    }
+
+    function logEvent(eventType, info = '') {
+      fetch('/log', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          studentId: studentId,
+          subjectId: subjectName,
+          lectureId: lectureName,
+          eventType: eventType,
+          timestamp: new Date().toISOString(),
+          additionalInfo: info
+        })
+      });
+    }
+
+    function loadVideo(subject, lectureFile) {
+      subjectName = subject;
+      lectureName = lectureFile;
+      videoSource.src = "/static/videos/" + lectureFile;
+      video.load();
+      video.style.display = "block";
+      logEvent("LectureOpened", "Started video: " + lectureFile);
+    }
+
+    video.addEventListener("play", () => logEvent("Play"));
+    video.addEventListener("pause", () => {
+      pauseCount++;
+      logEvent("Pause", "Total pauses: " + pauseCount);
+      if (pauseCount >= 3) {
+        alert("⚠️ You have paused too many times. Please focus on the lecture.");
+      }
+    });
+    video.addEventListener("ratechange", () => logEvent("PlaybackRateChanged", "New speed: " + video.playbackRate));
+    video.addEventListener("seeking", () => logEvent("Seeking", "To: " + video.currentTime));
+    video.addEventListener("seeked", () => logEvent("Seeked", "At: " + video.currentTime));
+    video.addEventListener("enterpictureinpicture", () => logEvent("PiP Enabled"));
+    video.addEventListener("leavepictureinpicture", () => logEvent("PiP Disabled"));
+    video.addEventListener("ended", () => logEvent("Ended"));
+
+    document.addEventListener("visibilitychange", () => {
+      if (document.hidden) {
+        video.pause();
+        logEvent("TabSwitch", "User switched tabs");
+        alert("🚨 Tab switching detected! Video paused. Please focus.");
+      }
+    });
+
+    window.addEventListener("beforeunload", () => logEvent("PageClosed"));
+  </script>
+</body>
+</html>

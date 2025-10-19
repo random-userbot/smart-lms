@@ -1,0 +1,52 @@
+# Smart LMS - Complete Dependencies
+
+# Core Framework
+streamlit==1.29.0
+streamlit-webrtc==0.47.1
+streamlit-camera-input-live==0.2.0
+
+# Authentication & Security
+bcrypt==4.1.2
+python-dotenv==1.0.0
+
+# Data Processing
+pandas==2.1.4
+numpy==1.26.2
+
+# Machine Learning
+scikit-learn==1.3.2
+xgboost==2.0.3
+joblib==1.3.2
+
+# Computer Vision & Face Tracking
+opencv-python==4.8.1.78
+mediapipe==0.10.9
+
+# NLP & Sentiment Analysis
+transformers==4.36.2
+torch==2.1.2
+vaderSentiment==3.3.2
+keybert==0.8.3
+sentence-transformers==2.2.2
+
+# Explainability
+shap==0.44.0
+
+# Visualization
+plotly==5.18.0
+matplotlib==3.8.2
+seaborn==0.13.0
+
+# PDF Generation
+reportlab==4.0.7
+fpdf2==2.7.7
+
+# Utilities
+pyyaml==6.0.1
+python-dateutil==2.8.2
+pillow==10.1.0
+av==11.0.0
+
+# Legacy (keep for reference)
+# Flask==3.1.1
+# Jinja2==3.1.6

@@ -1,0 +1,70 @@
+StudentID,Subject,Lecture,EventType,Timestamp,Details
+11,Computer Vision,Lec_video.mp4,LectureOpened,2025-07-12T14:24:00.864Z,Started video: Lec_video.mp4
+11,Computer Vision,Lec_video.mp4,Play,2025-07-12T14:24:04.324Z,
+11,Computer Vision,Lec_video.mp4,TabSwitch,2025-07-12T14:24:11.007Z,User switched tabs
+11,Computer Vision,Lec_video.mp4,Pause,2025-07-12T14:24:11.017Z,Total pauses: 1
+11,Computer Vision,Lec_video.mp4,Play,2025-07-12T14:24:18.307Z,
+11,Computer Vision,Lec_video.mp4,TabSwitch,2025-07-12T14:24:47.147Z,User switched tabs
+11,Computer Vision,Lec_video.mp4,Pause,2025-07-12T14:24:47.166Z,Total pauses: 2
+11,Computer Vision,Lec_video.mp4,Play,2025-07-12T14:24:54.483Z,
+11,Computer Vision,Lec_video.mp4,Pause,2025-07-12T14:24:55.492Z,Total pauses: 3
+11,Computer Vision,Lec_video.mp4,Seeking,2025-07-12T14:25:01.611Z,To: 274.330154
+11,Computer Vision,Lec_video.mp4,Seeked,2025-07-12T14:25:01.746Z,At: 274.330154
+11,Computer Vision,Lec_video.mp4,Seeking,2025-07-12T14:25:03.427Z,To: 810.23092
+11,Computer Vision,Lec_video.mp4,Seeking,2025-07-12T14:25:03.410Z,To: 810.23092
+11,Computer Vision,Lec_video.mp4,Seeked,2025-07-12T14:25:03.535Z,At: 810.23092
+11,Computer Vision,Lec_video.mp4,Play,2025-07-12T14:25:03.635Z,
+11,Computer Vision,Lec_video.mp4,Pause,2025-07-12T14:25:09.496Z,Total pauses: 4
+11,Computer Vision,Lec_video.mp4,Seeking,2025-07-12T14:25:12.472Z,To: 1141.979014
+11,Computer Vision,Lec_video.mp4,Seeked,2025-07-12T14:25:12.548Z,At: 1141.979014
+11,Computer Vision,Lec_video.mp4,Play,2025-07-12T14:25:14.400Z,
+11,Computer Vision,Lec_video.mp4,PlaybackRateChanged,2025-07-12T14:25:25.789Z,New speed: 1.5
+11,Computer Vision,Lec_video.mp4,PlaybackRateChanged,2025-07-12T14:25:25.793Z,New speed: 1.5
+11,Computer Vision,Lec_video.mp4,PiP Enabled,2025-07-12T14:25:33.843Z,
+11,Computer Vision,Lec_video.mp4,Pause,2025-07-12T14:25:40.604Z,Total pauses: 5
+11,Computer Vision,Lec_video.mp4,PiP Disabled,2025-07-12T14:25:40.602Z,
+11,Computer Vision,Lec_video.mp4,Play,2025-07-12T14:25:45.439Z,
+11,Computer Vision,Lec_video.mp4,Pause,2025-07-12T14:25:58.808Z,Total pauses: 6
+11,Computer Vision,Lec_video.mp4,Seeking,2025-07-12T14:26:01.075Z,To: 2787.95994
+11,Computer Vision,Lec_video.mp4,Seeked,2025-07-12T14:26:01.145Z,At: 2787.95994
+11,Data Structures,CNS_Lec_1.mp4,LectureOpened,2025-07-12T14:26:02.304Z,Started video: CNS_Lec_1.mp4
+11,Data Structures,CNS_Lec_1.mp4,Play,2025-07-12T14:27:27.443Z,
+11,Data Structures,CNS_Lec_1.mp4,Pause,2025-07-12T14:27:29.916Z,Total pauses: 7
+11,Data Structures,CNS_Lec_1.mp4,Seeking,2025-07-12T14:27:32.576Z,To: 118.049812
+11,Data Structures,CNS_Lec_1.mp4,Seeked,2025-07-12T14:27:32.581Z,At: 118.049812
+11,Data Structures,CNS_Lec_1.mp4,Seeking,2025-07-12T14:27:34.528Z,To: 378.605972
+11,Data Structures,CNS_Lec_1.mp4,Seeking,2025-07-12T14:27:34.568Z,To: 378.605972
+11,Data Structures,CNS_Lec_1.mp4,Seeked,2025-07-12T14:27:34.725Z,At: 378.605972
+11,Data Structures,CNS_Lec_1.mp4,Play,2025-07-12T14:27:34.747Z,
+11,Data Structures,CNS_Lec_1.mp4,PiP Enabled,2025-07-12T14:27:43.956Z,
+11,Data Structures,CNS_Lec_1.mp4,PiP Disabled,2025-07-12T14:27:46.750Z,
+11,Data Structures,CNS_Lec_1.mp4,Pause,2025-07-12T14:27:46.754Z,Total pauses: 8
+11,Data Structures,CNS_Lec_1.mp4,Play,2025-07-12T14:27:59.130Z,
+11,Data Structures,CNS_Lec_1.mp4,Pause,2025-07-12T14:28:05.646Z,Total pauses: 9
+11,Data Structures,CNS_Lec_1.mp4,Seeking,2025-07-12T14:28:08.843Z,To: 238.451215
+11,Data Structures,CNS_Lec_1.mp4,Seeked,2025-07-12T14:28:08.978Z,At: 238.451215
+11,Data Structures,CNS_Lec_1.mp4,Play,2025-07-12T14:28:10.775Z,
+11,Data Structures,CNS_Lec_1.mp4,Pause,2025-07-12T14:28:37.756Z,Total pauses: 10
+11,Data Structures,CNS_Lec_1.mp4,Seeking,2025-07-12T14:28:40.000Z,To: 617.057188
+11,Data Structures,CNS_Lec_1.mp4,Seeked,2025-07-12T14:28:40.157Z,At: 617.057188
+11,Data Structures,CNS_Lec_1.mp4,Seeking,2025-07-12T14:28:43.837Z,To: 0
+11,Data Structures,CNS_Lec_1.mp4,Play,2025-07-12T14:28:43.839Z,
+11,Data Structures,CNS_Lec_1.mp4,Seeked,2025-07-12T14:28:43.848Z,At: 0
+11,Data Science,CNS_Lec_2.mp4,LectureOpened,2025-07-12T14:28:46.438Z,Started video: CNS_Lec_2.mp4
+11,Data Science,Lec_1.mp4,LectureOpened,2025-07-12T14:29:41.456Z,Started video: Lec_1.mp4
+11,Data Science,Lec_1.mp4,Play,2025-07-12T14:29:44.344Z,
+11,Data Science,Lec_1.mp4,PlaybackRateChanged,2025-07-12T14:29:55.354Z,New speed: 1
+11,Data Science,Lec_1.mp4,PlaybackRateChanged,2025-07-12T14:29:55.356Z,New speed: 1
+11,Data Science,Lec_1.mp4,Pause,2025-07-12T14:29:58.155Z,Total pauses: 11
+11,Data Science,Lec_1.mp4,Seeking,2025-07-12T14:30:01.312Z,To: 147.144461
+11,Data Science,Lec_1.mp4,Seeked,2025-07-12T14:30:01.415Z,At: 147.144461
+11,Data Science,Lec_1.mp4,Play,2025-07-12T14:30:03.691Z,
+11,Data Science,Lec_1.mp4,Pause,2025-07-12T14:34:54.979Z,Total pauses: 12
+11,Data Science,Lec_1.mp4,Seeking,2025-07-12T14:34:57.414Z,To: 811.181007
+11,Data Science,Lec_1.mp4,Seeked,2025-07-12T14:34:57.496Z,At: 811.181007
+11,Data Science,Lec_1.mp4,Play,2025-07-12T14:35:01.352Z,
+11,Data Science,Lec_1.mp4,Pause,2025-07-12T14:35:15.248Z,Total pauses: 13
+11,Data Science,Lec_1.mp4,Ended,2025-07-12T14:35:27.515Z,
+11,Data Science,Lec_1.mp4,TabSwitch,2025-07-12T14:35:30.582Z,User switched tabs
+11,Data Science,Lec_1.mp4,PageClosed,2025-07-12T14:59:31.387Z,
+11,Data Science,Lec_1.mp4,TabSwitch,2025-07-12T14:59:31.439Z,User switched tabs
