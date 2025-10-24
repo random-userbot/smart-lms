@@ -1,6 +1,7 @@
 """
 Smart LMS - Lectures Page
-Students can watch lectures with webcam engagement tracking
+Students can watch lectures with real-time engagement tracking, behavioral logging, and anti-cheating
+Supports both local videos and YouTube links
 """
 
 import streamlit as st
@@ -10,53 +11,49 @@ sys.path.append(os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(
 
 from services.auth import get_auth
 from services.storage import get_storage
+from services.pip_webcam_live import render_pip_webcam, render_engagement_sidebar
+from services.behavioral_logger import get_behavioral_logger, cleanup_logger
+from services.anti_cheating import get_anti_cheating_monitor, cleanup_monitor, render_integrity_widget, check_browser_visibility
 from datetime import datetime
 import uuid
+import re
 
 
-def show_consent_dialog():
-    """Show webcam consent dialog"""
-    if 'consent_given' not in st.session_state:
-        st.session_state.consent_given = False
+def extract_youtube_id(url: str) -> str:
+    """
+    Extract YouTube video ID from URL
     
-    if not st.session_state.consent_given:
-        st.warning("⚠️ Webcam Engagement Tracking")
-        st.markdown("""
-        This lecture includes webcam-based engagement tracking to improve your learning experience.
-        
-        **What we collect:**
-        - Gaze direction and attention patterns
-        - Head pose and stability
-        - Engagement metrics (no raw video stored)
-        
-        **Your privacy:**
-        - Only derived features are stored
-        - Raw video is NOT saved
-        - You can request data deletion anytime
-        - Data is anonymized after 180 days
-        
-        **You can:**
-        - Disable webcam tracking (affects engagement score)
-        - View your data in the Ethical AI Dashboard
-        - Request data deletion from your profile
-        """)
-        
-        col1, col2 = st.columns(2)
-        with col1:
-            if st.button("✅ I Consent", use_container_width=True):
-                st.session_state.consent_given = True
-                st.rerun()
-        with col2:
-            if st.button("❌ Continue Without Webcam", use_container_width=True):
-                st.session_state.consent_given = False
-                st.session_state.webcam_disabled = True
-                st.rerun()
-        
-        st.stop()
+    Args:
+        url: YouTube URL (various formats supported)
+    
+    Returns:
+        YouTube video ID or None
+    """
+    patterns = [
+        r'(?:youtube\.com/watch\?v=|youtu\.be/)([a-zA-Z0-9_-]{11})',
+        r'youtube\.com/embed/([a-zA-Z0-9_-]{11})',
+        r'youtube\.com/v/([a-zA-Z0-9_-]{11})'
+    ]
+    
+    for pattern in patterns:
+        match = re.search(pattern, url)
+        if match:
+            return match.group(1)
+    
+    # If it's just the ID
+    if re.match(r'^[a-zA-Z0-9_-]{11}$', url):
+        return url
+    
+    return None
 
 
 def show_lecture_player(lecture):
-    """Display video player with engagement tracking"""
+    """Display video player with real-time engagement tracking and anti-cheating"""
+    user = st.session_state.user
+    student_id = user['user_id']
+    lecture_id = lecture['lecture_id']
+    course_id = lecture.get('course_id', 'unknown')
+    
     st.subheader(f"🎥 {lecture['title']}")
     
     if lecture.get('description'):
@@ -64,55 +61,119 @@ def show_lecture_player(lecture):
     
     st.markdown("---")
     
-    # Check if video file exists
-    video_path = lecture['video_path']
-    if not os.path.exists(video_path):
-        st.error(f"❌ Video file not found: {video_path}")
-        st.info("💡 The video may need to be uploaded by the teacher.")
-        return
+    # Initialize behavioral logger
+    behavioral_logger = get_behavioral_logger(student_id, lecture_id, course_id)
+    behavioral_logger.log_lecture_start(lecture_id, course_id, 
+                                        video_type='youtube' if lecture.get('youtube_url') else 'local')
     
-    # Show consent dialog if not given
-    if 'webcam_disabled' not in st.session_state:
-        show_consent_dialog()
+    # Initialize anti-cheating monitor
+    anti_cheating = get_anti_cheating_monitor(student_id, lecture_id, course_id)
     
-    # Video player
+    # Inject browser visibility detection JavaScript
+    st.components.v1.html(check_browser_visibility(), height=0)
+    
+    # Video player section
     col1, col2 = st.columns([3, 1])
     
     with col1:
-        st.video(video_path)
+        # Check if YouTube URL is provided
+        if lecture.get('youtube_url'):
+            youtube_id = extract_youtube_id(lecture['youtube_url'])
+            
+            if youtube_id:
+                st.markdown("### 📺 YouTube Lecture")
+                
+                # Embed YouTube video with custom player
+                youtube_embed = f"""
+                <div style="position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden; max-width: 100%; background: #000;">
+                    <iframe 
+                        id="youtube-player"
+                        style="position: absolute; top: 0; left: 0; width: 100%; height: 100%;"
+                        src="https://www.youtube.com/embed/{youtube_id}?enablejsapi=1&rel=0&modestbranding=1&playsinline=1"
+                        frameborder="0"
+                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                        allowfullscreen>
+                    </iframe>
+                </div>
+                
+                <script src="https://www.youtube.com/iframe_api"></script>
+                <script>
+                var player;
+                var lastSpeed = 1.0;
+                
+                function onYouTubeIframeAPIReady() {{
+                    player = new YT.Player('youtube-player', {{
+                        events: {{
+                            'onReady': onPlayerReady,
+                            'onStateChange': onPlayerStateChange
+                        }}
+                    }});
+                }}
+                
+                function onPlayerReady(event) {{
+                    // Monitor playback speed changes
+                    setInterval(function() {{
+                        var currentSpeed = player.getPlaybackRate();
+                        if (currentSpeed != lastSpeed) {{
+                            console.log('Speed changed from ' + lastSpeed + ' to ' + currentSpeed);
+                            
+                            // Check if speed exceeds 1.25x
+                            if (currentSpeed > 1.25) {{
+                                alert('⚠️ Playback speed too high! Maximum allowed: 1.25x');
+                                player.setPlaybackRate(1.0);
+                            }}
+                            
+                            lastSpeed = currentSpeed;
+                        }}
+                    }}, 1000);
+                }}
+                
+                function onPlayerStateChange(event) {{
+                    if (event.data == YT.PlayerState.PLAYING) {{
+                        console.log('Video playing');
+                    }} else if (event.data == YT.PlayerState.PAUSED) {{
+                        console.log('Video paused');
+                    }}
+                }}
+                </script>
+                """
+                
+                st.components.v1.html(youtube_embed, height=450)
+                
+                # Speed control warning
+                st.info("ℹ️ **Note:** Playback speed is limited to 1.25x for integrity monitoring.")
+            else:
+                st.error("❌ Invalid YouTube URL. Please contact your instructor.")
+                st.info(f"URL: {lecture['youtube_url']}")
+        else:
+            # Local video file
+            video_path = lecture.get('video_path', '')
+            
+            if video_path and os.path.exists(video_path):
+                st.video(video_path)
+            else:
+                st.error(f"❌ Video file not found: {video_path}")
+                st.info("� The video may need to be uploaded by the teacher, or a YouTube link may be added.")
     
     with col2:
-        st.markdown("### 📊 Engagement")
+        st.markdown("### 📊 Live Monitoring")
         
-        if st.session_state.get('consent_given', False):
-            # Webcam tracking enabled
-            st.success("✅ Webcam Active")
+        # Real-time engagement tracking with PiP webcam
+        st.markdown("**🎥 Webcam Tracking:**")
+        
+        try:
+            # Render PiP webcam (bottom-right, always visible)
+            pip_webcam = render_pip_webcam(lecture_id, course_id, student_id)
             
-            # Placeholder for real-time engagement score
-            engagement_placeholder = st.empty()
-            engagement_placeholder.metric(
-                "Current Score",
-                "85/100",
-                "+5",
-                help="Real-time engagement score"
-            )
+            # Show current engagement in sidebar
+            render_engagement_sidebar(pip_webcam)
             
-            # Webcam feed placeholder (will be implemented in Phase 3)
-            st.markdown("---")
-            st.markdown("**Live Feed:**")
-            st.info("📹 Webcam tracking will be implemented in Phase 3")
-            
-            # Toggle webcam
-            if st.button("⏸️ Pause Webcam"):
-                st.session_state.webcam_disabled = True
-                st.rerun()
-        else:
-            st.warning("⚠️ Webcam Disabled")
-            st.info("Enable webcam for engagement tracking")
-            
-            if st.button("▶️ Enable Webcam"):
-                st.session_state.webcam_disabled = False
-                show_consent_dialog()
+        except Exception as e:
+            st.error(f"❌ Webcam error: {str(e)}")
+            st.info("💡 Please allow camera access for engagement tracking.")
+    
+    # Render integrity monitoring in sidebar
+    render_integrity_widget(anti_cheating)
     
     st.markdown("---")
     
@@ -125,6 +186,7 @@ def show_lecture_player(lecture):
                 st.markdown(f"📄 **{material['title']}** ({material['type']})")
             with col2:
                 if st.button("📥 Download", key=f"download_{material['material_id']}"):
+                    behavioral_logger.log_resource_download(material['material_id'], material['type'])
                     st.info("Download functionality will be implemented")
     
     # Quiz section
@@ -157,21 +219,30 @@ def show_lecture_player(lecture):
         if submit_feedback:
             if feedback_text:
                 storage = get_storage()
-                user = st.session_state.user
                 
                 feedback_id = str(uuid.uuid4())
                 storage.save_feedback(
                     feedback_id=feedback_id,
-                    student_id=user['user_id'],
-                    lecture_id=lecture['lecture_id'],
+                    student_id=student_id,
+                    lecture_id=lecture_id,
                     text=feedback_text,
                     rating=rating,
                     sentiment={}  # Will be computed in Phase 4
                 )
                 
+                # Log feedback submission
+                behavioral_logger.log_feedback_submission('lecture', rating)
+                
                 st.success("✅ Thank you for your feedback!")
             else:
                 st.warning("⚠️ Please write some feedback")
+    
+    # Session end cleanup
+    if st.button("🏁 End Session", type="secondary"):
+        cleanup_logger(student_id, lecture_id)
+        cleanup_monitor(student_id, lecture_id)
+        st.success("✅ Session ended. Data saved.")
+        st.rerun()
 
 
 def show_lecture_list(course_id):

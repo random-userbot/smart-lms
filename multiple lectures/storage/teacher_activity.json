@@ -1,0 +1,14 @@
+{
+  "teacher_001": [
+    {
+      "activity_id": "90718400-44cb-4fec-b2fa-3f424923bced",
+      "action": "upload_lecture",
+      "details": {
+        "lecture_id": "lec_2a96290c",
+        "course_id": "cv101",
+        "title": "Lecture 01: Computer Vision"
+      },
+      "timestamp": "2025-10-24T08:58:55.460153"
+    }
+  ]
+}

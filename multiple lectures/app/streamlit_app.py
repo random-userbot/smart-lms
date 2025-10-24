@@ -23,54 +23,271 @@ st.set_page_config(
     initial_sidebar_state="expanded"
 )
 
-# Custom CSS for better UI
+# Custom CSS for better UI and visibility
 st.markdown("""
 <style>
+    /* Main container styling */
+    .main {
+        background-color: #ffffff;
+    }
+    
+    /* Headers with high contrast */
     .main-header {
         font-size: 2.5rem;
         font-weight: bold;
         color: #1f77b4;
         text-align: center;
         margin-bottom: 2rem;
+        text-shadow: 1px 1px 2px rgba(0,0,0,0.1);
     }
+    
     .sub-header {
         font-size: 1.5rem;
-        color: #555;
+        color: #2c3e50;
         text-align: center;
         margin-bottom: 1rem;
+        font-weight: 600;
     }
+    
+    /* Login/Register container */
     .login-container {
-        max-width: 400px;
+        max-width: 500px;
         margin: 0 auto;
         padding: 2rem;
         background-color: #f8f9fa;
         border-radius: 10px;
-        box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        box-shadow: 0 4px 15px rgba(0,0,0,0.15);
     }
+    
+    /* Improve text input visibility */
+    .stTextInput > div > div > input {
+        background-color: #ffffff !important;
+        color: #2c3e50 !important;
+        border: 2px solid #ddd !important;
+        font-size: 16px !important;
+        padding: 12px !important;
+    }
+    
+    .stTextInput > div > div > input::placeholder {
+        color: #95a5a6 !important;
+        opacity: 1 !important;
+    }
+    
+    .stTextInput > label {
+        color: #2c3e50 !important;
+        font-weight: 600 !important;
+        font-size: 16px !important;
+        margin-bottom: 8px !important;
+    }
+    
+    /* Improve selectbox visibility */
+    .stSelectbox > div > div > div {
+        background-color: #ffffff !important;
+        color: #2c3e50 !important;
+        border: 2px solid #ddd !important;
+    }
+    
+    .stSelectbox > label {
+        color: #2c3e50 !important;
+        font-weight: 600 !important;
+        font-size: 16px !important;
+    }
+    
+    /* Button styling with high contrast */
     .stButton>button {
         width: 100%;
-        background-color: #1f77b4;
-        color: white;
-        border-radius: 5px;
-        padding: 0.5rem 1rem;
+        background: linear-gradient(135deg, #1f77b4 0%, #155a8a 100%);
+        color: white !important;
+        border-radius: 8px;
+        padding: 12px 24px;
         font-weight: bold;
+        font-size: 16px;
+        border: none;
+        box-shadow: 0 4px 10px rgba(31, 119, 180, 0.3);
+        transition: all 0.3s ease;
     }
+    
     .stButton>button:hover {
-        background-color: #155a8a;
+        background: linear-gradient(135deg, #155a8a 0%, #0d3d5c 100%);
+        box-shadow: 0 6px 15px rgba(31, 119, 180, 0.4);
+        transform: translateY(-2px);
     }
+    
+    /* Tab styling */
+    .stTabs [data-baseweb="tab-list"] {
+        gap: 8px;
+        background-color: #f8f9fa;
+        padding: 10px;
+        border-radius: 8px;
+    }
+    
+    .stTabs [data-baseweb="tab"] {
+        background-color: #ffffff;
+        color: #2c3e50 !important;
+        border-radius: 6px;
+        padding: 10px 20px;
+        font-weight: 600;
+        border: 2px solid transparent;
+    }
+    
+    .stTabs [aria-selected="true"] {
+        background: linear-gradient(135deg, #1f77b4 0%, #155a8a 100%);
+        color: white !important;
+        border-color: #1f77b4;
+    }
+    
+    /* Expander styling */
+    .stExpander {
+        background-color: #ffffff;
+        border: 2px solid #e0e0e0;
+        border-radius: 8px;
+        margin-bottom: 10px;
+    }
+    
+    .stExpander > div > div > div > div {
+        color: #2c3e50 !important;
+        font-weight: 600;
+    }
+    
+    /* Messages */
     .success-message {
         padding: 1rem;
         background-color: #d4edda;
-        border: 1px solid #c3e6cb;
-        border-radius: 5px;
-        color: #155724;
+        border: 2px solid #c3e6cb;
+        border-radius: 8px;
+        color: #155724 !important;
+        font-weight: 600;
     }
+    
     .error-message {
         padding: 1rem;
         background-color: #f8d7da;
-        border: 1px solid #f5c6cb;
-        border-radius: 5px;
-        color: #721c24;
+        border: 2px solid #f5c6cb;
+        border-radius: 8px;
+        color: #721c24 !important;
+        font-weight: 600;
+    }
+    
+    /* Metric styling */
+    [data-testid="stMetricValue"] {
+        color: #2c3e50 !important;
+        font-size: 2rem !important;
+        font-weight: bold !important;
+    }
+    
+    [data-testid="stMetricLabel"] {
+        color: #555 !important;
+        font-weight: 600 !important;
+    }
+    
+    /* Sidebar styling */
+    [data-testid="stSidebar"] {
+        background-color: #f8f9fa;
+    }
+    
+    [data-testid="stSidebar"] .stButton>button {
+        background-color: #ffffff;
+        color: #2c3e50 !important;
+        border: 2px solid #e0e0e0;
+        margin-bottom: 8px;
+    }
+    
+    [data-testid="stSidebar"] .stButton>button:hover {
+        background: linear-gradient(135deg, #1f77b4 0%, #155a8a 100%);
+        color: white !important;
+        border-color: #1f77b4;
+    }
+    
+    /* Dataframe styling */
+    .stDataFrame {
+        border: 2px solid #e0e0e0;
+        border-radius: 8px;
+    }
+    
+    /* Markdown text */
+    .stMarkdown {
+        color: #2c3e50 !important;
+    }
+    
+    /* Info/Warning/Error boxes */
+    .stAlert {
+        border-radius: 8px;
+        border-width: 2px;
+    }
+    
+    /* Form labels */
+    label {
+        color: #2c3e50 !important;
+        font-weight: 600 !important;
+    }
+    
+    /* Checkbox */
+    .stCheckbox > label {
+        color: #2c3e50 !important;
+        font-weight: 500 !important;
+    }
+    
+    /* File uploader */
+    .stFileUploader > div {
+        background-color: #ffffff;
+        border: 2px dashed #1f77b4;
+        border-radius: 8px;
+        padding: 20px;
+    }
+    
+    .stFileUploader label {
+        color: #2c3e50 !important;
+        font-weight: 600 !important;
+    }
+    
+    /* Progress bar */
+    .stProgress > div > div > div {
+        background-color: #1f77b4;
+    }
+    
+    /* Text area */
+    .stTextArea > div > div > textarea {
+        background-color: #ffffff !important;
+        color: #2c3e50 !important;
+        border: 2px solid #ddd !important;
+        font-size: 16px !important;
+    }
+    
+    .stTextArea > label {
+        color: #2c3e50 !important;
+        font-weight: 600 !important;
+    }
+    
+    /* Number input */
+    .stNumberInput > div > div > input {
+        background-color: #ffffff !important;
+        color: #2c3e50 !important;
+        border: 2px solid #ddd !important;
+    }
+    
+    .stNumberInput > label {
+        color: #2c3e50 !important;
+        font-weight: 600 !important;
+    }
+    
+    /* Download button */
+    .stDownloadButton > button {
+        background-color: #28a745 !important;
+        color: white !important;
+    }
+    
+    .stDownloadButton > button:hover {
+        background-color: #218838 !important;
+    }
+    
+    /* High contrast for all text */
+    p, span, div {
+        color: #2c3e50;
+    }
+    
+    h1, h2, h3, h4, h5, h6 {
+        color: #1f77b4 !important;
+        font-weight: bold !important;
     }
 </style>
 """, unsafe_allow_html=True)
@@ -108,13 +325,28 @@ def show_login_page():
 
 
 def show_login_form():
-    """Display login form"""
-    st.markdown("### Login to your account")
+    """Display login form with clear labels"""
+    st.markdown("### 🔐 Login to your account")
+    st.markdown("---")
     
-    with st.form("login_form"):
-        username = st.text_input("Username", placeholder="Enter your username")
-        password = st.text_input("Password", type="password", placeholder="Enter your password")
-        submit = st.form_submit_button("🔓 Login")
+    with st.form("login_form", clear_on_submit=False):
+        st.markdown("#### Enter your credentials")
+        username = st.text_input(
+            "👤 Username", 
+            placeholder="Enter your username",
+            help="Use your registered username",
+            key="login_username"
+        )
+        password = st.text_input(
+            "🔒 Password", 
+            type="password", 
+            placeholder="Enter your password",
+            help="Enter your password",
+            key="login_password"
+        )
+        
+        st.markdown("")  # Spacing
+        submit = st.form_submit_button("🔓 Login", use_container_width=True, type="primary")
         
         if submit:
             if not username or not password:
@@ -133,18 +365,63 @@ def show_login_form():
 
 
 def show_register_form():
-    """Display registration form"""
-    st.markdown("### Create a new account")
+    """Display registration form with clear labels"""
+    st.markdown("### 📝 Create a new account")
+    st.markdown("---")
     
-    with st.form("register_form"):
-        username = st.text_input("Username", placeholder="Choose a username")
-        full_name = st.text_input("Full Name", placeholder="Enter your full name")
-        email = st.text_input("Email", placeholder="your.email@university.edu")
-        password = st.text_input("Password", type="password", placeholder="Choose a strong password")
-        confirm_password = st.text_input("Confirm Password", type="password", placeholder="Re-enter password")
-        role = st.selectbox("Role", ["student", "teacher"], index=0)
+    with st.form("register_form", clear_on_submit=False):
+        st.markdown("#### Registration Details")
         
-        submit = st.form_submit_button("📝 Register")
+        col1, col2 = st.columns(2)
+        
+        with col1:
+            username = st.text_input(
+                "👤 Username *", 
+                placeholder="Choose a unique username",
+                help="This will be used to login",
+                key="register_username"
+            )
+            full_name = st.text_input(
+                "📝 Full Name *", 
+                placeholder="Enter your full name",
+                help="Your complete name",
+                key="register_fullname"
+            )
+            email = st.text_input(
+                "📧 Email *", 
+                placeholder="your.email@university.edu",
+                help="Your email address",
+                key="register_email"
+            )
+        
+        with col2:
+            password = st.text_input(
+                "🔒 Password *", 
+                type="password", 
+                placeholder="Choose a strong password",
+                help="Minimum 6 characters",
+                key="register_password"
+            )
+            confirm_password = st.text_input(
+                "🔒 Confirm Password *", 
+                type="password", 
+                placeholder="Re-enter your password",
+                help="Must match the password above",
+                key="register_confirm_password"
+            )
+            role = st.selectbox(
+                "🎯 Role *", 
+                ["student", "teacher"], 
+                index=0,
+                help="Select your role in the system",
+                key="register_role"
+            )
+        
+        st.markdown("---")
+        st.markdown("*Required fields")
+        st.markdown("")  # Spacing
+        
+        submit = st.form_submit_button("📝 Create Account", use_container_width=True, type="primary")
         
         if submit:
             # Validation
@@ -214,7 +491,16 @@ def show_dashboard():
     page = st.session_state.current_page
     
     # Import page modules
-    if page == 'upload' and role == 'teacher':
+    if page == 'users' and role == 'admin':
+        from pages import users
+        users.main()
+    elif page == 'courses' and role in ['admin', 'teacher']:
+        from pages import courses
+        courses.main()
+    elif page == 'resources':
+        from pages import resources
+        resources.main()
+    elif page == 'upload' and role == 'teacher':
         from pages import upload
         upload.main()
     elif page in ['lectures', 'watch_lecture'] and role == 'student':
@@ -265,7 +551,11 @@ def show_admin_navigation():
         st.session_state.current_page = 'courses'
         st.rerun()
     
-    if st.button("📈 Analytics", use_container_width=True):
+    if st.button("� Resources", use_container_width=True):
+        st.session_state.current_page = 'resources'
+        st.rerun()
+    
+    if st.button("�📈 Analytics", use_container_width=True):
         st.session_state.current_page = 'analytics'
         st.rerun()
     
@@ -294,7 +584,11 @@ def show_teacher_navigation():
         st.session_state.current_page = 'upload'
         st.rerun()
     
-    if st.button("📈 Analytics", use_container_width=True):
+    if st.button("� Resources", use_container_width=True):
+        st.session_state.current_page = 'resources'
+        st.rerun()
+    
+    if st.button("�📈 Analytics", use_container_width=True):
         st.session_state.current_page = 'analytics'
         st.rerun()
     
@@ -323,7 +617,11 @@ def show_student_navigation():
         st.session_state.current_page = 'lectures'
         st.rerun()
     
-    if st.button("📝 Quizzes", use_container_width=True):
+    if st.button("� Resources", use_container_width=True):
+        st.session_state.current_page = 'resources'
+        st.rerun()
+    
+    if st.button("�📝 Quizzes", use_container_width=True):
         st.session_state.current_page = 'quizzes'
         st.rerun()
     

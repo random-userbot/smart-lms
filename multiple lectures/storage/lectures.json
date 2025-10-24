@@ -1,0 +1,14 @@
+{
+  "lec_2a96290c": {
+    "lecture_id": "lec_2a96290c",
+    "title": "Lecture 01: Computer Vision",
+    "course_id": "cv101",
+    "video_path": "./storage/courses/cv101/lectures/lec_2a96290c_Lec_video.mp4",
+    "duration": 3600,
+    "materials": [],
+    "created_at": "2025-10-24T08:58:55.458147",
+    "is_active": true,
+    "description": "",
+    "uploaded_by": "teacher_001"
+  }
+}
