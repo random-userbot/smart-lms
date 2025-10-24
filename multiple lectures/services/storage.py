@@ -44,7 +44,8 @@ class StorageService:
             'evaluation': {},
             'attendance': {},
             'teacher_activity': {},
-            'progress': {}
+            'progress': {},
+            'enrollment_requests': {}
         }
         
         for key, default_value in default_structures.items():
@@ -464,6 +465,71 @@ class StorageService:
         if course_id:
             return student_progress.get(course_id, {})
         return student_progress
+    
+    # Enrollment Request Methods
+    def create_enrollment_request(self, request_id: str, student_id: str, course_id: str, **kwargs) -> bool:
+        """Create an enrollment request"""
+        requests = self._read_json(self.storage_paths.get('enrollment_requests', './storage/enrollment_requests.json'))
+        
+        requests[request_id] = {
+            'request_id': request_id,
+            'student_id': student_id,
+            'course_id': course_id,
+            'status': 'pending',  # pending, approved, rejected
+            'requested_at': datetime.utcnow().isoformat(),
+            'processed_at': None,
+            'processed_by': None,
+            **kwargs
+        }
+        
+        self._write_json(self.storage_paths.get('enrollment_requests', './storage/enrollment_requests.json'), requests)
+        return True
+    
+    def get_enrollment_requests(self, course_id: Optional[str] = None, student_id: Optional[str] = None, 
+                                status: Optional[str] = None) -> Dict:
+        """Get enrollment requests with optional filters"""
+        requests = self._read_json(self.storage_paths.get('enrollment_requests', './storage/enrollment_requests.json'))
+        
+        filtered_requests = requests
+        
+        if course_id:
+            filtered_requests = {rid: r for rid, r in filtered_requests.items() if r.get('course_id') == course_id}
+        
+        if student_id:
+            filtered_requests = {rid: r for rid, r in filtered_requests.items() if r.get('student_id') == student_id}
+        
+        if status:
+            filtered_requests = {rid: r for rid, r in filtered_requests.items() if r.get('status') == status}
+        
+        return filtered_requests
+    
+    def update_enrollment_request(self, request_id: str, status: str, processed_by: str) -> bool:
+        """Update enrollment request status"""
+        requests = self._read_json(self.storage_paths.get('enrollment_requests', './storage/enrollment_requests.json'))
+        
+        if request_id not in requests:
+            return False
+        
+        requests[request_id]['status'] = status
+        requests[request_id]['processed_at'] = datetime.utcnow().isoformat()
+        requests[request_id]['processed_by'] = processed_by
+        
+        # If approved, add student to course
+        if status == 'approved':
+            course_id = requests[request_id]['course_id']
+            student_id = requests[request_id]['student_id']
+            
+            courses = self._read_json(self.storage_paths['courses'])
+            if course_id in courses:
+                enrolled_students = courses[course_id].get('enrolled_students', [])
+                if student_id not in enrolled_students:
+                    enrolled_students.append(student_id)
+                    courses[course_id]['enrolled_students'] = enrolled_students
+                    courses[course_id]['updated_at'] = datetime.utcnow().isoformat()
+                    self._write_json(self.storage_paths['courses'], courses)
+        
+        self._write_json(self.storage_paths.get('enrollment_requests', './storage/enrollment_requests.json'), requests)
+        return True
 
 
 # Singleton instance

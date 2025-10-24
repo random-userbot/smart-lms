@@ -63,8 +63,16 @@ def show_lecture_player(lecture):
     
     # Initialize behavioral logger
     behavioral_logger = get_behavioral_logger(student_id, lecture_id, course_id)
+    
+    # Check if it's a YouTube video (either in youtube_url field or video_path)
+    youtube_url = lecture.get('youtube_url') or (
+        lecture.get('video_path') if lecture.get('video_type') == 'youtube' 
+        or ('youtube.com' in lecture.get('video_path', '') or 'youtu.be' in lecture.get('video_path', ''))
+        else None
+    )
+    
     behavioral_logger.log_lecture_start(lecture_id, course_id, 
-                                        video_type='youtube' if lecture.get('youtube_url') else 'local')
+                                        video_type='youtube' if youtube_url else 'local')
     
     # Initialize anti-cheating monitor
     anti_cheating = get_anti_cheating_monitor(student_id, lecture_id, course_id)
@@ -77,8 +85,8 @@ def show_lecture_player(lecture):
     
     with col1:
         # Check if YouTube URL is provided
-        if lecture.get('youtube_url'):
-            youtube_id = extract_youtube_id(lecture['youtube_url'])
+        if youtube_url:
+            youtube_id = extract_youtube_id(youtube_url)
             
             if youtube_id:
                 st.markdown("### 📺 YouTube Lecture")
@@ -245,8 +253,122 @@ def show_lecture_player(lecture):
         st.rerun()
 
 
+def render_lecture_card(lecture, course, user):
+    """Render a lecture card with visual styling"""
+    storage = get_storage()
+    
+    # Check if student has watched
+    engagement_logs = storage.get_engagement_logs(
+        student_id=user['user_id'],
+        lecture_id=lecture['lecture_id']
+    )
+    
+    has_watched = len(engagement_logs) > 0
+    latest_engagement = engagement_logs[-1] if engagement_logs else None
+    
+    # Determine status and color
+    if has_watched:
+        status_color = "#28a745"  # Green
+        status_text = "✅ Watched"
+        status_badge = "watched"
+        button_type = "primary"
+    else:
+        status_color = "#007bff"  # Blue
+        status_text = "� New"
+        status_badge = "new"
+        button_type = "secondary"
+    
+    # Duration in minutes
+    duration_minutes = lecture.get('duration', 0) // 60 if lecture.get('duration') else 0
+    
+    # Video type indicator
+    video_type = lecture.get('video_type', 'file')
+    video_icon = "🎬" if video_type == 'youtube' else "📹"
+    
+    # Materials and quizzes count
+    materials_count = len(lecture.get('materials', []))
+    quizzes_count = len(lecture.get('quizzes', []))
+    
+    card_html = f"""
+    <div style="
+        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        border-radius: 12px;
+        padding: 20px;
+        margin-bottom: 15px;
+        box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        transition: transform 0.2s;
+    ">
+        <div style="display: flex; justify-content: space-between; align-items: start; margin-bottom: 10px;">
+            <h3 style="color: white; margin: 0; font-size: 1.3em;">
+                {video_icon} {lecture['title']}
+            </h3>
+            <span style="
+                background: {status_color};
+                color: white;
+                padding: 5px 12px;
+                border-radius: 20px;
+                font-size: 0.85em;
+                font-weight: bold;
+            ">{status_text}</span>
+        </div>
+        
+        <p style="color: rgba(255,255,255,0.9); margin: 10px 0; font-size: 0.95em;">
+            {lecture.get('description', 'No description available')}
+        </p>
+        
+        <div style="display: flex; gap: 20px; margin-top: 15px; flex-wrap: wrap;">
+            <div style="color: white;">
+                <span style="font-size: 1.2em;">⏱️</span>
+                <span style="margin-left: 5px;">{duration_minutes} min</span>
+            </div>
+            <div style="color: white;">
+                <span style="font-size: 1.2em;">📄</span>
+                <span style="margin-left: 5px;">{materials_count} Materials</span>
+            </div>
+            <div style="color: white;">
+                <span style="font-size: 1.2em;">📝</span>
+                <span style="margin-left: 5px;">{quizzes_count} Quizzes</span>
+            </div>
+            {f'''<div style="color: white;">
+                <span style="font-size: 1.2em;">📊</span>
+                <span style="margin-left: 5px;">Score: {latest_engagement['engagement_score']:.0f}%</span>
+            </div>''' if latest_engagement else ''}
+        </div>
+    </div>
+    """
+    
+    st.markdown(card_html, unsafe_allow_html=True)
+    
+    # Action button
+    col1, col2, col3 = st.columns([2, 1, 1])
+    with col1:
+        if has_watched:
+            button_text = "▶️ Watch Again"
+        else:
+            button_text = "▶️ Watch Now"
+        
+        if st.button(button_text, key=f"watch_{lecture['lecture_id']}", type=button_type, use_container_width=True):
+            st.session_state.selected_lecture = lecture
+            st.session_state.current_page = 'watch_lecture'
+            st.rerun()
+    
+    with col2:
+        if materials_count > 0:
+            if st.button(f"📄 Materials ({materials_count})", key=f"materials_{lecture['lecture_id']}", use_container_width=True):
+                st.session_state.current_page = 'resources'
+                st.session_state.selected_lecture_id = lecture['lecture_id']
+                st.rerun()
+    
+    with col3:
+        if quizzes_count > 0:
+            if st.button(f"📝 Quizzes ({quizzes_count})", key=f"quizzes_{lecture['lecture_id']}", use_container_width=True):
+                st.session_state.current_page = 'quizzes'
+                st.session_state.selected_lecture_id = lecture['lecture_id']
+                st.rerun()
+
+
 def show_lecture_list(course_id):
-    """Display list of lectures for a course"""
+    """Display list of lectures for a course with card-based UI"""
     storage = get_storage()
     
     # Get course info
@@ -263,45 +385,74 @@ def show_lecture_list(course_id):
     lectures = storage.get_course_lectures(course_id)
     
     if not lectures:
-        st.info("📝 No lectures available yet. Check back later!")
+        st.info("� No lectures available yet. Check back later!")
         return
     
-    # Display lectures
-    st.subheader("🎥 Available Lectures")
-    
+    # Statistics
     user = st.session_state.user
+    watched_count = 0
+    total_engagement = 0
     
     for lecture in lectures:
-        with st.expander(f"📖 {lecture['title']}", expanded=False):
-            st.markdown(f"**Description:** {lecture.get('description', 'No description')}")
-            st.markdown(f"**Duration:** {lecture.get('duration', 0) // 60} minutes")
-            
-            # Check if student has watched
-            engagement_logs = storage.get_engagement_logs(
-                student_id=user['user_id'],
-                lecture_id=lecture['lecture_id']
-            )
-            
-            if engagement_logs:
-                latest_log = engagement_logs[-1]
-                st.success(f"✅ Watched | Engagement Score: {latest_log['engagement_score']:.1f}/100")
-            else:
-                st.info("📺 Not watched yet")
-            
-            # Show materials count
-            materials_count = len(lecture.get('materials', []))
-            quizzes_count = len(lecture.get('quizzes', []))
-            
-            col1, col2, col3 = st.columns(3)
-            with col1:
-                st.metric("📄 Materials", materials_count)
-            with col2:
-                st.metric("📝 Quizzes", quizzes_count)
-            with col3:
-                if st.button("▶️ Watch Now", key=f"watch_{lecture['lecture_id']}"):
-                    st.session_state.selected_lecture = lecture
-                    st.session_state.current_page = 'watch_lecture'
-                    st.rerun()
+        engagement_logs = storage.get_engagement_logs(
+            student_id=user['user_id'],
+            lecture_id=lecture['lecture_id']
+        )
+        if engagement_logs:
+            watched_count += 1
+            total_engagement += engagement_logs[-1].get('engagement_score', 0)
+    
+    # Display statistics
+    col1, col2, col3, col4 = st.columns(4)
+    with col1:
+        st.metric("📚 Total Lectures", len(lectures))
+    with col2:
+        st.metric("✅ Watched", watched_count)
+    with col3:
+        st.metric("📺 Remaining", len(lectures) - watched_count)
+    with col4:
+        avg_engagement = total_engagement / watched_count if watched_count > 0 else 0
+        st.metric("� Avg Engagement", f"{avg_engagement:.0f}%")
+    
+    st.markdown("---")
+    
+    # Search and filter
+    col1, col2 = st.columns([3, 1])
+    with col1:
+        search_query = st.text_input("🔍 Search lectures", placeholder="Search by title or description...", key="lecture_search")
+    with col2:
+        filter_option = st.selectbox("Filter", ["All", "Watched", "Not Watched"], key="lecture_filter")
+    
+    # Filter lectures
+    filtered_lectures = lectures
+    
+    if search_query:
+        filtered_lectures = [
+            lec for lec in filtered_lectures
+            if search_query.lower() in lec['title'].lower() or
+               search_query.lower() in lec.get('description', '').lower()
+        ]
+    
+    if filter_option == "Watched":
+        filtered_lectures = [
+            lec for lec in filtered_lectures
+            if storage.get_engagement_logs(user['user_id'], lec['lecture_id'])
+        ]
+    elif filter_option == "Not Watched":
+        filtered_lectures = [
+            lec for lec in filtered_lectures
+            if not storage.get_engagement_logs(user['user_id'], lec['lecture_id'])
+        ]
+    
+    st.markdown("---")
+    
+    # Display lecture cards
+    if not filtered_lectures:
+        st.info("🔍 No lectures match your search criteria.")
+    else:
+        st.subheader(f"🎥 Lectures ({len(filtered_lectures)})")
+        for lecture in filtered_lectures:
+            render_lecture_card(lecture, course, user)
 
 
 def main():

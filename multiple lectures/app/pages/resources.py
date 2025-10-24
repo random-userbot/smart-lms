@@ -52,8 +52,91 @@ def get_file_icon(filename):
     return icons.get(ext, '📁')
 
 
+def render_lecture_resource_card(lecture, course):
+    """Render a lecture resource card with materials"""
+    video_path = lecture.get('video_path', '')
+    youtube_url = lecture.get('youtube_url', '')
+    materials = lecture.get('materials', [])
+    video_type = lecture.get('video_type', 'file')
+    
+    # Determine if it's a YouTube video
+    is_youtube = video_type == 'youtube' or youtube_url or \
+                 ('youtube.com' in video_path or 'youtu.be' in video_path)
+    
+    # Video icon
+    video_icon = "🎬" if is_youtube else "🎥"
+    
+    # Card gradient based on resource type
+    if materials:
+        gradient = "linear-gradient(135deg, #fa709a 0%, #fee140 100%)"
+    else:
+        gradient = "linear-gradient(135deg, #30cfd0 0%, #330867 100%)"
+    
+    card_html = f"""
+    <div style="
+        background: {gradient};
+        border-radius: 12px;
+        padding: 20px;
+        margin-bottom: 15px;
+        box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+    ">
+        <div style="display: flex; justify-content: space-between; align-items: start; margin-bottom: 10px;">
+            <h3 style="color: white; margin: 0; font-size: 1.2em;">
+                {video_icon} {lecture.get('title', 'Untitled Lecture')}
+            </h3>
+            <span style="
+                background: rgba(255,255,255,0.3);
+                color: white;
+                padding: 5px 12px;
+                border-radius: 20px;
+                font-size: 0.85em;
+                font-weight: bold;
+            ">📚 {course['name'][:20]}...</span>
+        </div>
+        
+        <p style="color: rgba(255,255,255,0.95); margin: 10px 0; font-size: 0.9em;">
+            {lecture.get('description', 'No description available')[:100]}...
+        </p>
+        
+        <div style="display: flex; gap: 20px; margin-top: 15px; flex-wrap: wrap;">
+            {f'''<div style="color: white;">
+                <span style="font-size: 1.2em;">{video_icon}</span>
+                <span style="margin-left: 5px;">{"YouTube" if is_youtube else "Video"}</span>
+            </div>''' if video_path or youtube_url else ''}
+            <div style="color: white;">
+                <span style="font-size: 1.2em;">📄</span>
+                <span style="margin-left: 5px;">{len(materials)} Materials</span>
+            </div>
+        </div>
+    </div>
+    """
+    
+    st.markdown(card_html, unsafe_allow_html=True)
+    
+    # Display materials
+    if materials:
+        with st.expander(f"📄 View Materials ({len(materials)})"):
+            for i, material in enumerate(materials):
+                col1, col2, col3 = st.columns([3, 1, 1])
+                
+                with col1:
+                    icon = get_file_icon(material.get('file_name', ''))
+                    st.markdown(f"{icon} **{material.get('title', 'Untitled Material')}**")
+                    st.caption(material.get('type', 'File'))
+                
+                with col2:
+                    file_path = material.get('file_path', '')
+                    if file_path and os.path.exists(file_path):
+                        file_size = get_file_size(file_path)
+                        st.caption(f"📦 {file_size}")
+                
+                with col3:
+                    if st.button("📥 Download", key=f"download_{lecture.get('lecture_id')}_{i}"):
+                        st.info("📥 Download functionality will be implemented")
+
+
 def show_resources_by_course():
-    """Display resources organized by course"""
+    """Display resources organized by course with card-based UI"""
     storage = get_storage()
     user = st.session_state.user
     
@@ -70,147 +153,112 @@ def show_resources_by_course():
             cid: c for cid, c in all_courses.items()
             if user['user_id'] in c.get('enrolled_students', [])
         }
-        st.subheader("📚 My Enrolled Course Resources")
+        st.subheader("📚 My Course Resources")
     
     if not courses:
-        st.info("No courses available. You need to be enrolled in courses to access resources.")
+        st.info("📝 No courses available. You need to be enrolled in courses to access resources.")
         return
     
+    # Calculate statistics
+    total_lectures = 0
+    total_materials = 0
+    total_courses = len(courses)
+    
+    for course_id, course in courses.items():
+        lectures = storage.get_course_lectures(course_id)
+        total_lectures += len(lectures)
+        for lecture in lectures:
+            total_materials += len(lecture.get('materials', []))
+    
+    # Display statistics
+    col1, col2, col3, col4 = st.columns(4)
+    with col1:
+        st.metric("� Courses", total_courses)
+    with col2:
+        st.metric("🎥 Lectures", total_lectures)
+    with col3:
+        st.metric("📄 Materials", total_materials)
+    with col4:
+        st.metric("📦 Total Items", total_lectures + total_materials)
+    
+    st.markdown("---")
+    
     # Search and filter
-    col1, col2 = st.columns([3, 1])
+    col1, col2, col3 = st.columns([2, 1, 1])
     
     with col1:
-        search = st.text_input("🔍 Search resources", placeholder="Search by course name, lecture, or material...")
+        search = st.text_input("🔍 Search resources", placeholder="Search by lecture, course, or material...", key="resource_search")
     
     with col2:
-        filter_type = st.selectbox("Filter", ["All", "Videos", "Documents", "Other"])
+        filter_type = st.selectbox("Type", ["All", "With Materials", "Videos Only"], key="resource_type_filter")
+    
+    with col3:
+        course_filter = st.selectbox("Course", ["All Courses"] + [c['name'] for c in courses.values()], key="course_filter")
+    
+    st.markdown("---")
     
     # Display courses and their resources
+    resources_found = False
+    
     for course_id, course in courses.items():
+        # Apply course filter
+        if course_filter != "All Courses" and course['name'] != course_filter:
+            continue
+        
         lectures = storage.get_course_lectures(course_id)
         
         if not lectures:
             continue
         
-        # Count resources
-        total_videos = len(lectures)
-        total_materials = sum(len(lec.get('materials', [])) for lec in lectures)
+        # Filter lectures
+        filtered_lectures = []
         
-        with st.expander(f"📖 {course['name']} ({total_videos} videos, {total_materials} materials)", expanded=False):
-            # Display course info
-            col1, col2 = st.columns([3, 1])
+        for lecture in lectures:
+            # Apply search filter
+            if search:
+                search_lower = search.lower()
+                if search_lower not in lecture.get('title', '').lower() and \
+                   search_lower not in lecture.get('description', '').lower() and \
+                   search_lower not in course['name'].lower():
+                    continue
             
+            # Apply type filter
+            materials = lecture.get('materials', [])
+            video_path = lecture.get('video_path', '')
+            
+            if filter_type == "With Materials" and not materials:
+                continue
+            if filter_type == "Videos Only" and not video_path:
+                continue
+            
+            filtered_lectures.append(lecture)
+        
+        if filtered_lectures:
+            resources_found = True
+            
+            # Course header
+            col1, col2 = st.columns([3, 1])
             with col1:
+                st.markdown(f"### 📖 {course['name']}")
                 teacher = storage.get_user(course.get('teacher_id', ''))
                 teacher_name = teacher.get('full_name', 'Unknown') if teacher else 'Unknown'
-                st.write(f"**Teacher:** {teacher_name}")
-                st.write(f"**Department:** {course.get('department', 'N/A')}")
+                st.caption(f"👨‍🏫 {teacher_name} • {course.get('department', 'N/A')}")
             
             with col2:
                 if user['role'] in ['admin', 'teacher']:
-                    if st.button(f"📤 Upload to {course['name'][:20]}...", key=f"upload_{course_id}", use_container_width=True):
+                    if st.button(f"📤 Upload", key=f"upload_{course_id}", use_container_width=True):
                         st.session_state.selected_course = course_id
                         st.session_state.current_page = 'upload'
                         st.rerun()
             
-            st.markdown("---")
+            # Display lecture cards
+            for lecture in filtered_lectures:
+                render_lecture_resource_card(lecture, course)
             
-            # Display lectures and their materials
-            for lecture in lectures:
-                # Apply search filter
-                if search and search.lower() not in lecture.get('title', '').lower():
-                    continue
-                
-                # Apply type filter
-                materials = lecture.get('materials', [])
-                if filter_type == "Videos":
-                    # Show only if video exists
-                    if not lecture.get('video_path'):
-                        continue
-                elif filter_type == "Documents":
-                    # Show only if has document materials
-                    if not materials:
-                        continue
-                elif filter_type == "Other":
-                    # Show only if has non-video, non-document materials
-                    pass
-                
-                st.markdown(f"### 🎥 {lecture.get('title', 'Untitled Lecture')}")
-                st.write(f"*{lecture.get('description', 'No description')}*")
-                
-                # Video download
-                video_path = lecture.get('video_path', '')
-                if video_path and os.path.exists(video_path):
-                    col1, col2, col3 = st.columns([3, 1, 1])
-                    
-                    with col1:
-                        file_size = get_file_size(video_path)
-                        st.write(f"🎥 **Video:** {Path(video_path).name} ({file_size})")
-                    
-                    with col2:
-                        duration = lecture.get('duration', 0)
-                        st.write(f"⏱️ {duration // 60}min {duration % 60}s")
-                    
-                    with col3:
-                        # Download button
-                        try:
-                            with open(video_path, 'rb') as f:
-                                st.download_button(
-                                    label="⬇️ Download",
-                                    data=f,
-                                    file_name=Path(video_path).name,
-                                    mime='video/mp4',
-                                    key=f"download_video_{lecture.get('lecture_id', 'unknown')}",
-                                    use_container_width=True
-                                )
-                        except Exception as e:
-                            st.error(f"Error: {str(e)}")
-                
-                # Display materials
-                if materials:
-                    st.markdown("**📄 Course Materials:**")
-                    
-                    for idx, material in enumerate(materials):
-                        col1, col2, col3 = st.columns([3, 1, 1])
-                        
-                        with col1:
-                            icon = get_file_icon(material.get('file_name', ''))
-                            material_path = material.get('file_path', '')
-                            file_size = get_file_size(material_path) if os.path.exists(material_path) else "N/A"
-                            
-                            st.write(f"{icon} **{material.get('title', 'Untitled')}**")
-                            st.write(f"   Type: {material.get('type', 'Unknown')} | Size: {file_size}")
-                        
-                        with col2:
-                            uploaded_at = material.get('uploaded_at', 'Unknown')
-                            st.write(f"📅 {uploaded_at[:10] if uploaded_at != 'Unknown' else 'Unknown'}")
-                        
-                        with col3:
-                            # Download button
-                            if os.path.exists(material_path):
-                                try:
-                                    with open(material_path, 'rb') as f:
-                                        file_bytes = f.read()
-                                        
-                                        # Determine MIME type
-                                        mime_type, _ = mimetypes.guess_type(material_path)
-                                        if not mime_type:
-                                            mime_type = 'application/octet-stream'
-                                        
-                                        st.download_button(
-                                            label="⬇️ Download",
-                                            data=file_bytes,
-                                            file_name=material.get('file_name', 'download'),
-                                            mime=mime_type,
-                                            key=f"download_mat_{lecture.get('lecture_id', 'unknown')}_{idx}",
-                                            use_container_width=True
-                                        )
-                                except Exception as e:
-                                    st.error(f"Error: {str(e)}")
-                            else:
-                                st.warning("File not found")
-                
-                st.markdown("---")
+            st.markdown("---")
+    
+    if not resources_found:
+        st.info("🔍 No resources match your search criteria.")
 
 
 def show_all_resources_table():

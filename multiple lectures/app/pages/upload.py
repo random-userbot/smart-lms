@@ -29,8 +29,8 @@ def save_uploaded_file(uploaded_file, destination_path):
 
 
 def show_upload_lecture():
-    """Upload lecture video"""
-    st.subheader("🎥 Upload Lecture Video")
+    """Upload lecture video or YouTube link"""
+    st.subheader("🎥 Upload Lecture")
     
     storage = get_storage()
     user = st.session_state.user
@@ -41,6 +41,13 @@ def show_upload_lecture():
     if not courses:
         st.warning("⚠️ You don't have any courses yet. Contact admin to create courses.")
         return
+    
+    # Toggle between file upload and YouTube link
+    upload_type = st.radio(
+        "Lecture Source",
+        ["📹 YouTube Link", "📁 Upload Video File"],
+        horizontal=True
+    )
     
     with st.form("upload_lecture_form"):
         # Course selection
@@ -55,45 +62,61 @@ def show_upload_lecture():
         lecture_title = st.text_input("Lecture Title", placeholder="e.g., Introduction to Machine Learning")
         lecture_description = st.text_area("Description", placeholder="Brief description of the lecture content")
         
-        # Video upload
-        video_file = st.file_uploader(
-            "Upload Video File",
-            type=['mp4', 'avi', 'mov', 'mkv'],
-            help="Supported formats: MP4, AVI, MOV, MKV"
-        )
+        # Conditional input based on upload type
+        video_file = None
+        youtube_url = None
+        
+        if upload_type == "📹 YouTube Link":
+            youtube_url = st.text_input(
+                "YouTube URL",
+                placeholder="https://www.youtube.com/watch?v=...",
+                help="Paste the full YouTube video URL"
+            )
+            
+            # Show preview if URL is valid
+            if youtube_url and ('youtube.com' in youtube_url or 'youtu.be' in youtube_url):
+                st.video(youtube_url)
+        else:
+            # Video upload
+            video_file = st.file_uploader(
+                "Upload Video File",
+                type=['mp4', 'avi', 'mov', 'mkv'],
+                help="Supported formats: MP4, AVI, MOV, MKV"
+            )
         
         # Duration
         duration_minutes = st.number_input("Duration (minutes)", min_value=1, value=60)
         
-        submit = st.form_submit_button("📤 Upload Lecture")
+        submit = st.form_submit_button("📤 Upload Lecture", type="primary")
         
         if submit:
             if not lecture_title:
                 st.error("❌ Please enter a lecture title")
                 return
             
-            if not video_file:
-                st.error("❌ Please upload a video file")
-                return
-            
-            # Generate lecture ID
-            lecture_id = f"lec_{uuid.uuid4().hex[:8]}"
-            
-            # Save video file
-            course_name = course_options[selected_course].lower().replace(' ', '_')
-            video_path = f"./storage/courses/{selected_course}/lectures/{lecture_id}_{video_file.name}"
-            
-            with st.spinner("Uploading video... This may take a moment."):
-                if save_uploaded_file(video_file, video_path):
-                    # Create lecture record
+            if upload_type == "📹 YouTube Link":
+                if not youtube_url:
+                    st.error("❌ Please enter a YouTube URL")
+                    return
+                
+                if not ('youtube.com' in youtube_url or 'youtu.be' in youtube_url):
+                    st.error("❌ Please enter a valid YouTube URL")
+                    return
+                
+                # Generate lecture ID
+                lecture_id = f"lec_{uuid.uuid4().hex[:8]}"
+                
+                with st.spinner("Creating lecture..."):
+                    # Create lecture record with YouTube URL
                     success = storage.create_lecture(
                         lecture_id=lecture_id,
                         title=lecture_title,
                         course_id=selected_course,
-                        video_path=video_path,
+                        video_path=youtube_url,  # Store YouTube URL as video_path
                         duration=duration_minutes * 60,
                         description=lecture_description,
-                        uploaded_by=user['user_id']
+                        uploaded_by=user['user_id'],
+                        video_type='youtube'  # Flag as YouTube video
                     )
                     
                     if success:
@@ -105,16 +128,62 @@ def show_upload_lecture():
                             details={
                                 'lecture_id': lecture_id,
                                 'course_id': selected_course,
-                                'title': lecture_title
+                                'title': lecture_title,
+                                'type': 'youtube'
                             }
                         )
                         
-                        st.success(f"✅ Lecture '{lecture_title}' uploaded successfully!")
+                        st.success(f"✅ Lecture '{lecture_title}' created successfully!")
                         st.balloons()
                     else:
                         st.error("❌ Failed to create lecture record")
-                else:
-                    st.error("❌ Failed to upload video file")
+            
+            else:  # File upload
+                if not video_file:
+                    st.error("❌ Please upload a video file")
+                    return
+                
+                # Generate lecture ID
+                lecture_id = f"lec_{uuid.uuid4().hex[:8]}"
+                
+                # Save video file
+                course_name = course_options[selected_course].lower().replace(' ', '_')
+                video_path = f"./storage/courses/{selected_course}/lectures/{lecture_id}_{video_file.name}"
+                
+                with st.spinner("Uploading video... This may take a moment."):
+                    if save_uploaded_file(video_file, video_path):
+                        # Create lecture record
+                        success = storage.create_lecture(
+                            lecture_id=lecture_id,
+                            title=lecture_title,
+                            course_id=selected_course,
+                            video_path=video_path,
+                            duration=duration_minutes * 60,
+                            description=lecture_description,
+                            uploaded_by=user['user_id'],
+                            video_type='file'
+                        )
+                        
+                        if success:
+                            # Log teacher activity
+                            storage.log_teacher_activity(
+                                activity_id=str(uuid.uuid4()),
+                                teacher_id=user['user_id'],
+                                action='upload_lecture',
+                                details={
+                                    'lecture_id': lecture_id,
+                                    'course_id': selected_course,
+                                    'title': lecture_title,
+                                    'type': 'file'
+                                }
+                            )
+                            
+                            st.success(f"✅ Lecture '{lecture_title}' uploaded successfully!")
+                            st.balloons()
+                        else:
+                            st.error("❌ Failed to create lecture record")
+                    else:
+                        st.error("❌ Failed to upload video file")
 
 
 def show_upload_material():

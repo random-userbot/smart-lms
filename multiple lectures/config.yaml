@@ -19,6 +19,7 @@ storage:
   attendance: "./storage/attendance.json"
   teacher_activity: "./storage/teacher_activity.json"
   progress: "./storage/progress.json"
+  enrollment_requests: "./storage/enrollment_requests.json"
 
 # ML Data directories for comprehensive logging
 ml_data:
