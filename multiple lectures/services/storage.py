@@ -232,6 +232,19 @@ class StorageService:
                 self._write_json(self.storage_paths['courses'], courses)
         
         return True
+
+    def update_lecture(self, lecture_id: str, updates: Dict) -> bool:
+        """Update lecture information"""
+        lectures = self._read_json(self.storage_paths['lectures'])
+
+        if lecture_id not in lectures:
+            return False
+
+        lectures[lecture_id].update(updates)
+        lectures[lecture_id]['updated_at'] = datetime.utcnow().isoformat()
+
+        self._write_json(self.storage_paths['lectures'], lectures)
+        return True
     
     # ==================== ENGAGEMENT LOGS ====================
     
@@ -586,8 +599,13 @@ class StorageService:
         teacher_logs = activities.get(teacher_id, [])
         
         if days:
-            # Filter by date range (implement if needed)
-            pass
+            # Filter by date range
+            from datetime import timedelta
+            cutoff_date = datetime.utcnow() - timedelta(days=days)
+            teacher_logs = [
+                log for log in teacher_logs
+                if datetime.fromisoformat(log['timestamp']) >= cutoff_date
+            ]
         
         return teacher_logs
     

@@ -373,7 +373,8 @@ def integrate_with_openface_processor():
             
             return engagement_score
     """
-    pass
+    # Integration example provided in docstring above
+    # See get_personalized_features() method for the actual implementation
 
 
 if __name__ == "__main__":

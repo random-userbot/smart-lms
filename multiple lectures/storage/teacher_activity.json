@@ -9,6 +9,17 @@
         "title": "Lecture 01: Computer Vision"
       },
       "timestamp": "2025-10-24T08:58:55.460153"
+    },
+    {
+      "activity_id": "99b31fd3-80af-4ba6-aec1-b550d3796835",
+      "action": "upload_material",
+      "details": {
+        "material_id": "mat_d9cba4e3",
+        "course_id": "cv101",
+        "title": "Pdf: Introduction to Computer Vision",
+        "type": "Reference Material"
+      },
+      "timestamp": "2025-10-25T17:54:01.183510"
     }
   ]
 }

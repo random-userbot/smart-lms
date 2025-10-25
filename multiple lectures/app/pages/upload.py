@@ -6,6 +6,8 @@ Teachers can upload lectures, materials, quizzes, and assignments
 import streamlit as st
 import sys
 import os
+import re
+import mimetypes
 sys.path.append(os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__)))))
 
 from services.auth import get_auth
@@ -16,12 +18,109 @@ import shutil
 from pathlib import Path
 
 
+# Security constants
+MAX_FILE_SIZE = 500 * 1024 * 1024  # 500 MB
+ALLOWED_VIDEO_TYPES = ['video/mp4', 'video/avi', 'video/quicktime', 'video/x-matroska']
+ALLOWED_MATERIAL_TYPES = [
+    'application/pdf',
+    'application/vnd.openxmlformats-officedocument.presentationml.presentation',
+    'application/vnd.openxmlformats-officedocument.wordprocessingml.document',
+    'text/plain',
+    'application/zip'
+]
+
+
+def sanitize_filename(filename: str) -> str:
+    """
+    Sanitize uploaded filename to prevent path traversal and other attacks
+    
+    Args:
+        filename: Original filename from upload
+    
+    Returns:
+        Sanitized filename safe for filesystem
+    """
+    # Remove path components
+    filename = os.path.basename(filename)
+    
+    # Remove any non-alphanumeric characters except .-_
+    filename = re.sub(r'[^a-zA-Z0-9._-]', '_', filename)
+    
+    # Prevent hidden files
+    if filename.startswith('.'):
+        filename = '_' + filename[1:]
+    
+    # Limit length
+    name, ext = os.path.splitext(filename)
+    if len(name) > 100:
+        name = name[:100]
+    
+    return name + ext
+
+
+def validate_file_upload(uploaded_file, allowed_types: list, max_size: int = MAX_FILE_SIZE) -> tuple:
+    """
+    Validate uploaded file for security
+    
+    Args:
+        uploaded_file: Streamlit UploadedFile object
+        allowed_types: List of allowed MIME types
+        max_size: Maximum file size in bytes
+    
+    Returns:
+        (is_valid: bool, error_message: str or None)
+    """
+    # Check file size
+    if uploaded_file.size > max_size:
+        return False, f"File too large. Maximum size: {max_size // (1024*1024)} MB"
+    
+    # Check MIME type
+    file_type = uploaded_file.type
+    if file_type not in allowed_types:
+        return False, f"Invalid file type: {file_type}. Allowed: {', '.join(allowed_types)}"
+    
+    # Additional extension validation
+    filename = uploaded_file.name
+    ext = os.path.splitext(filename)[1].lower()
+    
+    # Map extensions to expected MIME types
+    valid_extensions = {
+        '.mp4': 'video/mp4',
+        '.avi': 'video/avi',
+        '.mov': 'video/quicktime',
+        '.mkv': 'video/x-matroska',
+        '.pdf': 'application/pdf',
+        '.pptx': 'application/vnd.openxmlformats-officedocument.presentationml.presentation',
+        '.docx': 'application/vnd.openxmlformats-officedocument.wordprocessingml.document',
+        '.txt': 'text/plain',
+        '.zip': 'application/zip'
+    }
+    
+    if ext not in valid_extensions:
+        return False, f"Invalid file extension: {ext}"
+    
+    return True, None
+
+
 def save_uploaded_file(uploaded_file, destination_path):
-    """Save uploaded file to destination"""
+    """Save uploaded file to destination with security checks"""
     try:
-        os.makedirs(os.path.dirname(destination_path), exist_ok=True)
+        # Ensure destination directory exists with secure permissions
+        dest_dir = os.path.dirname(destination_path)
+        os.makedirs(dest_dir, mode=0o750, exist_ok=True)
+        
+        # Validate destination path (prevent path traversal)
+        destination_path = os.path.abspath(destination_path)
+        if '..' in destination_path:
+            raise ValueError("Invalid destination path")
+        
+        # Write file
         with open(destination_path, "wb") as f:
             f.write(uploaded_file.getbuffer())
+        
+        # Set restrictive permissions
+        os.chmod(destination_path, 0o640)
+        
         return True
     except Exception as e:
         st.error(f"Error saving file: {str(e)}")
@@ -143,12 +242,18 @@ def show_upload_lecture():
                     st.error("❌ Please upload a video file")
                     return
                 
+                # Validate file upload
+                is_valid, error_msg = validate_file_upload(video_file, ALLOWED_VIDEO_TYPES)
+                if not is_valid:
+                    st.error(f"❌ {error_msg}")
+                    return
+                
                 # Generate lecture ID
                 lecture_id = f"lec_{uuid.uuid4().hex[:8]}"
                 
-                # Save video file
-                course_name = course_options[selected_course].lower().replace(' ', '_')
-                video_path = f"./storage/courses/{selected_course}/lectures/{lecture_id}_{video_file.name}"
+                # Sanitize filename
+                safe_filename = sanitize_filename(video_file.name)
+                video_path = f"./storage/courses/{selected_course}/lectures/{lecture_id}_{safe_filename}"
                 
                 with st.spinner("Uploading video... This may take a moment."):
                     if save_uploaded_file(video_file, video_path):
@@ -243,9 +348,16 @@ def show_upload_material():
                 st.error("❌ Please upload a file")
                 return
             
-            # Save material file
+            # Validate file upload
+            is_valid, error_msg = validate_file_upload(material_file, ALLOWED_MATERIAL_TYPES)
+            if not is_valid:
+                st.error(f"❌ {error_msg}")
+                return
+            
+            # Generate material ID and sanitize filename
             material_id = f"mat_{uuid.uuid4().hex[:8]}"
-            material_path = f"./storage/courses/{selected_course}/materials/{material_id}_{material_file.name}"
+            safe_filename = sanitize_filename(material_file.name)
+            material_path = f"./storage/courses/{selected_course}/materials/{material_id}_{safe_filename}"
             
             with st.spinner("Uploading material..."):
                 if save_uploaded_file(material_file, material_path):
@@ -266,7 +378,8 @@ def show_upload_material():
                         if lecture:
                             materials = lecture.get('materials', [])
                             materials.append(material_info)
-                            storage.update_course(linked_lecture, {'materials': materials})
+                            # Persist materials to the lecture record
+                            storage.update_lecture(linked_lecture, {'materials': materials})
                     
                     # Log teacher activity
                     storage.log_teacher_activity(

@@ -17,6 +17,7 @@ from services.anti_cheating import get_anti_cheating_monitor, cleanup_monitor, r
 from datetime import datetime
 import uuid
 import re
+import html
 
 
 def extract_youtube_id(url: str) -> str:
@@ -57,7 +58,9 @@ def show_lecture_player(lecture):
     st.subheader(f"🎥 {lecture['title']}")
     
     if lecture.get('description'):
-        st.markdown(f"*{lecture['description']}*")
+        # Unescape any HTML entities and strip tags for safe display in markdown
+        desc_plain = re.sub(r'<[^>]+>', '', html.unescape(lecture.get('description', '')))
+        st.markdown(f"*{desc_plain}*")
     
     st.markdown("---")
     
@@ -367,8 +370,9 @@ def show_lecture_player(lecture):
                 themes = nlp_service.detect_themes(combined_text)
                 
                 # Calculate composite scores
+                # Composite should average all six rating categories including pace
                 composite_score = (overall_rating + content_quality + clarity_rating + 
-                                 engagement_rating + visual_aids) / 5
+                                 pace_rating + engagement_rating + visual_aids) / 6
                 
                 # Save comprehensive feedback
                 feedback_id = existing_feedback[0]['feedback_id'] if existing_feedback else str(uuid.uuid4())
@@ -468,7 +472,7 @@ def render_lecture_card(lecture, course, user):
         button_type = "primary"
     else:
         status_color = "#007bff"  # Blue
-        status_text = "� New"
+        status_text = "🆕 New"
         status_badge = "new"
         button_type = "secondary"
     
@@ -483,6 +487,9 @@ def render_lecture_card(lecture, course, user):
     materials_count = len(lecture.get('materials', []))
     quizzes_count = len(lecture.get('quizzes', []))
     
+    # Prepare a plain-text description preview: unescape HTML entities and strip tags
+    desc_preview = re.sub(r'<[^>]+>', '', html.unescape(lecture.get('description', 'No description available')))
+
     card_html = f"""
     <div style="
         background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
@@ -507,7 +514,7 @@ def render_lecture_card(lecture, course, user):
         </div>
         
         <p style="color: rgba(255,255,255,0.9); margin: 10px 0; font-size: 0.95em;">
-            {lecture.get('description', 'No description available')}
+            {desc_preview}
         </p>
         
         <div style="display: flex; gap: 20px; margin-top: 15px; flex-wrap: wrap;">

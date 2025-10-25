@@ -392,7 +392,8 @@ def integrate_with_behavioral_logger():
             )
             return result['engagement_score']
     """
-    pass
+    # Integration example provided in docstring above
+    # Implement when integrating with existing EngagementTracker
 
 
 if __name__ == "__main__":

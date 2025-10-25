@@ -318,8 +318,9 @@ class BehavioralLogger:
     
     def _update_counters(self, event_type: str, event_data: Dict):
         """Update session counters based on event type"""
-        # Counters are updated in specific log methods
-        pass
+        # Counter updates are handled by specific log methods
+        # This method exists for future extensibility
+        return
     
     def _get_session_duration(self) -> float:
         """Get session duration in seconds"""

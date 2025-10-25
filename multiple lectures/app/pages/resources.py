@@ -11,6 +11,8 @@ sys.path.append(os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(
 from services.storage import get_storage
 from pathlib import Path
 import mimetypes
+import re
+import html
 
 
 def get_file_size(file_path):
@@ -95,7 +97,7 @@ def render_lecture_resource_card(lecture, course):
         </div>
         
         <p style="color: rgba(255,255,255,0.95); margin: 10px 0; font-size: 0.9em;">
-            {lecture.get('description', 'No description available')[:100]}...
+            {re.sub(r'<[^>]+>', '', html.unescape(lecture.get('description', 'No description available')))[:100]}...
         </p>
         
         <div style="display: flex; gap: 20px; margin-top: 15px; flex-wrap: wrap;">

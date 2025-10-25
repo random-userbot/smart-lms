@@ -12,9 +12,11 @@ from services.storage import get_storage
 from services.auth import get_auth
 import uuid
 from datetime import datetime
+import re
+import html
 
 
-def render_course_card(course_id, course, is_enrolled, has_pending_request):
+def render_course_card(course_id, course, is_enrolled, has_pending_request, context_suffix=""):
     """Render a single course card"""
     
     storage = get_storage()
@@ -66,7 +68,7 @@ def render_course_card(course_id, course, is_enrolled, has_pending_request):
                     <strong>Credits:</strong> {course.get('credits', 0)}
                 </p>
                 <p style="margin: 10px 0; color: #34495e; font-size: 14px;">
-                    {course.get('description', 'No description available.')}
+                    {re.sub(r'<[^>]+>', '', html.unescape(course.get('description', 'No description available.')))}
                 </p>
                 <p style="margin: 5px 0; color: #95a5a6; font-size: 13px;">
                     📹 {num_lectures} Lectures | 👥 {num_students} Students
@@ -91,24 +93,36 @@ def render_course_card(course_id, course, is_enrolled, has_pending_request):
     
     # Action buttons
     col1, col2, col3 = st.columns([2, 1, 1])
-    
+
+    # Create a deterministic context suffix so widget keys remain unique
+    # across multiple tabs where the same course may be rendered twice.
+    if context_suffix:
+        ctx = context_suffix
+    else:
+        if is_enrolled:
+            ctx = 'enrolled'
+        elif has_pending_request:
+            ctx = 'pending'
+        else:
+            ctx = 'public'
+
     with col3:
         if is_enrolled:
-            if st.button("🎓 Continue Learning", key=f"continue_{course_id}", 
+            if st.button("🎓 Continue Learning", key=f"continue_{course_id}_{ctx}", 
                         type="primary", use_container_width=True):
                 st.session_state.selected_course = course_id
                 st.session_state.page = "lectures"
                 st.rerun()
         elif has_pending_request:
-            st.button("⏳ Request Pending", key=f"pending_{course_id}", 
+            st.button("⏳ Request Pending", key=f"pending_{course_id}_{ctx}", 
                      disabled=True, use_container_width=True)
         else:
-            if st.button("📝 Apply for Course", key=f"apply_{course_id}", 
+            if st.button("📝 Apply for Course", key=f"apply_{course_id}_{ctx}", 
                         use_container_width=True):
                 # Create enrollment request
                 request_id = f"req_{uuid.uuid4().hex[:8]}"
                 student_id = st.session_state.user['user_id']
-                
+
                 storage.create_enrollment_request(
                     request_id=request_id,
                     student_id=student_id,
@@ -116,7 +130,7 @@ def render_course_card(course_id, course, is_enrolled, has_pending_request):
                     student_name=st.session_state.user.get('full_name', 'Unknown'),
                     course_name=course.get('name', 'Unknown')
                 )
-                
+
                 st.success(f"✅ Application submitted for {course.get('name')}!")
                 st.balloons()
                 st.rerun()
@@ -182,7 +196,8 @@ def main():
             for course_id, course in filtered_courses.items():
                 is_enrolled = course_id in enrolled_course_ids
                 has_pending = course_id in pending_course_ids
-                render_course_card(course_id, course, is_enrolled, has_pending)
+                # mark this render as coming from the 'all' tab so widget keys stay unique
+                render_course_card(course_id, course, is_enrolled, has_pending, context_suffix='all')
         else:
             st.info("No courses found matching your search.")
     
@@ -192,7 +207,8 @@ def main():
         if enrolled_course_ids:
             for course_id in enrolled_course_ids:
                 course = public_courses[course_id]
-                render_course_card(course_id, course, True, False)
+                # mark this render as coming from the 'my' tab so widget keys stay unique
+                render_course_card(course_id, course, True, False, context_suffix='my')
         else:
             st.info("📚 You haven't enrolled in any courses yet. Browse the 'All Courses' tab to apply!")
     
