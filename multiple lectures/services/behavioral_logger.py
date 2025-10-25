@@ -276,6 +276,50 @@ class BehavioralLogger:
             'type': resource_type
         })
     
+    def log_material_upload(self, material_id: str, material_type: str, course_id: str, 
+                           lecture_id: str = None, file_name: str = None, file_size: int = None):
+        """
+        Log teacher material upload (for CSV audit trail)
+        
+        Args:
+            material_id: Unique material identifier
+            material_type: Type of material (pdf, video, pptx, etc.)
+            course_id: Course ID
+            lecture_id: Optional lecture ID if linked
+            file_name: Original filename
+            file_size: File size in bytes
+        """
+        self.log_event('material_upload', {
+            'material_id': material_id,
+            'material_type': material_type,
+            'course_id': course_id,
+            'lecture_id': lecture_id or 'none',
+            'file_name': file_name or 'unknown',
+            'file_size_mb': round(file_size / (1024 * 1024), 2) if file_size else 0,
+            'uploaded_by': self.student_id  # Can be teacher_id in this context
+        })
+    
+    def log_lecture_upload(self, lecture_id: str, course_id: str, lecture_type: str,
+                          video_url: str = None, file_size: int = None):
+        """
+        Log teacher lecture upload (for CSV audit trail)
+        
+        Args:
+            lecture_id: Unique lecture identifier
+            course_id: Course ID
+            lecture_type: 'youtube' or 'file'
+            video_url: YouTube URL or file path
+            file_size: File size in bytes (for uploaded files)
+        """
+        self.log_event('lecture_upload', {
+            'lecture_id': lecture_id,
+            'course_id': course_id,
+            'lecture_type': lecture_type,
+            'video_url': video_url or 'none',
+            'file_size_mb': round(file_size / (1024 * 1024), 2) if file_size else 0,
+            'uploaded_by': self.student_id  # Can be teacher_id in this context
+        })
+    
     def log_violation(self, violation_type: str, severity: str, details: Dict = None):
         """
         Log integrity violation

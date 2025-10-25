@@ -306,26 +306,35 @@ def show_login_page():
     
     with tab2:
         show_register_form()
-    
-    # Show demo credentials
-    with st.expander("🔑 Demo Credentials"):
-        st.markdown("""
-        **Admin Account:**
-        - Username: `admin`
-        - Password: `admin123`
-        
-        **Teacher Account:**
-        - Username: `dr_ramesh`
-        - Password: `teacher123`
-        
-        **Student Account:**
-        - Username: `demo_student`
-        - Password: `student123`
-        """)
 
 
 def show_login_form():
-    """Display login form with clear labels"""
+    """Display login form with clear labels and red cursor"""
+    # Add custom CSS for red cursor in login form
+    st.markdown("""
+    <style>
+    /* Red cursor for login form inputs */
+    div[data-testid="stForm"] input[type="text"],
+    div[data-testid="stForm"] input[type="password"] {
+        caret-color: #dc3545 !important;
+    }
+    
+    /* Enhanced input field styling for login */
+    div[data-testid="stForm"] input {
+        border: 2px solid #007bff !important;
+        border-radius: 8px !important;
+        padding: 12px !important;
+        font-size: 16px !important;
+    }
+    
+    div[data-testid="stForm"] input:focus {
+        border-color: #0056b3 !important;
+        box-shadow: 0 0 0 0.2rem rgba(0,123,255,.25) !important;
+        caret-color: #dc3545 !important;
+    }
+    </style>
+    """, unsafe_allow_html=True)
+    
     st.markdown("### 🔐 Login to your account")
     st.markdown("---")
     

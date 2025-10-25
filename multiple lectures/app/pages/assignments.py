@@ -10,6 +10,7 @@ sys.path.append(os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(
 
 from services.auth import get_auth
 from services.storage import get_storage
+from services.session_tracker import SessionTracker
 from datetime import datetime
 import uuid
 
@@ -116,6 +117,16 @@ def show_assignment_submission(assignment, course_id):
                         submission_file=file_path,
                         comments=comments,
                         graded=False
+                    )
+                    
+                    # Log assignment submission to CSV for audit trail
+                    session_tracker = SessionTracker(user['user_id'])
+                    session_tracker.log_assignment_submitted(
+                        assignment_id=assignment['assignment_id'],
+                        course_id=course_id,
+                        file_path=file_path,
+                        file_size=submitted_file.size,
+                        comments=comments
                     )
                     
                     st.success("✅ Assignment submitted successfully!")

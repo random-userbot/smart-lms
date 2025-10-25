@@ -12,6 +12,7 @@ sys.path.append(os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(
 
 from services.auth import get_auth
 from services.storage import get_storage
+from services.behavioral_logger import BehavioralLogger
 from datetime import datetime
 import uuid
 import shutil
@@ -219,7 +220,7 @@ def show_upload_lecture():
                     )
                     
                     if success:
-                        # Log teacher activity
+                        # Log teacher activity to JSON
                         storage.log_teacher_activity(
                             activity_id=str(uuid.uuid4()),
                             teacher_id=user['user_id'],
@@ -230,6 +231,15 @@ def show_upload_lecture():
                                 'title': lecture_title,
                                 'type': 'youtube'
                             }
+                        )
+                        
+                        # Log to CSV for audit trail
+                        csv_logger = BehavioralLogger(student_id=user['user_id'])
+                        csv_logger.log_lecture_upload(
+                            lecture_id=lecture_id,
+                            course_id=selected_course,
+                            lecture_type='youtube',
+                            video_url=youtube_url
                         )
                         
                         st.success(f"✅ Lecture '{lecture_title}' created successfully!")
@@ -270,7 +280,7 @@ def show_upload_lecture():
                         )
                         
                         if success:
-                            # Log teacher activity
+                            # Log teacher activity to JSON
                             storage.log_teacher_activity(
                                 activity_id=str(uuid.uuid4()),
                                 teacher_id=user['user_id'],
@@ -281,6 +291,16 @@ def show_upload_lecture():
                                     'title': lecture_title,
                                     'type': 'file'
                                 }
+                            )
+                            
+                            # Log to CSV for audit trail
+                            csv_logger = BehavioralLogger(student_id=user['user_id'])
+                            csv_logger.log_lecture_upload(
+                                lecture_id=lecture_id,
+                                course_id=selected_course,
+                                lecture_type='file',
+                                video_url=video_path,
+                                file_size=video_file.size
                             )
                             
                             st.success(f"✅ Lecture '{lecture_title}' uploaded successfully!")
@@ -381,7 +401,7 @@ def show_upload_material():
                             # Persist materials to the lecture record
                             storage.update_lecture(linked_lecture, {'materials': materials})
                     
-                    # Log teacher activity
+                    # Log teacher activity to JSON
                     storage.log_teacher_activity(
                         activity_id=str(uuid.uuid4()),
                         teacher_id=user['user_id'],
@@ -392,6 +412,17 @@ def show_upload_material():
                             'title': material_title,
                             'type': material_type
                         }
+                    )
+                    
+                    # Log to CSV for audit trail
+                    csv_logger = BehavioralLogger(student_id=user['user_id'])
+                    csv_logger.log_material_upload(
+                        material_id=material_id,
+                        material_type=material_type,
+                        course_id=selected_course,
+                        lecture_id=linked_lecture if linked_lecture != 'none' else None,
+                        file_name=material_file.name,
+                        file_size=material_file.size
                     )
                     
                     st.success(f"✅ Material '{material_title}' uploaded successfully!")
