@@ -210,40 +210,234 @@ def show_lecture_player(lecture):
                     st.session_state.current_page = 'take_quiz'
                     st.rerun()
     
-    # Feedback section
+    # Enhanced Feedback section
     st.markdown("---")
-    st.markdown("### 💬 Lecture Feedback")
+    st.markdown("### 💬 Comprehensive Lecture Feedback")
+    st.caption("Your feedback helps improve teaching quality and course content")
     
-    with st.form("feedback_form"):
-        rating = st.slider("Rate this lecture", 1, 5, 3)
-        feedback_text = st.text_area(
-            "Your feedback",
-            placeholder="What did you think about this lecture? Any suggestions?",
-            height=100
+    # Check if already submitted
+    storage = get_storage()
+    existing_feedback = storage.get_feedback(lecture_id=lecture_id, student_id=student_id)
+    
+    if existing_feedback:
+        st.info("✅ You have already submitted feedback for this lecture. You can update it below.")
+    
+    with st.form("detailed_feedback_form"):
+        st.markdown("#### 📊 Rate Your Learning Experience")
+        
+        col1, col2 = st.columns(2)
+        
+        with col1:
+            # Overall Rating
+            overall_rating = st.slider(
+                "⭐ Overall Rating",
+                min_value=1,
+                max_value=5,
+                value=3,
+                help="Your overall experience with this lecture"
+            )
+            
+            # Content Quality
+            content_quality = st.slider(
+                "📚 Content Quality",
+                min_value=1,
+                max_value=5,
+                value=3,
+                help="How relevant and useful was the content?"
+            )
+            
+            # Clarity
+            clarity_rating = st.slider(
+                "💡 Clarity & Understanding",
+                min_value=1,
+                max_value=5,
+                value=3,
+                help="How clear and understandable were the explanations?"
+            )
+        
+        with col2:
+            # Teaching Pace
+            pace_rating = st.slider(
+                "⏱️ Teaching Pace",
+                min_value=1,
+                max_value=5,
+                value=3,
+                help="1=Too Slow, 3=Just Right, 5=Too Fast"
+            )
+            
+            # Engagement Level
+            engagement_rating = st.slider(
+                "🎯 Engagement Level",
+                min_value=1,
+                max_value=5,
+                value=3,
+                help="How engaging and interesting was the lecture?"
+            )
+            
+            # Visual Aids Quality
+            visual_aids = st.slider(
+                "📊 Visual Aids & Examples",
+                min_value=1,
+                max_value=5,
+                value=3,
+                help="Quality of slides, diagrams, and examples"
+            )
+        
+        st.markdown("---")
+        st.markdown("#### 📝 Written Feedback")
+        
+        # What went well
+        strengths = st.text_area(
+            "✅ What did you like most about this lecture?",
+            placeholder="e.g., Clear explanations, good examples, interactive demonstrations...",
+            height=80,
+            key="strengths"
         )
         
-        submit_feedback = st.form_submit_button("📤 Submit Feedback")
+        # Areas for improvement
+        improvements = st.text_area(
+            "🔧 What could be improved?",
+            placeholder="e.g., More examples needed, faster pace, better visual aids...",
+            height=80,
+            key="improvements"
+        )
+        
+        # Additional comments
+        additional_comments = st.text_area(
+            "💬 Additional Comments (Optional)",
+            placeholder="Any other thoughts, suggestions, or questions?",
+            height=80,
+            key="comments"
+        )
+        
+        # Difficulty level
+        st.markdown("---")
+        difficulty_level = st.select_slider(
+            "📊 Difficulty Level",
+            options=["Too Easy", "Easy", "Just Right", "Challenging", "Too Difficult"],
+            value="Just Right"
+        )
+        
+        # Would recommend
+        would_recommend = st.checkbox(
+            "✅ I would recommend this lecture to other students",
+            value=True
+        )
+        
+        # Technical issues
+        had_technical_issues = st.checkbox(
+            "⚠️ I experienced technical issues during this lecture"
+        )
+        
+        if had_technical_issues:
+            technical_details = st.text_area(
+                "Please describe the technical issues:",
+                placeholder="e.g., Video buffering, audio problems, login issues...",
+                height=60,
+                key="technical"
+            )
+        else:
+            technical_details = ""
+        
+        st.markdown("---")
+        
+        col1, col2 = st.columns([3, 1])
+        with col1:
+            st.caption("🔒 Your feedback is anonymous and will be used to improve teaching quality")
+        with col2:
+            submit_feedback = st.form_submit_button("📤 Submit Feedback", use_container_width=True, type="primary")
         
         if submit_feedback:
-            if feedback_text:
-                storage = get_storage()
+            # Validate feedback
+            if not strengths and not improvements and not additional_comments:
+                st.warning("⚠️ Please provide at least some written feedback")
+            else:
+                # Combine all text feedback for NLP analysis
+                combined_text = f"""
+                Strengths: {strengths}
+                Improvements: {improvements}
+                Additional Comments: {additional_comments}
+                """.strip()
                 
-                feedback_id = str(uuid.uuid4())
-                storage.save_feedback(
+                # Perform NLP analysis
+                from services.nlp import get_nlp_service
+                nlp_service = get_nlp_service()
+                sentiment_analysis = nlp_service.analyze_sentiment(combined_text)
+                keywords = nlp_service.extract_keywords(combined_text, top_n=10)
+                themes = nlp_service.detect_themes(combined_text)
+                
+                # Calculate composite scores
+                composite_score = (overall_rating + content_quality + clarity_rating + 
+                                 engagement_rating + visual_aids) / 5
+                
+                # Save comprehensive feedback
+                feedback_id = existing_feedback[0]['feedback_id'] if existing_feedback else str(uuid.uuid4())
+                
+                storage.save_detailed_feedback(
                     feedback_id=feedback_id,
                     student_id=student_id,
                     lecture_id=lecture_id,
-                    text=feedback_text,
-                    rating=rating,
-                    sentiment={}  # Will be computed in Phase 4
+                    course_id=course_id,
+                    # Rating scores
+                    overall_rating=overall_rating,
+                    content_quality=content_quality,
+                    clarity_rating=clarity_rating,
+                    pace_rating=pace_rating,
+                    engagement_rating=engagement_rating,
+                    visual_aids_rating=visual_aids,
+                    composite_score=composite_score,
+                    # Written feedback
+                    strengths=strengths,
+                    improvements=improvements,
+                    additional_comments=additional_comments,
+                    # Metadata
+                    difficulty_level=difficulty_level,
+                    would_recommend=would_recommend,
+                    had_technical_issues=had_technical_issues,
+                    technical_details=technical_details,
+                    # NLP Analysis
+                    sentiment=sentiment_analysis,
+                    keywords=keywords,
+                    themes=themes,
+                    combined_text=combined_text
                 )
                 
                 # Log feedback submission
-                behavioral_logger.log_feedback_submission('lecture', rating)
+                behavioral_logger.log_feedback_submission('lecture', overall_rating)
                 
-                st.success("✅ Thank you for your feedback!")
-            else:
-                st.warning("⚠️ Please write some feedback")
+                # Get teacher info
+                lecture_data = storage.get_lecture(lecture_id)
+                course_data = storage.get_course(course_id)
+                teacher_id = course_data.get('teacher_id') if course_data else None
+                
+                # Update teacher evaluation metrics
+                if teacher_id:
+                    storage.update_teacher_evaluation(
+                        teacher_id=teacher_id,
+                        lecture_id=lecture_id,
+                        course_id=course_id,
+                        feedback_id=feedback_id,
+                        ratings={
+                            'overall': overall_rating,
+                            'content_quality': content_quality,
+                            'clarity': clarity_rating,
+                            'pace': pace_rating,
+                            'engagement': engagement_rating,
+                            'visual_aids': visual_aids,
+                            'composite': composite_score
+                        },
+                        sentiment=sentiment_analysis
+                    )
+                
+                st.success("✅ Thank you for your detailed feedback!")
+                st.balloons()
+                
+                # Show sentiment analysis result
+                sentiment_label = sentiment_analysis.get('label', 'neutral')
+                sentiment_emoji = {"positive": "😊", "negative": "😟", "neutral": "😐"}.get(sentiment_label, "😐")
+                st.info(f"{sentiment_emoji} Feedback sentiment: **{sentiment_label.title()}**")
+                
+                st.rerun()
     
     # Session end cleanup
     if st.button("🏁 End Session", type="secondary"):
