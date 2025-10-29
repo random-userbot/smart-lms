@@ -3,6 +3,8 @@ Smart LMS - Assignments Page
 Students can view and submit assignments
 """
 
+import html
+import re
 import streamlit as st
 import sys
 import os
@@ -10,7 +12,7 @@ sys.path.append(os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(
 
 from services.auth import get_auth
 from services.storage import get_storage
-from services.session_tracker import SessionTracker
+from services.session_tracker import get_global_session_tracker
 from datetime import datetime
 import uuid
 
@@ -120,7 +122,7 @@ def show_assignment_submission(assignment, course_id):
                     )
                     
                     # Log assignment submission to CSV for audit trail
-                    session_tracker = SessionTracker(user['user_id'])
+                    session_tracker = get_global_session_tracker(user['user_id'])
                     session_tracker.log_assignment_submitted(
                         assignment_id=assignment['assignment_id'],
                         course_id=course_id,
@@ -142,89 +144,55 @@ def show_assignment_submission(assignment, course_id):
 
 
 def render_assignment_card(assignment, course_id, is_submitted, submission=None):
-    """Render an assignment card with visual styling"""
+    """Render an assignment card with Streamlit native components"""
     # Parse due date
     due_date = datetime.fromisoformat(assignment['due_date'])
     is_overdue = datetime.now().date() > due_date.date() and not is_submitted
     days_until_due = (due_date.date() - datetime.now().date()).days
     
-    # Determine status and color
+    # Determine status
     if is_submitted:
         if submission and submission.get('graded', False):
             percentage = submission['percentage']
-            if percentage >= 80:
-                status_color = "#28a745"  # Green
-                status_text = f"✅ {percentage:.0f}%"
-            elif percentage >= 60:
-                status_color = "#ffc107"  # Yellow
-                status_text = f"✅ {percentage:.0f}%"
-            else:
-                status_color = "#fd7e14"  # Orange
-                status_text = f"✅ {percentage:.0f}%"
+            status_text = f"✅ Graded: {percentage:.0f}%"
         else:
-            status_color = "#17a2b8"  # Cyan
-            status_text = "⏳ Grading"
+            status_text = "⏳ Pending Grading"
     elif is_overdue:
-        status_color = "#dc3545"  # Red
         status_text = "⏰ Overdue"
     elif days_until_due <= 3:
-        status_color = "#ffc107"  # Yellow
-        status_text = f"⚠️ Due Soon"
+        status_text = "⚠️ Due Soon"
     else:
-        status_color = "#007bff"  # Blue
         status_text = "📋 Pending"
     
-    # Format due date
     due_date_str = due_date.strftime("%b %d, %Y")
     
-    card_html = f"""
-    <div style="
-        background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
-        border-radius: 12px;
-        padding: 20px;
-        margin-bottom: 15px;
-        box-shadow: 0 4px 6px rgba(0,0,0,0.1);
-    ">
-        <div style="display: flex; justify-content: space-between; align-items: start; margin-bottom: 10px;">
-            <h3 style="color: white; margin: 0; font-size: 1.3em;">
-                📋 {assignment['title']}
-            </h3>
-            <span style="
-                background: {status_color};
-                color: white;
-                padding: 5px 12px;
-                border-radius: 20px;
-                font-size: 0.85em;
-                font-weight: bold;
-            ">{status_text}</span>
-        </div>
+    with st.container():
+        col1, col2 = st.columns([4, 1])
+        with col1:
+            st.markdown(f"### 📋 {assignment['title']}")
+        with col2:
+            st.markdown(f"**{status_text}**")
         
-        <p style="color: rgba(255,255,255,0.95); margin: 10px 0; font-size: 0.95em;">
-            {assignment.get('description', 'No description available')}
-        </p>
+        desc = assignment.get('description', 'No description available')
+        desc_clean = re.sub(r'<[^>]+>', '', html.unescape(desc))
+        st.caption(desc_clean[:100] + '...' if len(desc_clean) > 100 else desc_clean)
         
-        <div style="display: flex; gap: 20px; margin-top: 15px; flex-wrap: wrap;">
-            <div style="color: white;">
-                <span style="font-size: 1.2em;">📅</span>
-                <span style="margin-left: 5px;">Due: {due_date_str}</span>
-            </div>
-            <div style="color: white;">
-                <span style="font-size: 1.2em;">🎯</span>
-                <span style="margin-left: 5px;">Max Score: {assignment['max_score']}</span>
-            </div>
-            {f'''<div style="color: white;">
-                <span style="font-size: 1.2em;">{"⏰" if days_until_due < 0 else "⏳"}</span>
-                <span style="margin-left: 5px;">{abs(days_until_due)} day{"s" if abs(days_until_due) != 1 else ""} {"overdue" if days_until_due < 0 else "left"}</span>
-            </div>''' if not is_submitted else ''}
-            {f'''<div style="color: white;">
-                <span style="font-size: 1.2em;">📊</span>
-                <span style="margin-left: 5px;">Score: {submission['score']}/{submission['max_score']}</span>
-            </div>''' if submission and submission.get('graded') else ''}
-        </div>
-    </div>
-    """
-    
-    st.markdown(card_html, unsafe_allow_html=True)
+        col1, col2, col3 = st.columns(3)
+        with col1:
+            st.metric("Due Date", due_date_str)
+        with col2:
+            st.metric("Max Score", assignment['max_score'])
+        with col3:
+            if is_submitted:
+                if submission and submission.get('graded'):
+                    st.metric("Score", f"{submission['score']}/{submission['max_score']}")
+            else:
+                if days_until_due >= 0:
+                    st.metric("Days Left", days_until_due)
+                else:
+                    st.metric("Days Overdue", abs(days_until_due))
+        
+        st.markdown("---")
     
     # Show reference files
     if assignment.get('reference_files'):

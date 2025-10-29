@@ -521,6 +521,29 @@ def show_dashboard():
     elif page in ['lectures', 'watch_lecture'] and role == 'student':
         from pages import lectures
         lectures.main()
+    elif page == 'read_pdf' and role == 'student':
+        # PDF Reader page
+        from services.pdf_reader import get_pdf_reader
+        pdf_reader = get_pdf_reader()
+        
+        if 'reading_material' in st.session_state:
+            material = st.session_state.reading_material
+            student_id = st.session_state.user['user_id']
+            lecture_id = st.session_state.get('reading_lecture_id', '')
+            course_id = st.session_state.get('reading_course_id', '')
+            
+            pdf_reader.display_pdf(
+                pdf_path=material.get('file_path', ''),
+                material_id=material.get('material_id', ''),
+                material_title=material.get('title', 'Unknown Material'),
+                course_id=course_id,
+                lecture_id=lecture_id,
+                student_id=student_id
+            )
+        else:
+            st.error("No material selected for reading")
+            st.session_state.current_page = 'lectures'
+            st.rerun()
     elif page in ['quizzes', 'take_quiz'] and role == 'student':
         from pages import quizzes
         quizzes.main()

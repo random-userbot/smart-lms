@@ -25,7 +25,7 @@
     "role": "teacher",
     "email": "ramesh@smartlms.edu",
     "created_at": "2025-10-23T21:17:06.163594",
-    "last_login": "2025-10-25T17:51:56.832892",
+    "last_login": "2025-10-25T19:34:52.951786",
     "is_active": true,
     "full_name": "Dr. Ramesh Kumar",
     "department": "Computer Science",
@@ -35,7 +35,7 @@
     "semester": null,
     "enrollment_number": null,
     "failed_login_attempts": 0,
-    "updated_at": "2025-10-25T17:51:56.832892"
+    "updated_at": "2025-10-25T19:34:52.951786"
   },
   "student_001": {
     "user_id": "student_001",
@@ -63,11 +63,11 @@
     "role": "student",
     "email": "revanthpuram004@gmail.com",
     "created_at": "2025-10-24T08:53:30.828310",
-    "last_login": "2025-10-25T17:55:53.346206",
+    "last_login": "2025-10-25T19:56:24.901933",
     "is_active": true,
     "full_name": "revanth puram",
     "failed_login_attempts": 0,
-    "updated_at": "2025-10-25T17:55:53.346206",
+    "updated_at": "2025-10-25T19:56:24.901933",
     "last_failed_login": "2025-10-24T08:59:44.349259"
   }
 }

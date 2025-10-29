@@ -20,6 +20,17 @@
         "type": "Reference Material"
       },
       "timestamp": "2025-10-25T17:54:01.183510"
+    },
+    {
+      "activity_id": "3ef68f9e-8cb9-412e-ae92-67afeb00355e",
+      "action": "upload_material",
+      "details": {
+        "material_id": "mat_5497b0c7",
+        "course_id": "cv101",
+        "title": "Pdf: Intro to CV",
+        "type": "Reference Material"
+      },
+      "timestamp": "2025-10-25T19:35:42.862488"
     }
   ]
 }

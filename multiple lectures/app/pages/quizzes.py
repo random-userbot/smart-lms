@@ -163,71 +163,42 @@ def show_quiz_result():
 
 
 def render_quiz_card(quiz, lecture, course_id, is_completed, latest_grade=None):
-    """Render a quiz card with visual styling"""
-    # Determine status and color
+    """Render a quiz card with Streamlit native components"""
+    # Determine status
     if is_completed and latest_grade:
         percentage = latest_grade['percentage']
         if percentage >= 80:
-            status_color = "#28a745"  # Green
-            status_text = f"✅ {percentage:.0f}%"
             grade_emoji = "🟢"
+            status_text = f"✅ {percentage:.0f}%"
         elif percentage >= 60:
-            status_color = "#ffc107"  # Yellow
-            status_text = f"✅ {percentage:.0f}%"
             grade_emoji = "🟡"
-        else:
-            status_color = "#fd7e14"  # Orange
             status_text = f"✅ {percentage:.0f}%"
+        else:
             grade_emoji = "🟠"
+            status_text = f"✅ {percentage:.0f}%"
     else:
-        status_color = "#007bff"  # Blue
-        status_text = "📝 New"
-        grade_emoji = "📝"
+        grade_emoji = "�"
+        status_text = "New"
     
-    card_html = f"""
-    <div style="
-        background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
-        border-radius: 12px;
-        padding: 20px;
-        margin-bottom: 15px;
-        box-shadow: 0 4px 6px rgba(0,0,0,0.1);
-    ">
-        <div style="display: flex; justify-content: space-between; align-items: start; margin-bottom: 10px;">
-            <h3 style="color: white; margin: 0; font-size: 1.3em;">
-                {grade_emoji} {quiz['title']}
-            </h3>
-            <span style="
-                background: {status_color};
-                color: white;
-                padding: 5px 12px;
-                border-radius: 20px;
-                font-size: 0.85em;
-                font-weight: bold;
-            ">{status_text}</span>
-        </div>
+    with st.container():
+        col1, col2 = st.columns([4, 1])
+        with col1:
+            st.markdown(f"### {grade_emoji} {quiz['title']}")
+        with col2:
+            st.markdown(f"**{status_text}**")
         
-        <p style="color: rgba(255,255,255,0.95); margin: 10px 0; font-size: 0.9em;">
-            <strong>📚 Lecture:</strong> {lecture['title']}
-        </p>
+        st.caption(f"📚 Lecture: {lecture['title']}")
         
-        <div style="display: flex; gap: 20px; margin-top: 15px; flex-wrap: wrap;">
-            <div style="color: white;">
-                <span style="font-size: 1.2em;">❓</span>
-                <span style="margin-left: 5px;">{len(quiz['questions'])} Questions</span>
-            </div>
-            <div style="color: white;">
-                <span style="font-size: 1.2em;">⏱️</span>
-                <span style="margin-left: 5px;">{quiz['time_limit']} min</span>
-            </div>
-            {f'''<div style="color: white;">
-                <span style="font-size: 1.2em;">📊</span>
-                <span style="margin-left: 5px;">Score: {latest_grade['score']}/{latest_grade['max_score']}</span>
-            </div>''' if latest_grade else ''}
-        </div>
-    </div>
-    """
-    
-    st.markdown(card_html, unsafe_allow_html=True)
+        col1, col2, col3 = st.columns(3)
+        with col1:
+            st.metric("Questions", len(quiz['questions']))
+        with col2:
+            st.metric("Time Limit", f"{quiz['time_limit']} min")
+        with col3:
+            if latest_grade:
+                st.metric("Score", f"{latest_grade['score']}/{latest_grade['max_score']}")
+        
+        st.markdown("---")
     
     # Action buttons
     if is_completed:

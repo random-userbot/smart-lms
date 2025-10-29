@@ -5,10 +5,21 @@
     "course_id": "cv101",
     "video_path": "./storage/courses/cv101/lectures/lec_2a96290c_Lec_video.mp4",
     "duration": 3600,
-    "materials": [],
+    "materials": [
+      {
+        "material_id": "mat_5497b0c7",
+        "title": "Pdf: Intro to CV",
+        "type": "Reference Material",
+        "file_path": "./storage/courses/cv101/materials/mat_5497b0c7_IntroCV_9_4_11.pdf",
+        "file_name": "IntroCV_9_4_11.pdf",
+        "uploaded_at": "2025-10-25T19:35:42.846486",
+        "uploaded_by": "teacher_001"
+      }
+    ],
     "created_at": "2025-10-24T08:58:55.458147",
     "is_active": true,
-    "description": "",
-    "uploaded_by": "teacher_001"
+    "description": "Introduction to Computer Vision concepts, covering image processing, feature detection, and basic computer vision algorithms.",
+    "uploaded_by": "teacher_001",
+    "updated_at": "2025-10-25T19:35:42.848486"
   }
 }

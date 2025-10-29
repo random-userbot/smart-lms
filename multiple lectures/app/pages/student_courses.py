@@ -43,53 +43,28 @@ def render_course_card(course_id, course, is_enrolled, has_pending_request, cont
         status_icon = "📚"
         status_text = "Not Enrolled"
     
-    # Create card HTML
-    card_html = f"""
-    <div style="
-        border: 2px solid {border_color};
-        border-radius: 10px;
-        padding: 20px;
-        margin: 10px 0;
-        background: linear-gradient(135deg, #ffffff 0%, #f8f9fa 100%);
-        box-shadow: 0 4px 6px rgba(0,0,0,0.1);
-        transition: transform 0.2s;
-    ">
-        <div style="display: flex; justify-content: space-between; align-items: start;">
-            <div style="flex: 1;">
-                <h3 style="margin: 0 0 10px 0; color: #2c3e50;">
-                    {status_icon} {course.get('name', 'Untitled Course')}
-                </h3>
-                <p style="margin: 5px 0; color: #7f8c8d; font-size: 14px;">
-                    <strong>Code:</strong> {course.get('code', 'N/A')} | 
-                    <strong>Teacher:</strong> {teacher_name}
-                </p>
-                <p style="margin: 5px 0; color: #7f8c8d; font-size: 14px;">
-                    <strong>Department:</strong> {course.get('department', 'N/A')} | 
-                    <strong>Credits:</strong> {course.get('credits', 0)}
-                </p>
-                <p style="margin: 10px 0; color: #34495e; font-size: 14px;">
-                    {re.sub(r'<[^>]+>', '', html.unescape(course.get('description', 'No description available.')))}
-                </p>
-                <p style="margin: 5px 0; color: #95a5a6; font-size: 13px;">
-                    📹 {num_lectures} Lectures | 👥 {num_students} Students
-                </p>
-            </div>
-            <div style="
-                background-color: {border_color};
-                color: white;
-                padding: 8px 15px;
-                border-radius: 20px;
-                font-size: 12px;
-                font-weight: bold;
-                white-space: nowrap;
-            ">
-                {status_text}
-            </div>
-        </div>
-    </div>
-    """
-    
-    st.markdown(card_html, unsafe_allow_html=True)
+    # Render with Streamlit components
+    with st.container():
+        col1, col2 = st.columns([4, 1])
+        with col1:
+            st.markdown(f"### {status_icon} {course.get('name', 'Untitled Course')}")
+        with col2:
+            st.markdown(f"**{status_text}**")
+        
+        st.caption(f"**Code:** {course.get('code', 'N/A')} | **Teacher:** {teacher_name}")
+        st.caption(f"**Department:** {course.get('department', 'N/A')} | **Credits:** {course.get('credits', 0)}")
+        
+        desc = course.get('description', 'No description available.')
+        desc_clean = re.sub(r'<[^>]+>', '', html.unescape(desc))
+        st.write(desc_clean[:200] + '...' if len(desc_clean) > 200 else desc_clean)
+        
+        col1, col2 = st.columns(2)
+        with col1:
+            st.metric("Lectures", num_lectures)
+        with col2:
+            st.metric("Students", num_students)
+        
+        st.markdown("---")
     
     # Action buttons
     col1, col2, col3 = st.columns([2, 1, 1])

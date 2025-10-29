@@ -16,7 +16,7 @@ import html
 
 
 def get_file_size(file_path):
-    """Get file size in human-readable format"""
+    """Get human-readable file size"""
     try:
         size = os.path.getsize(file_path)
         for unit in ['B', 'KB', 'MB', 'GB']:
@@ -24,7 +24,7 @@ def get_file_size(file_path):
                 return f"{size:.1f} {unit}"
             size /= 1024
         return f"{size:.1f} TB"
-    except:
+    except (OSError, IOError):
         return "Unknown"
 
 
@@ -55,65 +55,36 @@ def get_file_icon(filename):
 
 
 def render_lecture_resource_card(lecture, course):
-    """Render a lecture resource card with materials"""
+    """Render a lecture resource card with Streamlit native components"""
     video_path = lecture.get('video_path', '')
     youtube_url = lecture.get('youtube_url', '')
     materials = lecture.get('materials', [])
     video_type = lecture.get('video_type', 'file')
     
-    # Determine if it's a YouTube video
     is_youtube = video_type == 'youtube' or youtube_url or \
                  ('youtube.com' in video_path or 'youtu.be' in video_path)
     
-    # Video icon
     video_icon = "🎬" if is_youtube else "🎥"
     
-    # Card gradient based on resource type
-    if materials:
-        gradient = "linear-gradient(135deg, #fa709a 0%, #fee140 100%)"
-    else:
-        gradient = "linear-gradient(135deg, #30cfd0 0%, #330867 100%)"
-    
-    card_html = f"""
-    <div style="
-        background: {gradient};
-        border-radius: 12px;
-        padding: 20px;
-        margin-bottom: 15px;
-        box-shadow: 0 4px 6px rgba(0,0,0,0.1);
-    ">
-        <div style="display: flex; justify-content: space-between; align-items: start; margin-bottom: 10px;">
-            <h3 style="color: white; margin: 0; font-size: 1.2em;">
-                {video_icon} {lecture.get('title', 'Untitled Lecture')}
-            </h3>
-            <span style="
-                background: rgba(255,255,255,0.3);
-                color: white;
-                padding: 5px 12px;
-                border-radius: 20px;
-                font-size: 0.85em;
-                font-weight: bold;
-            ">📚 {course['name'][:20]}...</span>
-        </div>
+    with st.container():
+        col1, col2 = st.columns([3, 1])
+        with col1:
+            st.markdown(f"### {video_icon} {lecture.get('title', 'Untitled Lecture')}")
+        with col2:
+            st.caption(f"📚 {course['name'][:20]}...")
         
-        <p style="color: rgba(255,255,255,0.95); margin: 10px 0; font-size: 0.9em;">
-            {re.sub(r'<[^>]+>', '', html.unescape(lecture.get('description', 'No description available')))[:100]}...
-        </p>
+        desc = lecture.get('description', 'No description available')
+        desc_clean = re.sub(r'<[^>]+>', '', html.unescape(desc))
+        st.caption(desc_clean[:100] + '...' if len(desc_clean) > 100 else desc_clean)
         
-        <div style="display: flex; gap: 20px; margin-top: 15px; flex-wrap: wrap;">
-            {f'''<div style="color: white;">
-                <span style="font-size: 1.2em;">{video_icon}</span>
-                <span style="margin-left: 5px;">{"YouTube" if is_youtube else "Video"}</span>
-            </div>''' if video_path or youtube_url else ''}
-            <div style="color: white;">
-                <span style="font-size: 1.2em;">📄</span>
-                <span style="margin-left: 5px;">{len(materials)} Materials</span>
-            </div>
-        </div>
-    </div>
-    """
-    
-    st.markdown(card_html, unsafe_allow_html=True)
+        col1, col2 = st.columns(2)
+        with col1:
+            if video_path or youtube_url:
+                st.metric("Video Type", "YouTube" if is_youtube else "Video File")
+        with col2:
+            st.metric("Materials", len(materials))
+        
+        st.markdown("---")
     
     # Display materials
     if materials:

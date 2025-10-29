@@ -14,6 +14,7 @@ from services.storage import get_storage
 from services.pip_webcam_live import render_pip_webcam, render_engagement_sidebar
 from services.behavioral_logger import get_behavioral_logger, cleanup_logger
 from services.anti_cheating import get_anti_cheating_monitor, cleanup_monitor, render_integrity_widget, check_browser_visibility
+from services.pdf_reader import get_pdf_reader
 from datetime import datetime
 import uuid
 import re
@@ -192,13 +193,37 @@ def show_lecture_player(lecture):
     if lecture.get('materials'):
         st.markdown("### 📚 Course Materials")
         for material in lecture['materials']:
-            col1, col2 = st.columns([3, 1])
+            col1, col2, col3 = st.columns([2, 1, 1])
             with col1:
                 st.markdown(f"📄 **{material['title']}** ({material['type']})")
             with col2:
-                if st.button("📥 Download", key=f"download_{material['material_id']}"):
-                    behavioral_logger.log_resource_download(material['material_id'], material['type'])
-                    st.info("Download functionality will be implemented")
+                # Read PDF button
+                if material.get('file_path', '').lower().endswith('.pdf'):
+                    if st.button("📖 Read PDF", key=f"read_{material['material_id']}", use_container_width=True):
+                        st.session_state.reading_material = material
+                        st.session_state.reading_lecture_id = lecture['lecture_id']
+                        st.session_state.reading_course_id = lecture['course_id']
+                        st.session_state.previous_page = 'watch_lecture'
+                        st.session_state.current_page = 'read_pdf'
+                        behavioral_logger.log_material_read(material['material_id'], material['type'])
+                        st.rerun()
+            with col3:
+                # Download button
+                if st.button("📥 Download", key=f"download_{material['material_id']}", use_container_width=True):
+                    file_path = material.get('file_path', '')
+                    if os.path.exists(file_path):
+                        with open(file_path, 'rb') as f:
+                            file_data = f.read()
+                        st.download_button(
+                            label="⬇️ Save File",
+                            data=file_data,
+                            file_name=material.get('file_name', 'material.pdf'),
+                            mime='application/pdf' if file_path.endswith('.pdf') else 'application/octet-stream',
+                            key=f"dl_{material['material_id']}"
+                        )
+                        behavioral_logger.log_resource_download(material['material_id'], material['type'])
+                    else:
+                        st.error("File not found")
     
     # Quiz section
     if lecture.get('quizzes'):
@@ -452,7 +477,7 @@ def show_lecture_player(lecture):
 
 
 def render_lecture_card(lecture, course, user):
-    """Render a lecture card with visual styling"""
+    """Render a lecture card with Streamlit native components"""
     storage = get_storage()
     
     # Check if student has watched
@@ -464,81 +489,50 @@ def render_lecture_card(lecture, course, user):
     has_watched = len(engagement_logs) > 0
     latest_engagement = engagement_logs[-1] if engagement_logs else None
     
-    # Determine status and color
+    # Determine status
     if has_watched:
-        status_color = "#28a745"  # Green
-        status_text = "✅ Watched"
-        status_badge = "watched"
+        status_badge = "✅ Watched"
         button_type = "primary"
     else:
-        status_color = "#007bff"  # Blue
-        status_text = "🆕 New"
-        status_badge = "new"
+        status_badge = "🆕 New"
         button_type = "secondary"
     
-    # Duration in minutes
+    # Get info
     duration_minutes = lecture.get('duration', 0) // 60 if lecture.get('duration') else 0
-    
-    # Video type indicator
     video_type = lecture.get('video_type', 'file')
     video_icon = "🎬" if video_type == 'youtube' else "📹"
-    
-    # Materials and quizzes count
     materials_count = len(lecture.get('materials', []))
     quizzes_count = len(lecture.get('quizzes', []))
     
-    # Prepare a plain-text description preview: unescape HTML entities and strip tags
-    desc_preview = re.sub(r'<[^>]+>', '', html.unescape(lecture.get('description', 'No description available')))
+    # Clean description
+    raw_desc = lecture.get('description', 'No description available')
+    desc_clean = re.sub(r'<[^>]+>', '', html.unescape(raw_desc))
+    desc_clean = ' '.join(desc_clean.split())
+    desc_preview = desc_clean[:150] + '...' if len(desc_clean) > 150 else desc_clean
 
-    card_html = f"""
-    <div style="
-        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-        border-radius: 12px;
-        padding: 20px;
-        margin-bottom: 15px;
-        box-shadow: 0 4px 6px rgba(0,0,0,0.1);
-        transition: transform 0.2s;
-    ">
-        <div style="display: flex; justify-content: space-between; align-items: start; margin-bottom: 10px;">
-            <h3 style="color: white; margin: 0; font-size: 1.3em;">
-                {video_icon} {lecture['title']}
-            </h3>
-            <span style="
-                background: {status_color};
-                color: white;
-                padding: 5px 12px;
-                border-radius: 20px;
-                font-size: 0.85em;
-                font-weight: bold;
-            ">{status_text}</span>
-        </div>
+    # Use Streamlit container instead of HTML
+    with st.container():
+        col1, col2 = st.columns([4, 1])
+        with col1:
+            st.markdown(f"### {video_icon} {lecture['title']}")
+        with col2:
+            st.markdown(f"**{status_badge}**")
         
-        <p style="color: rgba(255,255,255,0.9); margin: 10px 0; font-size: 0.95em;">
-            {desc_preview}
-        </p>
+        st.caption(desc_preview)
         
-        <div style="display: flex; gap: 20px; margin-top: 15px; flex-wrap: wrap;">
-            <div style="color: white;">
-                <span style="font-size: 1.2em;">⏱️</span>
-                <span style="margin-left: 5px;">{duration_minutes} min</span>
-            </div>
-            <div style="color: white;">
-                <span style="font-size: 1.2em;">📄</span>
-                <span style="margin-left: 5px;">{materials_count} Materials</span>
-            </div>
-            <div style="color: white;">
-                <span style="font-size: 1.2em;">📝</span>
-                <span style="margin-left: 5px;">{quizzes_count} Quizzes</span>
-            </div>
-            {f'''<div style="color: white;">
-                <span style="font-size: 1.2em;">📊</span>
-                <span style="margin-left: 5px;">Score: {latest_engagement['engagement_score']:.0f}%</span>
-            </div>''' if latest_engagement else ''}
-        </div>
-    </div>
-    """
-    
-    st.markdown(card_html, unsafe_allow_html=True)
+        # Stats
+        col1, col2, col3, col4 = st.columns(4)
+        with col1:
+            st.metric("Duration", f"{duration_minutes} min")
+        with col2:
+            st.metric("Materials", materials_count)
+        with col3:
+            st.metric("Quizzes", quizzes_count)
+        with col4:
+            if latest_engagement:
+                st.metric("Score", f"{latest_engagement['engagement_score']:.0f}%")
+        
+        st.markdown("---")
     
     # Action button
     col1, col2, col3 = st.columns([2, 1, 1])

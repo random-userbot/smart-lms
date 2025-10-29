@@ -15,3 +15,6 @@ timestamp,session_id,student_id,lecture_id,course_id,event_type,event_data
 2025-10-25T17:48:28.943889,student_4_20251025_174828,student_4,lec_2a96290c,cv101,lecture_start,"{""lecture_id"": ""lec_2a96290c"", ""course_id"": ""cv101"", ""video_type"": ""local""}"
 2025-10-25T17:56:14.494819,student_4_20251025_174828,student_4,lec_2a96290c,cv101,lecture_start,"{""lecture_id"": ""lec_2a96290c"", ""course_id"": ""cv101"", ""video_type"": ""local""}"
 2025-10-25T17:56:14.905056,student_4_20251025_174828,student_4,lec_2a96290c,cv101,lecture_start,"{""lecture_id"": ""lec_2a96290c"", ""course_id"": ""cv101"", ""video_type"": ""local""}"
+2025-10-25T19:33:35.326545,student_4_20251025_193335,student_4,lec_2a96290c,cv101,session_start,"{""lecture_id"": ""lec_2a96290c"", ""course_id"": ""cv101""}"
+2025-10-25T19:33:35.328021,student_4_20251025_193335,student_4,lec_2a96290c,cv101,lecture_start,"{""lecture_id"": ""lec_2a96290c"", ""course_id"": ""cv101"", ""video_type"": ""local""}"
+2025-10-25T19:33:36.389665,student_4_20251025_193335,student_4,lec_2a96290c,cv101,lecture_start,"{""lecture_id"": ""lec_2a96290c"", ""course_id"": ""cv101"", ""video_type"": ""local""}"
