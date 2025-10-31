@@ -1,6 +1,7 @@
 """
 Smart LMS - Lectures Page
-Students can watch lectures with webcam engagement tracking
+Students can watch lectures with real-time engagement tracking, behavioral logging, and anti-cheating
+Supports both local videos and YouTube links
 """
 
 import streamlit as st
@@ -10,109 +11,181 @@ sys.path.append(os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(
 
 from services.auth import get_auth
 from services.storage import get_storage
+from services.pip_webcam_live import render_pip_webcam, render_engagement_sidebar
+from services.behavioral_logger import get_behavioral_logger, cleanup_logger
+from services.anti_cheating import get_anti_cheating_monitor, cleanup_monitor, render_integrity_widget, check_browser_visibility
+from services.pdf_reader import get_pdf_reader
 from datetime import datetime
 import uuid
+import re
+import html
 
 
-def show_consent_dialog():
-    """Show webcam consent dialog"""
-    if 'consent_given' not in st.session_state:
-        st.session_state.consent_given = False
+def extract_youtube_id(url: str) -> str:
+    """
+    Extract YouTube video ID from URL
     
-    if not st.session_state.consent_given:
-        st.warning("⚠️ Webcam Engagement Tracking")
-        st.markdown("""
-        This lecture includes webcam-based engagement tracking to improve your learning experience.
-        
-        **What we collect:**
-        - Gaze direction and attention patterns
-        - Head pose and stability
-        - Engagement metrics (no raw video stored)
-        
-        **Your privacy:**
-        - Only derived features are stored
-        - Raw video is NOT saved
-        - You can request data deletion anytime
-        - Data is anonymized after 180 days
-        
-        **You can:**
-        - Disable webcam tracking (affects engagement score)
-        - View your data in the Ethical AI Dashboard
-        - Request data deletion from your profile
-        """)
-        
-        col1, col2 = st.columns(2)
-        with col1:
-            if st.button("✅ I Consent", use_container_width=True):
-                st.session_state.consent_given = True
-                st.rerun()
-        with col2:
-            if st.button("❌ Continue Without Webcam", use_container_width=True):
-                st.session_state.consent_given = False
-                st.session_state.webcam_disabled = True
-                st.rerun()
-        
-        st.stop()
+    Args:
+        url: YouTube URL (various formats supported)
+    
+    Returns:
+        YouTube video ID or None
+    """
+    patterns = [
+        r'(?:youtube\.com/watch\?v=|youtu\.be/)([a-zA-Z0-9_-]{11})',
+        r'youtube\.com/embed/([a-zA-Z0-9_-]{11})',
+        r'youtube\.com/v/([a-zA-Z0-9_-]{11})'
+    ]
+    
+    for pattern in patterns:
+        match = re.search(pattern, url)
+        if match:
+            return match.group(1)
+    
+    # If it's just the ID
+    if re.match(r'^[a-zA-Z0-9_-]{11}$', url):
+        return url
+    
+    return None
 
 
 def show_lecture_player(lecture):
-    """Display video player with engagement tracking"""
+    """Display video player with real-time engagement tracking and anti-cheating"""
+    user = st.session_state.user
+    student_id = user['user_id']
+    lecture_id = lecture['lecture_id']
+    course_id = lecture.get('course_id', 'unknown')
+    
     st.subheader(f"🎥 {lecture['title']}")
     
     if lecture.get('description'):
-        st.markdown(f"*{lecture['description']}*")
+        # Unescape any HTML entities and strip tags for safe display in markdown
+        desc_plain = re.sub(r'<[^>]+>', '', html.unescape(lecture.get('description', '')))
+        st.markdown(f"*{desc_plain}*")
     
     st.markdown("---")
     
-    # Check if video file exists
-    video_path = lecture['video_path']
-    if not os.path.exists(video_path):
-        st.error(f"❌ Video file not found: {video_path}")
-        st.info("💡 The video may need to be uploaded by the teacher.")
-        return
+    # Initialize behavioral logger
+    behavioral_logger = get_behavioral_logger(student_id, lecture_id, course_id)
     
-    # Show consent dialog if not given
-    if 'webcam_disabled' not in st.session_state:
-        show_consent_dialog()
+    # Check if it's a YouTube video (either in youtube_url field or video_path)
+    youtube_url = lecture.get('youtube_url') or (
+        lecture.get('video_path') if lecture.get('video_type') == 'youtube' 
+        or ('youtube.com' in lecture.get('video_path', '') or 'youtu.be' in lecture.get('video_path', ''))
+        else None
+    )
     
-    # Video player
+    behavioral_logger.log_lecture_start(lecture_id, course_id, 
+                                        video_type='youtube' if youtube_url else 'local')
+    
+    # Initialize anti-cheating monitor
+    anti_cheating = get_anti_cheating_monitor(student_id, lecture_id, course_id)
+    
+    # Inject browser visibility detection JavaScript
+    st.components.v1.html(check_browser_visibility(), height=0)
+    
+    # Video player section
     col1, col2 = st.columns([3, 1])
     
     with col1:
-        st.video(video_path)
+        # Check if YouTube URL is provided
+        if youtube_url:
+            youtube_id = extract_youtube_id(youtube_url)
+            
+            if youtube_id:
+                st.markdown("### 📺 YouTube Lecture")
+                
+                # Embed YouTube video with custom player
+                youtube_embed = f"""
+                <div style="position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden; max-width: 100%; background: #000;">
+                    <iframe 
+                        id="youtube-player"
+                        style="position: absolute; top: 0; left: 0; width: 100%; height: 100%;"
+                        src="https://www.youtube.com/embed/{youtube_id}?enablejsapi=1&rel=0&modestbranding=1&playsinline=1"
+                        frameborder="0"
+                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                        allowfullscreen>
+                    </iframe>
+                </div>
+                
+                <script src="https://www.youtube.com/iframe_api"></script>
+                <script>
+                var player;
+                var lastSpeed = 1.0;
+                
+                function onYouTubeIframeAPIReady() {{
+                    player = new YT.Player('youtube-player', {{
+                        events: {{
+                            'onReady': onPlayerReady,
+                            'onStateChange': onPlayerStateChange
+                        }}
+                    }});
+                }}
+                
+                function onPlayerReady(event) {{
+                    // Monitor playback speed changes
+                    setInterval(function() {{
+                        var currentSpeed = player.getPlaybackRate();
+                        if (currentSpeed != lastSpeed) {{
+                            console.log('Speed changed from ' + lastSpeed + ' to ' + currentSpeed);
+                            
+                            // Check if speed exceeds 1.25x
+                            if (currentSpeed > 1.25) {{
+                                alert('⚠️ Playback speed too high! Maximum allowed: 1.25x');
+                                player.setPlaybackRate(1.0);
+                            }}
+                            
+                            lastSpeed = currentSpeed;
+                        }}
+                    }}, 1000);
+                }}
+                
+                function onPlayerStateChange(event) {{
+                    if (event.data == YT.PlayerState.PLAYING) {{
+                        console.log('Video playing');
+                    }} else if (event.data == YT.PlayerState.PAUSED) {{
+                        console.log('Video paused');
+                    }}
+                }}
+                </script>
+                """
+                
+                st.components.v1.html(youtube_embed, height=450)
+                
+                # Speed control warning
+                st.info("ℹ️ **Note:** Playback speed is limited to 1.25x for integrity monitoring.")
+            else:
+                st.error("❌ Invalid YouTube URL. Please contact your instructor.")
+                st.info(f"URL: {lecture['youtube_url']}")
+        else:
+            # Local video file
+            video_path = lecture.get('video_path', '')
+            
+            if video_path and os.path.exists(video_path):
+                st.video(video_path)
+            else:
+                st.error(f"❌ Video file not found: {video_path}")
+                st.info("� The video may need to be uploaded by the teacher, or a YouTube link may be added.")
     
     with col2:
-        st.markdown("### 📊 Engagement")
+        st.markdown("### 📊 Live Monitoring")
         
-        if st.session_state.get('consent_given', False):
-            # Webcam tracking enabled
-            st.success("✅ Webcam Active")
+        # Real-time engagement tracking with PiP webcam
+        st.markdown("**🎥 Webcam Tracking:**")
+        
+        try:
+            # Render PiP webcam (bottom-right, always visible)
+            pip_webcam = render_pip_webcam(lecture_id, course_id, student_id)
             
-            # Placeholder for real-time engagement score
-            engagement_placeholder = st.empty()
-            engagement_placeholder.metric(
-                "Current Score",
-                "85/100",
-                "+5",
-                help="Real-time engagement score"
-            )
+            # Show current engagement in sidebar
+            render_engagement_sidebar(pip_webcam)
             
-            # Webcam feed placeholder (will be implemented in Phase 3)
-            st.markdown("---")
-            st.markdown("**Live Feed:**")
-            st.info("📹 Webcam tracking will be implemented in Phase 3")
-            
-            # Toggle webcam
-            if st.button("⏸️ Pause Webcam"):
-                st.session_state.webcam_disabled = True
-                st.rerun()
-        else:
-            st.warning("⚠️ Webcam Disabled")
-            st.info("Enable webcam for engagement tracking")
-            
-            if st.button("▶️ Enable Webcam"):
-                st.session_state.webcam_disabled = False
-                show_consent_dialog()
+        except Exception as e:
+            st.error(f"❌ Webcam error: {str(e)}")
+            st.info("💡 Please allow camera access for engagement tracking.")
+    
+    # Render integrity monitoring in sidebar
+    render_integrity_widget(anti_cheating)
     
     st.markdown("---")
     
@@ -120,12 +193,37 @@ def show_lecture_player(lecture):
     if lecture.get('materials'):
         st.markdown("### 📚 Course Materials")
         for material in lecture['materials']:
-            col1, col2 = st.columns([3, 1])
+            col1, col2, col3 = st.columns([2, 1, 1])
             with col1:
                 st.markdown(f"📄 **{material['title']}** ({material['type']})")
             with col2:
-                if st.button("📥 Download", key=f"download_{material['material_id']}"):
-                    st.info("Download functionality will be implemented")
+                # Read PDF button
+                if material.get('file_path', '').lower().endswith('.pdf'):
+                    if st.button("📖 Read PDF", key=f"read_{material['material_id']}", use_container_width=True):
+                        st.session_state.reading_material = material
+                        st.session_state.reading_lecture_id = lecture['lecture_id']
+                        st.session_state.reading_course_id = lecture['course_id']
+                        st.session_state.previous_page = 'watch_lecture'
+                        st.session_state.current_page = 'read_pdf'
+                        behavioral_logger.log_material_read(material['material_id'], material['type'])
+                        st.rerun()
+            with col3:
+                # Download button
+                if st.button("📥 Download", key=f"download_{material['material_id']}", use_container_width=True):
+                    file_path = material.get('file_path', '')
+                    if os.path.exists(file_path):
+                        with open(file_path, 'rb') as f:
+                            file_data = f.read()
+                        st.download_button(
+                            label="⬇️ Save File",
+                            data=file_data,
+                            file_name=material.get('file_name', 'material.pdf'),
+                            mime='application/pdf' if file_path.endswith('.pdf') else 'application/octet-stream',
+                            key=f"dl_{material['material_id']}"
+                        )
+                        behavioral_logger.log_resource_download(material['material_id'], material['type'])
+                    else:
+                        st.error("File not found")
     
     # Quiz section
     if lecture.get('quizzes'):
@@ -140,42 +238,332 @@ def show_lecture_player(lecture):
                     st.session_state.current_page = 'take_quiz'
                     st.rerun()
     
-    # Feedback section
+    # Enhanced Feedback section
     st.markdown("---")
-    st.markdown("### 💬 Lecture Feedback")
+    st.markdown("### 💬 Comprehensive Lecture Feedback")
+    st.caption("Your feedback helps improve teaching quality and course content")
     
-    with st.form("feedback_form"):
-        rating = st.slider("Rate this lecture", 1, 5, 3)
-        feedback_text = st.text_area(
-            "Your feedback",
-            placeholder="What did you think about this lecture? Any suggestions?",
-            height=100
+    # Check if already submitted
+    storage = get_storage()
+    existing_feedback = storage.get_feedback(lecture_id=lecture_id, student_id=student_id)
+    
+    if existing_feedback:
+        st.info("✅ You have already submitted feedback for this lecture. You can update it below.")
+    
+    with st.form("detailed_feedback_form"):
+        st.markdown("#### 📊 Rate Your Learning Experience")
+        
+        col1, col2 = st.columns(2)
+        
+        with col1:
+            # Overall Rating
+            overall_rating = st.slider(
+                "⭐ Overall Rating",
+                min_value=1,
+                max_value=5,
+                value=3,
+                help="Your overall experience with this lecture"
+            )
+            
+            # Content Quality
+            content_quality = st.slider(
+                "📚 Content Quality",
+                min_value=1,
+                max_value=5,
+                value=3,
+                help="How relevant and useful was the content?"
+            )
+            
+            # Clarity
+            clarity_rating = st.slider(
+                "💡 Clarity & Understanding",
+                min_value=1,
+                max_value=5,
+                value=3,
+                help="How clear and understandable were the explanations?"
+            )
+        
+        with col2:
+            # Teaching Pace
+            pace_rating = st.slider(
+                "⏱️ Teaching Pace",
+                min_value=1,
+                max_value=5,
+                value=3,
+                help="1=Too Slow, 3=Just Right, 5=Too Fast"
+            )
+            
+            # Engagement Level
+            engagement_rating = st.slider(
+                "🎯 Engagement Level",
+                min_value=1,
+                max_value=5,
+                value=3,
+                help="How engaging and interesting was the lecture?"
+            )
+            
+            # Visual Aids Quality
+            visual_aids = st.slider(
+                "📊 Visual Aids & Examples",
+                min_value=1,
+                max_value=5,
+                value=3,
+                help="Quality of slides, diagrams, and examples"
+            )
+        
+        st.markdown("---")
+        st.markdown("#### 📝 Written Feedback")
+        
+        # What went well
+        strengths = st.text_area(
+            "✅ What did you like most about this lecture?",
+            placeholder="e.g., Clear explanations, good examples, interactive demonstrations...",
+            height=80,
+            key="strengths"
         )
         
-        submit_feedback = st.form_submit_button("📤 Submit Feedback")
+        # Areas for improvement
+        improvements = st.text_area(
+            "🔧 What could be improved?",
+            placeholder="e.g., More examples needed, faster pace, better visual aids...",
+            height=80,
+            key="improvements"
+        )
+        
+        # Additional comments
+        additional_comments = st.text_area(
+            "💬 Additional Comments (Optional)",
+            placeholder="Any other thoughts, suggestions, or questions?",
+            height=80,
+            key="comments"
+        )
+        
+        # Difficulty level
+        st.markdown("---")
+        difficulty_level = st.select_slider(
+            "📊 Difficulty Level",
+            options=["Too Easy", "Easy", "Just Right", "Challenging", "Too Difficult"],
+            value="Just Right"
+        )
+        
+        # Would recommend
+        would_recommend = st.checkbox(
+            "✅ I would recommend this lecture to other students",
+            value=True
+        )
+        
+        # Technical issues
+        had_technical_issues = st.checkbox(
+            "⚠️ I experienced technical issues during this lecture"
+        )
+        
+        if had_technical_issues:
+            technical_details = st.text_area(
+                "Please describe the technical issues:",
+                placeholder="e.g., Video buffering, audio problems, login issues...",
+                height=60,
+                key="technical"
+            )
+        else:
+            technical_details = ""
+        
+        st.markdown("---")
+        
+        col1, col2 = st.columns([3, 1])
+        with col1:
+            st.caption("🔒 Your feedback is anonymous and will be used to improve teaching quality")
+        with col2:
+            submit_feedback = st.form_submit_button("📤 Submit Feedback", use_container_width=True, type="primary")
         
         if submit_feedback:
-            if feedback_text:
-                storage = get_storage()
-                user = st.session_state.user
+            # Validate feedback
+            if not strengths and not improvements and not additional_comments:
+                st.warning("⚠️ Please provide at least some written feedback")
+            else:
+                # Combine all text feedback for NLP analysis
+                combined_text = f"""
+                Strengths: {strengths}
+                Improvements: {improvements}
+                Additional Comments: {additional_comments}
+                """.strip()
                 
-                feedback_id = str(uuid.uuid4())
-                storage.save_feedback(
+                # Perform NLP analysis
+                from services.nlp import get_nlp_service
+                nlp_service = get_nlp_service()
+                sentiment_analysis = nlp_service.analyze_sentiment(combined_text)
+                keywords = nlp_service.extract_keywords(combined_text, top_n=10)
+                themes = nlp_service.detect_themes(combined_text)
+                
+                # Calculate composite scores
+                # Composite should average all six rating categories including pace
+                composite_score = (overall_rating + content_quality + clarity_rating + 
+                                 pace_rating + engagement_rating + visual_aids) / 6
+                
+                # Save comprehensive feedback
+                feedback_id = existing_feedback[0]['feedback_id'] if existing_feedback else str(uuid.uuid4())
+                
+                storage.save_detailed_feedback(
                     feedback_id=feedback_id,
-                    student_id=user['user_id'],
-                    lecture_id=lecture['lecture_id'],
-                    text=feedback_text,
-                    rating=rating,
-                    sentiment={}  # Will be computed in Phase 4
+                    student_id=student_id,
+                    lecture_id=lecture_id,
+                    course_id=course_id,
+                    # Rating scores
+                    overall_rating=overall_rating,
+                    content_quality=content_quality,
+                    clarity_rating=clarity_rating,
+                    pace_rating=pace_rating,
+                    engagement_rating=engagement_rating,
+                    visual_aids_rating=visual_aids,
+                    composite_score=composite_score,
+                    # Written feedback
+                    strengths=strengths,
+                    improvements=improvements,
+                    additional_comments=additional_comments,
+                    # Metadata
+                    difficulty_level=difficulty_level,
+                    would_recommend=would_recommend,
+                    had_technical_issues=had_technical_issues,
+                    technical_details=technical_details,
+                    # NLP Analysis
+                    sentiment=sentiment_analysis,
+                    keywords=keywords,
+                    themes=themes,
+                    combined_text=combined_text
                 )
                 
-                st.success("✅ Thank you for your feedback!")
-            else:
-                st.warning("⚠️ Please write some feedback")
+                # Log feedback submission
+                behavioral_logger.log_feedback_submission('lecture', overall_rating)
+                
+                # Get teacher info
+                lecture_data = storage.get_lecture(lecture_id)
+                course_data = storage.get_course(course_id)
+                teacher_id = course_data.get('teacher_id') if course_data else None
+                
+                # Update teacher evaluation metrics
+                if teacher_id:
+                    storage.update_teacher_evaluation(
+                        teacher_id=teacher_id,
+                        lecture_id=lecture_id,
+                        course_id=course_id,
+                        feedback_id=feedback_id,
+                        ratings={
+                            'overall': overall_rating,
+                            'content_quality': content_quality,
+                            'clarity': clarity_rating,
+                            'pace': pace_rating,
+                            'engagement': engagement_rating,
+                            'visual_aids': visual_aids,
+                            'composite': composite_score
+                        },
+                        sentiment=sentiment_analysis
+                    )
+                
+                st.success("✅ Thank you for your detailed feedback!")
+                st.balloons()
+                
+                # Show sentiment analysis result
+                sentiment_label = sentiment_analysis.get('label', 'neutral')
+                sentiment_emoji = {"positive": "😊", "negative": "😟", "neutral": "😐"}.get(sentiment_label, "😐")
+                st.info(f"{sentiment_emoji} Feedback sentiment: **{sentiment_label.title()}**")
+                
+                st.rerun()
+    
+    # Session end cleanup
+    if st.button("🏁 End Session", type="secondary"):
+        cleanup_logger(student_id, lecture_id)
+        cleanup_monitor(student_id, lecture_id)
+        st.success("✅ Session ended. Data saved.")
+        st.rerun()
+
+
+def render_lecture_card(lecture, course, user):
+    """Render a lecture card with Streamlit native components"""
+    storage = get_storage()
+    
+    # Check if student has watched
+    engagement_logs = storage.get_engagement_logs(
+        student_id=user['user_id'],
+        lecture_id=lecture['lecture_id']
+    )
+    
+    has_watched = len(engagement_logs) > 0
+    latest_engagement = engagement_logs[-1] if engagement_logs else None
+    
+    # Determine status
+    if has_watched:
+        status_badge = "✅ Watched"
+        button_type = "primary"
+    else:
+        status_badge = "🆕 New"
+        button_type = "secondary"
+    
+    # Get info
+    duration_minutes = lecture.get('duration', 0) // 60 if lecture.get('duration') else 0
+    video_type = lecture.get('video_type', 'file')
+    video_icon = "🎬" if video_type == 'youtube' else "📹"
+    materials_count = len(lecture.get('materials', []))
+    quizzes_count = len(lecture.get('quizzes', []))
+    
+    # Clean description
+    raw_desc = lecture.get('description', 'No description available')
+    desc_clean = re.sub(r'<[^>]+>', '', html.unescape(raw_desc))
+    desc_clean = ' '.join(desc_clean.split())
+    desc_preview = desc_clean[:150] + '...' if len(desc_clean) > 150 else desc_clean
+
+    # Use Streamlit container instead of HTML
+    with st.container():
+        col1, col2 = st.columns([4, 1])
+        with col1:
+            st.markdown(f"### {video_icon} {lecture['title']}")
+        with col2:
+            st.markdown(f"**{status_badge}**")
+        
+        st.caption(desc_preview)
+        
+        # Stats
+        col1, col2, col3, col4 = st.columns(4)
+        with col1:
+            st.metric("Duration", f"{duration_minutes} min")
+        with col2:
+            st.metric("Materials", materials_count)
+        with col3:
+            st.metric("Quizzes", quizzes_count)
+        with col4:
+            if latest_engagement:
+                st.metric("Score", f"{latest_engagement['engagement_score']:.0f}%")
+        
+        st.markdown("---")
+    
+    # Action button
+    col1, col2, col3 = st.columns([2, 1, 1])
+    with col1:
+        if has_watched:
+            button_text = "▶️ Watch Again"
+        else:
+            button_text = "▶️ Watch Now"
+        
+        if st.button(button_text, key=f"watch_{lecture['lecture_id']}", type=button_type, use_container_width=True):
+            st.session_state.selected_lecture = lecture
+            st.session_state.current_page = 'watch_lecture'
+            st.rerun()
+    
+    with col2:
+        if materials_count > 0:
+            if st.button(f"📄 Materials ({materials_count})", key=f"materials_{lecture['lecture_id']}", use_container_width=True):
+                st.session_state.current_page = 'resources'
+                st.session_state.selected_lecture_id = lecture['lecture_id']
+                st.rerun()
+    
+    with col3:
+        if quizzes_count > 0:
+            if st.button(f"📝 Quizzes ({quizzes_count})", key=f"quizzes_{lecture['lecture_id']}", use_container_width=True):
+                st.session_state.current_page = 'quizzes'
+                st.session_state.selected_lecture_id = lecture['lecture_id']
+                st.rerun()
 
 
 def show_lecture_list(course_id):
-    """Display list of lectures for a course"""
+    """Display list of lectures for a course with card-based UI"""
     storage = get_storage()
     
     # Get course info
@@ -192,45 +580,74 @@ def show_lecture_list(course_id):
     lectures = storage.get_course_lectures(course_id)
     
     if not lectures:
-        st.info("📝 No lectures available yet. Check back later!")
+        st.info("� No lectures available yet. Check back later!")
         return
     
-    # Display lectures
-    st.subheader("🎥 Available Lectures")
-    
+    # Statistics
     user = st.session_state.user
+    watched_count = 0
+    total_engagement = 0
     
     for lecture in lectures:
-        with st.expander(f"📖 {lecture['title']}", expanded=False):
-            st.markdown(f"**Description:** {lecture.get('description', 'No description')}")
-            st.markdown(f"**Duration:** {lecture.get('duration', 0) // 60} minutes")
-            
-            # Check if student has watched
-            engagement_logs = storage.get_engagement_logs(
-                student_id=user['user_id'],
-                lecture_id=lecture['lecture_id']
-            )
-            
-            if engagement_logs:
-                latest_log = engagement_logs[-1]
-                st.success(f"✅ Watched | Engagement Score: {latest_log['engagement_score']:.1f}/100")
-            else:
-                st.info("📺 Not watched yet")
-            
-            # Show materials count
-            materials_count = len(lecture.get('materials', []))
-            quizzes_count = len(lecture.get('quizzes', []))
-            
-            col1, col2, col3 = st.columns(3)
-            with col1:
-                st.metric("📄 Materials", materials_count)
-            with col2:
-                st.metric("📝 Quizzes", quizzes_count)
-            with col3:
-                if st.button("▶️ Watch Now", key=f"watch_{lecture['lecture_id']}"):
-                    st.session_state.selected_lecture = lecture
-                    st.session_state.current_page = 'watch_lecture'
-                    st.rerun()
+        engagement_logs = storage.get_engagement_logs(
+            student_id=user['user_id'],
+            lecture_id=lecture['lecture_id']
+        )
+        if engagement_logs:
+            watched_count += 1
+            total_engagement += engagement_logs[-1].get('engagement_score', 0)
+    
+    # Display statistics
+    col1, col2, col3, col4 = st.columns(4)
+    with col1:
+        st.metric("📚 Total Lectures", len(lectures))
+    with col2:
+        st.metric("✅ Watched", watched_count)
+    with col3:
+        st.metric("📺 Remaining", len(lectures) - watched_count)
+    with col4:
+        avg_engagement = total_engagement / watched_count if watched_count > 0 else 0
+        st.metric("� Avg Engagement", f"{avg_engagement:.0f}%")
+    
+    st.markdown("---")
+    
+    # Search and filter
+    col1, col2 = st.columns([3, 1])
+    with col1:
+        search_query = st.text_input("🔍 Search lectures", placeholder="Search by title or description...", key="lecture_search")
+    with col2:
+        filter_option = st.selectbox("Filter", ["All", "Watched", "Not Watched"], key="lecture_filter")
+    
+    # Filter lectures
+    filtered_lectures = lectures
+    
+    if search_query:
+        filtered_lectures = [
+            lec for lec in filtered_lectures
+            if search_query.lower() in lec['title'].lower() or
+               search_query.lower() in lec.get('description', '').lower()
+        ]
+    
+    if filter_option == "Watched":
+        filtered_lectures = [
+            lec for lec in filtered_lectures
+            if storage.get_engagement_logs(user['user_id'], lec['lecture_id'])
+        ]
+    elif filter_option == "Not Watched":
+        filtered_lectures = [
+            lec for lec in filtered_lectures
+            if not storage.get_engagement_logs(user['user_id'], lec['lecture_id'])
+        ]
+    
+    st.markdown("---")
+    
+    # Display lecture cards
+    if not filtered_lectures:
+        st.info("🔍 No lectures match your search criteria.")
+    else:
+        st.subheader(f"🎥 Lectures ({len(filtered_lectures)})")
+        for lecture in filtered_lectures:
+            render_lecture_card(lecture, course, user)
 
 
 def main():

@@ -400,6 +400,144 @@ class NLPService:
             })
         
         return trend
+    
+    def extract_keywords(self, text: str, top_n: int = 10) -> List[str]:
+        """
+        Extract keywords from text using frequency analysis
+        
+        Args:
+            text: Input text
+            top_n: Number of top keywords to return
+        
+        Returns:
+            List of keywords
+        """
+        if not text or len(text) < 10:
+            return []
+        
+        # Clean text
+        cleaned = self.clean_text(text)
+        
+        # Split into words
+        words = cleaned.split()
+        
+        # Common stopwords
+        stopwords = {
+            'the', 'a', 'an', 'and', 'or', 'but', 'in', 'on', 'at', 'to', 'for', 
+            'of', 'with', 'is', 'was', 'are', 'were', 'been', 'be', 'have', 'has', 
+            'had', 'do', 'does', 'did', 'will', 'would', 'could', 'should', 'may', 
+            'might', 'can', 'this', 'that', 'these', 'those', 'i', 'you', 'he', 
+            'she', 'it', 'we', 'they', 'what', 'which', 'who', 'when', 'where', 
+            'why', 'how', 'very', 'too', 'more', 'most', 'some', 'any', 'much', 'many'
+        }
+        
+        # Filter words
+        filtered_words = [w for w in words if w not in stopwords and len(w) > 3]
+        
+        # Count frequency
+        from collections import Counter
+        word_counts = Counter(filtered_words)
+        
+        # Get top keywords
+        keywords = [word for word, count in word_counts.most_common(top_n)]
+        
+        return keywords
+    
+    def detect_themes(self, text: str) -> List[str]:
+        """
+        Detect common themes in feedback text
+        
+        Args:
+            text: Input feedback text
+        
+        Returns:
+            List of detected themes
+        """
+        if not text or len(text) < 10:
+            return []
+        
+        text_lower = text.lower()
+        detected_themes = []
+        
+        # Define theme keywords
+        theme_keywords = {
+            'content_quality': ['content', 'material', 'topic', 'subject', 'information', 'knowledge'],
+            'teaching_style': ['teaching', 'explanation', 'teach', 'instructor', 'professor', 'teacher'],
+            'clarity': ['clear', 'unclear', 'understand', 'confusing', 'confused', 'clarity'],
+            'pace': ['pace', 'speed', 'fast', 'slow', 'rushed', 'quick'],
+            'engagement': ['engaging', 'interesting', 'boring', 'engaged', 'attention', 'interactive'],
+            'examples': ['example', 'examples', 'demonstration', 'demo', 'case study', 'practical'],
+            'visual_aids': ['slide', 'slides', 'visual', 'diagram', 'chart', 'presentation'],
+            'technical_issues': ['technical', 'audio', 'video', 'sound', 'buffering', 'loading', 'glitch'],
+            'difficulty': ['difficult', 'hard', 'easy', 'challenging', 'complex', 'simple'],
+            'organization': ['organized', 'structure', 'organized', 'disorganized', 'flow']
+        }
+        
+        # Check for each theme
+        for theme, keywords in theme_keywords.items():
+            for keyword in keywords:
+                if keyword in text_lower:
+                    if theme not in detected_themes:
+                        detected_themes.append(theme)
+                    break
+        
+        return detected_themes
+    
+    def analyze_feedback_aggregate(self, feedbacks: List[Dict]) -> Dict:
+        """
+        Aggregate analysis of multiple feedbacks
+        
+        Args:
+            feedbacks: List of feedback dictionaries
+        
+        Returns:
+            Aggregated analysis results
+        """
+        if not feedbacks:
+            return {
+                'total_count': 0,
+                'avg_sentiment_compound': 0.0,
+                'sentiment_distribution': {'positive': 0, 'neutral': 0, 'negative': 0},
+                'common_themes': [],
+                'top_keywords': []
+            }
+        
+        sentiments = []
+        all_keywords = []
+        all_themes = []
+        sentiment_counts = {'positive': 0, 'neutral': 0, 'negative': 0}
+        
+        for feedback in feedbacks:
+            # Get or analyze sentiment
+            if 'nlp_analysis' in feedback and 'sentiment' in feedback['nlp_analysis']:
+                sentiment = feedback['nlp_analysis']['sentiment']
+            else:
+                text = feedback.get('combined_text') or feedback.get('text', '')
+                sentiment = self.analyze_sentiment(text)
+            
+            sentiments.append(sentiment['compound'])
+            sentiment_counts[sentiment['label']] += 1
+            
+            # Collect keywords and themes
+            if 'nlp_analysis' in feedback:
+                all_keywords.extend(feedback['nlp_analysis'].get('keywords', []))
+                all_themes.extend(feedback['nlp_analysis'].get('themes', []))
+        
+        # Calculate averages
+        avg_compound = sum(sentiments) / len(sentiments) if sentiments else 0.0
+        
+        # Get most common keywords and themes
+        from collections import Counter
+        keyword_counts = Counter(all_keywords)
+        theme_counts = Counter(all_themes)
+        
+        return {
+            'total_count': len(feedbacks),
+            'avg_sentiment_compound': avg_compound,
+            'sentiment_distribution': sentiment_counts,
+            'common_themes': [theme for theme, count in theme_counts.most_common(10)],
+            'top_keywords': [word for word, count in keyword_counts.most_common(20)]
+        }
 
 
 # Singleton instance

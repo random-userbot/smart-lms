@@ -2,8 +2,8 @@
 
 app:
   name: "Smart LMS"
-  version: "1.0.0"
-  debug: true
+  version: "2.0.0"
+  debug: false  # NEVER set to true in production
   port: 8501
 
 # Storage paths
@@ -19,28 +19,59 @@ storage:
   attendance: "./storage/attendance.json"
   teacher_activity: "./storage/teacher_activity.json"
   progress: "./storage/progress.json"
+  enrollment_requests: "./storage/enrollment_requests.json"
+
+# ML Data directories for comprehensive logging
+ml_data:
+  base_path: "./ml_data"
+  csv_logs: "./ml_data/csv_logs"
+  engagement_logs: "./ml_data/engagement_logs"
+  session_logs: "./ml_data/session_logs"
+  activity_logs: "./ml_data/activity_logs"
+  captured_frames: "./ml_data/captured_frames"
+  captured_images: "./ml_data/captured_images"
+  calibration: "./ml_data/calibration"
+  quiz_logs: "./ml_data/quiz_logs"
 
 # Engagement tracking
 engagement:
   mode: "realtime"  # Options: "realtime" (MediaPipe), "offline" (OpenFace)
-  sampling_rate: 0.5  # seconds between frame captures
+  sampling_rate: 1.0  # seconds between frame captures (every 1 second)
+  frame_capture_enabled: true  # Save frames to captured_frames
   min_confidence: 0.7
   features:
     - gaze_score
     - attention_score
     - head_pose_stability
     - blink_frequency
+    - action_units
+    - facial_expressions
   weights:
-    gaze: 0.35
-    attention: 0.30
-    head_pose: 0.20
-    blink: 0.15
+    gaze: 0.30
+    head_pose: 0.25
+    attention_aus: 0.25
+    blink_rate: 0.10
+    facial_expression: 0.10
 
-# OpenFace configuration (offline mode)
+# Picture-in-Picture Webcam Settings
+pip_webcam:
+  enabled: true
+  position: "bottom-right"  # Position on screen
+  width: 320
+  height: 240
+  border_color: "#1f77b4"
+  capture_interval: 1.0  # Capture frame every second
+  show_engagement_overlay: true
+  consent_required: true  # MUST be true in production - get user consent
+
+# OpenFace configuration (comprehensive AU extraction)
 openface:
-  executable_path: "./OpenFace/FeatureExtraction.exe"  # Update with actual path
-  output_dir: "./storage/openface_output"
+  enabled: true
+  executable_path: "./OpenFace/FeatureExtraction.exe"  # Update with actual path if using native OpenFace
+  output_dir: "./ml_data/openface_output"
+  use_mediapipe: true  # Use MediaPipe for OpenFace-style extraction
   features:
+    # Action Units (17 AUs)
     - AU01_r  # Inner brow raiser
     - AU02_r  # Outer brow raiser
     - AU04_r  # Brow lowerer
@@ -49,7 +80,7 @@ openface:
     - AU07_r  # Lid tightener
     - AU09_r  # Nose wrinkler
     - AU10_r  # Upper lip raiser
-    - AU12_r  # Lip corner puller
+    - AU12_r  # Lip corner puller (smile)
     - AU14_r  # Dimpler
     - AU15_r  # Lip corner depressor
     - AU17_r  # Chin raiser
@@ -58,12 +89,16 @@ openface:
     - AU25_r  # Lips part
     - AU26_r  # Jaw drop
     - AU45_r  # Blink
+    # Gaze vectors
     - gaze_0_x
     - gaze_0_y
     - gaze_0_z
     - gaze_1_x
     - gaze_1_y
     - gaze_1_z
+    - gaze_angle_x
+    - gaze_angle_y
+    # Head pose
     - pose_Tx
     - pose_Ty
     - pose_Tz
@@ -71,6 +106,57 @@ openface:
     - pose_Ry
     - pose_Rz
 
+# Behavioral Logging Configuration
+behavioral_logging:
+  enabled: true
+  events_tracked:
+    - login
+    - logout
+    - lecture_start
+    - lecture_end
+    - tab_switch
+    - focus_lost
+    - focus_gained
+    - playback_speed_change
+    - video_pause
+    - video_play
+    - video_seek
+    - feedback_submission
+    - quiz_attempt
+    - resource_download
+    - violation
+  csv_output: true
+  json_session_logs: true
+
+# Anti-Cheating Configuration
+anti_cheating:
+  enabled: true
+  show_warnings: true  # Display popup warnings for violations
+  thresholds:
+    max_playback_speed: 1.25  # Maximum allowed playback speed
+    max_tab_switches: 3  # Warning threshold
+    max_speed_changes: 5  # Warning threshold
+    min_engagement_score: 30  # Alert if engagement drops below
+    max_consecutive_focus_losses: 2  # Alert threshold
+  violation_severity:
+    tab_switch: "medium"
+    excessive_playback_speed: "high"
+    focus_loss: "low"
+    low_engagement: "medium"
+  notify_teacher: true  # Send violations to teacher analytics
+
+# CSV Export Configuration
+csv_exports:
+  openface_features: "./ml_data/csv_logs/openface_features_{session_id}.csv"
+  engagement_logs: "./ml_data/engagement_logs/engagement_log_{session_id}.csv"
+  behavioral_logs: "./ml_data/activity_logs/behavioral_log_{student_id}_{month}.csv"
+  session_logs: "./ml_data/session_logs/session_{session_id}.json"
+  global_session_logs: "./ml_data/session_logs/global_session_{session_id}.json"
+  activity_summary: "./ml_data/activity_logs/activity_summary_{student_id}_{month}.csv"
+  violation_logs: "./ml_data/session_logs/violations_{student_id}_{month}.csv"
+  quiz_session_logs: "./ml_data/quiz_logs/quiz_session_{session_id}.json"
+  quiz_violations: "./ml_data/quiz_logs/quiz_violations_{student_id}_{month}.csv"
+  
 # NLP configuration
 nlp:
   sentiment_model: "vader"  # Options: "vader", "distilbert"
@@ -151,15 +237,15 @@ logging:
   max_size: 10485760  # 10 MB
   backup_count: 5
 
-# Database migration (future)
+# Database migration (use environment variables for credentials)
 database:
   enabled: false
   type: "postgresql"  # Options: "postgresql", "mysql", "sqlite"
-  host: "localhost"
-  port: 5432
-  name: "smart_lms"
-  user: "lms_user"
-  password: ""  # Use environment variable
+  host: "${DB_HOST}"  # Load from environment
+  port: "${DB_PORT}"  # Load from environment
+  name: "${DB_NAME}"  # Load from environment
+  user: "${DB_USER}"  # Load from environment
+  password: "${DB_PASSWORD}"  # Load from environment - NEVER hardcode
 
 # Feature flags
 features:
@@ -170,6 +256,114 @@ features:
   progress_tracking: true
   teacher_activity_logs: true
   adaptive_recommendations: false  # Future feature
+  engagement_calibration: true  # Personalized engagement baselines
+  multimodal_engagement: true   # Combine facial + behavioral signals
+  global_session_tracking: true  # Track complete user sessions
+  quiz_monitoring: true          # Monitor quizzes with webcam
+  material_reading_tracking: true # Track time spent reading materials
+
+# Engagement Calibration Settings
+engagement_calibration:
+  enabled: true
+  calibration_duration: 30  # seconds
+  min_frames_required: 25
+  recalibration_days: 30    # Recalibrate every 30 days
+  calibration_video_url: "https://www.youtube.com/watch?v=dQw4w9WgXcQ"  # Replace with actual calibration video
+
+# Multimodal Engagement Settings
+multimodal_engagement:
+  enabled: true
+  weights:
+    facial: 0.50
+    behavioral: 0.25
+    interaction: 0.15
+    temporal: 0.10
+  normalization:
+    keystrokes_per_min: 60
+    mouse_events_per_min: 100
+    scroll_events_per_min: 20
+  activity_weights:
+    lecture:
+      facial: 0.50
+      behavioral: 0.25
+      interaction: 0.15
+      temporal: 0.10
+    quiz:
+      facial: 0.35
+      behavioral: 0.15
+      interaction: 0.40
+      temporal: 0.10
+    reading:
+      facial: 0.30
+      behavioral: 0.45
+      interaction: 0.15
+      temporal: 0.10
+    assignment:
+      facial: 0.25
+      behavioral: 0.45
+      interaction: 0.20
+      temporal: 0.10
+
+# Global Session Tracking Settings
+session_tracking:
+  enabled: true
+  auto_start_on_login: true
+  auto_end_on_logout: true
+  track_activities:
+    - lectures
+    - quizzes
+    - materials
+    - assignments
+  integrity_thresholds:
+    min_score: 50
+    violation_weights:
+      tab_switch: 2
+      focus_loss: 1
+      playback_speed: 3
+      low_engagement: 2
+
+# Quiz Monitoring Settings
+quiz_monitoring:
+  enabled: true
+  webcam_required: true
+  violation_detection:
+    tab_switches:
+      enabled: true
+      penalty: 5
+    focus_losses:
+      enabled: true
+      penalty: 2
+    copy_paste:
+      enabled: true
+      penalty: 10
+    low_engagement:
+      enabled: true
+      threshold: 30
+      penalty: 3
+    multiple_faces:
+      enabled: true
+      penalty: 15
+  integrity_thresholds:
+    flag_for_review: 50
+    auto_fail: 20
+  time_tracking:
+    per_question: true
+    total_duration: true
+
+# Material Reading Tracking Settings
+material_reading:
+  enabled: true
+  supported_formats:
+    - pdf
+    - txt
+    - md
+    - docx
+  tracking:
+    time_spent: true
+    scroll_depth: true
+    interactions: true
+    pages_viewed: true
+  completion_threshold: 0.95  # 95% scroll depth = completed
   gamification: false  # Future feature
   ethical_ai_dashboard: true
   predictive_analytics: false  # Future feature

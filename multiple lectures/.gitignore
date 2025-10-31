@@ -1,0 +1,57 @@
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+env/
+venv/
+ENV/
+*.egg-info/
+dist/
+build/
+
+# Sensitive Data & PII
+ml_data/captured_frames/
+ml_data/captured_images/
+ml_data/activity_logs/
+ml_data/session_logs/
+ml_data/engagement_logs/
+data_archive/*.csv
+storage/*.json
+!storage/.gitkeep
+
+# Configuration with secrets
+config.yaml
+.env
+*.env
+.env.local
+
+# Logs
+logs/
+*.log
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Legacy code (archived)
+legacy/
+
+# Model binaries (store externally)
+*.pkl
+*.h5
+*.pth
+*.onnx
+ml/models/*.pkl
+ml/models/*.bin
+
+# Temporary files
+*.tmp
+.cache/

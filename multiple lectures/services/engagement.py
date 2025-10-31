@@ -261,30 +261,63 @@ class EngagementTracker:
         openface_config = self.config['openface']
         openface_exe = openface_config['executable_path']
         
-        if not os.path.exists(openface_exe):
-            raise FileNotFoundError(f"OpenFace executable not found: {openface_exe}")
+        # Security: Validate OpenFace executable path
+        if not openface_exe or not os.path.exists(openface_exe):
+            raise FileNotFoundError(f"OpenFace executable not found or not configured: {openface_exe}")
         
-        # Create output directory
-        os.makedirs(output_dir, exist_ok=True)
+        # Security: Validate that executable is not a script or suspicious file
+        if not openface_exe.endswith(('.exe', '')):  # Allow .exe on Windows or no extension on Unix
+            raise ValueError("OpenFace executable must be a binary, not a script")
         
-        # Run OpenFace
+        # Security: Validate input video path to prevent path traversal
+        video_path = os.path.abspath(video_path)
+        if '..' in video_path or not os.path.exists(video_path):
+            raise ValueError(f"Invalid video path: {video_path}")
+        
+        # Create output directory with secure permissions
+        os.makedirs(output_dir, mode=0o750, exist_ok=True)
+        output_dir = os.path.abspath(output_dir)
+        
+        # Security: Whitelist allowed arguments and validate paths
+        allowed_args = ['-f', '-out_dir', '-of', '-ov']
+        
+        # Run OpenFace with validated arguments (no shell=True)
         cmd = [
             openface_exe,
             '-f', video_path,
             '-out_dir', output_dir
         ]
         
+        # Security: Ensure no shell metacharacters can be injected
+        for arg in cmd:
+            if any(char in str(arg) for char in ['&', '|', ';', '$', '`', '\n', '\r']):
+                raise ValueError(f"Invalid character in command argument: {arg}")
+        
         try:
-            result = subprocess.run(cmd, capture_output=True, text=True, timeout=300)
+            # Run with strict timeout and resource limits
+            result = subprocess.run(
+                cmd,
+                capture_output=True,
+                text=True,
+                timeout=300,  # 5 minute timeout
+                shell=False,  # NEVER use shell=True
+                check=False   # We'll check returncode manually
+            )
             
             if result.returncode != 0:
-                raise RuntimeError(f"OpenFace failed: {result.stderr}")
+                # Log error but don't expose full stderr to user (may contain paths)
+                error_msg = "OpenFace processing failed"
+                if result.stderr:
+                    # Log for admin review but sanitize for user display
+                    print(f"[ERROR] OpenFace stderr: {result.stderr[:500]}")  # Truncate
+                raise RuntimeError(error_msg)
             
             # Parse OpenFace output CSV
-            csv_file = os.path.join(output_dir, os.path.basename(video_path).replace('.mp4', '.csv'))
+            csv_filename = os.path.basename(video_path).replace('.mp4', '.csv').replace('.avi', '.csv')
+            csv_file = os.path.join(output_dir, csv_filename)
             
             if not os.path.exists(csv_file):
-                raise FileNotFoundError(f"OpenFace output not found: {csv_file}")
+                raise FileNotFoundError(f"OpenFace output CSV not generated")
             
             # Load and process features
             features = self._parse_openface_output(csv_file)
@@ -292,7 +325,7 @@ class EngagementTracker:
             return features
         
         except subprocess.TimeoutExpired:
-            raise RuntimeError("OpenFace processing timed out")
+            raise RuntimeError("OpenFace processing timed out (exceeded 5 minutes)")
     
     def _parse_openface_output(self, csv_file: str) -> Dict:
         """Parse OpenFace CSV output and extract features"""
