@@ -232,6 +232,9 @@ def show_dashboard():
     elif page == 'attendance':
         from pages import attendance
         attendance.main()
+    elif page == 'feedback' and role == 'teacher':
+        from pages import feedback
+        feedback.main()
     elif page == 'dashboard':
         if role == 'admin':
             show_admin_dashboard()
@@ -304,6 +307,10 @@ def show_teacher_navigation():
     
     if st.button("📅 Attendance", use_container_width=True):
         st.session_state.current_page = 'attendance'
+        st.rerun()
+    
+    if st.button("💬 Feedback", use_container_width=True):
+        st.session_state.current_page = 'feedback'
         st.rerun()
 
 

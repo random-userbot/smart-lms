@@ -10,6 +10,7 @@ sys.path.append(os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(
 
 from services.auth import get_auth
 from services.storage import get_storage
+from services.nlp import get_nlp_service
 from datetime import datetime
 import uuid
 
@@ -157,7 +158,11 @@ def show_lecture_player(lecture):
         if submit_feedback:
             if feedback_text:
                 storage = get_storage()
+                nlp_service = get_nlp_service()
                 user = st.session_state.user
+                
+                # Perform sentiment analysis
+                sentiment_result = nlp_service.analyze_sentiment(feedback_text)
                 
                 feedback_id = str(uuid.uuid4())
                 storage.save_feedback(
@@ -166,10 +171,14 @@ def show_lecture_player(lecture):
                     lecture_id=lecture['lecture_id'],
                     text=feedback_text,
                     rating=rating,
-                    sentiment={}  # Will be computed in Phase 4
+                    sentiment=sentiment_result
                 )
                 
-                st.success("✅ Thank you for your feedback!")
+                # Show sentiment feedback to student
+                sentiment_label = sentiment_result.get('label', 'neutral')
+                sentiment_emoji = {'positive': '😊', 'negative': '😟', 'neutral': '😐'}.get(sentiment_label, '😐')
+                
+                st.success(f"✅ Thank you for your feedback! {sentiment_emoji} Your feedback sentiment: {sentiment_label.capitalize()}")
             else:
                 st.warning("⚠️ Please write some feedback")
 
