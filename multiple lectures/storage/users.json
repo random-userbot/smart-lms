@@ -63,11 +63,11 @@
     "role": "student",
     "email": "revanthpuram004@gmail.com",
     "created_at": "2025-10-24T08:53:30.828310",
-    "last_login": "2025-10-25T19:56:24.901933",
+    "last_login": "2025-10-31T08:49:17.506411",
     "is_active": true,
     "full_name": "revanth puram",
     "failed_login_attempts": 0,
-    "updated_at": "2025-10-25T19:56:24.901933",
+    "updated_at": "2025-10-31T08:49:17.506411",
     "last_failed_login": "2025-10-24T08:59:44.349259"
   }
 }
