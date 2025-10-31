@@ -3,6 +3,8 @@ Smart LMS - Assignments Page
 Students can view and submit assignments
 """
 
+import html
+import re
 import streamlit as st
 import sys
 import os
@@ -10,6 +12,7 @@ sys.path.append(os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(
 
 from services.auth import get_auth
 from services.storage import get_storage
+from services.session_tracker import get_global_session_tracker
 from datetime import datetime
 import uuid
 
@@ -118,6 +121,16 @@ def show_assignment_submission(assignment, course_id):
                         graded=False
                     )
                     
+                    # Log assignment submission to CSV for audit trail
+                    session_tracker = get_global_session_tracker(user['user_id'])
+                    session_tracker.log_assignment_submitted(
+                        assignment_id=assignment['assignment_id'],
+                        course_id=course_id,
+                        file_path=file_path,
+                        file_size=submitted_file.size,
+                        comments=comments
+                    )
+                    
                     st.success("✅ Assignment submitted successfully!")
                     st.balloons()
                     
@@ -130,8 +143,97 @@ def show_assignment_submission(assignment, course_id):
                     st.error("❌ Failed to upload assignment file")
 
 
+def render_assignment_card(assignment, course_id, is_submitted, submission=None):
+    """Render an assignment card with Streamlit native components"""
+    # Parse due date
+    due_date = datetime.fromisoformat(assignment['due_date'])
+    is_overdue = datetime.now().date() > due_date.date() and not is_submitted
+    days_until_due = (due_date.date() - datetime.now().date()).days
+    
+    # Determine status
+    if is_submitted:
+        if submission and submission.get('graded', False):
+            percentage = submission['percentage']
+            status_text = f"✅ Graded: {percentage:.0f}%"
+        else:
+            status_text = "⏳ Pending Grading"
+    elif is_overdue:
+        status_text = "⏰ Overdue"
+    elif days_until_due <= 3:
+        status_text = "⚠️ Due Soon"
+    else:
+        status_text = "📋 Pending"
+    
+    due_date_str = due_date.strftime("%b %d, %Y")
+    
+    with st.container():
+        col1, col2 = st.columns([4, 1])
+        with col1:
+            st.markdown(f"### 📋 {assignment['title']}")
+        with col2:
+            st.markdown(f"**{status_text}**")
+        
+        desc = assignment.get('description', 'No description available')
+        desc_clean = re.sub(r'<[^>]+>', '', html.unescape(desc))
+        st.caption(desc_clean[:100] + '...' if len(desc_clean) > 100 else desc_clean)
+        
+        col1, col2, col3 = st.columns(3)
+        with col1:
+            st.metric("Due Date", due_date_str)
+        with col2:
+            st.metric("Max Score", assignment['max_score'])
+        with col3:
+            if is_submitted:
+                if submission and submission.get('graded'):
+                    st.metric("Score", f"{submission['score']}/{submission['max_score']}")
+            else:
+                if days_until_due >= 0:
+                    st.metric("Days Left", days_until_due)
+                else:
+                    st.metric("Days Overdue", abs(days_until_due))
+        
+        st.markdown("---")
+    
+    # Show reference files
+    if assignment.get('reference_files'):
+        with st.expander("📎 Reference Files"):
+            for ref_file in assignment['reference_files']:
+                col1, col2 = st.columns([3, 1])
+                with col1:
+                    st.markdown(f"📄 {ref_file['file_name']}")
+                with col2:
+                    if st.button("📥 Download", key=f"ref_{assignment['assignment_id']}_{ref_file['file_name']}"):
+                        st.info("Download functionality will be implemented")
+    
+    # Show teacher feedback if graded
+    if submission and submission.get('graded') and submission.get('teacher_feedback'):
+        with st.expander("💬 Teacher Feedback"):
+            st.info(submission['teacher_feedback'])
+    
+    # Action buttons
+    if is_submitted:
+        col1, col2 = st.columns(2)
+        with col1:
+            if submission and submission.get('graded'):
+                st.success(f"✅ Submitted on {submission['timestamp']}")
+            else:
+                st.info(f"⏳ Submitted on {submission['timestamp']}")
+        with col2:
+            if st.button("📝 Resubmit", key=f"resubmit_{assignment['assignment_id']}", use_container_width=True):
+                st.session_state.selected_assignment = assignment
+                st.session_state.selected_course_id = course_id
+                st.session_state.current_page = 'submit_assignment'
+                st.rerun()
+    else:
+        if st.button("📤 Submit Assignment", key=f"submit_{assignment['assignment_id']}", type="primary" if not is_overdue else "secondary", use_container_width=True):
+            st.session_state.selected_assignment = assignment
+            st.session_state.selected_course_id = course_id
+            st.session_state.current_page = 'submit_assignment'
+            st.rerun()
+
+
 def show_available_assignments():
-    """Display list of available assignments"""
+    """Display list of available assignments with card-based UI"""
     st.title("📋 My Assignments")
     
     storage = get_storage()
@@ -152,60 +254,92 @@ def show_available_assignments():
     grades = storage.get_student_grades(user['user_id'])
     submitted_assignments = {g['assessment_id']: g for g in grades.get('assignments', [])}
     
+    # Calculate statistics
+    total_assignments = 0
+    submitted_count = 0
+    graded_count = 0
+    overdue_count = 0
+    total_score = 0
+    
+    for course_id, course in enrolled_courses.items():
+        for assignment in course.get('assignments', []):
+            total_assignments += 1
+            assignment_id = assignment['assignment_id']
+            
+            if assignment_id in submitted_assignments:
+                submitted_count += 1
+                submission = submitted_assignments[assignment_id]
+                if submission.get('graded'):
+                    graded_count += 1
+                    total_score += submission['percentage']
+            else:
+                due_date = datetime.fromisoformat(assignment['due_date'])
+                if datetime.now().date() > due_date.date():
+                    overdue_count += 1
+    
+    # Display statistics
+    col1, col2, col3, col4 = st.columns(4)
+    with col1:
+        st.metric("📋 Total", total_assignments)
+    with col2:
+        st.metric("✅ Submitted", submitted_count)
+    with col3:
+        st.metric("⏰ Overdue", overdue_count)
+    with col4:
+        avg_score = total_score / graded_count if graded_count > 0 else 0
+        st.metric("📊 Avg Score", f"{avg_score:.0f}%")
+    
+    st.markdown("---")
+    
+    # Search and filter
+    col1, col2 = st.columns([3, 1])
+    with col1:
+        search_query = st.text_input("� Search assignments", placeholder="Search by title or description...", key="assignment_search")
+    with col2:
+        filter_option = st.selectbox("Filter", ["All", "Submitted", "Pending", "Overdue"], key="assignment_filter")
+    
+    st.markdown("---")
+    
     # Display assignments by course
     for course_id, course in enrolled_courses.items():
-        st.subheader(f"📚 {course['name']}")
-        
         assignments = course.get('assignments', [])
         
-        if not assignments:
-            st.info("📝 No assignments available for this course yet.")
-        else:
-            for assignment in assignments:
-                assignment_id = assignment['assignment_id']
-                is_submitted = assignment_id in submitted_assignments
-                
-                # Check if overdue
-                due_date = datetime.fromisoformat(assignment['due_date'])
-                is_overdue = datetime.now().date() > due_date.date()
-                
-                status_icon = "✅" if is_submitted else ("⏰" if is_overdue else "📋")
-                
-                with st.expander(
-                    f"{status_icon} {assignment['title']}",
-                    expanded=not is_submitted and not is_overdue
-                ):
-                    st.markdown(f"**Due Date:** {assignment['due_date']}")
-                    st.markdown(f"**Maximum Score:** {assignment['max_score']}")
-                    
-                    if is_overdue and not is_submitted:
-                        st.error("⏰ This assignment is overdue!")
-                    
-                    if is_submitted:
-                        submission = submitted_assignments[assignment_id]
-                        st.success(f"✅ Submitted on {submission['timestamp']}")
-                        
-                        if submission.get('graded', False):
-                            st.markdown(f"**Score:** {submission['score']}/{submission['max_score']} ({submission['percentage']:.1f}%)")
-                            if submission.get('teacher_feedback'):
-                                st.markdown("**Teacher Feedback:**")
-                                st.info(submission['teacher_feedback'])
-                        else:
-                            st.info("⏳ Grading pending")
-                        
-                        if st.button("📝 Resubmit", key=f"resubmit_{assignment_id}"):
-                            st.session_state.selected_assignment = assignment
-                            st.session_state.selected_course_id = course_id
-                            st.session_state.current_page = 'submit_assignment'
-                            st.rerun()
-                    else:
-                        if st.button("📤 Submit Assignment", key=f"submit_{assignment_id}", use_container_width=True):
-                            st.session_state.selected_assignment = assignment
-                            st.session_state.selected_course_id = course_id
-                            st.session_state.current_page = 'submit_assignment'
-                            st.rerun()
+        course_assignments = []
+        for assignment in assignments:
+            assignment_id = assignment['assignment_id']
+            is_submitted = assignment_id in submitted_assignments
+            submission = submitted_assignments.get(assignment_id)
+            
+            # Check if overdue
+            due_date = datetime.fromisoformat(assignment['due_date'])
+            is_overdue = datetime.now().date() > due_date.date() and not is_submitted
+            
+            # Apply filters
+            if filter_option == "Submitted" and not is_submitted:
+                continue
+            if filter_option == "Pending" and is_submitted:
+                continue
+            if filter_option == "Overdue" and not is_overdue:
+                continue
+            
+            # Apply search
+            if search_query:
+                if search_query.lower() not in assignment['title'].lower() and \
+                   search_query.lower() not in assignment.get('description', '').lower():
+                    continue
+            
+            course_assignments.append((assignment, is_submitted, submission))
         
-        st.markdown("---")
+        if course_assignments:
+            st.subheader(f"📚 {course['name']}")
+            
+            for assignment, is_submitted, submission in course_assignments:
+                render_assignment_card(assignment, course_id, is_submitted, submission)
+            
+            st.markdown("---")
+    
+    if total_assignments == 0:
+        st.info("📋 No assignments available yet. Check back later!")
 
 
 def main():

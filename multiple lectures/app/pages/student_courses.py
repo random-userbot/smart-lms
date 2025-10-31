@@ -1,0 +1,216 @@
+"""
+Smart LMS - Student Courses Page
+Display all courses in card format with enrollment status
+"""
+
+import streamlit as st
+import sys
+import os
+sys.path.append(os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__)))))
+
+from services.storage import get_storage
+from services.auth import get_auth
+import uuid
+from datetime import datetime
+import re
+import html
+
+
+def render_course_card(course_id, course, is_enrolled, has_pending_request, context_suffix=""):
+    """Render a single course card"""
+    
+    storage = get_storage()
+    
+    # Get teacher info
+    teacher = storage.get_user(course.get('teacher_id'))
+    teacher_name = teacher.get('full_name', 'Unknown') if teacher else 'Unknown'
+    
+    # Get course statistics
+    num_lectures = len(course.get('lectures', []))
+    num_students = len(course.get('enrolled_students', []))
+    
+    # Card styling
+    if is_enrolled:
+        border_color = "#28a745"  # Green
+        status_icon = "✅"
+        status_text = "Enrolled"
+    elif has_pending_request:
+        border_color = "#ffc107"  # Yellow
+        status_icon = "⏳"
+        status_text = "Pending Approval"
+    else:
+        border_color = "#6c757d"  # Gray
+        status_icon = "📚"
+        status_text = "Not Enrolled"
+    
+    # Render with Streamlit components
+    with st.container():
+        col1, col2 = st.columns([4, 1])
+        with col1:
+            st.markdown(f"### {status_icon} {course.get('name', 'Untitled Course')}")
+        with col2:
+            st.markdown(f"**{status_text}**")
+        
+        st.caption(f"**Code:** {course.get('code', 'N/A')} | **Teacher:** {teacher_name}")
+        st.caption(f"**Department:** {course.get('department', 'N/A')} | **Credits:** {course.get('credits', 0)}")
+        
+        desc = course.get('description', 'No description available.')
+        desc_clean = re.sub(r'<[^>]+>', '', html.unescape(desc))
+        st.write(desc_clean[:200] + '...' if len(desc_clean) > 200 else desc_clean)
+        
+        col1, col2 = st.columns(2)
+        with col1:
+            st.metric("Lectures", num_lectures)
+        with col2:
+            st.metric("Students", num_students)
+        
+        st.markdown("---")
+    
+    # Action buttons
+    col1, col2, col3 = st.columns([2, 1, 1])
+
+    # Create a deterministic context suffix so widget keys remain unique
+    # across multiple tabs where the same course may be rendered twice.
+    if context_suffix:
+        ctx = context_suffix
+    else:
+        if is_enrolled:
+            ctx = 'enrolled'
+        elif has_pending_request:
+            ctx = 'pending'
+        else:
+            ctx = 'public'
+
+    with col3:
+        if is_enrolled:
+            if st.button("🎓 Continue Learning", key=f"continue_{course_id}_{ctx}", 
+                        type="primary", use_container_width=True):
+                st.session_state.selected_course = course_id
+                st.session_state.page = "lectures"
+                st.rerun()
+        elif has_pending_request:
+            st.button("⏳ Request Pending", key=f"pending_{course_id}_{ctx}", 
+                     disabled=True, use_container_width=True)
+        else:
+            if st.button("📝 Apply for Course", key=f"apply_{course_id}_{ctx}", 
+                        use_container_width=True):
+                # Create enrollment request
+                request_id = f"req_{uuid.uuid4().hex[:8]}"
+                student_id = st.session_state.user['user_id']
+
+                storage.create_enrollment_request(
+                    request_id=request_id,
+                    student_id=student_id,
+                    course_id=course_id,
+                    student_name=st.session_state.user.get('full_name', 'Unknown'),
+                    course_name=course.get('name', 'Unknown')
+                )
+
+                st.success(f"✅ Application submitted for {course.get('name')}!")
+                st.balloons()
+                st.rerun()
+
+
+def main():
+    """Main student courses page"""
+    
+    # Check authentication
+    auth = get_auth()
+    if not auth.is_authenticated():
+        st.warning("⚠️ Please login to view courses")
+        st.stop()
+    
+    user = st.session_state.user
+    
+    if user['role'] != 'student':
+        st.error("❌ This page is only for students")
+        st.stop()
+    
+    st.title("📚 Course Catalog")
+    
+    storage = get_storage()
+    
+    # Get all public courses
+    all_courses = storage.get_all_courses()
+    public_courses = {cid: c for cid, c in all_courses.items() if c.get('is_public', True)}
+    
+    # Get student's enrolled courses
+    student_id = user['user_id']
+    enrolled_course_ids = [
+        cid for cid, c in public_courses.items() 
+        if student_id in c.get('enrolled_students', [])
+    ]
+    
+    # Get student's pending requests
+    pending_requests = storage.get_enrollment_requests(student_id=student_id, status='pending')
+    pending_course_ids = [r['course_id'] for r in pending_requests.values()]
+    
+    # Tabs for filtering
+    tab1, tab2, tab3 = st.tabs(["📖 All Courses", "✅ My Courses", "⏳ Pending Requests"])
+    
+    with tab1:
+        st.subheader("All Available Courses")
+        
+        # Search bar
+        search_query = st.text_input("🔍 Search courses", placeholder="Search by name, code, or department...")
+        
+        # Filter courses
+        filtered_courses = public_courses
+        if search_query:
+            filtered_courses = {
+                cid: c for cid, c in public_courses.items()
+                if search_query.lower() in c.get('name', '').lower()
+                or search_query.lower() in c.get('code', '').lower()
+                or search_query.lower() in c.get('department', '').lower()
+                or search_query.lower() in c.get('description', '').lower()
+            }
+        
+        if filtered_courses:
+            st.markdown(f"**Showing {len(filtered_courses)} courses**")
+            
+            for course_id, course in filtered_courses.items():
+                is_enrolled = course_id in enrolled_course_ids
+                has_pending = course_id in pending_course_ids
+                # mark this render as coming from the 'all' tab so widget keys stay unique
+                render_course_card(course_id, course, is_enrolled, has_pending, context_suffix='all')
+        else:
+            st.info("No courses found matching your search.")
+    
+    with tab2:
+        st.subheader("My Enrolled Courses")
+        
+        if enrolled_course_ids:
+            for course_id in enrolled_course_ids:
+                course = public_courses[course_id]
+                # mark this render as coming from the 'my' tab so widget keys stay unique
+                render_course_card(course_id, course, True, False, context_suffix='my')
+        else:
+            st.info("📚 You haven't enrolled in any courses yet. Browse the 'All Courses' tab to apply!")
+    
+    with tab3:
+        st.subheader("Pending Enrollment Requests")
+        
+        if pending_requests:
+            for request_id, request in pending_requests.items():
+                course_id = request['course_id']
+                if course_id in public_courses:
+                    course = public_courses[course_id]
+                    
+                    st.markdown(f"""
+                    **Course:** {course.get('name', 'Unknown')}  
+                    **Requested:** {request.get('requested_at', 'Unknown')[:10]}  
+                    **Status:** ⏳ Waiting for teacher approval
+                    """)
+                    st.divider()
+        else:
+            st.info("You have no pending enrollment requests.")
+    
+    # Statistics summary
+    st.sidebar.markdown("### 📊 My Statistics")
+    st.sidebar.metric("Enrolled Courses", len(enrolled_course_ids))
+    st.sidebar.metric("Pending Requests", len(pending_requests))
+    st.sidebar.metric("Available Courses", len(public_courses))
+
+
+if __name__ == "__main__":
+    main()

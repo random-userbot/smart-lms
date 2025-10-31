@@ -1,0 +1,28 @@
+# Export control for git archive
+
+# Exclude legacy code from releases
+legacy/ export-ignore
+legacy/** export-ignore
+
+# Exclude sensitive data
+ml_data/captured_frames/ export-ignore
+ml_data/captured_images/ export-ignore
+ml_data/activity_logs/ export-ignore
+ml_data/session_logs/ export-ignore
+ml_data/engagement_logs/ export-ignore
+data_archive/ export-ignore
+
+# Exclude development files
+.gitignore export-ignore
+.gitattributes export-ignore
+.vscode/ export-ignore
+.idea/ export-ignore
+
+# Exclude config with credentials
+config.yaml export-ignore
+.env export-ignore
+*.log export-ignore
+
+# Keep only templates
+!config.example.yaml
+!.env.example

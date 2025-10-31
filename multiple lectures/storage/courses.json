@@ -1,0 +1,27 @@
+{
+  "cv101": {
+    "course_id": "cv101",
+    "name": "Introduction to Computer Vision",
+    "teacher_id": "teacher_001",
+    "description": "Introduction to computer vision",
+    "lectures": [
+      "lec_2a96290c"
+    ],
+    "enrolled_students": [
+      "student_4",
+      "student_001"
+    ],
+    "created_at": "2025-10-24T08:56:15.934682",
+    "is_active": true,
+    "code": "cv101",
+    "department": "CSN",
+    "credits": 3,
+    "semester": "Spring",
+    "year": 2025,
+    "max_students": 64,
+    "allow_self_enroll": false,
+    "requires_approval": true,
+    "is_public": true,
+    "updated_at": "2025-10-24T08:59:22.967018"
+  }
+}

@@ -36,10 +36,12 @@ class ThemeManager:
                 'info': '#5DADE2',
                 'background': '#1E1E1E',
                 'surface': '#2D2D2D',
-                'text': '#E0E0E0',
-                'text_secondary': '#B0B0B0',
-                'border': '#404040',
-                'shadow': 'rgba(0, 0, 0, 0.5)'
+                'text': '#E8E8E8',
+                'text_secondary': '#B8B8B8',
+                'border': '#505050',
+                'shadow': 'rgba(0, 0, 0, 0.5)',
+                'input_bg': '#3D3D3D',
+                'input_text': '#FFFFFF'
             }
         else:
             return {
@@ -52,9 +54,11 @@ class ThemeManager:
                 'background': '#FFFFFF',
                 'surface': '#F8F9FA',
                 'text': '#2C3E50',
-                'text_secondary': '#7F8C8D',
+                'text_secondary': '#555555',
                 'border': '#E0E0E0',
-                'shadow': 'rgba(0, 0, 0, 0.1)'
+                'shadow': 'rgba(0, 0, 0, 0.1)',
+                'input_bg': '#FFFFFF',
+                'input_text': '#2C3E50'
             }
     
     def apply_theme(self):
@@ -154,15 +158,32 @@ class ThemeManager:
                 color: white;
             }}
             
-            /* Input Fields */
+            /* Input Fields - High Contrast */
             .stTextInput > div > div > input,
             .stTextArea > div > div > textarea,
             .stSelectbox > div > div > select {{
-                background-color: {colors['surface']};
-                color: {colors['text']};
-                border: 1px solid {colors['border']};
-                border-radius: 8px;
-                padding: 0.75rem;
+                background-color: {colors['input_bg']} !important;
+                color: {colors['input_text']} !important;
+                border: 2px solid {colors['border']} !important;
+                border-radius: 8px !important;
+                padding: 0.75rem !important;
+                font-size: 16px !important;
+            }}
+            
+            .stTextInput > label,
+            .stTextArea > label,
+            .stSelectbox > label,
+            .stNumberInput > label {{
+                color: {colors['text']} !important;
+                font-weight: 600 !important;
+                font-size: 16px !important;
+                margin-bottom: 8px !important;
+            }}
+            
+            .stTextInput > div > div > input::placeholder,
+            .stTextArea > div > div > textarea::placeholder {{
+                color: {colors['text_secondary']} !important;
+                opacity: 0.7 !important;
             }}
             
             /* Success/Warning/Error Messages */

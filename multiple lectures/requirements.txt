@@ -1,4 +1,5 @@
 # Smart LMS - Complete Dependencies
+# Pin all versions for security and reproducibility
 
 # Core Framework
 streamlit==1.29.0
@@ -46,6 +47,16 @@ pyyaml==6.0.1
 python-dateutil==2.8.2
 pillow==10.1.0
 av==11.0.0
+
+# Security & Development Tools (optional but recommended)
+# Uncomment for development environment
+# pre-commit==3.5.0
+# bandit==1.7.5
+# safety==2.3.5
+# black==23.11.0
+# isort==5.12.0
+# flake8==6.1.0
+# pylint==3.0.3
 
 # Legacy (keep for reference)
 # Flask==3.1.1

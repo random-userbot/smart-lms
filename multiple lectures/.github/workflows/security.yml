@@ -1,0 +1,210 @@
+name: Security & Quality Checks
+
+on:
+  push:
+    branches: [ main, develop, revanth ]
+  pull_request:
+    branches: [ main, develop ]
+  schedule:
+    # Run security scans weekly
+    - cron: '0 0 * * 0'
+
+jobs:
+  security-scan:
+    name: Security Vulnerability Scan
+    runs-on: ubuntu-latest
+    
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+      
+      - name: Set up Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.11'
+      
+      - name: Install dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install -r requirements.txt
+          pip install bandit safety pip-audit
+      
+      - name: Run Bandit security linter
+        run: |
+          bandit -r services/ app/ -ll -f json -o bandit-report.json
+          bandit -r services/ app/ -ll
+        continue-on-error: true
+      
+      - name: Check for dependency vulnerabilities (Safety)
+        run: |
+          safety check --json --output safety-report.json
+          safety check
+        continue-on-error: true
+      
+      - name: Check for dependency vulnerabilities (pip-audit)
+        run: |
+          pip-audit --format json --output pip-audit-report.json
+          pip-audit
+        continue-on-error: true
+      
+      - name: Upload security reports
+        uses: actions/upload-artifact@v3
+        if: always()
+        with:
+          name: security-reports
+          path: |
+            bandit-report.json
+            safety-report.json
+            pip-audit-report.json
+
+  code-quality:
+    name: Code Quality & Linting
+    runs-on: ubuntu-latest
+    
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+      
+      - name: Set up Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.11'
+      
+      - name: Install linting tools
+        run: |
+          python -m pip install --upgrade pip
+          pip install black isort flake8 pylint
+      
+      - name: Check code formatting (Black)
+        run: |
+          black --check --line-length 100 services/ app/
+        continue-on-error: true
+      
+      - name: Check import sorting (isort)
+        run: |
+          isort --check-only --profile black --line-length 100 services/ app/
+        continue-on-error: true
+      
+      - name: Run Flake8
+        run: |
+          flake8 services/ app/ --max-line-length=100 --extend-ignore=E203,W503
+        continue-on-error: true
+
+  secret-detection:
+    name: Secret & Credential Detection
+    runs-on: ubuntu-latest
+    
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0  # Full history for better detection
+      
+      - name: TruffleHog Secret Scan
+        uses: trufflesecurity/trufflehog@main
+        with:
+          path: ./
+          base: main
+          head: HEAD
+          extra_args: --only-verified
+      
+      - name: GitLeaks Secret Scan
+        uses: gitleaks/gitleaks-action@v2
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+  test-security-config:
+    name: Test Security Configuration
+    runs-on: ubuntu-latest
+    
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+      
+      - name: Set up Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.11'
+      
+      - name: Verify config.yaml not committed
+        run: |
+          if [ -f "config.yaml" ]; then
+            echo "❌ ERROR: config.yaml should not be committed!"
+            echo "Only config.example.yaml should be in the repo."
+            exit 1
+          else
+            echo "✅ config.yaml correctly excluded"
+          fi
+      
+      - name: Verify .env not committed
+        run: |
+          if [ -f ".env" ]; then
+            echo "❌ ERROR: .env should not be committed!"
+            echo "Only .env.example should be in the repo."
+            exit 1
+          else
+            echo "✅ .env correctly excluded"
+          fi
+      
+      - name: Check for hardcoded credentials
+        run: |
+          # Search for common credential patterns
+          if grep -r -i "password.*=.*['\"].*123" --include="*.py" --exclude-dir=legacy .; then
+            echo "❌ WARNING: Possible hardcoded passwords found!"
+            exit 1
+          fi
+          
+          if grep -r "admin.*admin123" --include="*.md" .; then
+            echo "⚠️  WARNING: Demo credentials in documentation"
+            echo "Ensure SECURITY.md warns against using these in production"
+          fi
+      
+      - name: Verify config.example.yaml has safe defaults
+        run: |
+          if grep -q "debug: true" config.example.yaml; then
+            echo "❌ ERROR: config.example.yaml should have debug: false"
+            exit 1
+          fi
+          echo "✅ Config example has safe defaults"
+
+  dependency-license-check:
+    name: License Compliance Check
+    runs-on: ubuntu-latest
+    
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+      
+      - name: Set up Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.11'
+      
+      - name: Install dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install pip-licenses
+          pip install -r requirements.txt
+      
+      - name: Check licenses
+        run: |
+          pip-licenses --format=markdown --output-file=licenses-report.md
+          pip-licenses
+      
+      - name: Upload license report
+        uses: actions/upload-artifact@v3
+        with:
+          name: license-report
+          path: licenses-report.md
+
+  notify:
+    name: Notification
+    runs-on: ubuntu-latest
+    needs: [security-scan, code-quality, secret-detection, test-security-config]
+    if: failure()
+    
+    steps:
+      - name: Security Check Failed
+        run: |
+          echo "⚠️  Security or quality checks failed!"
+          echo "Review the workflow logs and fix issues before merging."

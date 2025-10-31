@@ -6,22 +6,122 @@ Teachers can upload lectures, materials, quizzes, and assignments
 import streamlit as st
 import sys
 import os
+import re
+import mimetypes
 sys.path.append(os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__)))))
 
 from services.auth import get_auth
 from services.storage import get_storage
+from services.behavioral_logger import BehavioralLogger
 from datetime import datetime
 import uuid
 import shutil
 from pathlib import Path
 
 
+# Security constants
+MAX_FILE_SIZE = 500 * 1024 * 1024  # 500 MB
+ALLOWED_VIDEO_TYPES = ['video/mp4', 'video/avi', 'video/quicktime', 'video/x-matroska']
+ALLOWED_MATERIAL_TYPES = [
+    'application/pdf',
+    'application/vnd.openxmlformats-officedocument.presentationml.presentation',
+    'application/vnd.openxmlformats-officedocument.wordprocessingml.document',
+    'text/plain',
+    'application/zip'
+]
+
+
+def sanitize_filename(filename: str) -> str:
+    """
+    Sanitize uploaded filename to prevent path traversal and other attacks
+    
+    Args:
+        filename: Original filename from upload
+    
+    Returns:
+        Sanitized filename safe for filesystem
+    """
+    # Remove path components
+    filename = os.path.basename(filename)
+    
+    # Remove any non-alphanumeric characters except .-_
+    filename = re.sub(r'[^a-zA-Z0-9._-]', '_', filename)
+    
+    # Prevent hidden files
+    if filename.startswith('.'):
+        filename = '_' + filename[1:]
+    
+    # Limit length
+    name, ext = os.path.splitext(filename)
+    if len(name) > 100:
+        name = name[:100]
+    
+    return name + ext
+
+
+def validate_file_upload(uploaded_file, allowed_types: list, max_size: int = MAX_FILE_SIZE) -> tuple:
+    """
+    Validate uploaded file for security
+    
+    Args:
+        uploaded_file: Streamlit UploadedFile object
+        allowed_types: List of allowed MIME types
+        max_size: Maximum file size in bytes
+    
+    Returns:
+        (is_valid: bool, error_message: str or None)
+    """
+    # Check file size
+    if uploaded_file.size > max_size:
+        return False, f"File too large. Maximum size: {max_size // (1024*1024)} MB"
+    
+    # Check MIME type
+    file_type = uploaded_file.type
+    if file_type not in allowed_types:
+        return False, f"Invalid file type: {file_type}. Allowed: {', '.join(allowed_types)}"
+    
+    # Additional extension validation
+    filename = uploaded_file.name
+    ext = os.path.splitext(filename)[1].lower()
+    
+    # Map extensions to expected MIME types
+    valid_extensions = {
+        '.mp4': 'video/mp4',
+        '.avi': 'video/avi',
+        '.mov': 'video/quicktime',
+        '.mkv': 'video/x-matroska',
+        '.pdf': 'application/pdf',
+        '.pptx': 'application/vnd.openxmlformats-officedocument.presentationml.presentation',
+        '.docx': 'application/vnd.openxmlformats-officedocument.wordprocessingml.document',
+        '.txt': 'text/plain',
+        '.zip': 'application/zip'
+    }
+    
+    if ext not in valid_extensions:
+        return False, f"Invalid file extension: {ext}"
+    
+    return True, None
+
+
 def save_uploaded_file(uploaded_file, destination_path):
-    """Save uploaded file to destination"""
+    """Save uploaded file to destination with security checks"""
     try:
-        os.makedirs(os.path.dirname(destination_path), exist_ok=True)
+        # Ensure destination directory exists with secure permissions
+        dest_dir = os.path.dirname(destination_path)
+        os.makedirs(dest_dir, mode=0o750, exist_ok=True)
+        
+        # Validate destination path (prevent path traversal)
+        destination_path = os.path.abspath(destination_path)
+        if '..' in destination_path:
+            raise ValueError("Invalid destination path")
+        
+        # Write file
         with open(destination_path, "wb") as f:
             f.write(uploaded_file.getbuffer())
+        
+        # Set restrictive permissions
+        os.chmod(destination_path, 0o640)
+        
         return True
     except Exception as e:
         st.error(f"Error saving file: {str(e)}")
@@ -29,8 +129,8 @@ def save_uploaded_file(uploaded_file, destination_path):
 
 
 def show_upload_lecture():
-    """Upload lecture video"""
-    st.subheader("🎥 Upload Lecture Video")
+    """Upload lecture video or YouTube link"""
+    st.subheader("🎥 Upload Lecture")
     
     storage = get_storage()
     user = st.session_state.user
@@ -41,6 +141,13 @@ def show_upload_lecture():
     if not courses:
         st.warning("⚠️ You don't have any courses yet. Contact admin to create courses.")
         return
+    
+    # Toggle between file upload and YouTube link
+    upload_type = st.radio(
+        "Lecture Source",
+        ["📹 YouTube Link", "📁 Upload Video File"],
+        horizontal=True
+    )
     
     with st.form("upload_lecture_form"):
         # Course selection
@@ -55,49 +162,65 @@ def show_upload_lecture():
         lecture_title = st.text_input("Lecture Title", placeholder="e.g., Introduction to Machine Learning")
         lecture_description = st.text_area("Description", placeholder="Brief description of the lecture content")
         
-        # Video upload
-        video_file = st.file_uploader(
-            "Upload Video File",
-            type=['mp4', 'avi', 'mov', 'mkv'],
-            help="Supported formats: MP4, AVI, MOV, MKV"
-        )
+        # Conditional input based on upload type
+        video_file = None
+        youtube_url = None
+        
+        if upload_type == "📹 YouTube Link":
+            youtube_url = st.text_input(
+                "YouTube URL",
+                placeholder="https://www.youtube.com/watch?v=...",
+                help="Paste the full YouTube video URL"
+            )
+            
+            # Show preview if URL is valid
+            if youtube_url and ('youtube.com' in youtube_url or 'youtu.be' in youtube_url):
+                st.video(youtube_url)
+        else:
+            # Video upload
+            video_file = st.file_uploader(
+                "Upload Video File",
+                type=['mp4', 'avi', 'mov', 'mkv'],
+                help="Supported formats: MP4, AVI, MOV, MKV"
+            )
         
         # Duration
         duration_minutes = st.number_input("Duration (minutes)", min_value=1, value=60)
         
-        submit = st.form_submit_button("📤 Upload Lecture")
+        submit = st.form_submit_button("📤 Upload Lecture", type="primary")
         
         if submit:
             if not lecture_title:
                 st.error("❌ Please enter a lecture title")
                 return
             
-            if not video_file:
-                st.error("❌ Please upload a video file")
-                return
-            
-            # Generate lecture ID
-            lecture_id = f"lec_{uuid.uuid4().hex[:8]}"
-            
-            # Save video file
-            course_name = course_options[selected_course].lower().replace(' ', '_')
-            video_path = f"./storage/courses/{selected_course}/lectures/{lecture_id}_{video_file.name}"
-            
-            with st.spinner("Uploading video... This may take a moment."):
-                if save_uploaded_file(video_file, video_path):
-                    # Create lecture record
+            if upload_type == "📹 YouTube Link":
+                if not youtube_url:
+                    st.error("❌ Please enter a YouTube URL")
+                    return
+                
+                if not ('youtube.com' in youtube_url or 'youtu.be' in youtube_url):
+                    st.error("❌ Please enter a valid YouTube URL")
+                    return
+                
+                # Generate lecture ID
+                lecture_id = f"lec_{uuid.uuid4().hex[:8]}"
+                
+                with st.spinner("Creating lecture..."):
+                    # Create lecture record with YouTube URL
                     success = storage.create_lecture(
                         lecture_id=lecture_id,
                         title=lecture_title,
                         course_id=selected_course,
-                        video_path=video_path,
+                        video_path=youtube_url,  # Store YouTube URL as video_path
                         duration=duration_minutes * 60,
                         description=lecture_description,
-                        uploaded_by=user['user_id']
+                        uploaded_by=user['user_id'],
+                        video_type='youtube'  # Flag as YouTube video
                     )
                     
                     if success:
-                        # Log teacher activity
+                        # Log teacher activity to JSON
                         storage.log_teacher_activity(
                             activity_id=str(uuid.uuid4()),
                             teacher_id=user['user_id'],
@@ -105,16 +228,87 @@ def show_upload_lecture():
                             details={
                                 'lecture_id': lecture_id,
                                 'course_id': selected_course,
-                                'title': lecture_title
+                                'title': lecture_title,
+                                'type': 'youtube'
                             }
                         )
                         
-                        st.success(f"✅ Lecture '{lecture_title}' uploaded successfully!")
+                        # Log to CSV for audit trail
+                        csv_logger = BehavioralLogger(student_id=user['user_id'])
+                        csv_logger.log_lecture_upload(
+                            lecture_id=lecture_id,
+                            course_id=selected_course,
+                            lecture_type='youtube',
+                            video_url=youtube_url
+                        )
+                        
+                        st.success(f"✅ Lecture '{lecture_title}' created successfully!")
                         st.balloons()
                     else:
                         st.error("❌ Failed to create lecture record")
-                else:
-                    st.error("❌ Failed to upload video file")
+            
+            else:  # File upload
+                if not video_file:
+                    st.error("❌ Please upload a video file")
+                    return
+                
+                # Validate file upload
+                is_valid, error_msg = validate_file_upload(video_file, ALLOWED_VIDEO_TYPES)
+                if not is_valid:
+                    st.error(f"❌ {error_msg}")
+                    return
+                
+                # Generate lecture ID
+                lecture_id = f"lec_{uuid.uuid4().hex[:8]}"
+                
+                # Sanitize filename
+                safe_filename = sanitize_filename(video_file.name)
+                video_path = f"./storage/courses/{selected_course}/lectures/{lecture_id}_{safe_filename}"
+                
+                with st.spinner("Uploading video... This may take a moment."):
+                    if save_uploaded_file(video_file, video_path):
+                        # Create lecture record
+                        success = storage.create_lecture(
+                            lecture_id=lecture_id,
+                            title=lecture_title,
+                            course_id=selected_course,
+                            video_path=video_path,
+                            duration=duration_minutes * 60,
+                            description=lecture_description,
+                            uploaded_by=user['user_id'],
+                            video_type='file'
+                        )
+                        
+                        if success:
+                            # Log teacher activity to JSON
+                            storage.log_teacher_activity(
+                                activity_id=str(uuid.uuid4()),
+                                teacher_id=user['user_id'],
+                                action='upload_lecture',
+                                details={
+                                    'lecture_id': lecture_id,
+                                    'course_id': selected_course,
+                                    'title': lecture_title,
+                                    'type': 'file'
+                                }
+                            )
+                            
+                            # Log to CSV for audit trail
+                            csv_logger = BehavioralLogger(student_id=user['user_id'])
+                            csv_logger.log_lecture_upload(
+                                lecture_id=lecture_id,
+                                course_id=selected_course,
+                                lecture_type='file',
+                                video_url=video_path,
+                                file_size=video_file.size
+                            )
+                            
+                            st.success(f"✅ Lecture '{lecture_title}' uploaded successfully!")
+                            st.balloons()
+                        else:
+                            st.error("❌ Failed to create lecture record")
+                    else:
+                        st.error("❌ Failed to upload video file")
 
 
 def show_upload_material():
@@ -174,9 +368,16 @@ def show_upload_material():
                 st.error("❌ Please upload a file")
                 return
             
-            # Save material file
+            # Validate file upload
+            is_valid, error_msg = validate_file_upload(material_file, ALLOWED_MATERIAL_TYPES)
+            if not is_valid:
+                st.error(f"❌ {error_msg}")
+                return
+            
+            # Generate material ID and sanitize filename
             material_id = f"mat_{uuid.uuid4().hex[:8]}"
-            material_path = f"./storage/courses/{selected_course}/materials/{material_id}_{material_file.name}"
+            safe_filename = sanitize_filename(material_file.name)
+            material_path = f"./storage/courses/{selected_course}/materials/{material_id}_{safe_filename}"
             
             with st.spinner("Uploading material..."):
                 if save_uploaded_file(material_file, material_path):
@@ -197,9 +398,10 @@ def show_upload_material():
                         if lecture:
                             materials = lecture.get('materials', [])
                             materials.append(material_info)
-                            storage.update_course(linked_lecture, {'materials': materials})
+                            # Persist materials to the lecture record
+                            storage.update_lecture(linked_lecture, {'materials': materials})
                     
-                    # Log teacher activity
+                    # Log teacher activity to JSON
                     storage.log_teacher_activity(
                         activity_id=str(uuid.uuid4()),
                         teacher_id=user['user_id'],
@@ -210,6 +412,17 @@ def show_upload_material():
                             'title': material_title,
                             'type': material_type
                         }
+                    )
+                    
+                    # Log to CSV for audit trail
+                    csv_logger = BehavioralLogger(student_id=user['user_id'])
+                    csv_logger.log_material_upload(
+                        material_id=material_id,
+                        material_type=material_type,
+                        course_id=selected_course,
+                        lecture_id=linked_lecture if linked_lecture != 'none' else None,
+                        file_name=material_file.name,
+                        file_size=material_file.size
                     )
                     
                     st.success(f"✅ Material '{material_title}' uploaded successfully!")
