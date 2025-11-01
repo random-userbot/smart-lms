@@ -1,7 +1,4 @@
-"""
-Smart LMS - Feedback Analytics Page
-Teachers can view and analyze student feedback with NLP insights
-"""
+
 
 import streamlit as st
 import sys
