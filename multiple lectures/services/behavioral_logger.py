@@ -299,6 +299,21 @@ class BehavioralLogger:
             'uploaded_by': self.student_id  # Can be teacher_id in this context
         })
     
+    def log_material_read(self, material_id: str, material_type: str):
+        """
+        Log student reading/accessing course material
+        
+        Args:
+            material_id: Material identifier
+            material_type: Type of material (pdf, pptx, docx, etc.)
+        """
+        self.log_event('material_read', {
+            'material_id': material_id,
+            'material_type': material_type,
+            'lecture_id': self.lecture_id or 'none',
+            'course_id': self.course_id or 'none'
+        })
+    
     def log_lecture_upload(self, lecture_id: str, course_id: str, lecture_type: str,
                           video_url: str = None, file_size: int = None):
         """
