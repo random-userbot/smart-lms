@@ -1,0 +1,42 @@
+{
+  "timestamp": "2025-11-24T18:20:40.031889",
+  "frame_number": 90,
+  "session_id": "student_4_lec_2a96290c_700aeb29",
+  "analysis_version": "2.0_explainable_ai",
+  "openface_metrics": {
+    "engagement_score": 0.0,
+    "status": "no_face",
+    "face_detected": 0,
+    "confidence": 0.0,
+    "gaze": {
+      "angle_x": 0.0,
+      "angle_y": 0.0,
+      "interpretation": {
+        "direction": "center_center",
+        "attention_level": "highly_focused",
+        "description": "Direct eye gaze - strong attention to screen"
+      }
+    },
+    "head_pose": {
+      "rotation_x": 0.0,
+      "rotation_y": 0.0,
+      "rotation_z": 0.0,
+      "interpretation": {
+        "posture": "attentive",
+        "engagement_indicator": "positive",
+        "description": "Upright posture, facing screen directly"
+      }
+    }
+  },
+  "session_context": {
+    "total_frames_processed": 90,
+    "average_engagement_so_far": 45.84359550561798,
+    "engagement_trend": {
+      "trend": "Engagement declining (-22.2% from session start)",
+      "direction": "declining",
+      "change": -22.185818181818178,
+      "recent_average": 28.011000000000003,
+      "session_average": 45.84359550561798
+    }
+  }
+}

@@ -6,7 +6,7 @@
     "role": "admin",
     "email": "admin@smartlms.edu",
     "created_at": "2025-10-23T21:17:05.965500",
-    "last_login": "2025-10-24T08:54:38.024414",
+    "last_login": "2025-11-24T16:04:31.508842",
     "is_active": true,
     "full_name": "System Administrator",
     "department": "IT Administration",
@@ -16,7 +16,7 @@
     "semester": null,
     "enrollment_number": null,
     "failed_login_attempts": 0,
-    "updated_at": "2025-10-24T08:54:38.024414"
+    "updated_at": "2025-11-24T16:04:31.508842"
   },
   "teacher_001": {
     "user_id": "teacher_001",
@@ -63,11 +63,11 @@
     "role": "student",
     "email": "revanthpuram004@gmail.com",
     "created_at": "2025-10-24T08:53:30.828310",
-    "last_login": "2025-11-14T21:32:31.254168",
+    "last_login": "2025-11-24T18:18:24.065313",
     "is_active": true,
     "full_name": "revanth puram",
     "failed_login_attempts": 0,
-    "updated_at": "2025-11-14T21:32:31.254168",
+    "updated_at": "2025-11-24T18:18:24.065313",
     "last_failed_login": "2025-10-24T08:59:44.349259"
   }
 }

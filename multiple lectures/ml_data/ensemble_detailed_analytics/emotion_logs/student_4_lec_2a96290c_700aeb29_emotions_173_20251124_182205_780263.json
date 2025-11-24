@@ -1,0 +1,55 @@
+{
+  "timestamp": "2025-11-24T18:22:05.780263",
+  "session_id": "student_4_lec_2a96290c_700aeb29",
+  "frame_number": 173,
+  "has_ensemble": true,
+  "openface_engagement": 51.61,
+  "emotions": {
+    "Boredom": {
+      "level": "Very Low",
+      "class_id": 0,
+      "confidence": 0.29695257544517517,
+      "probabilities": {
+        "Very Low": 0.29695257544517517,
+        "Low": 0.261161208152771,
+        "High": 0.22621135413646698,
+        "Very High": 0.21567490696907043
+      }
+    },
+    "Engagement": {
+      "level": "High",
+      "class_id": 2,
+      "confidence": 0.3061278462409973,
+      "probabilities": {
+        "Very Low": 0.1845555603504181,
+        "Low": 0.2205083817243576,
+        "High": 0.3061278462409973,
+        "Very High": 0.2888082265853882
+      }
+    },
+    "Confusion": {
+      "level": "Low",
+      "class_id": 1,
+      "confidence": 0.279967337846756,
+      "probabilities": {
+        "Very Low": 0.25955480337142944,
+        "Low": 0.279967337846756,
+        "High": 0.25653329491615295,
+        "Very High": 0.20394457876682281
+      }
+    },
+    "Frustration": {
+      "level": "Very Low",
+      "class_id": 0,
+      "confidence": 0.3045464754104614,
+      "probabilities": {
+        "Very Low": 0.3045464754104614,
+        "Low": 0.26334089040756226,
+        "High": 0.23177409172058105,
+        "Very High": 0.20033854246139526
+      }
+    }
+  },
+  "ensemble_engagement": 84.58025,
+  "mode": "fast"
+}

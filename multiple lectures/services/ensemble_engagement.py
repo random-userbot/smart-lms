@@ -55,7 +55,7 @@ class EnsembleEngagementDetector:
     
     def __init__(
         self,
-        export_dir: str = "export",
+        export_dir: str = None,
         mode: str = "balanced",  # "fast", "balanced", "accurate"
         enable_cache: bool = True,
         cache_duration: int = 2  # seconds
@@ -64,11 +64,32 @@ class EnsembleEngagementDetector:
         Initialize ensemble detector
         
         Args:
-            export_dir: Path to exported models directory
+            export_dir: Path to exported models directory (auto-detected if None)
             mode: Performance mode - "fast" (1 model), "balanced" (2 models), "accurate" (3 models)
             enable_cache: Enable prediction caching
             cache_duration: Cache validity in seconds
         """
+        # Auto-detect export directory if not provided
+        if export_dir is None:
+            # Try to find export directory relative to this file
+            current_file = Path(__file__).resolve()
+            # services/ensemble_engagement.py -> services -> multiple lectures -> parent -> export
+            possible_paths = [
+                current_file.parent.parent.parent / "export",  # From services/ -> multiple lectures/ -> root/
+                current_file.parent.parent / "export",  # From services/ -> root/
+                Path("export"),  # Current directory
+                Path("../export"),  # Parent directory
+            ]
+            
+            for path in possible_paths:
+                if path.exists() and (path / "Transformer_ViT_59.6%_BEST").exists():
+                    export_dir = str(path)
+                    logging.info(f"Auto-detected export directory: {path}")
+                    break
+            
+            if export_dir is None:
+                raise FileNotFoundError("Could not find export directory with models. Please specify export_dir parameter.")
+        
         self.export_dir = Path(export_dir)
         self.mode = mode
         self.enable_cache = enable_cache
@@ -263,9 +284,34 @@ class EnsembleEngagementDetector:
                 result['predictions'][dim]['confidence'] = confidence
                 result['predictions'][dim]['probabilities'] = probs.tolist()
         
-        # Calculate overall engagement score (0-1)
+        # Calculate overall engagement score (0-100)
+        # Primary metric: Engagement dimension (directly predicts engagement level)
+        # Secondary metrics: Negative emotions reduce the score
+        
         engagement_class = result['predictions']['Engagement']['class_id']
-        result['engagement_score'] = engagement_class / 3.0  # Normalize to 0-1
+        boredom_class = result['predictions']['Boredom']['class_id']
+        confusion_class = result['predictions']['Confusion']['class_id']
+        frustration_class = result['predictions']['Frustration']['class_id']
+        
+        # Base score from Engagement prediction (0-100)
+        # Very Low=0 → 12.5%, Low=1 → 37.5%, High=2 → 62.5%, Very High=3 → 87.5%
+        base_engagement = (engagement_class + 0.5) * 25.0  # Maps to 12.5, 37.5, 62.5, 87.5
+        
+        # Negative emotion penalties (each reduces score proportionally)
+        # Boredom: Very High (-30%), High (-20%), Low (-10%), Very Low (0%)
+        boredom_penalty = boredom_class * 10.0
+        
+        # Confusion: Very High (-20%), High (-13%), Low (-7%), Very Low (0%)
+        confusion_penalty = confusion_class * 6.67
+        
+        # Frustration: Very High (-20%), High (-13%), Low (-7%), Very Low (0%)
+        frustration_penalty = frustration_class * 6.67
+        
+        # Combined score (base engagement minus penalties)
+        raw_score = base_engagement - (boredom_penalty + confusion_penalty + frustration_penalty)
+        
+        # Clamp to 0-100 range
+        result['engagement_score'] = float(np.clip(raw_score, 0, 100))
         
         # Update cache
         self._update_cache(cache_key, result)

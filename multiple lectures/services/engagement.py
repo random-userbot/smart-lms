@@ -15,11 +15,11 @@ import logging
 
 # Import ensemble detector
 try:
-    from .ensemble_engagement import EnsembleEngagementDetector
+    from services.ensemble_engagement import create_ensemble_detector, EnsembleEngagementDetector
     ENSEMBLE_AVAILABLE = True
-except ImportError:
+except ImportError as e:
     ENSEMBLE_AVAILABLE = False
-    logging.warning("Ensemble detector not available. Install required packages.")
+    logging.warning(f"Ensemble detector not available in engagement.py: {e}")
 
 
 class EngagementTracker:

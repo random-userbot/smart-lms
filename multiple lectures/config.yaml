@@ -1,9 +1,11 @@
-# Smart LMS Configuration
+# Smart LMS Configuration Template
+# Copy this file to config.yaml and update with your settings
+# NEVER commit config.yaml with real credentials to version control
 
 app:
   name: "Smart LMS"
   version: "2.0.0"
-  debug: false  # NEVER set to true in production
+  debug: false  # MUST be false in production
   port: 8501
 
 # Storage paths
@@ -36,8 +38,8 @@ ml_data:
 # Engagement tracking
 engagement:
   mode: "realtime"  # Options: "realtime" (MediaPipe), "offline" (OpenFace)
-  sampling_rate: 1.0  # seconds between frame captures (every 1 second)
-  frame_capture_enabled: true  # Save frames to captured_frames
+  sampling_rate: 1.0  # seconds between frame captures
+  frame_capture_enabled: false  # Set true only if needed for research (consider privacy)
   min_confidence: 0.7
   features:
     - gaze_score
@@ -56,40 +58,38 @@ engagement:
 # Picture-in-Picture Webcam Settings
 pip_webcam:
   enabled: true
-  position: "bottom-right"  # Position on screen
+  position: "bottom-right"
   width: 320
   height: 240
   border_color: "#1f77b4"
-  capture_interval: 1.0  # Capture frame every second
+  capture_interval: 1.0
   show_engagement_overlay: true
-  consent_required: true  # MUST be true in production - get user consent
+  consent_required: true  # MUST be true in production
 
-# OpenFace configuration (comprehensive AU extraction)
+# OpenFace configuration
 openface:
-  enabled: true
-  executable_path: "./OpenFace/FeatureExtraction.exe"  # Update with actual path if using native OpenFace
+  enabled: false  # Enable only if OpenFace binary is installed
+  executable_path: ""  # Set to actual OpenFace path if using
   output_dir: "./ml_data/openface_output"
-  use_mediapipe: true  # Use MediaPipe for OpenFace-style extraction
+  use_mediapipe: true
   features:
-    # Action Units (17 AUs)
-    - AU01_r  # Inner brow raiser
-    - AU02_r  # Outer brow raiser
-    - AU04_r  # Brow lowerer
-    - AU05_r  # Upper lid raiser
-    - AU06_r  # Cheek raiser
-    - AU07_r  # Lid tightener
-    - AU09_r  # Nose wrinkler
-    - AU10_r  # Upper lip raiser
-    - AU12_r  # Lip corner puller (smile)
-    - AU14_r  # Dimpler
-    - AU15_r  # Lip corner depressor
-    - AU17_r  # Chin raiser
-    - AU20_r  # Lip stretcher
-    - AU23_r  # Lip tightener
-    - AU25_r  # Lips part
-    - AU26_r  # Jaw drop
-    - AU45_r  # Blink
-    # Gaze vectors
+    - AU01_r
+    - AU02_r
+    - AU04_r
+    - AU05_r
+    - AU06_r
+    - AU07_r
+    - AU09_r
+    - AU10_r
+    - AU12_r
+    - AU14_r
+    - AU15_r
+    - AU17_r
+    - AU20_r
+    - AU23_r
+    - AU25_r
+    - AU26_r
+    - AU45_r
     - gaze_0_x
     - gaze_0_y
     - gaze_0_z
@@ -98,7 +98,6 @@ openface:
     - gaze_1_z
     - gaze_angle_x
     - gaze_angle_y
-    # Head pose
     - pose_Tx
     - pose_Ty
     - pose_Tz
@@ -131,19 +130,19 @@ behavioral_logging:
 # Anti-Cheating Configuration
 anti_cheating:
   enabled: true
-  show_warnings: true  # Display popup warnings for violations
+  show_warnings: true
   thresholds:
-    max_playback_speed: 1.25  # Maximum allowed playback speed
-    max_tab_switches: 3  # Warning threshold
-    max_speed_changes: 5  # Warning threshold
-    min_engagement_score: 30  # Alert if engagement drops below
-    max_consecutive_focus_losses: 2  # Alert threshold
+    max_playback_speed: 1.25
+    max_tab_switches: 3
+    max_speed_changes: 5
+    min_engagement_score: 30
+    max_consecutive_focus_losses: 2
   violation_severity:
     tab_switch: "medium"
     excessive_playback_speed: "high"
     focus_loss: "low"
     low_engagement: "medium"
-  notify_teacher: true  # Send violations to teacher analytics
+  notify_teacher: true
 
 # CSV Export Configuration
 csv_exports:
@@ -159,12 +158,12 @@ csv_exports:
   
 # NLP configuration
 nlp:
-  sentiment_model: "vader"  # Options: "vader", "distilbert"
+  sentiment_model: "vader"
   distilbert_model: "distilbert-base-uncased-finetuned-sst-2-english"
   min_feedback_length: 10
   bias_correction:
     enabled: true
-    method: "residual"  # Options: "residual", "covariate"
+    method: "residual"
     control_variables:
       - expected_grade
       - course_difficulty
@@ -172,7 +171,7 @@ nlp:
 
 # Teacher evaluation
 evaluation:
-  model: "xgboost"  # Options: "xgboost", "random_forest"
+  model: "xgboost"
   features:
     - avg_engagement_score
     - avg_feedback_sentiment
@@ -187,13 +186,13 @@ evaluation:
   shap:
     enabled: true
     max_display: 10
-  retrain_interval: 7  # days
+  retrain_interval: 7
 
 # Attendance tracking
 attendance:
-  method: "face_detection"  # Options: "face_detection", "manual", "hybrid"
-  min_presence_threshold: 0.75  # 75% of lecture duration
-  face_detection_interval: 30  # seconds
+  method: "face_detection"
+  min_presence_threshold: 0.75
+  face_detection_interval: 30
 
 # Privacy & Security
 privacy:
@@ -205,13 +204,13 @@ privacy:
 
 security:
   bcrypt_rounds: 12
-  session_timeout: 3600  # seconds
+  session_timeout: 3600
   max_login_attempts: 5
-  lockout_duration: 900  # seconds
+  lockout_duration: 900
 
 # UI/UX
 ui:
-  theme: "light"  # Options: "light", "dark", "auto"
+  theme: "light"
   primary_color: "#1f77b4"
   secondary_color: "#ff7f0e"
   layout: "wide"
@@ -228,24 +227,26 @@ analytics:
   export_formats:
     - csv
     - pdf
-  update_interval: 60  # seconds
+  update_interval: 60
 
 # Logging
 logging:
-  level: "INFO"  # Options: "DEBUG", "INFO", "WARNING", "ERROR"
+  level: "INFO"  # Use DEBUG only in development
   file: "./logs/smart_lms.log"
-  max_size: 10485760  # 10 MB
+  max_size: 10485760
   backup_count: 5
 
-# Database migration (use environment variables for credentials)
+# Database configuration (use environment variables for credentials)
+# Set these in your .env file or environment:
+# DB_HOST, DB_PORT, DB_NAME, DB_USER, DB_PASSWORD
 database:
   enabled: false
-  type: "postgresql"  # Options: "postgresql", "mysql", "sqlite"
-  host: "${DB_HOST}"  # Load from environment
-  port: "${DB_PORT}"  # Load from environment
-  name: "${DB_NAME}"  # Load from environment
-  user: "${DB_USER}"  # Load from environment
-  password: "${DB_PASSWORD}"  # Load from environment - NEVER hardcode
+  type: "postgresql"
+  host: "${DB_HOST}"
+  port: "${DB_PORT}"
+  name: "${DB_NAME}"
+  user: "${DB_USER}"
+  password: "${DB_PASSWORD}"
 
 # Feature flags
 features:
@@ -255,20 +256,20 @@ features:
   attendance_tracking: true
   progress_tracking: true
   teacher_activity_logs: true
-  adaptive_recommendations: false  # Future feature
-  engagement_calibration: true  # Personalized engagement baselines
-  multimodal_engagement: true   # Combine facial + behavioral signals
-  global_session_tracking: true  # Track complete user sessions
-  quiz_monitoring: true          # Monitor quizzes with webcam
-  material_reading_tracking: true # Track time spent reading materials
+  adaptive_recommendations: false
+  engagement_calibration: true
+  multimodal_engagement: true
+  global_session_tracking: true
+  quiz_monitoring: true
+  material_reading_tracking: true
 
 # Engagement Calibration Settings
 engagement_calibration:
   enabled: true
-  calibration_duration: 30  # seconds
+  calibration_duration: 30
   min_frames_required: 25
-  recalibration_days: 30    # Recalibrate every 30 days
-  calibration_video_url: "https://www.youtube.com/watch?v=dQw4w9WgXcQ"  # Replace with actual calibration video
+  recalibration_days: 30
+  calibration_video_url: ""  # Set a neutral calibration video
 
 # Multimodal Engagement Settings
 multimodal_engagement:
@@ -363,7 +364,7 @@ material_reading:
     scroll_depth: true
     interactions: true
     pages_viewed: true
-  completion_threshold: 0.95  # 95% scroll depth = completed
-  gamification: false  # Future feature
+  completion_threshold: 0.95
+  gamification: false
   ethical_ai_dashboard: true
-  predictive_analytics: false  # Future feature
+  predictive_analytics: false

@@ -1,0 +1,85 @@
+{
+  "timestamp": "2025-11-24T18:09:16.408747",
+  "frame_number": 55,
+  "session_id": "student_4_lec_2a96290c_96318c89",
+  "analysis_version": "2.0_explainable_ai",
+  "openface_metrics": {
+    "engagement_score": 49.64,
+    "status": "partially_engaged",
+    "face_detected": 1,
+    "confidence": 0.95,
+    "gaze": {
+      "angle_x": -139.44,
+      "angle_y": -135.11,
+      "interpretation": {
+        "direction": "up_left",
+        "attention_level": "distracted",
+        "description": "Gaze away from screen - likely distracted"
+      }
+    },
+    "head_pose": {
+      "rotation_x": -172.7,
+      "rotation_y": -11.29,
+      "rotation_z": 26.17,
+      "interpretation": {
+        "posture": "relaxed",
+        "engagement_indicator": "positive",
+        "description": "Head tilted up - relaxed posture | Head tilted sideways - possible fatigue or discomfort"
+      }
+    }
+  },
+  "feature_analysis": {
+    "feature_vector_shape": [
+      35
+    ],
+    "feature_statistics": {
+      "mean": -4.257474817137563e-09,
+      "std": 1.0,
+      "min": -0.5403255820274353,
+      "max": 5.618184566497803,
+      "non_zero_count": 35
+    },
+    "feature_breakdown": {
+      "gaze_features": {
+        "gaze_x": -0.47571709752082825,
+        "gaze_y": -0.4673059582710266,
+        "magnitude": 0.6668445212410788,
+        "interpretation": "Low magnitude = focused, High = distracted"
+      },
+      "head_pose_rotation": {
+        "pitch_rx": 0.635019838809967,
+        "yaw_ry": 1.058976411819458,
+        "roll_rz": 5.618184566497803,
+        "interpretation": "Near zero = facing screen, Large values = turned away"
+      },
+      "head_pose_translation": {
+        "tx": -0.5403255820274353,
+        "ty": -0.22678226232528687,
+        "tz": -0.1540151983499527,
+        "interpretation": "Distance and position relative to camera"
+      },
+      "action_units": {
+        "count": 27,
+        "active_aus": 0,
+        "mean_activation": -0.2017790526151657,
+        "interpretation": "Facial expressions indicating emotional state"
+      }
+    },
+    "engagement_indicators": {
+      "gaze_stability": "poor",
+      "head_orientation": "good",
+      "facial_activity": "neutral"
+    }
+  },
+  "session_context": {
+    "total_frames_processed": 55,
+    "average_engagement_so_far": 53.489444444444445,
+    "engagement_trend": {
+      "trend": "Engagement levels stable throughout session",
+      "direction": "stable",
+      "change": 1.5466666666666598,
+      "recent_average": 54.3,
+      "session_average": 53.489444444444445
+    }
+  }
+}

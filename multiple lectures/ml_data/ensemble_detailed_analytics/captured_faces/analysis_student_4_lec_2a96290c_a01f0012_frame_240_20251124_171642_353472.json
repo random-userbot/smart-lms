@@ -1,0 +1,70 @@
+{
+  "timestamp": "2025-11-24T23:09:50.065056",
+  "image_path": "C:\\Users\\revan\\Downloads\\multiple lectures\\multiple lectures\\ml_data\\ensemble_detailed_analytics\\captured_faces\\student_4_lec_2a96290c_a01f0012_frame_240_20251124_171642_353472.jpg",
+  "prediction": {
+    "engagement_score": 0.6666666666666666,
+    "mode": "balanced",
+    "emotions": {
+      "Boredom": {
+        "level": "High",
+        "confidence": 0.36055509746074677,
+        "probabilities": [
+          0.27100181579589844,
+          0.23205897957086563,
+          0.36055509746074677,
+          0.13638410717248917
+        ]
+      },
+      "Engagement": {
+        "level": "High",
+        "confidence": 0.4785817116498947,
+        "probabilities": [
+          0.08757937513291836,
+          0.18170928955078125,
+          0.4785817116498947,
+          0.25212961435317993
+        ]
+      },
+      "Confusion": {
+        "level": "Very Low",
+        "confidence": 0.5885285809636116,
+        "probabilities": [
+          0.5885285809636116,
+          0.20414210855960846,
+          0.13434938713908195,
+          0.07297986093908548
+        ]
+      },
+      "Frustration": {
+        "level": "Very Low",
+        "confidence": 0.6442455500364304,
+        "probabilities": [
+          0.6442455500364304,
+          0.16382402926683426,
+          0.11488581821322441,
+          0.07704463135451078
+        ]
+      }
+    }
+  },
+  "feature_analysis": {
+    "feature_importance": {
+      "eyes": 18.89850456181013,
+      "eyebrows": 17.948586150294517,
+      "nose": 22.292767576298132,
+      "mouth": 23.686760700618226,
+      "face_shape": 17.173381010979
+    },
+    "dominant_feature": "mouth"
+  },
+  "explanation": {
+    "engagement_level": "Low",
+    "insights": [
+      "Student shows low engagement (0.7%)",
+      "Strong indicators of disengagement detected",
+      "\u26a0\ufe0f High boredom detected (36.1% confidence)",
+      "Recommendation: Introduce interactive elements or change pace",
+      "\nMost informative facial region: mouth (23.7%)"
+    ]
+  }
+}

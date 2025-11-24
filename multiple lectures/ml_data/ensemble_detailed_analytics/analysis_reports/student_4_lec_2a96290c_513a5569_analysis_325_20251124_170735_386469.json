@@ -1,0 +1,85 @@
+{
+  "timestamp": "2025-11-24T17:07:35.389946",
+  "frame_number": 325,
+  "session_id": "student_4_lec_2a96290c_513a5569",
+  "analysis_version": "2.0_explainable_ai",
+  "openface_metrics": {
+    "engagement_score": 64.27,
+    "status": "engaged",
+    "face_detected": 1,
+    "confidence": 0.95,
+    "gaze": {
+      "angle_x": -153.59,
+      "angle_y": -143.29,
+      "interpretation": {
+        "direction": "up_left",
+        "attention_level": "distracted",
+        "description": "Gaze away from screen - likely distracted"
+      }
+    },
+    "head_pose": {
+      "rotation_x": -177.32,
+      "rotation_y": 9.15,
+      "rotation_z": 0.5,
+      "interpretation": {
+        "posture": "relaxed",
+        "engagement_indicator": "positive",
+        "description": "Head tilted up - relaxed posture"
+      }
+    }
+  },
+  "feature_analysis": {
+    "feature_vector_shape": [
+      35
+    ],
+    "feature_statistics": {
+      "mean": -1.1069434258104138e-08,
+      "std": 1.0,
+      "min": -0.6317393779754639,
+      "max": 5.614032745361328,
+      "non_zero_count": 35
+    },
+    "feature_breakdown": {
+      "gaze_features": {
+        "gaze_x": -0.569545567035675,
+        "gaze_y": -0.5425503849983215,
+        "magnitude": 0.7866022331469797,
+        "interpretation": "Low magnitude = focused, High = distracted"
+      },
+      "head_pose_rotation": {
+        "pitch_rx": -0.4190276861190796,
+        "yaw_ry": 1.2370362281799316,
+        "roll_rz": 5.614032745361328,
+        "interpretation": "Near zero = facing screen, Large values = turned away"
+      },
+      "head_pose_translation": {
+        "tx": -0.6317393779754639,
+        "ty": -0.1430213898420334,
+        "tz": -0.16569212079048157,
+        "interpretation": "Distance and position relative to camera"
+      },
+      "action_units": {
+        "count": 27,
+        "active_aus": 0,
+        "mean_activation": -0.16220343112945557,
+        "interpretation": "Facial expressions indicating emotional state"
+      }
+    },
+    "engagement_indicators": {
+      "gaze_stability": "poor",
+      "head_orientation": "good",
+      "facial_activity": "neutral"
+    }
+  },
+  "session_context": {
+    "total_frames_processed": 325,
+    "average_engagement_so_far": 52.770802469135795,
+    "engagement_trend": {
+      "trend": "Engagement improving (+13.4% from session start)",
+      "direction": "improving",
+      "change": 13.376135802469122,
+      "recent_average": 64.86699999999999,
+      "session_average": 52.770802469135795
+    }
+  }
+}

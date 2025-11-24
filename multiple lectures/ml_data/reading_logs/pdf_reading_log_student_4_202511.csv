@@ -1,2 +1,3 @@
 timestamp,student_id,material_id,course_id,lecture_id,material_title,reading_duration_seconds,reading_duration_minutes,session_date
 2025-11-01T05:36:35.024933,student_4,mat_5497b0c7,cv101,lec_2a96290c,Pdf: Intro to CV,62,1.03,2025-11-01
+2025-11-24T22:35:39.232525,student_4,mat_5497b0c7,cv101,lec_2a96290c,Pdf: Intro to CV,7,0.12,2025-11-24

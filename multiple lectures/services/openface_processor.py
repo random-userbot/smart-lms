@@ -491,7 +491,7 @@ class OpenFaceProcessor:
         ]
         
         with open(csv_file, 'a', newline='') as f:
-            writer = csv.DictWriter(f, fieldnames=fieldnames)
+            writer = csv.DictWriter(f, fieldnames=fieldnames, extrasaction='ignore')
             
             if not file_exists:
                 writer.writeheader()

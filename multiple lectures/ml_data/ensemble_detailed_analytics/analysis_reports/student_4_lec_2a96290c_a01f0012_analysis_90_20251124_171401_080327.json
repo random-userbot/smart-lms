@@ -1,0 +1,85 @@
+{
+  "timestamp": "2025-11-24T17:14:01.083800",
+  "frame_number": 90,
+  "session_id": "student_4_lec_2a96290c_a01f0012",
+  "analysis_version": "2.0_explainable_ai",
+  "openface_metrics": {
+    "engagement_score": 61.98,
+    "status": "engaged",
+    "face_detected": 1,
+    "confidence": 0.95,
+    "gaze": {
+      "angle_x": -9.27,
+      "angle_y": -151.93,
+      "interpretation": {
+        "direction": "up_left",
+        "attention_level": "distracted",
+        "description": "Gaze away from screen - likely distracted"
+      }
+    },
+    "head_pose": {
+      "rotation_x": 173.17,
+      "rotation_y": -9.4,
+      "rotation_z": 1.92,
+      "interpretation": {
+        "posture": "reading_focused",
+        "engagement_indicator": "positive",
+        "description": "Head tilted down - reading or taking notes"
+      }
+    }
+  },
+  "feature_analysis": {
+    "feature_vector_shape": [
+      35
+    ],
+    "feature_statistics": {
+      "mean": 2.1287373641598606e-08,
+      "std": 0.9999999403953552,
+      "min": -0.5906540155410767,
+      "max": 5.628232955932617,
+      "non_zero_count": 35
+    },
+    "feature_breakdown": {
+      "gaze_features": {
+        "gaze_x": -0.23227886855602264,
+        "gaze_y": -0.5906540155410767,
+        "magnitude": 0.6346854645038473,
+        "interpretation": "Low magnitude = focused, High = distracted"
+      },
+      "head_pose_rotation": {
+        "pitch_rx": -0.31748905777931213,
+        "yaw_ry": 1.2423951625823975,
+        "roll_rz": 5.628232955932617,
+        "interpretation": "Near zero = facing screen, Large values = turned away"
+      },
+      "head_pose_translation": {
+        "tx": 0.22602738440036774,
+        "ty": -0.23260542750358582,
+        "tz": -0.20416854321956635,
+        "interpretation": "Distance and position relative to camera"
+      },
+      "action_units": {
+        "count": 27,
+        "active_aus": 0,
+        "mean_activation": -0.20442438125610352,
+        "interpretation": "Facial expressions indicating emotional state"
+      }
+    },
+    "engagement_indicators": {
+      "gaze_stability": "poor",
+      "head_orientation": "good",
+      "facial_activity": "neutral"
+    }
+  },
+  "session_context": {
+    "total_frames_processed": 90,
+    "average_engagement_so_far": 61.64910112359549,
+    "engagement_trend": {
+      "trend": "Engagement levels stable throughout session",
+      "direction": "stable",
+      "change": 0.22945454545454425,
+      "recent_average": 62.114,
+      "session_average": 61.64910112359549
+    }
+  }
+}

@@ -19,6 +19,12 @@ scikit-learn==1.3.2
 xgboost==2.0.3
 joblib==1.3.2
 
+# Deep Learning for Ensemble Models
+tensorflow==2.18.0
+keras==3.6.0
+ml-dtypes==0.4.1
+jax[cpu]==0.4.23
+
 # Computer Vision & Face Tracking
 opencv-python==4.8.1.78
 mediapipe==0.10.9

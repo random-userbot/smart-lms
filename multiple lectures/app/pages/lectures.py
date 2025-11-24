@@ -170,12 +170,33 @@ def show_lecture_player(lecture):
     with col2:
         st.markdown("### 📊 Live Monitoring")
         
+        # Ensemble ML settings (collapsible)
+        with st.expander("🤖 AI Ensemble Settings", expanded=False):
+            use_ensemble = st.checkbox(
+                "Enable Ensemble ML Model",
+                value=True,
+                help="Use 3 trained models for improved accuracy (+30% better than baseline)"
+            )
+            
+            ensemble_mode = st.select_slider(
+                "Prediction Mode",
+                options=["fast", "balanced", "accurate"],
+                value="fast",
+                help="Fast: 66ms (1 model), Balanced: 126ms (2 models), Accurate: 173ms (3 models)"
+            )
+            
+            st.info(f"Mode: **{ensemble_mode.title()}** | Models: {'3 ML models' if use_ensemble else 'OpenFace only'}")
+        
         # Real-time engagement tracking with PiP webcam
         st.markdown("**🎥 Webcam Tracking:**")
         
         try:
-            # Render PiP webcam (bottom-right, always visible)
-            pip_webcam = render_pip_webcam(lecture_id, course_id, student_id)
+            # Render PiP webcam with ensemble support (bottom-right, always visible)
+            pip_webcam = render_pip_webcam(
+                lecture_id, course_id, student_id,
+                use_ensemble=use_ensemble,
+                ensemble_mode=ensemble_mode
+            )
             
             # Show current engagement in sidebar
             render_engagement_sidebar(pip_webcam)
