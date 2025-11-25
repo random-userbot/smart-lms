@@ -17,7 +17,7 @@ from services.auth import get_auth
 from services.nlp import get_nlp_service
 
 def show_bulk_analysis():
-    st.title("📊 Bulk Feedback Analysis")
+    st.title("📊 Feedback Analysis")
     st.markdown("Analyze large volumes of student feedback using AI to extract insights, sentiment, and themes.")
 
     nlp_service = get_nlp_service()
