@@ -11,14 +11,11 @@ sys.path.append(os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(
 
 from services.auth import get_auth
 from services.storage import get_storage
-<<<<<<< HEAD
 from services.nlp import get_nlp_service
-=======
 from services.pip_webcam_live import render_pip_webcam, render_engagement_sidebar
 from services.behavioral_logger import get_behavioral_logger, cleanup_logger
 from services.anti_cheating import get_anti_cheating_monitor, cleanup_monitor, render_integrity_widget, check_browser_visibility
 from services.pdf_reader import get_pdf_reader
->>>>>>> origin/revanth
 from datetime import datetime
 import uuid
 import re
@@ -59,6 +56,9 @@ def show_lecture_player(lecture):
     student_id = user['user_id']
     lecture_id = lecture['lecture_id']
     course_id = lecture.get('course_id', 'unknown')
+    
+    # Initialize NLP service
+    nlp_service = get_nlp_service()
     
     st.subheader(f"🎥 {lecture['title']}")
     
@@ -401,33 +401,6 @@ def show_lecture_player(lecture):
             submit_feedback = st.form_submit_button("📤 Submit Feedback", use_container_width=True, type="primary")
         
         if submit_feedback:
-<<<<<<< HEAD
-            if feedback_text:
-                storage = get_storage()
-                nlp_service = get_nlp_service()
-                user = st.session_state.user
-                
-                # Perform sentiment analysis
-                sentiment_result = nlp_service.analyze_sentiment(feedback_text)
-                
-                feedback_id = str(uuid.uuid4())
-                storage.save_feedback(
-                    feedback_id=feedback_id,
-                    student_id=user['user_id'],
-                    lecture_id=lecture['lecture_id'],
-                    text=feedback_text,
-                    rating=rating,
-                    sentiment=sentiment_result
-                )
-                
-                # Show sentiment feedback to student
-                sentiment_label = sentiment_result.get('label', 'neutral')
-                sentiment_emoji = {'positive': '😊', 'negative': '😟', 'neutral': '😐'}.get(sentiment_label, '😐')
-                
-                st.success(f"✅ Thank you for your feedback! {sentiment_emoji} Your feedback sentiment: {sentiment_label.capitalize()}")
-            else:
-                st.warning("⚠️ Please write some feedback")
-=======
             # Validate feedback
             if not strengths and not improvements and not additional_comments:
                 st.warning("⚠️ Please provide at least some written feedback")
@@ -440,8 +413,7 @@ def show_lecture_player(lecture):
                 """.strip()
                 
                 # Perform NLP analysis
-                from services.nlp import get_nlp_service
-                nlp_service = get_nlp_service()
+                # nlp_service is already imported at top level
                 sentiment_analysis = nlp_service.analyze_sentiment(combined_text)
                 keywords = nlp_service.extract_keywords(combined_text, top_n=10)
                 themes = nlp_service.detect_themes(combined_text)
@@ -612,7 +584,6 @@ def render_lecture_card(lecture, course, user):
                 st.session_state.current_page = 'quizzes'
                 st.session_state.selected_lecture_id = lecture['lecture_id']
                 st.rerun()
->>>>>>> origin/revanth
 
 
 def show_lecture_list(course_id):
