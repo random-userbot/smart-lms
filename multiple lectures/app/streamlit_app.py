@@ -556,15 +556,12 @@ def show_dashboard():
     elif page == 'attendance':
         from pages import attendance
         attendance.main()
-<<<<<<< HEAD
     elif page == 'feedback' and role == 'teacher':
         from pages import feedback
         feedback.main()
-=======
     elif page == 'teacher_evaluation':
         from pages import teacher_evaluation
         teacher_evaluation.show_teacher_evaluation()
->>>>>>> origin/revanth
     elif page == 'dashboard':
         if role == 'admin':
             show_admin_dashboard()
