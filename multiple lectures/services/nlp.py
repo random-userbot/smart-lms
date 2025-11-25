@@ -32,6 +32,39 @@ class NLPService:
         try:
             from vaderSentiment.vaderSentiment import SentimentIntensityAnalyzer
             self.vader = SentimentIntensityAnalyzer()
+            
+            # Update lexicon with domain-specific terms
+            new_words = {
+                'froze': -2.0,
+                'frozen': -2.0,
+                'lag': -2.0,
+                'lagging': -2.0,
+                'buffer': -1.5,
+                'buffering': -1.5,
+                'crash': -2.5,
+                'crashed': -2.5,
+                'unclear': -2.0,
+                'unimprove': -2.0,
+                'unimproved': -2.0,
+                'disorganized': -2.0,
+                'rushed': -1.5,
+                'missing': -1.5,
+                'buggy': -2.0,
+                'poor': -2.0,
+                'difficult': -1.5,
+                'confusing': -1.5,
+                'confused': -1.5,
+                'boring': -1.5,
+                'bored': -1.5,
+                'abrupt': -1.5,
+                'overloaded': -1.5,
+                'trouble': -1.5,
+                'hard': -1.0,
+                'check': 0.0,  # Neutralize "check" (often used in "check network")
+                'network': 0.0, # Neutralize "network"
+                'needs_fix': -2.0,
+            }
+            self.vader.lexicon.update(new_words)
         except ImportError:
             raise ImportError("VADER not installed. Run: pip install vaderSentiment")
     
@@ -100,7 +133,16 @@ class NLPService:
             return self._analyze_distilbert(cleaned_text)
     
     def _analyze_vader(self, text: str) -> Dict:
-        """Analyze sentiment using VADER"""
+        """Analyze sentiment using VADER with improved mixed sentiment handling"""
+        
+        # Pre-process for specific phrases that VADER misses
+        # "must be improved", "needs improvement" -> imply negative sentiment despite "improved" being positive
+        text_lower = text.lower()
+        if "must be improved" in text_lower or "needs improvement" in text_lower or "should be improved" in text_lower:
+            # Manually inject negative sentiment or adjust score
+            # A simple hack is to append a strong negative word to influence VADER
+            text = text + " needs_fix"
+            
         scores = self.vader.polarity_scores(text)
         
         # Determine label
