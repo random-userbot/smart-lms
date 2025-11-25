@@ -1,0 +1,625 @@
+{
+  "session_id": "student_4_lec_2a96290c_700aeb29",
+  "student_id": "student_4",
+  "lecture_id": "lec_2a96290c",
+  "course_id": "cv101",
+  "timestamp": "2025-11-24T18:26:48.842001",
+  "total_frames": 450,
+  "ensemble_predictions": 202,
+  "predictions": [
+    {
+      "timestamp": "2025-11-24T18:26:38.607084",
+      "frame_number": 440,
+      "prediction": {
+        "timestamp": "2025-11-24T18:26:38.606097",
+        "mode": "fast",
+        "predictions": {
+          "Boredom": {
+            "level": "Very Low",
+            "class_id": 0,
+            "level_name": "Boredom_Very_Low",
+            "confidence": 0.37731918692588806,
+            "probabilities": [
+              0.37731918692588806,
+              0.23964396119117737,
+              0.18021786212921143,
+              0.20281897485256195
+            ]
+          },
+          "Engagement": {
+            "level": "Very High",
+            "class_id": 3,
+            "level_name": "Engagement_Very_High",
+            "confidence": 0.26591747999191284,
+            "probabilities": [
+              0.25359925627708435,
+              0.22513946890830994,
+              0.25534379482269287,
+              0.26591747999191284
+            ]
+          },
+          "Confusion": {
+            "level": "Very High",
+            "class_id": 3,
+            "level_name": "Confusion_Very_High",
+            "confidence": 0.31923776865005493,
+            "probabilities": [
+              0.22225023806095123,
+              0.2127445787191391,
+              0.24576744437217712,
+              0.31923776865005493
+            ]
+          },
+          "Frustration": {
+            "level": "Very Low",
+            "class_id": 0,
+            "level_name": "Frustration_Very_Low",
+            "confidence": 0.3021535575389862,
+            "probabilities": [
+              0.3021535575389862,
+              0.24695855379104614,
+              0.22804369032382965,
+              0.2228441834449768
+            ]
+          }
+        },
+        "engagement_score": 91.24449999999999
+      }
+    },
+    {
+      "timestamp": "2025-11-24T18:26:39.664393",
+      "frame_number": 441,
+      "prediction": {
+        "timestamp": "2025-11-24T18:26:39.664393",
+        "mode": "fast",
+        "predictions": {
+          "Boredom": {
+            "level": "Very Low",
+            "class_id": 0,
+            "level_name": "Boredom_Very_Low",
+            "confidence": 0.37712278962135315,
+            "probabilities": [
+              0.37712278962135315,
+              0.23952576518058777,
+              0.18030555546283722,
+              0.20304587483406067
+            ]
+          },
+          "Engagement": {
+            "level": "Very High",
+            "class_id": 3,
+            "level_name": "Engagement_Very_High",
+            "confidence": 0.2655700445175171,
+            "probabilities": [
+              0.2538926601409912,
+              0.225138321518898,
+              0.2553989291191101,
+              0.2655700445175171
+            ]
+          },
+          "Confusion": {
+            "level": "Very High",
+            "class_id": 3,
+            "level_name": "Confusion_Very_High",
+            "confidence": 0.3189224600791931,
+            "probabilities": [
+              0.2220882624387741,
+              0.21294307708740234,
+              0.24604618549346924,
+              0.3189224600791931
+            ]
+          },
+          "Frustration": {
+            "level": "Very Low",
+            "class_id": 0,
+            "level_name": "Frustration_Very_Low",
+            "confidence": 0.30175676941871643,
+            "probabilities": [
+              0.30175676941871643,
+              0.24748310446739197,
+              0.22798804938793182,
+              0.22277207672595978
+            ]
+          }
+        },
+        "engagement_score": 91.24449999999999
+      }
+    },
+    {
+      "timestamp": "2025-11-24T18:26:40.654520",
+      "frame_number": 442,
+      "prediction": {
+        "timestamp": "2025-11-24T18:26:40.654520",
+        "mode": "fast",
+        "predictions": {
+          "Boredom": {
+            "level": "Very Low",
+            "class_id": 0,
+            "level_name": "Boredom_Very_Low",
+            "confidence": 0.37729611992836,
+            "probabilities": [
+              0.37729611992836,
+              0.23959195613861084,
+              0.1802385449409485,
+              0.2028733789920807
+            ]
+          },
+          "Engagement": {
+            "level": "Very High",
+            "class_id": 3,
+            "level_name": "Engagement_Very_High",
+            "confidence": 0.26579412817955017,
+            "probabilities": [
+              0.2540541887283325,
+              0.2249688357114792,
+              0.25518283247947693,
+              0.26579412817955017
+            ]
+          },
+          "Confusion": {
+            "level": "Very High",
+            "class_id": 3,
+            "level_name": "Confusion_Very_High",
+            "confidence": 0.3189864456653595,
+            "probabilities": [
+              0.22224490344524384,
+              0.21273629367351532,
+              0.24603232741355896,
+              0.3189864456653595
+            ]
+          },
+          "Frustration": {
+            "level": "Very Low",
+            "class_id": 0,
+            "level_name": "Frustration_Very_Low",
+            "confidence": 0.3014405369758606,
+            "probabilities": [
+              0.3014405369758606,
+              0.2473304569721222,
+              0.22811084985733032,
+              0.22311817109584808
+            ]
+          }
+        },
+        "engagement_score": 91.24449999999999
+      }
+    },
+    {
+      "timestamp": "2025-11-24T18:26:41.674520",
+      "frame_number": 443,
+      "prediction": {
+        "timestamp": "2025-11-24T18:26:41.674520",
+        "mode": "fast",
+        "predictions": {
+          "Boredom": {
+            "level": "Very Low",
+            "class_id": 0,
+            "level_name": "Boredom_Very_Low",
+            "confidence": 0.37757617235183716,
+            "probabilities": [
+              0.37757617235183716,
+              0.24021263420581818,
+              0.1798674762248993,
+              0.20234379172325134
+            ]
+          },
+          "Engagement": {
+            "level": "Very High",
+            "class_id": 3,
+            "level_name": "Engagement_Very_High",
+            "confidence": 0.265826553106308,
+            "probabilities": [
+              0.25482800602912903,
+              0.2247915267944336,
+              0.2545539140701294,
+              0.265826553106308
+            ]
+          },
+          "Confusion": {
+            "level": "Very High",
+            "class_id": 3,
+            "level_name": "Confusion_Very_High",
+            "confidence": 0.3199310302734375,
+            "probabilities": [
+              0.2220737487077713,
+              0.2119845598936081,
+              0.2460106611251831,
+              0.3199310302734375
+            ]
+          },
+          "Frustration": {
+            "level": "Very Low",
+            "class_id": 0,
+            "level_name": "Frustration_Very_Low",
+            "confidence": 0.3009476363658905,
+            "probabilities": [
+              0.3009476363658905,
+              0.24790969491004944,
+              0.22794485092163086,
+              0.2231978327035904
+            ]
+          }
+        },
+        "engagement_score": 91.24449999999999
+      }
+    },
+    {
+      "timestamp": "2025-11-24T18:26:42.691116",
+      "frame_number": 444,
+      "prediction": {
+        "timestamp": "2025-11-24T18:26:42.691116",
+        "mode": "fast",
+        "predictions": {
+          "Boredom": {
+            "level": "Very Low",
+            "class_id": 0,
+            "level_name": "Boredom_Very_Low",
+            "confidence": 0.3774581253528595,
+            "probabilities": [
+              0.3774581253528595,
+              0.241138756275177,
+              0.17958642542362213,
+              0.20181670784950256
+            ]
+          },
+          "Engagement": {
+            "level": "Very High",
+            "class_id": 3,
+            "level_name": "Engagement_Very_High",
+            "confidence": 0.2657192647457123,
+            "probabilities": [
+              0.25577786564826965,
+              0.2244703620672226,
+              0.25403255224227905,
+              0.2657192647457123
+            ]
+          },
+          "Confusion": {
+            "level": "Very High",
+            "class_id": 3,
+            "level_name": "Confusion_Very_High",
+            "confidence": 0.320947527885437,
+            "probabilities": [
+              0.22180651128292084,
+              0.21113932132720947,
+              0.24610669910907745,
+              0.320947527885437
+            ]
+          },
+          "Frustration": {
+            "level": "Very Low",
+            "class_id": 0,
+            "level_name": "Frustration_Very_Low",
+            "confidence": 0.30059483647346497,
+            "probabilities": [
+              0.30059483647346497,
+              0.2481599748134613,
+              0.22784064710140228,
+              0.22340455651283264
+            ]
+          }
+        },
+        "engagement_score": 91.24449999999999
+      }
+    },
+    {
+      "timestamp": "2025-11-24T18:26:43.718017",
+      "frame_number": 445,
+      "prediction": {
+        "timestamp": "2025-11-24T18:26:43.718017",
+        "mode": "fast",
+        "predictions": {
+          "Boredom": {
+            "level": "Very Low",
+            "class_id": 0,
+            "level_name": "Boredom_Very_Low",
+            "confidence": 0.37713417410850525,
+            "probabilities": [
+              0.37713417410850525,
+              0.24150511622428894,
+              0.17950263619422913,
+              0.20185810327529907
+            ]
+          },
+          "Engagement": {
+            "level": "Very High",
+            "class_id": 3,
+            "level_name": "Engagement_Very_High",
+            "confidence": 0.26595625281333923,
+            "probabilities": [
+              0.25619542598724365,
+              0.22464905679225922,
+              0.2531993091106415,
+              0.26595625281333923
+            ]
+          },
+          "Confusion": {
+            "level": "Very High",
+            "class_id": 3,
+            "level_name": "Confusion_Very_High",
+            "confidence": 0.3214651942253113,
+            "probabilities": [
+              0.2215881645679474,
+              0.21102353930473328,
+              0.24592308700084686,
+              0.3214651942253113
+            ]
+          },
+          "Frustration": {
+            "level": "Very Low",
+            "class_id": 0,
+            "level_name": "Frustration_Very_Low",
+            "confidence": 0.30043503642082214,
+            "probabilities": [
+              0.30043503642082214,
+              0.24800869822502136,
+              0.22852006554603577,
+              0.22303622961044312
+            ]
+          }
+        },
+        "engagement_score": 91.24449999999999
+      }
+    },
+    {
+      "timestamp": "2025-11-24T18:26:44.778214",
+      "frame_number": 446,
+      "prediction": {
+        "timestamp": "2025-11-24T18:26:44.778214",
+        "mode": "fast",
+        "predictions": {
+          "Boredom": {
+            "level": "Very Low",
+            "class_id": 0,
+            "level_name": "Boredom_Very_Low",
+            "confidence": 0.3779942989349365,
+            "probabilities": [
+              0.3779942989349365,
+              0.24104803800582886,
+              0.17907647788524628,
+              0.20188121497631073
+            ]
+          },
+          "Engagement": {
+            "level": "Very High",
+            "class_id": 3,
+            "level_name": "Engagement_Very_High",
+            "confidence": 0.26618391275405884,
+            "probabilities": [
+              0.2564223110675812,
+              0.22406180202960968,
+              0.2533319890499115,
+              0.26618391275405884
+            ]
+          },
+          "Confusion": {
+            "level": "Very High",
+            "class_id": 3,
+            "level_name": "Confusion_Very_High",
+            "confidence": 0.3222847282886505,
+            "probabilities": [
+              0.22191108763217926,
+              0.21029673516750336,
+              0.24550741910934448,
+              0.3222847282886505
+            ]
+          },
+          "Frustration": {
+            "level": "Very Low",
+            "class_id": 0,
+            "level_name": "Frustration_Very_Low",
+            "confidence": 0.30155423283576965,
+            "probabilities": [
+              0.30155423283576965,
+              0.24722133576869965,
+              0.2287956029176712,
+              0.2224287986755371
+            ]
+          }
+        },
+        "engagement_score": 91.24449999999999
+      }
+    },
+    {
+      "timestamp": "2025-11-24T18:26:45.766578",
+      "frame_number": 447,
+      "prediction": {
+        "timestamp": "2025-11-24T18:26:45.766578",
+        "mode": "fast",
+        "predictions": {
+          "Boredom": {
+            "level": "Very Low",
+            "class_id": 0,
+            "level_name": "Boredom_Very_Low",
+            "confidence": 0.3805566132068634,
+            "probabilities": [
+              0.3805566132068634,
+              0.2396283596754074,
+              0.17844174802303314,
+              0.20137321949005127
+            ]
+          },
+          "Engagement": {
+            "level": "Very High",
+            "class_id": 3,
+            "level_name": "Engagement_Very_High",
+            "confidence": 0.26559698581695557,
+            "probabilities": [
+              0.2569229304790497,
+              0.22376540303230286,
+              0.2537146210670471,
+              0.26559698581695557
+            ]
+          },
+          "Confusion": {
+            "level": "Very High",
+            "class_id": 3,
+            "level_name": "Confusion_Very_High",
+            "confidence": 0.3227725028991699,
+            "probabilities": [
+              0.22155000269412994,
+              0.20985561609268188,
+              0.24582190811634064,
+              0.3227725028991699
+            ]
+          },
+          "Frustration": {
+            "level": "Very Low",
+            "class_id": 0,
+            "level_name": "Frustration_Very_Low",
+            "confidence": 0.30260974168777466,
+            "probabilities": [
+              0.30260974168777466,
+              0.2468140572309494,
+              0.22815416753292084,
+              0.22242209315299988
+            ]
+          }
+        },
+        "engagement_score": 91.24449999999999
+      }
+    },
+    {
+      "timestamp": "2025-11-24T18:26:46.792458",
+      "frame_number": 448,
+      "prediction": {
+        "timestamp": "2025-11-24T18:26:46.792458",
+        "mode": "fast",
+        "predictions": {
+          "Boredom": {
+            "level": "Very Low",
+            "class_id": 0,
+            "level_name": "Boredom_Very_Low",
+            "confidence": 0.3811435401439667,
+            "probabilities": [
+              0.3811435401439667,
+              0.23951858282089233,
+              0.17807500064373016,
+              0.20126284658908844
+            ]
+          },
+          "Engagement": {
+            "level": "Very High",
+            "class_id": 3,
+            "level_name": "Engagement_Very_High",
+            "confidence": 0.26521986722946167,
+            "probabilities": [
+              0.258231520652771,
+              0.22351743280887604,
+              0.25303128361701965,
+              0.26521986722946167
+            ]
+          },
+          "Confusion": {
+            "level": "Very High",
+            "class_id": 3,
+            "level_name": "Confusion_Very_High",
+            "confidence": 0.3236229717731476,
+            "probabilities": [
+              0.22102497518062592,
+              0.20995479822158813,
+              0.2453971654176712,
+              0.3236229717731476
+            ]
+          },
+          "Frustration": {
+            "level": "Very Low",
+            "class_id": 0,
+            "level_name": "Frustration_Very_Low",
+            "confidence": 0.3017912805080414,
+            "probabilities": [
+              0.3017912805080414,
+              0.24695590138435364,
+              0.22842739522457123,
+              0.22282542288303375
+            ]
+          }
+        },
+        "engagement_score": 91.24449999999999
+      }
+    },
+    {
+      "timestamp": "2025-11-24T18:26:48.832709",
+      "frame_number": 450,
+      "prediction": {
+        "timestamp": "2025-11-24T18:26:48.832709",
+        "mode": "fast",
+        "predictions": {
+          "Boredom": {
+            "level": "Very Low",
+            "class_id": 0,
+            "level_name": "Boredom_Very_Low",
+            "confidence": 0.3714800477027893,
+            "probabilities": [
+              0.3714800477027893,
+              0.23542004823684692,
+              0.18970781564712524,
+              0.20339205861091614
+            ]
+          },
+          "Engagement": {
+            "level": "Very High",
+            "class_id": 3,
+            "level_name": "Engagement_Very_High",
+            "confidence": 0.2692283093929291,
+            "probabilities": [
+              0.24557973444461823,
+              0.2266155183315277,
+              0.2585764229297638,
+              0.2692283093929291
+            ]
+          },
+          "Confusion": {
+            "level": "Very High",
+            "class_id": 3,
+            "level_name": "Confusion_Very_High",
+            "confidence": 0.30686482787132263,
+            "probabilities": [
+              0.22344306111335754,
+              0.21956878900527954,
+              0.2501232922077179,
+              0.30686482787132263
+            ]
+          },
+          "Frustration": {
+            "level": "Very Low",
+            "class_id": 0,
+            "level_name": "Frustration_Very_Low",
+            "confidence": 0.3002529442310333,
+            "probabilities": [
+              0.3002529442310333,
+              0.2411884069442749,
+              0.23440955579280853,
+              0.22414907813072205
+            ]
+          }
+        },
+        "engagement_score": 91.24449999999999
+      }
+    }
+  ],
+  "statistics": {
+    "avg_engagement": 88.76392326732673,
+    "min_engagement": 78.74575,
+    "max_engagement": 99.99625,
+    "std_engagement": 4.984822703735451,
+    "emotion_analysis": {
+      "Boredom": {
+        "avg_confidence": 0.3567274243819832,
+        "most_common_level": "Very Low"
+      },
+      "Engagement": {
+        "avg_confidence": 0.2787185215418882,
+        "most_common_level": "Very High"
+      },
+      "Confusion": {
+        "avg_confidence": 0.29056185306888993,
+        "most_common_level": "Very High"
+      },
+      "Frustration": {
+        "avg_confidence": 0.30892906286338767,
+        "most_common_level": "Very Low"
+      }
+    }
+  }
+}

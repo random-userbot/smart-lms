@@ -145,21 +145,40 @@ class NLPService:
             
         scores = self.vader.polarity_scores(text)
         
-        # Determine label
+        # Determine label with better mixed sentiment detection
         compound = scores['compound']
-        if compound >= 0.05:
-            label = 'positive'
-        elif compound <= -0.05:
-            label = 'negative'
+        pos = scores['pos']
+        neg = scores['neg']
+        
+        # Check for mixed sentiment (both positive and negative present)
+        is_mixed = (pos > 0.1 and neg > 0.1)
+        
+        if is_mixed:
+            # For mixed sentiment, use a weighted approach
+            # If positive outweighs negative significantly, label as positive
+            if pos > neg * 1.3:  # 30% threshold
+                label = 'positive'
+            elif neg > pos * 1.3:
+                label = 'negative'
+            else:
+                # Too close, use compound score
+                label = 'positive' if compound >= 0 else 'negative'
         else:
-            label = 'neutral'
+            # Standard classification
+            if compound >= 0.05:
+                label = 'positive'
+            elif compound <= -0.05:
+                label = 'negative'
+            else:
+                label = 'neutral'
         
         return {
             'label': label,
             'positive': scores['pos'],
             'neutral': scores['neu'],
             'negative': scores['neg'],
-            'compound': scores['compound']
+            'compound': scores['compound'],
+            'is_mixed': is_mixed
         }
     
     def _analyze_distilbert(self, text: str) -> Dict:
@@ -442,6 +461,338 @@ class NLPService:
             })
         
         return trend
+    
+    def extract_keywords(self, text: str, top_n: int = 10) -> List[str]:
+        """
+        Extract keywords from text using frequency analysis with improved cleaning
+        
+        Args:
+            text: Input text
+            top_n: Number of top keywords to return
+        
+        Returns:
+            List of keywords
+        """
+        if not text or len(text) < 10:
+            return []
+        
+        # Clean text
+        cleaned = self.clean_text(text)
+        
+        # Remove punctuation properly
+        import string
+        cleaned = cleaned.translate(str.maketrans('', '', string.punctuation))
+        
+        # Split into words
+        words = cleaned.split()
+        
+        # Expanded stopwords list
+        stopwords = {
+            'the', 'a', 'an', 'and', 'or', 'but', 'in', 'on', 'at', 'to', 'for', 
+            'of', 'with', 'is', 'was', 'are', 'were', 'been', 'be', 'have', 'has', 
+            'had', 'do', 'does', 'did', 'will', 'would', 'could', 'should', 'may', 
+            'might', 'can', 'this', 'that', 'these', 'those', 'i', 'you', 'he', 
+            'she', 'it', 'we', 'they', 'what', 'which', 'who', 'when', 'where', 
+            'why', 'how', 'very', 'too', 'more', 'most', 'some', 'any', 'much', 'many',
+            'also', 'just', 'only', 'such', 'than', 'then', 'them', 'their', 'there',
+            'about', 'into', 'through', 'during', 'before', 'after', 'above', 'below',
+            'from', 'up', 'down', 'out', 'off', 'over', 'under', 'again', 'further',
+            'once', 'here', 'there', 'all', 'both', 'each', 'few', 'other', 'another',
+            'same', 'own', 'so', 'no', 'not', 'nor', 'now', 'because', 'while', 'during'
+        }
+        
+        # Filter words - minimum length 4 characters
+        filtered_words = [w for w in words if w not in stopwords and len(w) >= 4]
+        
+        # Count frequency
+        from collections import Counter
+        word_counts = Counter(filtered_words)
+        
+        # Get top keywords
+        keywords = [word for word, count in word_counts.most_common(top_n)]
+        
+        return keywords
+    
+    def detect_themes(self, text: str) -> List[str]:
+        """
+        Detect common themes in feedback text with improved accuracy
+        
+        Args:
+            text: Input feedback text
+        
+        Returns:
+            List of detected themes
+        """
+        if not text or len(text) < 10:
+            return []
+        
+        text_lower = text.lower()
+        detected_themes = []
+        
+        # Define theme keywords with better categorization
+        theme_keywords = {
+            'content_quality': ['content', 'material', 'topic', 'subject', 'information', 'knowledge', 'curriculum'],
+            'teaching_style': ['teaching', 'explanation', 'teach', 'instructor', 'professor', 'teacher', 'style'],
+            'clarity': ['clear', 'unclear', 'understand', 'confusing', 'confused', 'clarity', 'understandable', 'comprehensible'],
+            'pace': ['pace', 'speed', 'fast', 'slow', 'rushed', 'quick', 'tempo', 'timing'],
+            'engagement': ['engaging', 'interesting', 'boring', 'engaged', 'attention', 'interactive', 'captivating', 'dull'],
+            'examples': ['example', 'examples', 'demonstration', 'demo', 'case study', 'practical', 'practice', 'hands-on'],
+            'visual_aids': ['slide', 'slides', 'visual', 'diagram', 'chart', 'presentation', 'graphics', 'illustrations'],
+            'technical_issues': ['technical', 'audio', 'video', 'sound', 'buffering', 'loading', 'glitch', 'lag', 'quality was', 'connection'],
+            'difficulty': ['difficult', 'hard', 'easy', 'challenging', 'complex', 'simple', 'tough', 'struggle'],
+            'organization': ['organized', 'structure', 'organized', 'disorganized', 'flow', 'arrangement', 'layout'],
+            'interaction': ['question', 'questions', 'interactive', 'discussion', 'participate', 'engage', 'dialogue'],
+            'time_management': ['time', 'duration', 'length', 'long', 'short', 'overtime', 'finish'],
+            'relevance': ['relevant', 'applicable', 'real-world', 'practical', 'useful', 'application']
+        }
+        
+        # Check for each theme with better matching
+        for theme, keywords in theme_keywords.items():
+            for keyword in keywords:
+                if keyword in text_lower:
+                    if theme not in detected_themes:
+                        detected_themes.append(theme)
+                    break
+        
+        return detected_themes
+    
+    def detect_emotions(self, text: str) -> Dict[str, float]:
+        """
+        Detect emotions in text (happiness, sadness, anger, frustration, confusion)
+        
+        Args:
+            text: Input text
+        
+        Returns:
+            Dictionary with emotion scores (0-1 scale)
+        """
+        if not text or len(text) < 5:
+            return {
+                'happiness': 0.0,
+                'sadness': 0.0,
+                'anger': 0.0,
+                'frustration': 0.0,
+                'confusion': 0.0,
+                'satisfaction': 0.0
+            }
+        
+        text_lower = text.lower()
+        
+        # Emotion keyword dictionaries
+        emotion_keywords = {
+            'happiness': ['happy', 'great', 'excellent', 'amazing', 'wonderful', 'love', 'enjoyed', 'fantastic', 'perfect', 'brilliant'],
+            'sadness': ['sad', 'disappointed', 'unfortunate', 'depressed', 'unhappy', 'miserable', 'regret'],
+            'anger': ['angry', 'furious', 'mad', 'outraged', 'irritated', 'annoyed', 'frustrating', 'terrible', 'awful'],
+            'frustration': ['frustrated', 'struggling', 'difficult', 'challenging', 'stuck', 'lost', 'overwhelmed', 'stressed'],
+            'confusion': ['confused', 'confusing', 'unclear', 'dont understand', "don't understand", 'lost', 'puzzled', 'bewildered'],
+            'satisfaction': ['satisfied', 'content', 'pleased', 'good', 'nice', 'helpful', 'useful', 'appreciate']
+        }
+        
+        # Count emotion indicators
+        emotion_scores = {}
+        for emotion, keywords in emotion_keywords.items():
+            count = sum(1 for keyword in keywords if keyword in text_lower)
+            # Normalize by number of keywords checked
+            emotion_scores[emotion] = min(count / 3.0, 1.0)  # Cap at 1.0
+        
+        return emotion_scores
+    
+    def analyze_aspect_sentiment(self, text: str) -> Dict[str, Dict]:
+        """
+        Analyze sentiment for different aspects of the lecture
+        
+        Args:
+            text: Input feedback text
+        
+        Returns:
+            Dictionary with aspect-specific sentiment
+        """
+        text_lower = text.lower()
+        
+        aspects = {
+            'content': ['content', 'material', 'topic', 'subject', 'curriculum'],
+            'teaching': ['teaching', 'instructor', 'professor', 'teacher', 'explanation'],
+            'delivery': ['delivery', 'presentation', 'communication', 'speaking'],
+            'technical': ['audio', 'video', 'slides', 'quality', 'technical'],
+            'engagement': ['engaging', 'interactive', 'interesting', 'boring'],
+            'difficulty': ['difficult', 'easy', 'hard', 'challenging', 'complex']
+        }
+        
+        # Sentiment indicators
+        positive_words = ['good', 'great', 'excellent', 'clear', 'helpful', 'useful', 'easy', 'well']
+        negative_words = ['bad', 'poor', 'unclear', 'confusing', 'difficult', 'terrible', 'awful']
+        
+        results = {}
+        
+        for aspect, keywords in aspects.items():
+            # Check if aspect is mentioned
+            mentioned = any(keyword in text_lower for keyword in keywords)
+            
+            if mentioned:
+                # Look for sentiment words near the aspect keywords
+                # Simplified: check overall sentiment when aspect is present
+                pos_count = sum(1 for word in positive_words if word in text_lower)
+                neg_count = sum(1 for word in negative_words if word in text_lower)
+                
+                if pos_count > neg_count:
+                    sentiment = 'positive'
+                    score = 0.6 + (pos_count * 0.1)
+                elif neg_count > pos_count:
+                    sentiment = 'negative'
+                    score = -(0.6 + (neg_count * 0.1))
+                else:
+                    sentiment = 'neutral'
+                    score = 0.0
+                
+                results[aspect] = {
+                    'sentiment': sentiment,
+                    'score': max(min(score, 1.0), -1.0),  # Clamp between -1 and 1
+                    'mentioned': True
+                }
+            else:
+                results[aspect] = {
+                    'sentiment': 'not_mentioned',
+                    'score': 0.0,
+                    'mentioned': False
+                }
+        
+        return results
+    
+    def analyze_feedback_aggregate(self, feedbacks: List[Dict]) -> Dict:
+        """
+        Aggregate analysis of multiple feedbacks
+        
+        Args:
+            feedbacks: List of feedback dictionaries
+        
+        Returns:
+            Aggregated analysis results
+        """
+        if not feedbacks:
+            return {
+                'total_count': 0,
+                'avg_sentiment_compound': 0.0,
+                'sentiment_distribution': {'positive': 0, 'neutral': 0, 'negative': 0},
+                'common_themes': [],
+                'top_keywords': []
+            }
+        
+        sentiments = []
+        all_keywords = []
+        all_themes = []
+        sentiment_counts = {'positive': 0, 'neutral': 0, 'negative': 0}
+        
+        for feedback in feedbacks:
+            # Get or analyze sentiment
+            if 'nlp_analysis' in feedback and 'sentiment' in feedback['nlp_analysis']:
+                sentiment = feedback['nlp_analysis']['sentiment']
+            else:
+                text = feedback.get('combined_text') or feedback.get('text', '')
+                sentiment = self.analyze_sentiment(text)
+            
+            sentiments.append(sentiment['compound'])
+            sentiment_counts[sentiment['label']] += 1
+            
+            # Collect keywords and themes
+            if 'nlp_analysis' in feedback:
+                all_keywords.extend(feedback['nlp_analysis'].get('keywords', []))
+                all_themes.extend(feedback['nlp_analysis'].get('themes', []))
+        
+        # Calculate averages
+        avg_compound = sum(sentiments) / len(sentiments) if sentiments else 0.0
+        
+        # Get most common keywords and themes
+        from collections import Counter
+        keyword_counts = Counter(all_keywords)
+        theme_counts = Counter(all_themes)
+        
+        return {
+            'total_count': len(feedbacks),
+            'avg_sentiment_compound': avg_compound,
+            'sentiment_distribution': sentiment_counts,
+            'common_themes': [theme for theme, count in theme_counts.most_common(10)],
+            'top_keywords': [word for word, count in keyword_counts.most_common(20)]
+        }
+    
+    def comprehensive_analysis(self, text: str) -> Dict:
+        """
+        Perform comprehensive NLP analysis on feedback text
+        Includes sentiment, emotions, themes, keywords, and aspect-based sentiment
+        
+        Args:
+            text: Input feedback text
+        
+        Returns:
+            Complete analysis results
+        """
+        # Basic sentiment analysis
+        sentiment = self.analyze_sentiment(text)
+        
+        # Emotion detection
+        emotions = self.detect_emotions(text)
+        
+        # Theme detection
+        themes = self.detect_themes(text)
+        
+        # Keyword extraction
+        keywords = self.extract_keywords(text, top_n=10)
+        
+        # Aspect-based sentiment
+        aspects = self.analyze_aspect_sentiment(text)
+        
+        # Determine dominant emotion
+        dominant_emotion = max(emotions.items(), key=lambda x: x[1])[0] if any(emotions.values()) else 'neutral'
+        
+        # Calculate overall quality score (0-100)
+        quality_score = self._calculate_quality_score(sentiment, emotions, themes)
+        
+        return {
+            'sentiment': sentiment,
+            'emotions': emotions,
+            'dominant_emotion': dominant_emotion,
+            'themes': themes,
+            'keywords': keywords,
+            'aspect_sentiment': aspects,
+            'quality_score': quality_score,
+            'text_length': len(text),
+            'word_count': len(text.split())
+        }
+    
+    def _calculate_quality_score(self, sentiment: Dict, emotions: Dict, themes: List[str]) -> float:
+        """
+        Calculate overall feedback quality score based on multiple factors
+        
+        Args:
+            sentiment: Sentiment analysis results
+            emotions: Emotion detection results
+            themes: Detected themes
+        
+        Returns:
+            Quality score (0-100)
+        """
+        # Base score from sentiment (0-100 scale)
+        base_score = ((sentiment['compound'] + 1) / 2) * 100
+        
+        # Adjust for specific emotions
+        emotion_adjustment = 0
+        if emotions.get('happiness', 0) > 0.5:
+            emotion_adjustment += 10
+        if emotions.get('frustration', 0) > 0.5:
+            emotion_adjustment -= 15
+        if emotions.get('confusion', 0) > 0.5:
+            emotion_adjustment -= 10
+        if emotions.get('satisfaction', 0) > 0.5:
+            emotion_adjustment += 5
+        
+        # Adjust for negative themes
+        negative_themes = ['technical_issues', 'difficulty']
+        theme_penalty = sum(5 for theme in themes if theme in negative_themes)
+        
+        # Calculate final score
+        final_score = base_score + emotion_adjustment - theme_penalty
+        
+        # Clamp between 0 and 100
+        return max(0, min(100, final_score))
 
 
 # Singleton instance

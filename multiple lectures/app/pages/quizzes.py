@@ -156,15 +156,75 @@ def show_quiz_result():
     else:
         st.warning("📚 Keep practicing! Review the lecture and try again.")
     
-    if st.button("🏠 Back to Quizzes"):
+    if st.button("🏠 Back to Quizzes", key="back_to_quizzes_result"):
         del st.session_state.quiz_result
         st.session_state.current_page = 'quizzes'
         st.rerun()
 
 
+def render_quiz_card(quiz, lecture, course_id, is_completed, latest_grade=None):
+    """Render a quiz card with Streamlit native components"""
+    # Determine status
+    if is_completed and latest_grade:
+        percentage = latest_grade['percentage']
+        if percentage >= 80:
+            grade_emoji = "🟢"
+            status_text = f"✅ {percentage:.0f}%"
+        elif percentage >= 60:
+            grade_emoji = "🟡"
+            status_text = f"✅ {percentage:.0f}%"
+        else:
+            grade_emoji = "🟠"
+            status_text = f"✅ {percentage:.0f}%"
+    else:
+        grade_emoji = "�"
+        status_text = "New"
+    
+    with st.container():
+        col1, col2 = st.columns([4, 1])
+        with col1:
+            st.markdown(f"### {grade_emoji} {quiz['title']}")
+        with col2:
+            st.markdown(f"**{status_text}**")
+        
+        st.caption(f"📚 Lecture: {lecture['title']}")
+        
+        col1, col2, col3 = st.columns(3)
+        with col1:
+            st.metric("Questions", len(quiz['questions']))
+        with col2:
+            st.metric("Time Limit", f"{quiz['time_limit']} min")
+        with col3:
+            if latest_grade:
+                st.metric("Score", f"{latest_grade['score']}/{latest_grade['max_score']}")
+        
+        st.markdown("---")
+    
+    # Action buttons
+    if is_completed:
+        col1, col2 = st.columns(2)
+        with col1:
+            if st.button("🔄 Retake Quiz", key=f"retake_{quiz['quiz_id']}", type="primary", use_container_width=True):
+                st.session_state.selected_quiz = quiz
+                st.session_state.selected_lecture_id = lecture['lecture_id']
+                st.session_state.selected_course_id = course_id
+                st.session_state.current_page = 'take_quiz'
+                st.rerun()
+        with col2:
+            if st.button("📊 View Details", key=f"view_{quiz['quiz_id']}", use_container_width=True):
+                st.info("📈 Detailed results view coming soon!")
+    else:
+        if st.button("▶️ Start Quiz", key=f"start_{quiz['quiz_id']}", type="primary", use_container_width=True):
+            st.session_state.selected_quiz = quiz
+            st.session_state.selected_lecture_id = lecture['lecture_id']
+            st.session_state.selected_course_id = course_id
+            st.session_state.current_page = 'take_quiz'
+            st.rerun()
+
+
 def show_available_quizzes():
-    """Display list of available quizzes"""
-    st.title("📝 Available Quizzes")
+    """Display list of available quizzes with card-based UI"""
+    st.title("📝 My Quizzes")
     
     storage = get_storage()
     user = st.session_state.user
@@ -182,62 +242,82 @@ def show_available_quizzes():
     
     # Get student's grades
     grades = storage.get_student_grades(user['user_id'])
-    completed_quizzes = {g['assessment_id'] for g in grades.get('quizzes', [])}
+    completed_quizzes = {g['assessment_id']: g for g in grades.get('quizzes', [])}
+    
+    # Calculate statistics
+    total_quizzes = 0
+    completed_count = 0
+    total_score = 0
+    
+    for course_id, course in enrolled_courses.items():
+        lectures = storage.get_course_lectures(course_id)
+        for lecture in lectures:
+            for quiz in lecture.get('quizzes', []):
+                total_quizzes += 1
+                if quiz['quiz_id'] in completed_quizzes:
+                    completed_count += 1
+                    total_score += completed_quizzes[quiz['quiz_id']]['percentage']
+    
+    # Display statistics
+    col1, col2, col3, col4 = st.columns(4)
+    with col1:
+        st.metric("📝 Total Quizzes", total_quizzes)
+    with col2:
+        st.metric("✅ Completed", completed_count)
+    with col3:
+        st.metric("📋 Pending", total_quizzes - completed_count)
+    with col4:
+        avg_score = total_score / completed_count if completed_count > 0 else 0
+        st.metric("📊 Avg Score", f"{avg_score:.0f}%")
+    
+    st.markdown("---")
+    
+    # Search and filter
+    col1, col2 = st.columns([3, 1])
+    with col1:
+        search_query = st.text_input("� Search quizzes", placeholder="Search by title or lecture...", key="quiz_search")
+    with col2:
+        filter_option = st.selectbox("Filter", ["All", "Completed", "Pending"], key="quiz_filter")
+    
+    st.markdown("---")
     
     # Display quizzes by course
     for course_id, course in enrolled_courses.items():
-        st.subheader(f"📚 {course['name']}")
         
         # Get lectures for this course
         lectures = storage.get_course_lectures(course_id)
         
-        has_quizzes = False
+        course_quizzes = []
         for lecture in lectures:
-            if lecture.get('quizzes'):
-                has_quizzes = True
+            for quiz in lecture.get('quizzes', []):
+                quiz_id = quiz['quiz_id']
+                is_completed = quiz_id in completed_quizzes
                 
-                for quiz in lecture['quizzes']:
-                    quiz_id = quiz['quiz_id']
-                    is_completed = quiz_id in completed_quizzes
-                    
-                    with st.expander(
-                        f"{'✅' if is_completed else '📝'} {quiz['title']} - {lecture['title']}",
-                        expanded=not is_completed
-                    ):
-                        st.markdown(f"**Lecture:** {lecture['title']}")
-                        st.markdown(f"**Questions:** {len(quiz['questions'])}")
-                        st.markdown(f"**Time Limit:** {quiz['time_limit']} minutes")
-                        
-                        if is_completed:
-                            # Show previous score
-                            quiz_grades = [g for g in grades['quizzes'] if g['assessment_id'] == quiz_id]
-                            if quiz_grades:
-                                latest_grade = quiz_grades[-1]
-                                st.success(f"✅ Completed | Score: {latest_grade['score']}/{latest_grade['max_score']} ({latest_grade['percentage']:.1f}%)")
-                                
-                                col1, col2 = st.columns(2)
-                                with col1:
-                                    if st.button("📊 View Details", key=f"view_{quiz_id}"):
-                                        st.info("Detailed results view coming soon!")
-                                with col2:
-                                    if st.button("🔄 Retake Quiz", key=f"retake_{quiz_id}"):
-                                        st.session_state.selected_quiz = quiz
-                                        st.session_state.selected_lecture_id = lecture['lecture_id']
-                                        st.session_state.selected_course_id = course_id
-                                        st.session_state.current_page = 'take_quiz'
-                                        st.rerun()
-                        else:
-                            if st.button("▶️ Start Quiz", key=f"start_{quiz_id}", use_container_width=True):
-                                st.session_state.selected_quiz = quiz
-                                st.session_state.selected_lecture_id = lecture['lecture_id']
-                                st.session_state.selected_course_id = course_id
-                                st.session_state.current_page = 'take_quiz'
-                                st.rerun()
+                # Apply filters
+                if filter_option == "Completed" and not is_completed:
+                    continue
+                if filter_option == "Pending" and is_completed:
+                    continue
+                
+                # Apply search
+                if search_query:
+                    if search_query.lower() not in quiz['title'].lower() and \
+                       search_query.lower() not in lecture['title'].lower():
+                        continue
+                
+                course_quizzes.append((quiz, lecture, is_completed))
         
-        if not has_quizzes:
-            st.info("📝 No quizzes available for this course yet.")
-        
-        st.markdown("---")
+        if course_quizzes:
+            st.subheader(f"📚 {course['name']}")
+            
+            for quiz, lecture, is_completed in course_quizzes:
+                latest_grade = completed_quizzes.get(quiz['quiz_id'])
+                render_quiz_card(quiz, lecture, course_id, is_completed, latest_grade)
+            
+            st.markdown("---")
+    
+    if total_quizzes == 0:
+        st.info("📝 No quizzes available yet. Check back later!")
 
 
 def main():

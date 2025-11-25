@@ -1,0 +1,70 @@
+{
+  "timestamp": "2025-11-24T23:12:17.272076",
+  "image_path": ".\\multiple lectures\\ml_data\\ensemble_detailed_analytics\\captured_faces\\student_4_lec_2a96290c_513a5569_frame_100_20251124_170010_224844.jpg",
+  "prediction": {
+    "engagement_score": 0.6666666666666666,
+    "mode": "balanced",
+    "emotions": {
+      "Boredom": {
+        "level": "High",
+        "confidence": 0.37326542288064957,
+        "probabilities": [
+          0.2563563585281372,
+          0.2288793995976448,
+          0.37326542288064957,
+          0.1414988562464714
+        ]
+      },
+      "Engagement": {
+        "level": "High",
+        "confidence": 0.47626854479312897,
+        "probabilities": [
+          0.08759332075715065,
+          0.18936952948570251,
+          0.47626854479312897,
+          0.24676866084337234
+        ]
+      },
+      "Confusion": {
+        "level": "Very Low",
+        "confidence": 0.5830068960785866,
+        "probabilities": [
+          0.5830068960785866,
+          0.2054007202386856,
+          0.13634061254560947,
+          0.07525179721415043
+        ]
+      },
+      "Frustration": {
+        "level": "Very Low",
+        "confidence": 0.630263552069664,
+        "probabilities": [
+          0.630263552069664,
+          0.1696280837059021,
+          0.12100648134946823,
+          0.07910188473761082
+        ]
+      }
+    }
+  },
+  "feature_analysis": {
+    "feature_importance": {
+      "eyes": 19.219457941153586,
+      "eyebrows": 18.357319192135616,
+      "nose": 21.82059877407421,
+      "mouth": 22.818697036167737,
+      "face_shape": 17.78392705646885
+    },
+    "dominant_feature": "mouth"
+  },
+  "explanation": {
+    "engagement_level": "Low",
+    "insights": [
+      "Student shows low engagement (0.7%)",
+      "Strong indicators of disengagement detected",
+      "\u26a0\ufe0f High boredom detected (37.3% confidence)",
+      "Recommendation: Introduce interactive elements or change pace",
+      "\nMost informative facial region: mouth (22.8%)"
+    ]
+  }
+}

@@ -1,0 +1,169 @@
+{
+  "timestamp": "2025-11-24T18:25:02.711715",
+  "frame_number": 346,
+  "session_id": "student_4_lec_2a96290c_700aeb29",
+  "analysis_version": "2.0_explainable_ai",
+  "openface_metrics": {
+    "engagement_score": 48.11,
+    "status": "partially_engaged",
+    "face_detected": 1,
+    "confidence": 0.95,
+    "gaze": {
+      "angle_x": -152.97,
+      "angle_y": 8.31,
+      "interpretation": {
+        "direction": "down_left",
+        "attention_level": "distracted",
+        "description": "Gaze away from screen - likely distracted"
+      }
+    },
+    "head_pose": {
+      "rotation_x": -178.58,
+      "rotation_y": 16.45,
+      "rotation_z": -6.84,
+      "interpretation": {
+        "posture": "partially_engaged",
+        "engagement_indicator": "neutral",
+        "description": "Head slightly turned - divided attention"
+      }
+    }
+  },
+  "feature_analysis": {
+    "feature_vector_shape": [
+      35
+    ],
+    "feature_statistics": {
+      "mean": -3.4059797204832876e-09,
+      "std": 1.0,
+      "min": -0.49960583448410034,
+      "max": 5.757434844970703,
+      "non_zero_count": 35
+    },
+    "feature_breakdown": {
+      "gaze_features": {
+        "gaze_x": -0.4532531201839447,
+        "gaze_y": -0.16134487092494965,
+        "magnitude": 0.48111387251904314,
+        "interpretation": "Low magnitude = focused, High = distracted"
+      },
+      "head_pose_rotation": {
+        "pitch_rx": -0.27309098839759827,
+        "yaw_ry": 0.652190089225769,
+        "roll_rz": 5.757434844970703,
+        "interpretation": "Near zero = facing screen, Large values = turned away"
+      },
+      "head_pose_translation": {
+        "tx": -0.49960583448410034,
+        "ty": -0.14661188423633575,
+        "tz": -0.18876557052135468,
+        "interpretation": "Distance and position relative to camera"
+      },
+      "action_units": {
+        "count": 27,
+        "active_aus": 0,
+        "mean_activation": -0.17359082400798798,
+        "interpretation": "Facial expressions indicating emotional state"
+      }
+    },
+    "engagement_indicators": {
+      "gaze_stability": "good",
+      "head_orientation": "good",
+      "facial_activity": "neutral"
+    }
+  },
+  "ensemble_metrics": {
+    "engagement_score": 94.16175,
+    "mode": "fast",
+    "improvement_over_openface": 46.05175,
+    "improvement_percentage": 95.72178341301183,
+    "emotions": {
+      "Boredom": {
+        "level": "Very Low",
+        "class_id": 0,
+        "confidence": 0.33715859055519104,
+        "all_probabilities": {
+          "Very Low": 0.33715859055519104,
+          "Low": 0.2492237687110901,
+          "High": 0.2020726203918457,
+          "Very High": 0.21154509484767914
+        },
+        "interpretation": "Student shows alertness and interest (confidence: 34%)"
+      },
+      "Engagement": {
+        "level": "Very High",
+        "class_id": 3,
+        "confidence": 0.2789269685745239,
+        "all_probabilities": {
+          "Very Low": 0.22132554650306702,
+          "Low": 0.22293701767921448,
+          "High": 0.27681052684783936,
+          "Very High": 0.2789269685745239
+        },
+        "interpretation": "Excellent engagement - deep focus and learning (confidence: 28%)"
+      },
+      "Confusion": {
+        "level": "High",
+        "class_id": 2,
+        "confidence": 0.2572207450866699,
+        "all_probabilities": {
+          "Very Low": 0.24303962290287018,
+          "Low": 0.24628014862537384,
+          "High": 0.2572207450866699,
+          "Very High": 0.25345948338508606
+        },
+        "interpretation": "Moderate confusion - may need clarification (confidence: 26%)"
+      },
+      "Frustration": {
+        "level": "Very Low",
+        "class_id": 0,
+        "confidence": 0.31993716955184937,
+        "all_probabilities": {
+          "Very Low": 0.31993716955184937,
+          "Low": 0.25226226449012756,
+          "High": 0.22310350835323334,
+          "Very High": 0.20469702780246735
+        },
+        "interpretation": "Calm and patient learning state (confidence: 32%)"
+      }
+    },
+    "explainable_ai": {
+      "final_score": 9416.175,
+      "score_breakdown": {
+        "engagement_level": "Very High",
+        "engagement_confidence": 27.892696857452393,
+        "primary_factors": [
+          "High engagement level detected (Very High) with 28% confidence"
+        ],
+        "secondary_factors": [
+          "OpenFace baseline: 48.1%",
+          "Ensemble improvement: +9368.1%"
+        ]
+      },
+      "contributing_factors": {
+        "confusion": {
+          "impact": "negative",
+          "severity": "moderate",
+          "confidence": 25.722074508666992,
+          "description": "Model detected high confusion patterns"
+        }
+      },
+      "score_justification": "Excellent engagement (9416%) justified by: Strong engagement signals, minimal distraction indicators, and consistent attention patterns across temporal window.",
+      "model_reasoning": [
+        "\u2705 Positive engagement indicators from temporal patterns in facial features",
+        "\u274c Confusion indicators: High (26% confidence)",
+        "\u2728 Ensemble models detected subtle engagement cues missed by traditional analysis"
+      ]
+    }
+  },
+  "session_context": {
+    "total_frames_processed": 346,
+    "average_engagement_so_far": 18.95521739130435,
+    "engagement_trend": {
+      "trend": "Engagement improving (+17.2% from session start)",
+      "direction": "improving",
+      "change": 17.217558139534887,
+      "recent_average": 50.580000000000005,
+      "session_average": 18.95521739130435
+    }
+  }
+}
