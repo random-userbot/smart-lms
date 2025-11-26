@@ -1,58 +1,56 @@
-# Smart LMS - Complete Dependencies
-# Pin all versions for security and reproducibility
+# Smart LMS - Python 3.13 Compatible Dependencies
+# Updated for Python 3.13.3 compatibility
 
-# Core Framework
-streamlit==1.29.0
-streamlit-webrtc==0.47.1
-streamlit-camera-input-live==0.2.0
+# Core Framework (latest compatible versions)
+streamlit>=1.28.0
+streamlit-webrtc>=0.47.0
+streamlit-camera-input-live>=0.2.0
 
 # Authentication & Security
-bcrypt==4.1.2
-python-dotenv==1.0.0
+bcrypt>=4.0.0
+python-dotenv>=1.0.0
 
-# Data Processing
-pandas==2.1.4
-numpy==1.26.2
+# Data Processing (Python 3.13 compatible)
+pandas>=2.2.0
+numpy>=1.24.0
 
 # Machine Learning
-scikit-learn==1.3.2
-xgboost==2.0.3
-joblib==1.3.2
+scikit-learn>=1.3.0
+xgboost>=2.0.0
+joblib>=1.3.0
 
-# Deep Learning for Ensemble Models
-tensorflow==2.18.0
-keras==3.6.0
-ml-dtypes==0.4.1
-jax[cpu]==0.4.23
+# Deep Learning for Ensemble Models (TensorFlow 2.16+ supports Python 3.13)
+tensorflow>=2.16.0
+keras>=3.0.0
 
 # Computer Vision & Face Tracking
-opencv-python==4.8.1.78
-mediapipe==0.10.9
+opencv-python>=4.8.0
+mediapipe>=0.10.0
 
 # NLP & Sentiment Analysis
-transformers==4.36.2
-torch==2.1.2
-vaderSentiment==3.3.2
-keybert==0.8.3
-sentence-transformers==2.2.2
+transformers>=4.30.0
+torch>=2.0.0
+vaderSentiment>=3.3.0
+keybert>=0.8.0
+sentence-transformers>=2.2.0
 
 # Explainability
-shap==0.44.0
+shap>=0.44.0
 
 # Visualization
-plotly==5.18.0
-matplotlib==3.8.2
-seaborn==0.13.0
+plotly>=5.15.0
+matplotlib>=3.8.0
+seaborn>=0.13.0
 
 # PDF Generation
-reportlab==4.0.7
-fpdf2==2.7.7
+reportlab>=4.0.0
+fpdf2>=2.7.0
 
 # Utilities
-pyyaml==6.0.1
-python-dateutil==2.8.2
-pillow==10.1.0
-av==11.0.0
+pyyaml>=6.0.0
+python-dateutil>=2.8.0
+pillow>=10.0.0
+av>=10.0.0
 
 # Security & Development Tools (optional but recommended)
 # Uncomment for development environment

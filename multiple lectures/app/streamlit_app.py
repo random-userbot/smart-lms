@@ -559,6 +559,9 @@ def show_dashboard():
     elif page == 'teacher_evaluation':
         from pages import teacher_evaluation
         teacher_evaluation.show_teacher_evaluation()
+    elif page == 'teaching_analytics':
+        from pages import teaching_analytics_dashboard
+        teaching_analytics_dashboard.show_teaching_analytics_dashboard()
     elif page == 'dashboard':
         if role == 'admin':
             show_admin_dashboard()
@@ -647,6 +650,10 @@ def show_teacher_navigation():
     
     if st.button("📅 Attendance", key="teacher_nav_attendance", use_container_width=True):
         st.session_state.current_page = 'attendance'
+        st.rerun()
+
+    if st.button("📊 Teaching Analytics", key="teacher_nav_analytics_dashboard", use_container_width=True):
+        st.session_state.current_page = 'teaching_analytics'
         st.rerun()
 
 
