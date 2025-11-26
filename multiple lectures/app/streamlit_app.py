@@ -559,6 +559,9 @@ def show_dashboard():
     elif page == 'teacher_evaluation':
         from pages import teacher_evaluation
         teacher_evaluation.show_teacher_evaluation()
+    elif page == 'analytics':
+        from pages import analytics
+        analytics.main()
     elif page == 'dashboard':
         if role == 'admin':
             show_admin_dashboard()
