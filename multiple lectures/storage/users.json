@@ -6,7 +6,7 @@
     "role": "admin",
     "email": "admin@smartlms.edu",
     "created_at": "2025-10-23T21:17:05.965500",
-    "last_login": "2025-11-24T16:04:31.508842",
+    "last_login": "2026-01-30T10:39:56.287398",
     "is_active": true,
     "full_name": "System Administrator",
     "department": "IT Administration",
@@ -16,7 +16,7 @@
     "semester": null,
     "enrollment_number": null,
     "failed_login_attempts": 0,
-    "updated_at": "2025-11-24T16:04:31.508842"
+    "updated_at": "2026-01-30T10:39:56.287398"
   },
   "teacher_001": {
     "user_id": "teacher_001",
@@ -25,7 +25,7 @@
     "role": "teacher",
     "email": "ramesh@smartlms.edu",
     "created_at": "2025-10-23T21:17:06.163594",
-    "last_login": "2025-10-25T19:34:52.951786",
+    "last_login": "2026-01-30T10:11:50.942117",
     "is_active": true,
     "full_name": "Dr. Ramesh Kumar",
     "department": "Computer Science",
@@ -35,7 +35,7 @@
     "semester": null,
     "enrollment_number": null,
     "failed_login_attempts": 0,
-    "updated_at": "2025-10-25T19:34:52.951786"
+    "updated_at": "2026-01-30T10:11:50.946173"
   },
   "student_001": {
     "user_id": "student_001",
@@ -63,11 +63,24 @@
     "role": "student",
     "email": "revanthpuram004@gmail.com",
     "created_at": "2025-10-24T08:53:30.828310",
-    "last_login": "2025-11-24T18:18:24.065313",
+    "last_login": "2026-02-02T18:36:28.833855",
     "is_active": true,
     "full_name": "revanth puram",
     "failed_login_attempts": 0,
-    "updated_at": "2025-11-24T18:18:24.065313",
+    "updated_at": "2026-02-02T18:36:28.833855",
     "last_failed_login": "2025-10-24T08:59:44.349259"
+  },
+  "teacher_5": {
+    "user_id": "teacher_5",
+    "username": "Nihon Sensei",
+    "password_hash": "$2b$12$aDZsdsXbWyXhOwNzX7fzPutrxSANMJVzzKyy5lQDc1r3J4.zCp39e",
+    "role": "teacher",
+    "email": "revanthpuram003@gmail.com",
+    "created_at": "2026-01-30T10:38:40.657731",
+    "last_login": "2026-02-02T18:37:12.458968",
+    "is_active": true,
+    "full_name": "Jiraya",
+    "failed_login_attempts": 0,
+    "updated_at": "2026-02-02T18:37:12.458968"
   }
 }

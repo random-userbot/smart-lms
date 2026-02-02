@@ -1,0 +1,43 @@
+{
+  "course_TEST_COURSE_001": [
+    {
+      "playlist_id": "PLrAXtmErZgOeiKm4sgNOknGvNjby9efdf",
+      "title": "Python for Beginners",
+      "description": "Learn Python programming from scratch",
+      "playlist_url": "https://www.youtube.com/playlist?list=PLrAXtmErZgOeiKm4sgNOknGvNjby9efdf",
+      "video_count": 2,
+      "videos": [
+        {
+          "video_id": "kqtD5dpn9C8",
+          "title": "Lecture 2: Variables and Data Types",
+          "description": "Learn about Python variables",
+          "video_url": "https://www.youtube.com/watch?v=kqtD5dpn9C8",
+          "order": 2,
+          "materials": [],
+          "added_at": "2026-01-30T11:03:44.117888"
+        },
+        {
+          "video_id": "rfscVS0vtbw",
+          "title": "Lecture 1: Python Basics",
+          "description": "Introduction to Python programming language",
+          "video_url": "https://www.youtube.com/watch?v=rfscVS0vtbw",
+          "order": 99,
+          "materials": [
+            {
+              "material_id": "49faa5b2-f501-4b26-84af-94dea7fc4f80",
+              "title": "Lecture 1 Notes",
+              "type": "pdf",
+              "file_path": "./test_material.pdf",
+              "file_name": "lecture1_notes.pdf",
+              "attached_at": "2026-01-30T11:03:44.131585"
+            }
+          ],
+          "added_at": "2026-01-30T11:03:44.096267"
+        }
+      ],
+      "created_at": "2026-01-30T11:03:44.096267",
+      "fetch_method": "manual"
+    }
+  ],
+  "course_jpn5": []
+}

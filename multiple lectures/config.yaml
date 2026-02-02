@@ -22,6 +22,14 @@ storage:
   teacher_activity: "./storage/teacher_activity.json"
   progress: "./storage/progress.json"
   enrollment_requests: "./storage/enrollment_requests.json"
+  watch_history: "./storage/watch_history.json"
+  
+  # Comprehensive Activity Tracking Storage
+  activity_tracking: "./storage/activity_tracking.json"
+  session_tracking: "./storage/session_tracking.json"
+  quiz_attempts: "./storage/quiz_attempts.json"
+  teaching_scores: "./storage/teaching_scores.json"
+  student_analytics: "./storage/student_analytics.json"
 
 # ML Data directories for comprehensive logging
 ml_data:
@@ -368,3 +376,8 @@ material_reading:
   gamification: false
   ethical_ai_dashboard: true
   predictive_analytics: false
+
+# AI API Keys for Japanese Learning & Quiz Generation
+# Get FREE API keys from:
+# - Groq: https://console.groq.com/keys (Recommended)
+# - Gemini: https://aistudio.google.com/app/apikey

@@ -1,1 +1,41 @@
-{}
+{
+  "teacher_5": {
+    "teacher_id": "teacher_5",
+    "total_feedback_count": 2,
+    "average_ratings": {
+      "overall": 5.0,
+      "content_quality": 3.0,
+      "clarity": 3.0,
+      "pace": 4.0,
+      "engagement": 5.0,
+      "visual_aids": 3.0,
+      "composite": 3.8333333333333335
+    },
+    "sentiment_distribution": {
+      "positive": 2,
+      "neutral": 0,
+      "negative": 0
+    },
+    "feedback_by_course": {
+      "jpn5": {
+        "count": 2,
+        "avg_composite": 3.8333333333333335,
+        "feedback_ids": [
+          "ecdc25d6-a0f3-49a8-a0cc-0e0508887bfa",
+          "ecdc25d6-a0f3-49a8-a0cc-0e0508887bfa"
+        ]
+      }
+    },
+    "feedback_by_lecture": {
+      "youtube_wjFILuh9u_4_6f4020b2": {
+        "count": 2,
+        "avg_composite": 3.8333333333333335,
+        "feedback_ids": [
+          "ecdc25d6-a0f3-49a8-a0cc-0e0508887bfa",
+          "ecdc25d6-a0f3-49a8-a0cc-0e0508887bfa"
+        ]
+      }
+    },
+    "last_updated": "2026-01-30T12:33:44.068138"
+  }
+}

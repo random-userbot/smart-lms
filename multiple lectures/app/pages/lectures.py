@@ -15,6 +15,7 @@ from services.pip_webcam_live import render_pip_webcam, render_engagement_sideba
 from services.behavioral_logger import get_behavioral_logger, cleanup_logger
 from services.anti_cheating import get_anti_cheating_monitor, cleanup_monitor, render_integrity_widget, check_browser_visibility
 from services.pdf_reader import get_pdf_reader
+from services.universal_logger import get_activity_logger, log_pdf_action, log_video_action, log_download
 from datetime import datetime
 import uuid
 import re
@@ -68,6 +69,10 @@ def show_lecture_player(lecture):
     # Initialize behavioral logger
     behavioral_logger = get_behavioral_logger(student_id, lecture_id, course_id)
     
+    # Mark lecture as watched (this happens when the player loads, independent of webcam tracking)
+    storage = get_storage()
+    storage.mark_lecture_watched(student_id, lecture_id, course_id)
+    
     # Check if it's a YouTube video (either in youtube_url field or video_path)
     youtube_url = lecture.get('youtube_url') or (
         lecture.get('video_path') if lecture.get('video_type') == 'youtube' 
@@ -77,6 +82,9 @@ def show_lecture_player(lecture):
     
     behavioral_logger.log_lecture_start(lecture_id, course_id, 
                                         video_type='youtube' if youtube_url else 'local')
+    
+    # Log video start for intelligent engagement
+    log_video_action(student_id, 'video_start', course_id, lecture_id)
     
     # Initialize anti-cheating monitor
     anti_cheating = get_anti_cheating_monitor(student_id, lecture_id, course_id)
@@ -190,25 +198,87 @@ def show_lecture_player(lecture):
         # Real-time engagement tracking with PiP webcam
         st.markdown("**🎥 Webcam Tracking:**")
         
-        try:
-            # Render PiP webcam with ensemble support (bottom-right, always visible)
-            pip_webcam = render_pip_webcam(
-                lecture_id, course_id, student_id,
-                use_ensemble=use_ensemble,
-                ensemble_mode=ensemble_mode
-            )
-            
-            # Show current engagement in sidebar
-            render_engagement_sidebar(pip_webcam)
-            
-        except Exception as e:
-            st.error(f"❌ Webcam error: {str(e)}")
-            st.info("💡 Please allow camera access for engagement tracking.")
+        # Check if webcam is enabled in session
+        if 'webcam_enabled' not in st.session_state:
+            st.session_state.webcam_enabled = True
+        
+        if not st.session_state.webcam_enabled:
+            st.info("🚫 Webcam tracking disabled. Enable in settings to track engagement.")
+        else:
+            try:
+                # Render PiP webcam with ensemble support (bottom-right, always visible)
+                pip_webcam = render_pip_webcam(
+                    lecture_id, course_id, student_id,
+                    use_ensemble=use_ensemble,
+                    ensemble_mode=ensemble_mode
+                )
+                
+                # Show current engagement in sidebar
+                render_engagement_sidebar(pip_webcam)
+                
+            except Exception as e:
+                # Handle MediaPipe protobuf errors gracefully
+                error_msg = str(e)
+                if "protobuf" in error_msg.lower() or "mediapipe" in error_msg.lower():
+                    st.warning("⚠️ Webcam tracking unavailable due to MediaPipe compatibility issue.")
+                    st.caption("Continuing without engagement monitoring. This does not affect video playback.")
+                    # Disable webcam for this session
+                    st.session_state.webcam_enabled = False
+                else:
+                    st.warning("⚠️ Webcam tracking unavailable. Continuing without engagement monitoring.")
+                    st.caption(f"Error: {error_msg[:100]}...")
     
     # Render integrity monitoring in sidebar
     render_integrity_widget(anti_cheating)
     
     st.markdown("---")
+    
+    # Playlist navigation (Next/Previous buttons)
+    playlist_id = lecture.get('playlist_id')
+    if playlist_id:
+        storage = get_storage()
+        # Get all lectures in the same playlist
+        all_lectures = storage.get_all_lectures()
+        playlist_lectures = [
+            lec for lec in all_lectures 
+            if lec.get('playlist_id') == playlist_id and lec.get('course_id') == course_id
+        ]
+        
+        if len(playlist_lectures) > 1:
+            # Sort by video order (using lecture index in the list as fallback)
+            try:
+                # Try to find current lecture index
+                current_index = next(i for i, lec in enumerate(playlist_lectures) if lec['lecture_id'] == lecture_id)
+                
+                col1, col2, col3 = st.columns([1, 2, 1])
+                
+                with col1:
+                    if current_index > 0:
+                        prev_lecture = playlist_lectures[current_index - 1]
+                        if st.button("⏮️ Previous Lecture", use_container_width=True):
+                            st.session_state.selected_lecture = prev_lecture
+                            st.session_state.current_page = 'watch_lecture'
+                            st.rerun()
+                    else:
+                        st.button("⏮️ Previous Lecture", disabled=True, use_container_width=True)
+                
+                with col2:
+                    st.markdown(f"<p style='text-align: center; color: #666;'>📺 Lecture {current_index + 1} of {len(playlist_lectures)}</p>", unsafe_allow_html=True)
+                
+                with col3:
+                    if current_index < len(playlist_lectures) - 1:
+                        next_lecture = playlist_lectures[current_index + 1]
+                        if st.button("⏭️ Next Lecture", use_container_width=True):
+                            st.session_state.selected_lecture = next_lecture
+                            st.session_state.current_page = 'watch_lecture'
+                            st.rerun()
+                    else:
+                        st.button("⏭️ Next Lecture", disabled=True, use_container_width=True)
+                
+                st.markdown("---")
+                
+            except StopIteration:
+                pass  # Current lecture not found in playlist
     
     # Lecture materials
     if lecture.get('materials'):
@@ -227,6 +297,8 @@ def show_lecture_player(lecture):
                         st.session_state.previous_page = 'watch_lecture'
                         st.session_state.current_page = 'read_pdf'
                         behavioral_logger.log_material_read(material['material_id'], material['type'])
+                        # Log intelligent engagement
+                        log_pdf_action(student_id, 'pdf_open', course_id, lecture_id, material['material_id'])
                         st.rerun()
             with col3:
                 # Download button
@@ -243,6 +315,10 @@ def show_lecture_player(lecture):
                             key=f"dl_{material['material_id']}"
                         )
                         behavioral_logger.log_resource_download(material['material_id'], material['type'])
+                        # Log intelligent engagement
+                        log_download(student_id, 'pdf' if file_path.endswith('.pdf') else 'file', 
+                                   course_id, lecture_id, material['material_id'], 
+                                   file_size=os.path.getsize(file_path))
                     else:
                         st.error("File not found")
     
@@ -501,13 +577,14 @@ def render_lecture_card(lecture, course, user):
     """Render a lecture card with Streamlit native components"""
     storage = get_storage()
     
-    # Check if student has watched
+    # Check if student has watched (uses watch_history + engagement_logs for backward compatibility)
+    has_watched = storage.is_lecture_watched(user['user_id'], lecture['lecture_id'])
+    
+    # Get engagement data if available (for score display)
     engagement_logs = storage.get_engagement_logs(
         student_id=user['user_id'],
         lecture_id=lecture['lecture_id']
     )
-    
-    has_watched = len(engagement_logs) > 0
     latest_engagement = engagement_logs[-1] if engagement_logs else None
     
     # Determine status
@@ -523,7 +600,13 @@ def render_lecture_card(lecture, course, user):
     video_type = lecture.get('video_type', 'file')
     video_icon = "🎬" if video_type == 'youtube' else "📹"
     materials_count = len(lecture.get('materials', []))
-    quizzes_count = len(lecture.get('quizzes', []))
+    
+    # Check both 'quiz' (singular) and 'quizzes' (plural)
+    quizzes_count = 0
+    if 'quiz' in lecture and lecture['quiz']:
+        quizzes_count = 1
+    elif 'quizzes' in lecture:
+        quizzes_count = len(lecture['quizzes'])
     
     # Clean description
     raw_desc = lecture.get('description', 'No description available')
@@ -610,13 +693,16 @@ def show_lecture_list(course_id):
     total_engagement = 0
     
     for lecture in lectures:
-        engagement_logs = storage.get_engagement_logs(
-            student_id=user['user_id'],
-            lecture_id=lecture['lecture_id']
-        )
-        if engagement_logs:
+        # Check if watched using the new method
+        if storage.is_lecture_watched(user['user_id'], lecture['lecture_id']):
             watched_count += 1
-            total_engagement += engagement_logs[-1].get('engagement_score', 0)
+            # Get engagement data for score calculation (if available)
+            engagement_logs = storage.get_engagement_logs(
+                student_id=user['user_id'],
+                lecture_id=lecture['lecture_id']
+            )
+            if engagement_logs:
+                total_engagement += engagement_logs[-1].get('engagement_score', 0)
     
     # Display statistics
     col1, col2, col3, col4 = st.columns(4)
@@ -652,12 +738,12 @@ def show_lecture_list(course_id):
     if filter_option == "Watched":
         filtered_lectures = [
             lec for lec in filtered_lectures
-            if storage.get_engagement_logs(user['user_id'], lec['lecture_id'])
+            if storage.is_lecture_watched(user['user_id'], lec['lecture_id'])
         ]
     elif filter_option == "Not Watched":
         filtered_lectures = [
             lec for lec in filtered_lectures
-            if not storage.get_engagement_logs(user['user_id'], lec['lecture_id'])
+            if not storage.is_lecture_watched(user['user_id'], lec['lecture_id'])
         ]
     
     st.markdown("---")
@@ -666,8 +752,30 @@ def show_lecture_list(course_id):
     if not filtered_lectures:
         st.info("🔍 No lectures match your search criteria.")
     else:
-        st.subheader(f"🎥 Lectures ({len(filtered_lectures)})")
-        for lecture in filtered_lectures:
+        # Add pagination for large lists
+        lectures_per_page = 20
+        total_pages = (len(filtered_lectures) + lectures_per_page - 1) // lectures_per_page
+        
+        if total_pages > 1:
+            col1, col2, col3 = st.columns([1, 2, 1])
+            with col2:
+                page = st.selectbox(
+                    "Page",
+                    range(1, total_pages + 1),
+                    format_func=lambda x: f"Page {x} of {total_pages}",
+                    key="lecture_page"
+                )
+            
+            start_idx = (page - 1) * lectures_per_page
+            end_idx = start_idx + lectures_per_page
+            page_lectures = filtered_lectures[start_idx:end_idx]
+            
+            st.subheader(f"🎥 Lectures ({len(filtered_lectures)} total, showing {len(page_lectures)})")
+        else:
+            page_lectures = filtered_lectures
+            st.subheader(f"🎥 Lectures ({len(filtered_lectures)})")
+        
+        for lecture in page_lectures:
             render_lecture_card(lecture, course, user)
 
 
@@ -706,23 +814,47 @@ def main():
             st.info("📝 You are not enrolled in any courses yet.")
             return
         
-        # Course selection
-        course_options = {cid: c['name'] for cid, c in enrolled_courses.items()}
-        
+        # Initialize selected course
         if 'selected_course' not in st.session_state:
-            st.session_state.selected_course = list(course_options.keys())[0]
+            st.session_state.selected_course = list(enrolled_courses.keys())[0]
         
-        selected_course = st.selectbox(
-            "Select Course",
-            options=list(course_options.keys()),
-            format_func=lambda x: course_options[x],
-            key='course_selector'
-        )
+        # Show course cards for selection
+        st.markdown("### 📚 Select Course")
+        st.markdown("Click on a course to view its lectures")
+        st.markdown("---")
         
-        st.session_state.selected_course = selected_course
+        # Display course cards
+        cols = st.columns(min(3, len(enrolled_courses)))
+        for idx, (course_id, course) in enumerate(enrolled_courses.items()):
+            col = cols[idx % min(3, len(enrolled_courses))]
+            with col:
+                is_selected = course_id == st.session_state.selected_course
+                
+                # Course card with border highlight if selected
+                border_color = "#2563EB" if is_selected else "#E2E8F0"
+                bg_color = "#EFF6FF" if is_selected else "#FFFFFF"
+                check_mark = "✓ " if is_selected else ""
+                
+                # Make entire card clickable
+                if st.button(
+                    f"{check_mark}{course.get('name', 'Untitled Course')}",
+                    key=f"course_card_{course_id}",
+                    use_container_width=True,
+                    type="primary" if is_selected else "secondary"
+                ):
+                    st.session_state.selected_course = course_id
+                    st.rerun()
+                
+                # Show description in small text
+                desc = course.get('description', 'No description')[:100]
+                st.caption(desc + "..." if len(course.get('description', '')) > 100 else desc)
+        
+        st.markdown("---")
+        st.markdown(f"### 🎬 Lectures: {enrolled_courses[st.session_state.selected_course].get('name', '')}")
+        st.markdown("---")
         
         # Show lectures for selected course
-        show_lecture_list(selected_course)
+        show_lecture_list(st.session_state.selected_course)
 
 
 if __name__ == "__main__":

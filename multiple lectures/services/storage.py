@@ -45,7 +45,8 @@ class StorageService:
             'attendance': {},
             'teacher_activity': {},
             'progress': {},
-            'enrollment_requests': {}
+            'enrollment_requests': {},
+            'watch_history': {}
         }
         
         for key, default_value in default_structures.items():
@@ -190,6 +191,17 @@ class StorageService:
         
         return True
     
+    def get_student_courses(self, student_id: str) -> List[Dict]:
+        """Get all courses a student is enrolled in"""
+        courses = self._read_json(self.storage_paths['courses'])
+        enrolled_courses = []
+        
+        for course_id, course_data in courses.items():
+            if student_id in course_data.get('enrolled_students', []):
+                enrolled_courses.append(course_data)
+        
+        return enrolled_courses
+    
     # ==================== LECTURE MANAGEMENT ====================
     
     def get_lecture(self, lecture_id: str) -> Optional[Dict]:
@@ -201,6 +213,11 @@ class StorageService:
         """Get all lectures for a course"""
         lectures = self._read_json(self.storage_paths['lectures'])
         return [l for l in lectures.values() if l.get('course_id') == course_id]
+    
+    def get_all_lectures(self) -> List[Dict]:
+        """Get all lectures"""
+        lectures = self._read_json(self.storage_paths['lectures'])
+        return list(lectures.values())
     
     def create_lecture(self, lecture_id: str, title: str, course_id: str,
                       video_path: str, duration: int = 0, **kwargs) -> bool:
@@ -508,6 +525,147 @@ class StorageService:
         grades = self._read_json(self.storage_paths['grades'])
         return grades.get(student_id, {'quizzes': [], 'assignments': []})
     
+    # ==================== QUIZ MANAGEMENT ====================
+    
+    def create_quiz(self, course_id: str, lecture_id: str, title: str, 
+                   questions: List[Dict], time_limit: int = 30, 
+                   difficulty: str = "medium") -> str:
+        """Create a new quiz"""
+        from uuid import uuid4
+        
+        quiz_id = f"quiz_{uuid4().hex[:12]}"
+        
+        course = self.get_course(course_id)
+        if not course:
+            return None
+        
+        quiz_data = {
+            'quiz_id': quiz_id,
+            'course_id': course_id,
+            'lecture_id': lecture_id,
+            'title': title,
+            'questions': questions,
+            'time_limit': time_limit,
+            'difficulty': difficulty,
+            'created_at': datetime.utcnow().isoformat(),
+            'active': True
+        }
+        
+        # Store in course structure
+        if 'quizzes' not in course:
+            course['quizzes'] = []
+        
+        course['quizzes'].append(quiz_data)
+        self.update_course(course_id, course)
+        
+        return quiz_id
+    
+    def get_course_quizzes(self, course_id: str) -> List[Dict]:
+        """Get all quizzes for a course"""
+        course = self.get_course(course_id)
+        if not course:
+            return []
+        
+        return course.get('quizzes', [])
+    
+    def get_quiz(self, course_id: str, quiz_id: str) -> Optional[Dict]:
+        """Get specific quiz"""
+        quizzes = self.get_course_quizzes(course_id)
+        for quiz in quizzes:
+            if quiz.get('quiz_id') == quiz_id:
+                return quiz
+        return None
+    
+    def submit_quiz_attempt(self, student_id: str, course_id: str, 
+                          quiz_id: str, answers: Dict, 
+                          score: float, max_score: float) -> bool:
+        """
+        Submit a quiz attempt
+        Returns False if student has already attempted this quiz (no retries allowed)
+        """
+        # Check if student has already attempted this quiz
+        if self.has_attempted_quiz(student_id, quiz_id):
+            return False
+        
+        grades = self._read_json(self.storage_paths['grades'])
+        
+        if student_id not in grades:
+            grades[student_id] = {'quizzes': [], 'assignments': []}
+        
+        quiz_attempt = {
+            'course_id': course_id,
+            'quiz_id': quiz_id,
+            'answers': answers,
+            'score': score,
+            'max_score': max_score,
+            'percentage': (score / max_score * 100) if max_score > 0 else 0,
+            'timestamp': datetime.utcnow().isoformat(),
+            'attempt_number': 1  # Only one attempt allowed
+        }
+        
+        grades[student_id]['quizzes'].append(quiz_attempt)
+        self._write_json(self.storage_paths['grades'], grades)
+        
+        return True
+    
+    def has_attempted_quiz(self, student_id: str, quiz_id: str) -> bool:
+        """Check if student has already attempted a quiz"""
+        grades = self._read_json(self.storage_paths['grades'])
+        
+        if student_id not in grades:
+            return False
+        
+        quiz_attempts = grades[student_id].get('quizzes', [])
+        
+        for attempt in quiz_attempts:
+            if attempt.get('quiz_id') == quiz_id:
+                return True
+        
+        return False
+    
+    def get_quiz_attempts(self, quiz_id: str) -> List[Dict]:
+        """Get all attempts for a specific quiz (across all students)"""
+        grades = self._read_json(self.storage_paths['grades'])
+        
+        all_attempts = []
+        
+        for student_id, student_grades in grades.items():
+            quiz_attempts = student_grades.get('quizzes', [])
+            
+            for attempt in quiz_attempts:
+                if attempt.get('quiz_id') == quiz_id:
+                    attempt_copy = attempt.copy()
+                    attempt_copy['student_id'] = student_id
+                    all_attempts.append(attempt_copy)
+        
+        return all_attempts
+    
+    def get_student_quiz_attempt(self, student_id: str, quiz_id: str) -> Optional[Dict]:
+        """Get student's attempt for a specific quiz"""
+        grades = self._read_json(self.storage_paths['grades'])
+        
+        if student_id not in grades:
+            return None
+        
+        quiz_attempts = grades[student_id].get('quizzes', [])
+        
+        for attempt in quiz_attempts:
+            if attempt.get('quiz_id') == quiz_id:
+                return attempt
+        
+        return None
+    
+    def delete_quiz(self, course_id: str, quiz_id: str) -> bool:
+        """Delete a quiz"""
+        course = self.get_course(course_id)
+        if not course:
+            return False
+        
+        quizzes = course.get('quizzes', [])
+        course['quizzes'] = [q for q in quizzes if q.get('quiz_id') != quiz_id]
+        
+        return self.update_course(course_id, course)
+    
     # ==================== TEACHER EVALUATION ====================
     
     def save_evaluation(self, teacher_id: str, score: float, features: Dict,
@@ -705,6 +863,90 @@ class StorageService:
         
         self._write_json(self.storage_paths.get('enrollment_requests', './storage/enrollment_requests.json'), requests)
         return True
+    
+    # ==================== WATCH HISTORY ====================
+    
+    def mark_lecture_watched(self, student_id: str, lecture_id: str, course_id: str = None) -> bool:
+        """
+        Mark a lecture as watched by a student.
+        This is independent of engagement tracking and ensures lectures are marked even without webcam.
+        
+        Args:
+            student_id: Student user ID
+            lecture_id: Lecture ID
+            course_id: Course ID (optional)
+            
+        Returns:
+            True if successful
+        """
+        watch_history = self._read_json(self.storage_paths.get('watch_history', './storage/watch_history.json'))
+        
+        # Create unique key for this watch record
+        watch_key = f"{student_id}_{lecture_id}"
+        
+        # Check if already watched
+        if watch_key in watch_history:
+            # Update last watched time
+            watch_history[watch_key]['last_watched_at'] = datetime.utcnow().isoformat()
+            watch_history[watch_key]['watch_count'] = watch_history[watch_key].get('watch_count', 1) + 1
+        else:
+            # Create new watch record
+            watch_history[watch_key] = {
+                'student_id': student_id,
+                'lecture_id': lecture_id,
+                'course_id': course_id,
+                'first_watched_at': datetime.utcnow().isoformat(),
+                'last_watched_at': datetime.utcnow().isoformat(),
+                'watch_count': 1
+            }
+        
+        self._write_json(self.storage_paths.get('watch_history', './storage/watch_history.json'), watch_history)
+        return True
+    
+    def is_lecture_watched(self, student_id: str, lecture_id: str) -> bool:
+        """
+        Check if a student has watched a lecture.
+        Checks both watch_history (primary) and engagement_logs (fallback for backward compatibility).
+        
+        Args:
+            student_id: Student user ID
+            lecture_id: Lecture ID
+            
+        Returns:
+            True if lecture has been watched
+        """
+        # First check watch_history
+        watch_history = self._read_json(self.storage_paths.get('watch_history', './storage/watch_history.json'))
+        watch_key = f"{student_id}_{lecture_id}"
+        
+        if watch_key in watch_history:
+            return True
+        
+        # Fallback: check engagement_logs for backward compatibility
+        engagement_logs = self.get_engagement_logs(student_id=student_id, lecture_id=lecture_id)
+        return len(engagement_logs) > 0
+    
+    def get_watch_history(self, student_id: str = None, lecture_id: str = None) -> List[Dict]:
+        """
+        Get watch history filtered by student or lecture.
+        
+        Args:
+            student_id: Optional student filter
+            lecture_id: Optional lecture filter
+            
+        Returns:
+            List of watch records
+        """
+        watch_history = self._read_json(self.storage_paths.get('watch_history', './storage/watch_history.json'))
+        
+        filtered = list(watch_history.values())
+        
+        if student_id:
+            filtered = [w for w in filtered if w.get('student_id') == student_id]
+        if lecture_id:
+            filtered = [w for w in filtered if w.get('lecture_id') == lecture_id]
+        
+        return filtered
 
 
 # Singleton instance

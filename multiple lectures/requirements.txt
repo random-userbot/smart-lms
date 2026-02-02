@@ -29,6 +29,19 @@ jax[cpu]==0.4.23
 opencv-python==4.8.1.78
 mediapipe==0.10.9
 
+# YouTube Integration
+yt-dlp>=2024.1.1
+pytube==15.0.0
+youtube-transcript-api>=0.6.0  # Extract video transcripts for better quizzes
+
+# AI Integration for Japanese Learning (FREE options available)
+groq>=0.4.0  # FREE - Fast, generous free tier (Recommended)
+google-generativeai>=0.3.0  # FREE - Google Gemini
+# openai>=1.0.0  # PAID - Uncomment if using OpenAI (premium quality)
+
+# Audio Practice for Language Learning
+gTTS>=2.4.0  # FREE - Text-to-Speech for listening practice
+
 # NLP & Sentiment Analysis
 transformers==4.36.2
 torch==2.1.2

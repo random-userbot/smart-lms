@@ -20,6 +20,3661 @@
     "is_active": true,
     "description": "Introduction to Computer Vision concepts, covering image processing, feature detection, and basic computer vision algorithms.",
     "uploaded_by": "teacher_001",
-    "updated_at": "2025-10-25T19:35:42.848486"
+    "updated_at": "2026-01-30T16:38:21.037203",
+    "quiz": {
+      "title": "Lecture 01: Computer Vision Japanese Quiz",
+      "description": "A mixed-level quiz testing Japanese language skills related to computer vision terminology, grammar, and kanji.",
+      "time_limit": 5,
+      "questions": [
+        {
+          "type": "mcq",
+          "question": "Which of the following is the correct Japanese translation for the term 'image processing' as used in computer vision?",
+          "question_ja": "次のうち、コンピュータビジョンで使われる「image processing」の正しい日本語訳はどれですか？",
+          "options": {
+            "A": "画像処理",
+            "B": "映像加工",
+            "C": "写真編集",
+            "D": "映像解析"
+          },
+          "correct_answer": "A",
+          "explanation": "In computer vision, 'image processing' is commonly translated as 画像処理.",
+          "difficulty": "easy"
+        },
+        {
+          "type": "mcq",
+          "question": "In the sentence 'SIFT______特徴点を検出する', which particle correctly completes the sentence to indicate the method used?",
+          "question_ja": "文『SIFT______特徴点を検出する』で、使用した手法を示すために適切な助詞はどれですか？",
+          "options": {
+            "A": "で",
+            "B": "に",
+            "C": "を",
+            "D": "が"
+          },
+          "correct_answer": "A",
+          "explanation": "The particle で indicates the means or tool (SIFT) used for detecting features.",
+          "difficulty": "medium"
+        },
+        {
+          "type": "mcq",
+          "question": "What is the correct on‑yomi reading of the kanji compound 画像処理, and what does it mean?",
+          "question_ja": "漢字熟語「画像処理」の正しい音読みは何ですか、またその意味は何ですか？",
+          "options": {
+            "A": "がぞうしょり – image processing",
+            "B": "がんぞうしょり – image processing",
+            "C": "がぞうしょり – image compression",
+            "D": "がんぞうしょり – image compression"
+          },
+          "correct_answer": "A",
+          "explanation": "画像 (がぞう) means 'image' and 処理 (しょり) means 'processing'; together they read がぞうしょり, meaning 'image processing'.",
+          "difficulty": "hard"
+        }
+      ],
+      "quiz_id": "quiz_8200a6e0",
+      "created_by": "ai_generated",
+      "created_at": "2026-01-30T22:08:21.036210",
+      "topic": "Create a quiz about: Lecture 01: Computer Vision\n\nContent:\nTitle: Lecture 01: Computer Vision\nCourse: \nDescription: Introduction to Computer Vision concepts, covering image processing, feature detection, and basic computer vision algorithms.\n\nGenerate 3 multiple-choice questions that test key concepts from this content.\nIMPORTANT: Return ONLY valid JSON without markdown code blocks.",
+      "difficulty": "mixed",
+      "lecture_id": "lec_2a96290c",
+      "auto_generated": true,
+      "generated_at": "2026-01-30T22:08:21.036210"
+    }
+  },
+  "youtube_wjFILuh9u_4_6f4020b2": {
+    "lecture_id": "youtube_wjFILuh9u_4_6f4020b2",
+    "title": "1. Basic Japanese Greeting | Japanese common phrases! // For beginner",
+    "course_id": "jpn5",
+    "video_path": "https://www.youtube.com/watch?v=wjFILuh9u_4",
+    "duration": 280,
+    "materials": [],
+    "created_at": "2026-01-30T12:18:28.184099",
+    "is_active": true,
+    "description": "",
+    "video_type": "youtube",
+    "playlist_title": "Beginner Japanese Lessons / JLPT N5 Level",
+    "playlist_id": "PL0A1mmE9MOVIS2KcY8hIA7wPt_EPhnVPt",
+    "youtube_video_id": "wjFILuh9u_4",
+    "quiz": {
+      "title": "Basic Japanese Greetings Quiz",
+      "description": "Test your knowledge of common Japanese greetings, their meanings, proper usage, and cultural nuances.",
+      "time_limit": 10,
+      "questions": [
+        {
+          "type": "mcq",
+          "question": "What does the phrase \"おはようございます\" mean?",
+          "question_ja": "「おはようございます」の意味は何ですか？",
+          "options": {
+            "A": "Good morning (formal)",
+            "B": "Good night",
+            "C": "Hello",
+            "D": "Thank you"
+          },
+          "correct_answer": "A",
+          "explanation": "\"おはようございます\" is the polite way to say \"Good morning\" in Japanese.",
+          "difficulty": "easy"
+        },
+        {
+          "type": "mcq",
+          "question": "When greeting a superior in the morning, which form should you use?",
+          "question_ja": "上司に朝の挨拶をするとき、どの表現を使うべきですか？",
+          "options": {
+            "A": "おはよう",
+            "B": "おはようございます",
+            "C": "こんにちは",
+            "D": "こんばんは"
+          },
+          "correct_answer": "B",
+          "explanation": "With people of higher status you should use the polite form \"おはようございます\".",
+          "difficulty": "easy"
+        },
+        {
+          "type": "mcq",
+          "question": "How is the kanji 疲れ read in the expression \"お疲れ様です\"?",
+          "question_ja": "「お疲れ様です」の「疲れ」の読み方は？",
+          "options": {
+            "A": "つかれ",
+            "B": "ひろ",
+            "C": "たか",
+            "D": "さむ"
+          },
+          "correct_answer": "A",
+          "explanation": "The kanji 疲れ is read \"つかれ\" (tsukare).",
+          "difficulty": "medium"
+        },
+        {
+          "type": "mcq",
+          "question": "In which situations is \"今日は\" appropriate as a greeting?",
+          "question_ja": "「今日は」はどのような場面で使うのが適切ですか？",
+          "options": {
+            "A": "Only at noon",
+            "B": "Only in the morning",
+            "C": "Any time of day",
+            "D": "Only in the evening"
+          },
+          "correct_answer": "C",
+          "explanation": "\"今日は\" can be used as a general greeting at any time of day, not just at noon.",
+          "difficulty": "medium"
+        },
+        {
+          "type": "mcq",
+          "question": "When do you normally say \"おやすみなさい\"?",
+          "question_ja": "\"おやすみなさい\"はいつ使いますか？",
+          "options": {
+            "A": "When going to bed",
+            "B": "When meeting someone in the morning",
+            "C": "When greeting a colleague at work",
+            "D": "When saying thank you"
+          },
+          "correct_answer": "A",
+          "explanation": "\"おやすみなさい\" means \"Good night\" and is said before sleeping.",
+          "difficulty": "easy"
+        },
+        {
+          "type": "mcq",
+          "question": "Choose the most natural polite sentence for \"Good evening, everyone.\"",
+          "question_ja": "\"みなさん、こんばんは。\" の中で最も自然な敬語の文はどれですか？",
+          "options": {
+            "A": "こんばんは、みなさん。",
+            "B": "みなさん、こんばんは。",
+            "C": "こんばんは、みなさんです。",
+            "D": "みなさんです、こんばんは。"
+          },
+          "correct_answer": "B",
+          "explanation": "The typical order is \"みなさん、こんばんは。\" (B). While (A) is understandable, (B) sounds more natural in Japanese.",
+          "difficulty": "medium"
+        },
+        {
+          "type": "mcq",
+          "question": "In a Japanese business setting, which greeting is commonly used to acknowledge coworkers' effort?",
+          "question_ja": "日本のビジネスシーンで、同僚の労をねぎらう際によく使われる挨拶はどれですか？",
+          "options": {
+            "A": "おはよう",
+            "B": "お疲れ様です",
+            "C": "こんにちは",
+            "D": "さようなら"
+          },
+          "correct_answer": "B",
+          "explanation": "\"お疲れ様です\" is the standard phrase used to appreciate someone's work or effort in a workplace.",
+          "difficulty": "easy"
+        },
+        {
+          "type": "mcq",
+          "question": "What is the main difference between \"おはよう\" and \"おはようございます\"?",
+          "question_ja": "\"おはよう\" と \"おはようございます\" の主な違いは何ですか？",
+          "options": {
+            "A": "Formal vs. casual",
+            "B": "Different meanings",
+            "C": "Different time of day",
+            "D": "Different regional usage"
+          },
+          "correct_answer": "A",
+          "explanation": "\"おはよう\" is casual, while \"おはようございます\" is the polite/formal version.",
+          "difficulty": "easy"
+        }
+      ],
+      "quiz_id": "quiz_6dd630b4",
+      "created_by": "ai_generated",
+      "created_at": "2026-01-30T22:08:29.073383",
+      "topic": "Create a quiz about: 1. Basic Japanese Greeting | Japanese common phrases! // For beginner\n\nContent:\nTitle: 1. Basic Japanese Greeting | Japanese common phrases! // For beginner\nCourse: \n\nVideo Content:\n映画 is パター ですチャンネル2 iphone 2 c あ ハウトゥーすぴちゃピース4 at アンダー ハウトゥ learn japanese language iphone って言う iphone t you learn to speak english 尾藤財務的なを ev 4 ディスイズア language exchange チャンネル 入った向かうことははでレジャースペースいく命をチャネル バーと iphone っていう learning a scene いう音って いうらー japanese this is the 宮とぽっちりティー2 u エクスチェンジャー大 language いやー nu 門柱1着にです please 殺害事件 アピス米ピロ言う マティ魚んじゃない いやわぁ tu ポンティノア virtual array ゾーンプレーストピックス gree t ic erase ポー山店 ういい デリー部位牛図犬デイリー看護ステーション アバーテグリーティング iphone という ちー中 how tu ジャパに作れていいや プレイセットさはいということでここからは日本語で話しをしていきます ビギナーの方で日本語が分からないよという方は字幕を出しておきますので ぜひ一緒にへ 勉強をしていきましょう ということで今日は日本語の挨拶について話をしたいなと思います 日本語の挨拶は またくさんあるんですけれども今日は4つの挨拶を紹介していきます 朝の挨拶とお昼の挨拶そして夜の挨拶ともう一つどんな時にも使える愛さというのが ありますのでその後4つの挨拶を紹介します はいます朝の挨拶なんですが朝の挨拶はおはようございます 浅羽基本的にホハようございますと言います もう少しカジュアルな言い方をすると おはようっていうことはありますただ友達であれば おはようでいいんですが上司とか先生 先輩とお話をする時にはおはようございますと丁寧に伝えることが大事だと思います はい次はお昼の挨拶ですけれども昼の挨拶は今日はです今日はっていうのは お昼だけじゃなくて割とどんな時にでも使えるんですけれども 迷ったら今日はという挨拶が いいと思います 3つ目が夜の挨拶です夜の挨拶は こんばんはですねこんばんはなんですがテキストには グッダイ表現されていることがありますけれども good night だと日本語ではおやすみなさいっていう表現のほうが 適切かなと思いますので例えば仕事が終わった後にスポーツジムに行って まあ仲のいい 友人と彼に会った時にはこんばんわって挨拶するのかっ いいのかなというふうに思います はいで今日紹介する4つ目の挨拶の方法なん けれどもお疲れ様ですって言う言葉ですお疲れ様ですっていうのは本当にどんな時にも 使うことができますお昼だからといって こんにちはっていう文化は日本にはあまりないんでどちらかというとビジネスの現場で はお疲れ様ですという言葉のほうがいい たくさん使うかなと思うので覚えておくと良いと思いますはいということでいかがでし たでしょうか 今日は日本語のあいさつの仕方を紹介させていただきました sense 4 o chin 詫びれるああ if you have a question about japanese 戦 で part 22 please com ap ren ディフュー like this paon ひゅーはーんもう アーバー地やペニーズランディシーンカールチャーリーかも精神 ピース dbab くらい pnd サーフライブディスチャージねー unique star viber [音楽] [音楽]\n\nGenerate 7 multiple-choice questions that test key concepts from this content.\nIMPORTANT: Return ONLY valid JSON without markdown code blocks.",
+      "difficulty": "mixed",
+      "lecture_id": "youtube_wjFILuh9u_4_6f4020b2",
+      "auto_generated": true,
+      "generated_at": "2026-01-30T22:08:29.073383"
+    },
+    "updated_at": "2026-01-30T16:38:29.098461"
+  },
+  "youtube_cewRQs5cfOQ_b2aacd37": {
+    "lecture_id": "youtube_cewRQs5cfOQ_b2aacd37",
+    "title": "2. You should know this Japanese common phrase | Japanese Slangs",
+    "course_id": "jpn5",
+    "video_path": "https://www.youtube.com/watch?v=cewRQs5cfOQ",
+    "duration": 342,
+    "materials": [],
+    "created_at": "2026-01-30T12:18:28.205889",
+    "is_active": true,
+    "description": "",
+    "video_type": "youtube",
+    "playlist_title": "Beginner Japanese Lessons / JLPT N5 Level",
+    "playlist_id": "PL0A1mmE9MOVIS2KcY8hIA7wPt_EPhnVPt",
+    "youtube_video_id": "cewRQs5cfOQ",
+    "quiz": {
+      "title": "2. You should know this Japanese common phrase | Japanese Slangs Quiz",
+      "description": "Test your understanding of popular Japanese slang like マジで and めっちゃ, covering meanings, grammar, kanji, sentence structure, and cultural usage.",
+      "time_limit": 10,
+      "questions": [
+        {
+          "type": "mcq",
+          "question": "What does the slang phrase \"マジで\" mean in English?",
+          "question_ja": "スラング「マジで」の意味は何ですか？",
+          "options": {
+            "A": "Really / seriously",
+            "B": "Maybe",
+            "C": "Slowly",
+            "D": "Quickly"
+          },
+          "correct_answer": "A",
+          "explanation": "\"マジで\" is an adverb meaning \"really\" or \"seriously\" and is used to emphasize a statement.",
+          "difficulty": "easy"
+        },
+        {
+          "type": "mcq",
+          "question": "In the sentence \"マジで疲れた\", what part of speech is \"マジで\"?",
+          "question_ja": "「マジで疲れた」の中で「マジで」は何の品詞ですか？",
+          "options": {
+            "A": "Noun",
+            "B": "Verb",
+            "C": "Adverb",
+            "D": "Particle"
+          },
+          "correct_answer": "C",
+          "explanation": "\"マジで\" functions as an adverb that modifies the verb \"疲れた\" (got tired).",
+          "difficulty": "medium"
+        },
+        {
+          "type": "mcq",
+          "question": "Which of the following is the correct hiragana spelling of the slang \"めっちゃ\"?",
+          "question_ja": "スラング「めっちゃ」の正しいひらがな表記はどれですか？",
+          "options": {
+            "A": "めっちゃ",
+            "B": "まっちゃ",
+            "C": "もっちゃ",
+            "D": "めっさ"
+          },
+          "correct_answer": "A",
+          "explanation": "The slang \"めっちゃ\" is written in hiragana exactly as めっちゃ.",
+          "difficulty": "easy"
+        },
+        {
+          "type": "mcq",
+          "question": "In the sentence \"AはBがめっちゃ好きです\", what does the particle \"が\" indicate?",
+          "question_ja": "文「AはBがめっちゃ好きです」において、助詞「が」は何を示していますか？",
+          "options": {
+            "A": "Topic marker",
+            "B": "Subject marker for B",
+            "C": "Object marker",
+            "D": "Direction marker"
+          },
+          "correct_answer": "B",
+          "explanation": "\"が\" marks the subject of the predicate \"好きです\"; here it indicates that B is the thing liked.",
+          "difficulty": "medium"
+        },
+        {
+          "type": "mcq",
+          "question": "Which age group most commonly uses the slang \"めっちゃ\" in everyday conversation?",
+          "question_ja": "日常会話で「めっちゃ」を最もよく使う年代はどれですか？",
+          "options": {
+            "A": "Elderly people",
+            "B": "Children under 10",
+            "C": "Teenagers and young adults (20s‑30s)",
+            "D": "Business professionals"
+          },
+          "correct_answer": "C",
+          "explanation": "\"めっちゃ\" is popular among teenagers and young adults, especially those in their 20s and 30s.",
+          "difficulty": "easy"
+        },
+        {
+          "type": "mcq",
+          "question": "Choose the correct way to say \"This food is really delicious!\" using the slang \"めっちゃ\".",
+          "question_ja": "スラング「めっちゃ」を使って「この食べ物は本当に美味しいです！」と言う正しい文はどれですか？",
+          "options": {
+            "A": "この食べ物はめっちゃ美味しいです。",
+            "B": "この食べ物はめっちゃが美味しいです。",
+            "C": "この食べ物はとてもめっちゃです。",
+            "D": "この食べ物は美味しいめっちゃです。"
+          },
+          "correct_answer": "A",
+          "explanation": "\"めっちゃ\" directly modifies the adjective \"美味しい\"; the correct structure is \"めっちゃ美味しいです\".",
+          "difficulty": "medium"
+        },
+        {
+          "type": "mcq",
+          "question": "Which English expression best matches the nuance of \"マジで\" when used to emphasize a statement?",
+          "question_ja": "文を強調するときの「マジで」に最も近い英語表現はどれですか？",
+          "options": {
+            "A": "Seriously",
+            "B": "Probably",
+            "C": "Slowly",
+            "D": "Just kidding"
+          },
+          "correct_answer": "A",
+          "explanation": "\"マジで\" conveys a serious, sincere tone, similar to saying \"Seriously!\" in English.",
+          "difficulty": "hard"
+        }
+      ],
+      "quiz_id": "quiz_2ab12681",
+      "created_by": "ai_generated",
+      "created_at": "2026-01-30T23:08:55.521044",
+      "topic": "Create a quiz about: 2. You should know this Japanese common phrase | Japanese Slangs\n\nContent:\nTitle: 2. You should know this Japanese common phrase | Japanese Slangs\n\nVideo Content:\nhey guys welcome to my channel this channel is talk about how to learn japanese and improve your japanese conversation like a native japanese speaker so at first i really appreciate your kindness about watching my channel and my video and some of you send me a good comment and yeah so i'm really excited about it because when i uploading my first video i feel really anxious and fear and some of the negative emotion because this is a yeah this was the first time i uploaded my youtube youtube video and of course my english is so poor i'm really shame on me and i embarrassing yeah so i'm really afraid about it but some of the native speakers in english comment me yeah you're really good at to speak english so i feel exciting i really appreciate your kindness so i want to keep i will keep my channel and i want to share you share you how to improve your japanese language language skill anyway today i want to talk about the japanese common phrase common word match day this world is japanese islam but some of the japanese teenagers especially teenagers 20s and 30s of course four days a lot of people using master so if you want to use the japanese phrase like a native japanese speaker you must know about majde and you must use much there so this channel is language exchange opportunity of course i want to learn english and you want to learn japanese exchange our language in this channel if you like my channel my video and if you want to learn if you want to improve your japanese skill yeah please subscribe and big like so today i want to share i want to tell you how to use the japanese common flash much day much day two means pontone and totemo so if you talk with a japanese friend japanese native speaker maybe they they use a lot of words much there if you hear the word you have to figure out which means is a good fit in this conversation for example if you cover any food this food is really good taste you eat it when you eat it you say it much de wishi means quite deliciou...\n\nGenerate 7 multiple-choice questions that test key concepts from this content.\nIMPORTANT: Return ONLY valid JSON without markdown code blocks.",
+      "difficulty": "mixed",
+      "lecture_id": "youtube_cewRQs5cfOQ_b2aacd37",
+      "auto_generated": true,
+      "generated_at": "2026-01-30T23:08:55.521044"
+    },
+    "updated_at": "2026-01-30T17:38:55.521044"
+  },
+  "youtube_TPWG_WW36cg_a66ceb91": {
+    "lecture_id": "youtube_TPWG_WW36cg_a66ceb91",
+    "title": "3. basic Japanese phrases | For Every Beginners /Japanese language lessons",
+    "course_id": "jpn5",
+    "video_path": "https://www.youtube.com/watch?v=TPWG_WW36cg",
+    "duration": 373,
+    "materials": [],
+    "created_at": "2026-01-30T12:18:28.227614",
+    "is_active": true,
+    "description": "",
+    "video_type": "youtube",
+    "playlist_title": "Beginner Japanese Lessons / JLPT N5 Level",
+    "playlist_id": "PL0A1mmE9MOVIS2KcY8hIA7wPt_EPhnVPt",
+    "youtube_video_id": "TPWG_WW36cg",
+    "quiz": {
+      "title": "Basic Japanese Phrases Quiz – Beginner to Intermediate",
+      "description": "Test your understanding of basic Japanese vocabulary, grammar, kanji, sentence structure, and cultural nuances presented in the lesson on Japanese pronouns and common phrases.",
+      "time_limit": 10,
+      "questions": [
+        {
+          "type": "mcq",
+          "question": "Which word is the most neutral way to say \"you\" in Japanese?",
+          "question_ja": "「you」を表す最も中立的な日本語はどれですか？",
+          "options": {
+            "A": "あなた",
+            "B": "君",
+            "C": "お前",
+            "D": "あんた"
+          },
+          "correct_answer": "A",
+          "explanation": "あな​た (anata) is the standard, neutral second‑person pronoun. 君 (kimi) is informal, お前 (omae) is rude, and あんた is a colloquial, sometimes impolite variant.",
+          "difficulty": "easy"
+        },
+        {
+          "type": "mcq",
+          "question": "In the sentence \"あなたは学生ですか？\", which particle marks the topic?",
+          "question_ja": "「あなたは学生ですか？」の文で、主題を示す助詞はどれですか？",
+          "options": {
+            "A": "は",
+            "B": "が",
+            "C": "を",
+            "D": "に"
+          },
+          "correct_answer": "A",
+          "explanation": "The particle は (wa) follows the noun that is being talked about, marking it as the topic of the sentence.",
+          "difficulty": "easy"
+        },
+        {
+          "type": "mcq",
+          "question": "What is the correct kanji representation of the pronoun \"you\" when written as \"あなた\"?",
+          "question_ja": "「あなた」の漢字表記として正しいものはどれですか？",
+          "options": {
+            "A": "貴方",
+            "B": "君",
+            "C": "お前",
+            "D": "私"
+          },
+          "correct_answer": "A",
+          "explanation": "The polite form あなた is often written in kanji as 貴方. 君 and お前 are different pronouns, and 私 means \"I\".",
+          "difficulty": "medium"
+        },
+        {
+          "type": "mcq",
+          "question": "Which pronoun would be considered rude if used with someone you don't know well?",
+          "question_ja": "初対面の相手に使うと失礼になる代名詞はどれですか？",
+          "options": {
+            "A": "あなた",
+            "B": "君",
+            "C": "お前",
+            "D": "あなた様"
+          },
+          "correct_answer": "C",
+          "explanation": "お前 (omae) is a very informal and often rude way to address someone, especially strangers or superiors.",
+          "difficulty": "medium"
+        },
+        {
+          "type": "mcq",
+          "question": "Choose the correct order to say \"Nice to meet you\" in Japanese.",
+          "question_ja": "「はじめまして、よろしくお願いします。」の正しい順序はどれですか？",
+          "options": {
+            "A": "初めまして、よろしくお願いします。",
+            "B": "よろしくお願いします、初めまして。",
+            "C": "こんにちは、初めまして。",
+            "D": "初めまして、こんにちは。"
+          },
+          "correct_answer": "A",
+          "explanation": "The conventional greeting is 初めまして (Hajimemashite) followed by よろしくお願いします (Yoroshiku onegaishimasu).",
+          "difficulty": "easy"
+        },
+        {
+          "type": "mcq",
+          "question": "Which particle is used to indicate the direct object in the sentence \"本を読む\"?",
+          "question_ja": "「本を読む」の文で、直接目的語を示す助詞はどれですか？",
+          "options": {
+            "A": "が",
+            "B": "を",
+            "C": "に",
+            "D": "で"
+          },
+          "correct_answer": "B",
+          "explanation": "を (wo) marks the direct object of a verb. In 本を読む, 本 (book) is the object being read.",
+          "difficulty": "easy"
+        },
+        {
+          "type": "mcq",
+          "question": "If you want to ask \"How are you?\" politely, which phrase would you use?",
+          "question_ja": "丁寧に「お元気ですか？」と尋ねるときの正しい表現はどれですか？",
+          "options": {
+            "A": "元気ですか？",
+            "B": "お元気ですか？",
+            "C": "どうですか？",
+            "D": "何ですか？"
+          },
+          "correct_answer": "B",
+          "explanation": "お元気ですか？ adds the honorific お, making the question polite. 元気ですか？ is less formal, while どうですか？ and 何ですか？ do not convey the same meaning.",
+          "difficulty": "medium"
+        }
+      ],
+      "quiz_id": "quiz_bc977098",
+      "created_by": "ai_generated",
+      "created_at": "2026-01-30T22:08:44.080599",
+      "topic": "Create a quiz about: 3. basic Japanese phrases | For Every Beginners /Japanese language lessons\n\nContent:\nTitle: 3. basic Japanese phrases | For Every Beginners /Japanese language lessons\nCourse: \n\nVideo Content:\nhey guys welcome to my channel today I want to share you how to say you in Japan so in Japanese I'm sorry how to say you in Japanese because we have a lot of what which means you so if you want to say you in English you can use you but if you want to say you in Japanese we have a lot of words for example anata kimi o my sama punish Soho we have a lot of what all of them that have a meaning of you it's really difficult to use which one is the best decision anyway this channel is a language exchange platform I want to create run language exchange platform I want to give you how to speak Japanese so please give me how to speak your language your own language I want to run Rotom language I want to share you run Japanese language and culture and so on so this is a good opportunity to exchange them so if you like it if you improve your Japanese skill please subscribe and if you have any question about Japanese please comment below okay today I want to share you how to use you in Japanese how to use the word you in Japanese so we have a lot of word which meaning which which meaning is you another Kimi oh my so which one business do you think which one will serve of course anata is the best I think but some of the situation you can't use a laptop even another not up to you know how to smoke women's Kashi Talmud autonomous in whom devar Amory are not Oh God watashi to you sugar bounnam st. is nathaniell in I do you put Oh God photobomb not me I didn't know that you could opt Wow and after running up there is not tell you in detail indicated more oh whatever Nonya didn't know - Scotch Jameson equal at all what are you doing to Utah women corner Panama what are you doing so you look another the fact occurred indicated more and even whatever I'm not on I mean you didn't know the you Boone started in you are not a military no toshka time with him so stay nihongo neva Oksana another to you II mean what's the motive of re-mose kotoba ni kimi o my sama honest you don't know Padova ...\n\nGenerate 7 multiple-choice questions that test key concepts from this content.\nIMPORTANT: Return ONLY valid JSON without markdown code blocks.",
+      "difficulty": "mixed",
+      "lecture_id": "youtube_TPWG_WW36cg_a66ceb91",
+      "auto_generated": true,
+      "generated_at": "2026-01-30T22:08:44.080599"
+    },
+    "updated_at": "2026-01-30T16:38:44.108624"
+  },
+  "youtube_AiNW0ag7X1g_051f817e": {
+    "lecture_id": "youtube_AiNW0ag7X1g_051f817e",
+    "title": "4. Top 5 Basic Japanese Phrases You Must Know | Native Japanese Pronunciation For Beginners",
+    "course_id": "jpn5",
+    "video_path": "https://www.youtube.com/watch?v=AiNW0ag7X1g",
+    "duration": 336,
+    "materials": [],
+    "created_at": "2026-01-30T12:18:28.248858",
+    "is_active": true,
+    "description": "",
+    "video_type": "youtube",
+    "playlist_title": "Beginner Japanese Lessons / JLPT N5 Level",
+    "playlist_id": "PL0A1mmE9MOVIS2KcY8hIA7wPt_EPhnVPt",
+    "youtube_video_id": "AiNW0ag7X1g",
+    "quiz": {
+      "title": "Basic Japanese Phrases Quiz – Top 5 Must‑Know Expressions",
+      "description": "Test your understanding of essential Japanese greetings and etiquette, covering meanings, proper usage, kanji, and cultural background.",
+      "time_limit": 10,
+      "questions": [
+        {
+          "type": "mcq",
+          "question": "What is the most appropriate English translation of おはようございます (ohayō gozaimasu)?",
+          "question_ja": "おはようございますの最も適切な英訳はどれですか？",
+          "options": {
+            "A": "Good night",
+            "B": "Good morning",
+            "C": "Hello (any time of day)",
+            "D": "Thank you"
+          },
+          "correct_answer": "B",
+          "explanation": "おはようございます is a polite way to say “Good morning” in Japanese.",
+          "difficulty": "easy"
+        },
+        {
+          "type": "mcq",
+          "question": "Which situation is the best time to say いただきます (itadakimasu)?",
+          "question_ja": "いただきますを言うのに最も適切な場面はどれですか？",
+          "options": {
+            "A": "When you receive a gift",
+            "B": "Before starting a meal",
+            "C": "After finishing a meeting",
+            "D": "When you enter a shop"
+          },
+          "correct_answer": "B",
+          "explanation": "いただきます is said right before you begin eating to express gratitude for the food and those who prepared it.",
+          "difficulty": "easy"
+        },
+        {
+          "type": "mcq",
+          "question": "If someone thanks you with ありがとう, which phrase should you use to reply?",
+          "question_ja": "相手がありがとうと言ったとき、どの返事が適切ですか？",
+          "options": {
+            "A": "すみません",
+            "B": "どういたしまして",
+            "C": "ごめんなさい",
+            "D": "おはようございます"
+          },
+          "correct_answer": "B",
+          "explanation": "どういたしまして means “You’re welcome” and is the standard reply to ありがとう.",
+          "difficulty": "easy"
+        },
+        {
+          "type": "mcq",
+          "question": "What is the correct kanji representation and reading for the word meaning “I’m sorry / excuse me” used in the video?",
+          "question_ja": "「すみません」の正しい漢字表記と読みはどれですか？",
+          "options": {
+            "A": "済みません (すみません)",
+            "B": "住みません (すみません)",
+            "C": "澄みません (すみません)",
+            "D": "詰みません (すみません)"
+          },
+          "correct_answer": "A",
+          "explanation": "すみません is written as 済みません, where 済 (すむ) means “to finish, to be done”; the correct kanji is 済みません.",
+          "difficulty": "medium"
+        },
+        {
+          "type": "mcq",
+          "question": "Choose the sentence that uses the particle が correctly with おはようございます.",
+          "question_ja": "おはようございますと一緒にがを正しく使っている文はどれですか？",
+          "options": {
+            "A": "おはようございますが、今日は雨です。",
+            "B": "おはようございますが、昨日は忙しかったです。",
+            "C": "おはようございますが、まだ仕事が始まっていません。",
+            "D": "おはようございますが、私が行きます。"
+          },
+          "correct_answer": "C",
+          "explanation": "が can contrast two statements; “おはようございますが、まだ仕事が始まっていません。” means “Good morning, but work hasn’t started yet.” The contrast is logical and natural.",
+          "difficulty": "hard"
+        },
+        {
+          "type": "mcq",
+          "question": "Why is it considered polite to say いただきます before a meal in Japanese culture?",
+          "question_ja": "日本文化で食事の前にいただきますと言うのはなぜ礼儀正しいとされるのでしょうか？",
+          "options": {
+            "A": "It thanks the cook and the ingredients.",
+            "B": "It asks for permission to eat.",
+            "C": "It signals that the food is ready to be served.",
+            "D": "It is a way to announce that you are hungry."
+          },
+          "correct_answer": "A",
+          "explanation": "いただきます expresses gratitude toward the people who prepared the food and toward the life that provided the ingredients, reflecting Japanese respect for nature and labor.",
+          "difficulty": "medium"
+        },
+        {
+          "type": "mcq",
+          "question": "Which of the following sentences uses すみません in the sense of “excuse me / to get attention”?",
+          "question_ja": "すみませんを「注意を引く」意味で使っている文はどれですか？",
+          "options": {
+            "A": "すみません、遅れてしまいました。",
+            "B": "すみません、道を教えてください。",
+            "C": "すみません、これをください。",
+            "D": "すみません、今日は忙しいです。"
+          },
+          "correct_answer": "B",
+          "explanation": "すみません、道を教えてください。 uses すみません to politely get the listener’s attention before asking for directions.",
+          "difficulty": "medium"
+        }
+      ],
+      "quiz_id": "quiz_e17d3f48",
+      "created_by": "ai_generated",
+      "created_at": "2026-01-30T23:09:03.326451",
+      "topic": "Create a quiz about: 4. Top 5 Basic Japanese Phrases You Must Know | Native Japanese Pronunciation For Beginners\n\nContent:\nTitle: 4. Top 5 Basic Japanese Phrases You Must Know | Native Japanese Pronunciation For Beginners\n\nVideo Content:\nhey guys welcome to my channel I'm caca this channel is a good content to exchange our language my first language is a Japanese so I want to teach and I want to show you how to use Japanese and how to improve your Japanese conversation and just begin a to speak English so please give me how to speak correctly anyway if you want to improve your Japanese and if you want to know about the Japanese culture and lifestyle please subscribe and if you like this channel please give me a big like today I want to share you the top one Japanese basic phrase with the daily conversation we use this phrase and sentence a little time daily life if you want to talk with the native Japanese speaker you must understand of this phrase number one it's Ohio bitanga ohayo-gozaimasu is greetings 1 and greeting phrase you can use in the morning when you meet your co-workers at the morning you can say you can do so you can use this wall oh hi over time us so we use ohayo-gozaimasu everyday you must know about it number two do it - much there though it - mistake means you are welcome if you do anything if you if you do something for the others some of them appreciate your kindness so you you can use this one do it as much there it's mean there you're welcome number three number three is woman hi o magnify means I'm sorry this is very good and the top of water of course at each other someone can't say I'm sorry it's very difficult to recognize my opponent but it's really important if you have a mistake you should apologize anyone this is a powerful word you must know and you must understand women nothing for me my sight butter sugar Motta game are strong women aside sorry wa watashi no second engine you must know this phrase if you want to do the business in Japan number four is atacama itadakimasu is it's really difficult to express in English or when you start eating what do you say how English I don't I don't know a priest comment below but in Japan we have a stay we had better to say itada...\n\nGenerate 7 multiple-choice questions that test key concepts from this content.\nIMPORTANT: Return ONLY valid JSON without markdown code blocks.",
+      "difficulty": "mixed",
+      "lecture_id": "youtube_AiNW0ag7X1g_051f817e",
+      "auto_generated": true,
+      "generated_at": "2026-01-30T23:09:03.326451"
+    },
+    "updated_at": "2026-01-30T17:39:03.352320"
+  },
+  "youtube_rmKQYCMQZqE_392226ad": {
+    "lecture_id": "youtube_rmKQYCMQZqE_392226ad",
+    "title": "5. How to write Japanese Alphabet - Hiragana | Rule of the pronounce You must know",
+    "course_id": "jpn5",
+    "video_path": "https://www.youtube.com/watch?v=rmKQYCMQZqE",
+    "duration": 558,
+    "materials": [],
+    "created_at": "2026-01-30T12:18:28.266941",
+    "is_active": true,
+    "description": "",
+    "video_type": "youtube",
+    "playlist_title": "Beginner Japanese Lessons / JLPT N5 Level",
+    "playlist_id": "PL0A1mmE9MOVIS2KcY8hIA7wPt_EPhnVPt",
+    "youtube_video_id": "rmKQYCMQZqE",
+    "quiz": {
+      "title": "5. How to Write Japanese Alphabet - Hiragana | Pronunciation Rules Quiz",
+      "description": "Test your understanding of Hiragana basics, pronunciation rules, and related Japanese language concepts.",
+      "time_limit": 10,
+      "questions": [
+        {
+          "type": "mcq",
+          "question": "What does the word \"hiragana\" literally mean?",
+          "question_ja": "「ひらがな」という言葉は文字通り何を意味しますか？",
+          "options": {
+            "A": "ordinary script",
+            "B": "complex characters",
+            "C": "kanji",
+            "D": "katakana"
+          },
+          "correct_answer": "A",
+          "explanation": "\"ひらがな\" comes from \"平仮名\" which means \"ordinary (plain) kana\" as opposed to the more complex kanji.",
+          "difficulty": "easy"
+        },
+        {
+          "type": "mcq",
+          "question": "Which of the following lists the five Japanese vowel sounds in the correct order?",
+          "question_ja": "次のうち、五つの基本母音を正しい順番で並べたものはどれですか？",
+          "options": {
+            "A": "a i u e o",
+            "B": "a u i e o",
+            "C": "a i e u o",
+            "D": "a e i o u"
+          },
+          "correct_answer": "A",
+          "explanation": "The standard vowel order in Japanese is a (あ), i (い), u (う), e (え), o (お).",
+          "difficulty": "easy"
+        },
+        {
+          "type": "mcq",
+          "question": "Which Hiragana character corresponds to the sound \"ke\"?",
+          "question_ja": "「け」の音に対応するひらがなはどれですか？",
+          "options": {
+            "A": "か",
+            "B": "け",
+            "C": "こ",
+            "D": "き"
+          },
+          "correct_answer": "B",
+          "explanation": "The Hiragana け represents the syllable \"ke\" in the K‑row (か・き・く・け・こ).",
+          "difficulty": "easy"
+        },
+        {
+          "type": "mcq",
+          "question": "Which particle is used to mark the topic of a sentence?",
+          "question_ja": "文の主題（トピック）を示す助詞はどれですか？",
+          "options": {
+            "A": "が",
+            "B": "を",
+            "C": "に",
+            "D": "は"
+          },
+          "correct_answer": "D",
+          "explanation": "The particle は (pronounced wa) marks the topic of a sentence.",
+          "difficulty": "medium"
+        },
+        {
+          "type": "mcq",
+          "question": "The kanji \"日\" has several readings. Which is the most common on‑yomi (Chinese reading) for the meaning \"day\"?",
+          "question_ja": "漢字「日」の意味「日・昼」に対する最も一般的な音読みはどれですか？",
+          "options": {
+            "A": "にち",
+            "B": "ひ",
+            "C": "か",
+            "D": "じつ"
+          },
+          "correct_answer": "A",
+          "explanation": "\"日\" is read as にち (nichi) in many compound words meaning \"day\" (e.g., 日本, 日曜日).",
+          "difficulty": "medium"
+        },
+        {
+          "type": "mcq",
+          "question": "Arrange the following words into a natural Japanese sentence: \"日本語\", \"勉強します\", \"私は\".",
+          "question_ja": "次の語句を自然な日本語の文に並べ替えてください: 「日本語」「勉強します」「私は」",
+          "options": {
+            "A": "私は日本語勉強します",
+            "B": "私は日本語を勉強します",
+            "C": "日本語を私は勉強します",
+            "D": "勉強します私は日本語を"
+          },
+          "correct_answer": "B",
+          "explanation": "The correct order with the object marker を is: 私は日本語を勉強します (I study Japanese).",
+          "difficulty": "medium"
+        },
+        {
+          "type": "mcq",
+          "question": "Why is learning Hiragana considered essential for foreign learners of Japanese?",
+          "question_ja": "外国人学習者にとってひらがなを学ぶことが重要とされる理由は何ですか？",
+          "options": {
+            "A": "It is used only for foreign loanwords",
+            "B": "It represents grammatical endings and native words",
+            "C": "It is the same as kanji",
+            "D": "It is only used in ancient texts"
+          },
+          "correct_answer": "B",
+          "explanation": "Hiragana is used for native Japanese words, verb and adjective endings, and particles, making it indispensable for reading and writing basic sentences.",
+          "difficulty": "hard"
+        }
+      ],
+      "quiz_id": "quiz_01fda736",
+      "created_by": "ai_generated",
+      "created_at": "2026-01-30T23:09:11.819006",
+      "topic": "Create a quiz about: 5. How to write Japanese Alphabet - Hiragana | Rule of the pronounce You must know\n\nContent:\nTitle: 5. How to write Japanese Alphabet - Hiragana | Rule of the pronounce You must know\n\nVideo Content:\nhey guys welcome to my channel in this channel we can exchange our language my first language is Japanese so I can teach you how to improve your Japanese skill and how to speak Japanese fluently so if you are you are English lady please give me how to speak English please teach me how to speak English fluently I'm a beginner of English so I've tried hard to improve my English this channel is a good way to improve my English skill and of course this is a really good opportunity to learn Japanese for you if you improve your Japanese skill please subscribe this channel and if you like this video please give me a big like so let's get started but today I want to share you how to write Japanese characters Japanese alphabet Giavanna I hear it's really difficult to understand and to remember it right but we have some rude to lighten and to pronounce it so we have a good I don't know we have low how to write it I'm sorry I can't speak around if you watched today's video you can understand it and you can remember more easy so ready okay today I want to teach you how to write Japanese Japanese alphabet today's topics is hiragana it's very difficult for you to remember it but we have some of the rule and some of the law of to write it at first you should remember the pipe character v alphabet e o this is the basic Japanese character pronunciation is e a oh this is the these are the basic five characters and car key ku ke ko this sound is car key ku okay cool okay it's really easy because II owe this five sound is a basic sound and car key ku ke ko you can use this type of sound and before them K and after that sir she su se so all this is a s sound okay so she sue say so okay it's really easy to understand their that to remember it right so next is tah G - hey so no me no me no this is really easy key and and G to tell - no no no I'm sorry no how do you feel it it's really easy right and he who Hey oh ma me me me yeah II you a yo the the do they know what oh this is the old Ja...\n\nGenerate 7 multiple-choice questions that test key concepts from this content.\nIMPORTANT: Return ONLY valid JSON without markdown code blocks.",
+      "difficulty": "mixed",
+      "lecture_id": "youtube_rmKQYCMQZqE_392226ad",
+      "auto_generated": true,
+      "generated_at": "2026-01-30T23:09:11.819006"
+    },
+    "updated_at": "2026-01-30T17:39:11.833042"
+  },
+  "youtube_KqUsJUJn9FI_c375ab22": {
+    "lecture_id": "youtube_KqUsJUJn9FI_c375ab22",
+    "title": "6. How to Remember Japanese Alphabet katakana | How to Write Katakana for Beginners",
+    "course_id": "jpn5",
+    "video_path": "https://www.youtube.com/watch?v=KqUsJUJn9FI",
+    "duration": 370,
+    "materials": [],
+    "created_at": "2026-01-30T12:18:28.284277",
+    "is_active": true,
+    "description": "",
+    "video_type": "youtube",
+    "playlist_title": "Beginner Japanese Lessons / JLPT N5 Level",
+    "playlist_id": "PL0A1mmE9MOVIS2KcY8hIA7wPt_EPhnVPt",
+    "youtube_video_id": "KqUsJUJn9FI",
+    "quiz": {
+      "title": "Katakana Mastery Quiz – Remembering & Writing Katakana",
+      "description": "Test your knowledge on katakana vocabulary, usage, writing rules, kanji readings, sentence structure, and cultural aspects discussed in the beginner video.",
+      "time_limit": 10,
+      "questions": [
+        {
+          "type": "mcq",
+          "question": "What does the term カタカナ refer to in Japanese?",
+          "question_ja": "「カタカナ」とは日本語で何を指すでしょうか？",
+          "options": {
+            "A": "A set of Chinese characters used for verbs",
+            "B": "A phonetic script used mainly for foreign loanwords",
+            "C": "A traditional form of calligraphy",
+            "D": "A type of Japanese punctuation mark"
+          },
+          "correct_answer": "B",
+          "explanation": "カタカナ is one of the two Japanese syllabaries. It is primarily used to write foreign loanwords, onomatopoeia, scientific terms, and brand names.",
+          "difficulty": "easy"
+        },
+        {
+          "type": "mcq",
+          "question": "Which particle correctly marks the direct object when you say “Write the word ‘computer’ in katakana.”",
+          "question_ja": "「‘computer’ をカタカナで書く。」という文で、直接目的語を示す正しい助詞はどれですか？",
+          "options": {
+            "A": "は",
+            "B": "が",
+            "C": "を",
+            "D": "に"
+          },
+          "correct_answer": "C",
+          "explanation": "The particle を marks the direct object of a transitive verb. In the sentence “‘computer’ をカタカナで書く,” ‘computer’ is the object being written.",
+          "difficulty": "medium"
+        },
+        {
+          "type": "mcq",
+          "question": "What is the on‑yomi (Chinese reading) of the kanji 片仮名?",
+          "question_ja": "漢字「片仮名」の音読みはどれですか？",
+          "options": {
+            "A": "ヘンカナ",
+            "B": "カタカナ",
+            "C": "ヘンガナ",
+            "D": "カタガナ"
+          },
+          "correct_answer": "B",
+          "explanation": "The kanji 片仮名 is read as カタカナ (katakana). The reading combines the on‑yomi of 片 (カタ) and 仮名 (カナ).",
+          "difficulty": "hard"
+        },
+        {
+          "type": "mcq",
+          "question": "Choose the correct katakana spelling for the English word “coffee”.",
+          "question_ja": "英語の “coffee” をカタカナで正しく書くとどれですか？",
+          "options": {
+            "A": "コフィー",
+            "B": "カフェ",
+            "C": "コーヒー",
+            "D": "コーヒ"
+          },
+          "correct_answer": "C",
+          "explanation": "The standard katakana transcription of “coffee” is コーヒー, with a long vowel mark (ー) after both コ and ヒ.",
+          "difficulty": "easy"
+        },
+        {
+          "type": "mcq",
+          "question": "Why are foreign brand names usually written in katakana rather than hiragana or kanji?",
+          "question_ja": "外国のブランド名がひらがなや漢字ではなくカタカナで書かれる主な理由は何ですか？",
+          "options": {
+            "A": "カタカナは日本語の正式な文字だから",
+            "B": "カタカナは音を正確に表すことができ、外来語を目立たせるため",
+            "C": "ひらがなは古い文字で、現代では使われない",
+            "D": "漢字は外国語を表すことができないから"
+          },
+          "correct_answer": "B",
+          "explanation": "Katakana is used to represent foreign sounds clearly and to make loanwords stand out in Japanese text. It signals that the word is not native Japanese.",
+          "difficulty": "medium"
+        }
+      ],
+      "quiz_id": "quiz_e92c8114",
+      "created_by": "ai_generated",
+      "created_at": "2026-01-30T23:14:19.345077",
+      "topic": "Create a quiz about: 6. How to Remember Japanese Alphabet katakana | How to Write Katakana for Beginners\n\nContent:\nTitle: 6. How to Remember Japanese Alphabet katakana | How to Write Katakana for Beginners\n\nVideo Content:\n描いデートのているマイチャンネルを開いたか this channel i show you how to u ゆっくり自由なあ行けるいう常連実来さんの位置はプリツカーチェーンソー ツリービューを to learn japanese ad you do this p サービス int スキンみよビッグらーっ 変 matar 2父9 r 9ライス japanese キャスト japanese あるのか誰かなあ9 d 0枚クリエイティブてラーナー how to ライティラガーなビリーをあた座で吟味ゆめっせ支柱クリエ モービルは技ない筋力者ピザ ゼリーを梵字て流派てないかな そうねサーぽけ5 day ir 所有でああ ハウトゥーライト japanese アルファベットカタカナカタカナやんど枚がない face ファーバー2 だキャラクターやんだシェイプ 図9 y difference 瀬尾ボーイ懺法 this 枚ガーナーサウンドイース プラ1通 あ いい う を this is ひらがなカタカナ as this ひらがなトランスフォーだか誰 かな [音楽] アイムソーリー を ok 理性ひらがな [音楽] カタカナ [音楽] ok fe japanese アルファベ羽生ひらがな円高たかな そう oki ライティターンいう本っていうのを這うトゥーラいてカタカナ please watch this video めりたい oki スターです を 母 聞い k 5 さあ そう パ 家 すー て と な ねえねえ の [音楽] まあ にっ う 名 も [音楽] いや いい 感想姫 view [音楽] ラ リー 2 で a ろっ は を ok です all japanese 方かな いやっ入っ r are you isi s えっ滑り強い t 闊歩結愛ビターズ b ハガー japanese 幅枚がないんでカタカナやつ感じ フリークレイズ i ジンクスオーバー tu 本2 bd nd ふゅーむとぅーライド japanese ヒューマックス tn ond you must be メンバー this キャラクター f 4 at question please comment ブルー ok + part of this ぴーだよええ もしも [音楽] とっ [音楽] お外 this as もしも質問があればコメント下さい もしも見えず [音楽] 質問 です 9 s 2 [音楽] コメントみんず 米 ください 3 s プリー ok eu 羽生エニー question please comment 尾籠あればお外置 あれば見え はぁ やヘリティカっ isd 3 d cars ワードもしも質問があればコメント下さい a if you have a question please comments sense 4 o chin グッズデイズビデオを see you next time またねー [音楽]\n\nGenerate 5 multiple-choice questions that test key concepts from this content.\nIMPORTANT: Return ONLY valid JSON without markdown code blocks.",
+      "difficulty": "mixed",
+      "lecture_id": "youtube_KqUsJUJn9FI_c375ab22",
+      "auto_generated": true,
+      "generated_at": "2026-01-30T23:14:19.345077"
+    },
+    "updated_at": "2026-01-30T17:44:19.345077"
+  },
+  "youtube_QkLQgq-0M_U_cc5843c0": {
+    "lecture_id": "youtube_QkLQgq-0M_U_cc5843c0",
+    "title": "7. Simple Method How to Read Numbers in Japanese | How to Write Number in Japanese",
+    "course_id": "jpn5",
+    "video_path": "https://www.youtube.com/watch?v=QkLQgq-0M_U",
+    "duration": 576,
+    "materials": [],
+    "created_at": "2026-01-30T12:18:28.311071",
+    "is_active": true,
+    "description": "",
+    "video_type": "youtube",
+    "playlist_title": "Beginner Japanese Lessons / JLPT N5 Level",
+    "playlist_id": "PL0A1mmE9MOVIS2KcY8hIA7wPt_EPhnVPt",
+    "youtube_video_id": "QkLQgq-0M_U",
+    "quiz": {
+      "title": "Japanese Numbers: Reading and Writing Quiz",
+      "description": "Test your knowledge of Japanese numerals, kanji, pronunciation, grammar patterns, and cultural usage.",
+      "time_limit": 10,
+      "questions": [
+        {
+          "type": "mcq",
+          "question": "What is the kanji character for the number 5?",
+          "question_ja": "数字の「5」を表す漢字はどれですか？",
+          "options": {
+            "A": "五",
+            "B": "四",
+            "C": "六",
+            "D": "七"
+          },
+          "correct_answer": "A",
+          "explanation": "The kanji 五 (ご) means \"five\". The other options represent 4, 6, and 7 respectively.",
+          "difficulty": "easy"
+        },
+        {
+          "type": "mcq",
+          "question": "How do you say the number 20 in Japanese?",
+          "question_ja": "数字の「20」は日本語でどう言いますか？",
+          "options": {
+            "A": "にじゅう (ni juu)",
+            "B": "さんじゅう (san juu)",
+            "C": "ひゃく (hyaku)",
+            "D": "せん (sen)"
+          },
+          "correct_answer": "A",
+          "explanation": "20 is formed by combining 2 (に) and 10 (じゅう), giving にじゅう (ni‑juu).",
+          "difficulty": "medium"
+        },
+        {
+          "type": "mcq",
+          "question": "In the sentence \"りんごを三つ買いました\", what is the function of the particle \"を\"?",
+          "question_ja": "文「りんごを三つ買いました」における助詞「を」の役割は何ですか？",
+          "options": {
+            "A": "subject marker",
+            "B": "object marker",
+            "C": "location marker",
+            "D": "direction marker"
+          },
+          "correct_answer": "B",
+          "explanation": "を marks the direct object of a verb. Here, \"りんご\" (apples) is the object being bought.",
+          "difficulty": "easy"
+        },
+        {
+          "type": "mcq",
+          "question": "What is the on'yomi (Sino‑Japanese) reading of the kanji 百 (meaning 100)?",
+          "question_ja": "漢字「百」の音読みは何ですか？",
+          "options": {
+            "A": "ひゃく",
+            "B": "ひょく",
+            "C": "ひく",
+            "D": "ひっ"
+          },
+          "correct_answer": "A",
+          "explanation": "The standard on'yomi for 百 is ひゃく (hyaku). The other options are incorrect variations.",
+          "difficulty": "medium"
+        },
+        {
+          "type": "mcq",
+          "question": "Which reading is used for the number 4,000 in Japanese?",
+          "question_ja": "数字「4,000」を読むときの正しい読み方はどれですか？",
+          "options": {
+            "A": "よんせん (yon‑sen)",
+            "B": "しせん (shi‑sen)",
+            "C": "よんまん (yon‑man)",
+            "D": "しまん (shi‑man)"
+          },
+          "correct_answer": "A",
+          "explanation": "For thousands, the native Japanese reading of 4 (よん) is combined with the on'yomi of 1,000 (せん), giving よんせん. \"しせん\" is also possible but less common; the quiz expects the most standard form.",
+          "difficulty": "hard"
+        },
+        {
+          "type": "mcq",
+          "question": "When a cashier asks \"いくらですか?\", what are they asking?",
+          "question_ja": "店員が「いくらですか？」と聞くとき、何を尋ねていますか？",
+          "options": {
+            "A": "How many items?",
+            "B": "How much is it?",
+            "C": "Do you have change?",
+            "D": "Thank you"
+          },
+          "correct_answer": "B",
+          "explanation": "\"いくらですか?\" means \"How much is it?\" and is used to ask for the price of an item.",
+          "difficulty": "medium"
+        },
+        {
+          "type": "mcq",
+          "question": "Which of the following is the correct hiragana spelling for the number 8?",
+          "question_ja": "数字の「8」を表す正しいひらがなはどれですか？",
+          "options": {
+            "A": "はち",
+            "B": "しち",
+            "C": "なな",
+            "D": "きゅう"
+          },
+          "correct_answer": "A",
+          "explanation": "The number 8 is read as はち (hachi). しち is 7, なな is also 7 (alternative reading), and きゅう is 9.",
+          "difficulty": "easy"
+        }
+      ],
+      "quiz_id": "quiz_30b692c0",
+      "created_by": "ai_generated",
+      "created_at": "2026-01-30T23:14:27.636917",
+      "topic": "Create a quiz about: 7. Simple Method How to Read Numbers in Japanese | How to Write Number in Japanese\n\nContent:\nTitle: 7. Simple Method How to Read Numbers in Japanese | How to Write Number in Japanese\n\nVideo Content:\nhey guys welcome to my channel I'm talking in this channel I'll show you how to improve your Japanese skill and I tell you Japanese culture and lifestyle and so on if you want to run both Japanese and if you want to do a Japanese tea please subscribe my channel and please give me a big blank anyway today I want to show you the okay today I'll show you the how to read the number in Japanese in Japan we must remember the number and katakana and hiragana and kanji so I guess it's difficult for you but if you want to buy anything in Japan so you have to use this Japanese number so please watch this video many times and you can remember it ok of course we have our number 1 2 3 4 5 6 7 8 9 10 we can translate it the number is kanji so kanji is yes 1 2 3 4 5 6 7 8 9 10 we must remember it so 1 & 2 & 3 is it's really easy to remember it one is the 1 2 is 2 3 is 3 but 4 5 6 7 8 9 10 it's I guess it difficult but you must remember it and after that 20 and 30 and 100 and thousand is 20 and sati is really easy because 20 is 2 and 10 so we can use 2 & 2 ten right so satay is very easy of course three and can so we can use it three and ten right but one hundred and thousand we have to use the another character another kanji so for example 100 SDS you must remember it and thousand is this at first you must remember the this kanji one two three four five six seven eight nine ten after that you must remember one hundred and thousand okay next next is how to read a Japanese number this is the Japanese pronunciation about the number okay I expressed you at first one is we call it one in Japan eg eg and me me and some sound Yong Yong go go local local no no no no Hachi Hachi q.\n\nGenerate 7 multiple-choice questions that test key concepts from this content.\nIMPORTANT: Return ONLY valid JSON without markdown code blocks.",
+      "difficulty": "mixed",
+      "lecture_id": "youtube_QkLQgq-0M_U_cc5843c0",
+      "auto_generated": true,
+      "generated_at": "2026-01-30T23:14:27.636917"
+    },
+    "updated_at": "2026-01-30T17:44:27.660412"
+  },
+  "youtube_ZryGIDGZmmg_19aeff73": {
+    "lecture_id": "youtube_ZryGIDGZmmg_19aeff73",
+    "title": "8. Easy Way How to Read Date and Month in Japanese | Japanese Basic Phrases",
+    "course_id": "jpn5",
+    "video_path": "https://www.youtube.com/watch?v=ZryGIDGZmmg",
+    "duration": 872,
+    "materials": [],
+    "created_at": "2026-01-30T12:18:28.332606",
+    "is_active": true,
+    "description": "",
+    "video_type": "youtube",
+    "playlist_title": "Beginner Japanese Lessons / JLPT N5 Level",
+    "playlist_id": "PL0A1mmE9MOVIS2KcY8hIA7wPt_EPhnVPt",
+    "youtube_video_id": "ZryGIDGZmmg",
+    "quiz": {
+      "title": "Date and Month Reading Quiz",
+      "description": "Test your knowledge of how to read dates and months in Japanese, including vocabulary, grammar, kanji readings, sentence structure, and cultural context.",
+      "time_limit": 10,
+      "questions": [
+        {
+          "type": "mcq",
+          "question": "How do you read the month \"March\" in Japanese?",
+          "question_ja": "「March（3月）」は日本語でどう読みますか？",
+          "options": {
+            "A": "さんがつ",
+            "B": "みつき",
+            "C": "さくらがつ",
+            "D": "さんにち"
+          },
+          "correct_answer": "A",
+          "explanation": "The month March is read as \"さんがつ\" (san‑gatsu). The suffix \"がつ\" means month, and the numeral 3 is read \"さん\".",
+          "difficulty": "easy"
+        },
+        {
+          "type": "mcq",
+          "question": "Which particle is used to indicate the specific day in a date expression like \"5月12日\"?",
+          "question_ja": "「5月12日」のような日付表現で、特定の日を示す助詞はどれですか？",
+          "options": {
+            "A": "は",
+            "B": "が",
+            "C": "の",
+            "D": "に"
+          },
+          "correct_answer": "C",
+          "explanation": "The particle \"の\" links the month and the day, forming \"5月の12日\" when spoken. In written dates the particle is often omitted, but the underlying structure uses \"の\".",
+          "difficulty": "medium"
+        },
+        {
+          "type": "mcq",
+          "question": "What is the correct reading for the date \"July 1st\" written as \"7月1日\"?",
+          "question_ja": "「7月1日」の正しい読み方はどれですか？",
+          "options": {
+            "A": "しちがつついたち",
+            "B": "なながついちにち",
+            "C": "しちがついちにち",
+            "D": "しちがつついたん"
+          },
+          "correct_answer": "C",
+          "explanation": "July is \"しちがつ\" (shichi‑gatsu) and the first day of the month is \"いちにち\" (ichi‑nichi). Together they are read \"しちがついちにち\".",
+          "difficulty": "easy"
+        },
+        {
+          "type": "mcq",
+          "question": "In the sentence \"今日は何月何日ですか？\", which word means \"today\"?",
+          "question_ja": "文「今日は何月何日ですか？」で「today」に相当する語はどれですか？",
+          "options": {
+            "A": "何月",
+            "B": "何日",
+            "C": "今日は",
+            "D": "ですか"
+          },
+          "correct_answer": "C",
+          "explanation": "\"今日は\" (kyō wa) means \"today\". \"何月\" means \"what month\", \"何日\" means \"what day\", and \"ですか\" is the polite question ending.",
+          "difficulty": "medium"
+        },
+        {
+          "type": "mcq",
+          "question": "Which of the following is the correct kanji for \"December\"?",
+          "question_ja": "次のうち「December（12月）」の正しい漢字はどれですか？",
+          "options": {
+            "A": "十二月",
+            "B": "十月二",
+            "C": "一十二月",
+            "D": "十二月"
+          },
+          "correct_answer": "A",
+          "explanation": "December is written as \"十二月\" (じゅうにがつ). The kanji \"十二\" means twelve, and \"月\" means month.",
+          "difficulty": "easy"
+        },
+        {
+          "type": "mcq",
+          "question": "When expressing a birthday, which phrase is commonly used?",
+          "question_ja": "誕生日を言うとき、一般的に使われる表現はどれですか？",
+          "options": {
+            "A": "私の誕生日は七月十五です。",
+            "B": "私の誕生日は七月十五日です。",
+            "C": "私の誕生日は七月十五号です。",
+            "D": "私の誕生日は七月十五月です。"
+          },
+          "correct_answer": "B",
+          "explanation": "The correct way is \"私の誕生日は七月十五日です。\" The day part requires the suffix \"日\" (にち). \"号\" is used for numbers like room numbers, not dates.",
+          "difficulty": "medium"
+        },
+        {
+          "type": "mcq",
+          "question": "In Japanese culture, which month is most associated with the New Year celebrations?",
+          "question_ja": "日本の文化で、正月の祝祭と最も関係が深い月はどれですか？",
+          "options": {
+            "A": "1月",
+            "B": "2月",
+            "C": "12月",
+            "D": "3月"
+          },
+          "correct_answer": "A",
+          "explanation": "New Year (正月, しょうがつ) is celebrated on January 1st, so the month is \"1月\" (いちがつ).",
+          "difficulty": "hard"
+        }
+      ],
+      "quiz_id": "quiz_b48a1d73",
+      "created_by": "ai_generated",
+      "created_at": "2026-01-30T23:14:35.228460",
+      "topic": "Create a quiz about: 8. Easy Way How to Read Date and Month in Japanese | Japanese Basic Phrases\n\nContent:\nTitle: 8. Easy Way How to Read Date and Month in Japanese | Japanese Basic Phrases\n\nVideo Content:\n描いですベーカーもて甘いちゃんだよアイパーたーーー 皆さんこんにちはたです in this game 欧米とパ how to your 者パリィつける 持って流 japanese guys スターへ ジャガーインスタンチェンソーユー普及を空にブービーはじゃあ振り付け プレイサービス r this channel ああいうもんてるの もうパワー japanese たっちゃばフェスギーみゆビッグウェイ 図8 b 2杯本柱アーサー ダーク s チョンっ ahme coo デー re here till 桜蔭出会いアーサーたい米飯さあリングはフレッシュアイのスタッフブログ ポッ tse so how to be jp ん j 2でいるそう rat 9 cv キー パン tb いいなーっ den o 型レッツスターと r 所有でハウトゥリーだまーす in japanese army エイズリーイージェートゥーリーで in japanese バーターイフユードント&ストーンディフュー土のうだーハウトゥーか雲山な bar in japanese voodoo reefer bairro ラリーアップ loading how to do バッグ dba ピーズボディスプレー after the ide ユーザースペ c クリーンピン description please ウォッチ abd ファー ok ait 智勇でハウトゥリーザムーンスイング japanese art ファース january d 1塩 ディスタンジーみー ends まあ それを リス感じ means まあ ウィーキャンリーディー ガーツ 月 2 h ツィー d 2 d january リスボン言えず1 デューの良い this ナンバーリーディーん japanese eh ライティ after ざーと言っ コネクティじゃあ 立村 ガーッ ok welly g 1月 muse january じゃあ new あり アイムソーリーアイドンノーぜコレクトスペル ok ねーくとぅ this 本 esata ガッツ 2 ガッツ 御縁スペぶらりー トゥーン this 感じ コネクティング2月 next ps 3ディス感じ コネクティングさん 月 ok pg エスケープ dsn after the 5月 5月 シークス選んで感じコネクティングロー9月 雷 as ベリーイージーゴーバー5バックトゥーで apl d シーザー exception ビッグオーダー no マリアーウィー高齢 エッジすナンバーへ 4 ライっ 4いいえ イオン 4バーティ in this case ウィーリールー氏 4アイムソーリー 4 4月 4月 アイドンノーわーい アイドルのワイバーベイブリッジ japanese ぷろなぁズ a 4月 ok 4月のって4 gantz this word へイズ4月 ads this a ず exception to no 丸い wii コレッティ this ナンバーへ 7ライティバーティ in this case いいコレッティ 7月7月 しーちがーーーう oek エニェアマ ノーマリウイ高齢て良いんじゃぱにーず9 バーター in this 系 9 e ガッツ 9月 ok あーネクスティずイージー 10月10月 nextstage how can i んいうプロナース a teen japanese leg 10 一十一そぉ11月 ok nxt 言えず 12月 12月 ok this is マンスああいう大 r バーて keep going keep callin you can do いい ok in this party with billy tiff からトゥアお 湯ファブのちょいず remember all of trees wii 羽生のルーウィンでデー そのああ better to remember デー day イレブン2さあ deg バーッ 1っていう2へ3 d カール t 光るタイプ eu 本 to remember デイリー良いんじゃぱにーず後ファース優秀ディ メンバーイレブン2サーティ ビッグオーズ a tree イージーおけるレッツ start out 1st ティレ分 some これー11 after ずつ コネクティング this 感じ this 感じ ウィープロマンス this 感じ日2 d スワール f 11日 をゲイズイーズいいねぇ xts 12 日 12日 next 1321 1321 はデイズですあ 1421ウェディずディーズ15 21 a leg バートリー have i exception ライフ d 3 dc ず う五鈷鈴て僅か ユファ...\n\nGenerate 7 multiple-choice questions that test key concepts from this content.\nIMPORTANT: Return ONLY valid JSON without markdown code blocks.",
+      "difficulty": "mixed",
+      "lecture_id": "youtube_ZryGIDGZmmg_19aeff73",
+      "auto_generated": true,
+      "generated_at": "2026-01-30T23:14:35.228460"
+    },
+    "updated_at": "2026-01-30T17:44:35.266072"
+  },
+  "youtube_QE5NRkyDC5k_aa38a5b0": {
+    "lecture_id": "youtube_QE5NRkyDC5k_aa38a5b0",
+    "title": "9. Easy tips for JLPT N5 Japanese Sentence Structure | Basic Japanese Grammar",
+    "course_id": "jpn5",
+    "video_path": "https://www.youtube.com/watch?v=QE5NRkyDC5k",
+    "duration": 685,
+    "materials": [],
+    "created_at": "2026-01-30T12:18:28.355407",
+    "is_active": true,
+    "description": "",
+    "video_type": "youtube",
+    "playlist_title": "Beginner Japanese Lessons / JLPT N5 Level",
+    "playlist_id": "PL0A1mmE9MOVIS2KcY8hIA7wPt_EPhnVPt",
+    "youtube_video_id": "QE5NRkyDC5k",
+    "quiz": {
+      "title": "JLPT N5 Sentence Structure Quiz",
+      "description": "Test your understanding of basic Japanese grammar, vocabulary, particles, kanji readings, and cultural context covered in the \"Easy tips for JLPT N5 Japanese Sentence Structure\" video.",
+      "time_limit": 10,
+      "questions": [
+        {
+          "type": "mcq",
+          "question": "What is the correct reading and meaning of the kanji 家 in the sentence \"これはわたしの家です\"?",
+          "question_ja": "文「これはわたしの家です」における漢字「家」の正しい読み方と意味はどれですか？",
+          "options": {
+            "A": "いえ – house/home",
+            "B": "うち – inside",
+            "C": "か – department",
+            "D": "へや – room"
+          },
+          "correct_answer": "A",
+          "explanation": "家 is read いえ and means \"house\" or \"home\". In the sentence it indicates possession: \"my house\".",
+          "difficulty": "easy"
+        },
+        {
+          "type": "mcq",
+          "question": "Choose the correct particle to mark the direct object in the sentence: \"私たちはケーキ___食べました\".",
+          "question_ja": "次の文で直接目的語を示す正しい助詞はどれですか？「私たちはケーキ___食べました」",
+          "options": {
+            "A": "が",
+            "B": "を",
+            "C": "に",
+            "D": "で"
+          },
+          "correct_answer": "B",
+          "explanation": "を is the object marker. \"私たちはケーキを食べました\" means \"We ate cake.\"",
+          "difficulty": "easy"
+        },
+        {
+          "type": "mcq",
+          "question": "Which sentence correctly uses the polite copula \"です\"?",
+          "question_ja": "次のうち、丁寧な copula 「です」 を正しく使っている文はどれですか？",
+          "options": {
+            "A": "これはわたしの家です。",
+            "B": "これはわたしの家だ。",
+            "C": "これはわたしの家ます。",
+            "D": "これわたしの家です。"
+          },
+          "correct_answer": "A",
+          "explanation": "\"です\" follows a noun to state a fact politely. Option A is the only grammatically correct sentence.",
+          "difficulty": "easy"
+        },
+        {
+          "type": "mcq",
+          "question": "What is the kun‑reading of the kanji 部 in the word 部屋 (へや)?",
+          "question_ja": "単語「部屋（へや）」における漢字「部」の訓読みは何ですか？",
+          "options": {
+            "A": "ぶ",
+            "B": "へ",
+            "C": "べ",
+            "D": "へや"
+          },
+          "correct_answer": "D",
+          "explanation": "In the compound 部屋, the kanji 部 is read へ, and together with 屋 it becomes へや (room). The answer reflects the whole reading.",
+          "difficulty": "medium"
+        },
+        {
+          "type": "mcq",
+          "question": "Select the sentence that correctly means \"I work at the department store.\"",
+          "question_ja": "「私はデパートで仕事をしています」と同じ意味になる文はどれですか？",
+          "options": {
+            "A": "私はデパートで仕事をしています。",
+            "B": "私はデパートに仕事をしています。",
+            "C": "私はデパートが仕事をしています。",
+            "D": "私はデパートを仕事しています。"
+          },
+          "correct_answer": "A",
+          "explanation": "The particle で indicates the location where an action takes place. Option A correctly says \"I am working at the department store.\"",
+          "difficulty": "medium"
+        },
+        {
+          "type": "mcq",
+          "question": "What is the correct polite past form of the verb 行く (to go)?",
+          "question_ja": "動詞「行く」（いく）の丁寧な過去形はどれですか？",
+          "options": {
+            "A": "行きました",
+            "B": "行った",
+            "C": "行きます",
+            "D": "行くました"
+          },
+          "correct_answer": "A",
+          "explanation": "The -ます stem of 行く is 行きます; changing it to past tense gives 行きました.",
+          "difficulty": "easy"
+        },
+        {
+          "type": "mcq",
+          "question": "In Japanese culture, the greeting \"おはようございます\" is appropriate during which time of day?",
+          "question_ja": "日本の文化で「おはようございます」はどの時間帯に使うのが適切ですか？",
+          "options": {
+            "A": "Morning",
+            "B": "Afternoon",
+            "C": "Evening",
+            "D": "Night"
+          },
+          "correct_answer": "A",
+          "explanation": "\"おはようございます\" is the polite way to say \"good morning\" and is used in the morning until around 10‑11 a.m.",
+          "difficulty": "easy"
+        }
+      ],
+      "quiz_id": "quiz_5638ff7f",
+      "created_by": "ai_generated",
+      "created_at": "2026-01-30T23:17:23.121662",
+      "topic": "Create a quiz about: 9. Easy tips for JLPT N5 Japanese Sentence Structure | Basic Japanese Grammar\n\nContent:\nTitle: 9. Easy tips for JLPT N5 Japanese Sentence Structure | Basic Japanese Grammar\n\nVideo Content:\n描い税関というマイチャンネル ヴーヴレイパーかあスペイン語であいさつしていきましたぁー4 p スペインのかあ スペイン語ネイティブパタッっとコーツ氏 kor れ cleared always なっていう re you doing いてストラーフ中のポーズてるです [音楽] voodoo ok ブレッドスタート i want to express いうでハウトゥー クリエイター jj ベーシックコンテンツワーク2 please のんびあふれ5ベイリーズ g this one a ざー リー basic grammar ま これはわたしの家です h 3 ndseason my house this is my house in japanese これ はわたしの家です this sentence 羽生5ワード これ は 私の家 です ok これはわたしの家です1ワールハブルー 122これ見んず リース 私の means まいっ いいえ how オフコース戦3イニング home ok これは 私の家です this my ハーフ ok です japanese 鞍馬 noa isense いうず ats nds 数4ですいいえ 鉛 english asv を live bar in japanese 絵図 s ov dc 7 basic grammar in japanese ネクスティぐ懺法私たちはケーキを食べました this means we are むそぅりー うぇーい あ k うぇーい8 uk 私たちはケーキを食べました ok 私たちは見えず wii ケーキ 見えず k あっ系 食べました いっ バーッ たーーー おい幅た big 伊波バター d シーザー パス店2 4 いいチェンジパス10th いっ ok ira dx プレースいうデー how to do in the past tense bomi youtube チャンネル普通はイントロデュース use 首 den description アプリ to do ok 食べましたーーーいざパティエンス私たちは ん a ケーキを を 食べました v バーティ essa v を dc 0 re big difference japanese エンド english pn グッズ ディジーズ jlpt n パイプ question 私たちはデパートに努めていますと同じ意味の文章をこの下の枠の 中から選びなさい いっていうことですよね抽選天井スウィズザ戦3人 ディスプレイ図 anda ミーティングセンテンスいうハーフ2 choose in this ボークス ok 私はデパートに努めています 破って弓私は見えず ok デパートに yes オフコース department store いや杏子努めて言います 見えず うわーっ そう私はデパートに努めています オフコース s と v first to 私は デパートで department store デパートメント2 ちょっと 買い物をしています 買い物 わっでユーミン買い物エッツば家にスイング それを 私はデパートで買い物をしています オフコースへつの 関くん 私はデパートで散歩をしていますはという3散歩嗚咽バーキン を now imf ワークウォークへつぶり d カールと某 ウォークウォーク 多く 風景を保菌者す防菌 ok ジェッツ防菌 as 散歩6系オフコースのツリー 私はデパートで仕事をしていますはとユーミン仕事仕事見えんすオフコースは ok ナンバースリーこれくとぅ ok いうちぇナンバー4私はデパートで休んでいますばという右休む 休む見えざ亭クレストてくれっ てくれですオーケーオフコースのえっベリー g japanese sentence structure uso v ん after that you remember だーサムブザー word word meaning リス臨也 慰安婦 no choice au do the voodoo ワール rod the ボインパーカー to do in ポーター polar read as jp atn パイプ2 question 中 sentence is with 1000ミリん 昨夜パーティーへ いきました 宇部パーティーへ行きました ok this means あいうえんトゥーでパーティーラスないでー パーティーミーハーパーティ いきました means go バーッ ok ゆフィギュアう2たぁみぃゆぅ is go to pass 10th ok エクスプレス r ラリー i have エクスプレス8 o ウェディ ok いきましたいきます いくみん the ござーい f...\n\nGenerate 7 multiple-choice questions that test key concepts from this content.\nIMPORTANT: Return ONLY valid JSON without markdown code blocks.",
+      "difficulty": "mixed",
+      "lecture_id": "youtube_QE5NRkyDC5k_aa38a5b0",
+      "auto_generated": true,
+      "generated_at": "2026-01-30T23:17:23.121662"
+    },
+    "updated_at": "2026-01-30T17:47:23.122664"
+  },
+  "youtube_2iLux_U0Dug_7846294b": {
+    "lecture_id": "youtube_2iLux_U0Dug_7846294b",
+    "title": "10. How to use San and Sama with Japanese names | Japanese Honorific Titles in the Daily Conversation",
+    "course_id": "jpn5",
+    "video_path": "https://www.youtube.com/watch?v=2iLux_U0Dug",
+    "duration": 239,
+    "materials": [],
+    "created_at": "2026-01-30T12:18:28.367853",
+    "is_active": true,
+    "description": "",
+    "video_type": "youtube",
+    "playlist_title": "Beginner Japanese Lessons / JLPT N5 Level",
+    "playlist_id": "PL0A1mmE9MOVIS2KcY8hIA7wPt_EPhnVPt",
+    "youtube_video_id": "2iLux_U0Dug",
+    "quiz": {
+      "title": "10. How to use San and Sama with Japanese names | Japanese Honorific Titles in the Daily Conversation",
+      "description": "A short quiz testing your understanding of the honorifics \"-san\" and \"-sama\" in various contexts, including vocabulary, grammar, kanji readings, and cultural nuances.",
+      "time_limit": 5,
+      "questions": [
+        {
+          "type": "mcq",
+          "question": "When speaking to a store clerk you have never met before, which honorific is most appropriate to attach to their family name?",
+          "question_ja": "初めて会う店員さんに、苗字に付けるのに最も適切な敬称はどれですか？",
+          "options": {
+            "A": "Tanaka‑san",
+            "B": "Tanaka‑sama",
+            "C": "Tanaka‑kun",
+            "D": "Tanaka‑chan"
+          },
+          "correct_answer": "A",
+          "explanation": "\"-san\" is the standard polite suffix for people you do not know well. \"-sama\" is too formal for everyday customer‑service interactions, while \"-kun\" and \"-chan\" are informal and usually used for friends, children, or subordinates.",
+          "difficulty": "easy"
+        },
+        {
+          "type": "mcq",
+          "question": "Fill in the blank with the correct honorific: 社長_____お会いできて光栄です。",
+          "question_ja": "空欄に適切な敬称を入れてください: 社長_____お会いできて光栄です。",
+          "options": {
+            "A": "さん",
+            "B": "さま",
+            "C": "くん",
+            "D": "ちゃん"
+          },
+          "correct_answer": "B",
+          "explanation": "In formal business situations, \"社長様\" (shachō‑sama) shows a higher level of respect than \"社長さん\". Using \"-sama\" conveys deference to a superior or a client.",
+          "difficulty": "medium"
+        },
+        {
+          "type": "mcq",
+          "question": "The kanji \"様\" used in honorifics is read as:",
+          "question_ja": "敬称として使われる漢字「様」の読み方はどれですか？",
+          "options": {
+            "A": "さま",
+            "B": "よう",
+            "C": "さ",
+            "D": "ま"
+          },
+          "correct_answer": "A",
+          "explanation": "When \"様\" functions as an honorific suffix, it is always read \"さま\" (sama). The reading \"よう\" appears in other words (e.g., \"様子\"), but not in honorific usage.",
+          "difficulty": "hard"
+        }
+      ],
+      "quiz_id": "quiz_27079401",
+      "created_by": "ai_generated",
+      "created_at": "2026-01-30T23:17:29.418676",
+      "topic": "Create a quiz about: 10. How to use San and Sama with Japanese names | Japanese Honorific Titles in the Daily Conversation\n\nContent:\nTitle: 10. How to use San and Sama with Japanese names | Japanese Honorific Titles in the Daily Conversation\n\nGenerate 3 multiple-choice questions that test key concepts from this content.\nIMPORTANT: Return ONLY valid JSON without markdown code blocks.",
+      "difficulty": "mixed",
+      "lecture_id": "youtube_2iLux_U0Dug_7846294b",
+      "auto_generated": true,
+      "generated_at": "2026-01-30T23:17:29.418676"
+    },
+    "updated_at": "2026-01-30T17:47:29.419609"
+  },
+  "youtube_LZIEeoAdlE4_eb67e094": {
+    "lecture_id": "youtube_LZIEeoAdlE4_eb67e094",
+    "title": "11. How to call “Dad and Mom” in Japanese | Basic Japanese phrases",
+    "course_id": "jpn5",
+    "video_path": "https://www.youtube.com/watch?v=LZIEeoAdlE4",
+    "duration": 284,
+    "materials": [],
+    "created_at": "2026-01-30T12:18:28.397342",
+    "is_active": true,
+    "description": "",
+    "video_type": "youtube",
+    "playlist_title": "Beginner Japanese Lessons / JLPT N5 Level",
+    "playlist_id": "PL0A1mmE9MOVIS2KcY8hIA7wPt_EPhnVPt",
+    "youtube_video_id": "LZIEeoAdlE4",
+    "quiz": {
+      "title": "How to Call “Dad and Mom” in Japanese – Mixed Level Quiz",
+      "description": "Test your knowledge of Japanese family vocabulary, kanji readings, grammar patterns, and cultural nuances related to addressing parents.",
+      "time_limit": 5,
+      "questions": [
+        {
+          "type": "mcq",
+          "question": "Which of the following is the most polite way to refer to your mother in a formal situation?",
+          "question_ja": "フォーマルな場面で母親を呼ぶ最も丁寧な表現はどれですか？",
+          "options": {
+            "A": "ママ",
+            "B": "お母さん",
+            "C": "母ちゃん",
+            "D": "お母様"
+          },
+          "correct_answer": "D",
+          "explanation": "お母様 (okāsama) uses the honorific suffix 様, making it the most polite form for addressing one's mother in formal contexts.",
+          "difficulty": "easy"
+        },
+        {
+          "type": "mcq",
+          "question": "What is the correct kanji reading for the word \"father\" when used alone (as in \"my father\")?",
+          "question_ja": "「父」という単語を単独で使うとき（例：私の父）の正しい読み方はどれですか？",
+          "options": {
+            "A": "おとうさん (otōsan)",
+            "B": "ちち (chichi)",
+            "C": "パパ (papa)",
+            "D": "お父様 (otōsama)"
+          },
+          "correct_answer": "B",
+          "explanation": "When the kanji 父 appears without honorifics, its native Japanese reading is ちち (chichi). おとうさん and お父様 are honorific forms.",
+          "difficulty": "medium"
+        },
+        {
+          "type": "mcq",
+          "question": "Choose the sentence that correctly uses the particle の to indicate possession:",
+          "question_ja": "所有を示す助詞「の」を正しく使っている文はどれですか？",
+          "options": {
+            "A": "私の父は医者です。",
+            "B": "私が父は医者です。",
+            "C": "私の父が医者です。",
+            "D": "私の医者は父です。"
+          },
+          "correct_answer": "A",
+          "explanation": "私の父 (watashi no chichi) correctly shows that the father belongs to 'me' using の. The other options misuse or omit the particle.",
+          "difficulty": "easy"
+        },
+        {
+          "type": "mcq",
+          "question": "In casual conversation among teenagers, which term is most commonly used to refer to one's dad?",
+          "question_ja": "ティーンエイジャー同士のカジュアルな会話で、父親を呼ぶときに最も一般的に使われる言葉はどれですか？",
+          "options": {
+            "A": "お父さん",
+            "B": "父親",
+            "C": "パパ",
+            "D": "お父ちゃん"
+          },
+          "correct_answer": "D",
+          "explanation": "お父ちゃん (otōchan) is a familiar, affectionate nickname often used by younger people in informal settings.",
+          "difficulty": "medium"
+        },
+        {
+          "type": "mcq",
+          "question": "Which of the following sentences correctly combines a polite address with a simple statement about the mother’s occupation?",
+          "question_ja": "敬称と母親の職業に関する簡単な文を正しく組み合わせた文はどれですか？",
+          "options": {
+            "A": "お母さんは教師です。",
+            "B": "お母様は教師です。",
+            "C": "母は教師です。",
+            "D": "ママは教師です。"
+          },
+          "correct_answer": "B",
+          "explanation": "お母様 (okāsama) is the honorific form, and adding です makes the statement polite: \"My mother is a teacher.\" Option A is polite but not as formal as B; the question asks for the most appropriate polite combination.",
+          "difficulty": "hard"
+        }
+      ],
+      "quiz_id": "quiz_26dbcc91",
+      "created_by": "ai_generated",
+      "created_at": "2026-01-30T23:17:36.733201",
+      "topic": "Create a quiz about: 11. How to call “Dad and Mom” in Japanese | Basic Japanese phrases\n\nContent:\nTitle: 11. How to call “Dad and Mom” in Japanese | Basic Japanese phrases\n\nVideo Content:\n描いず軍 come to my channel im ダーカー皆さんこんにちは ぱです in this channel os トップバーハウトゥリーブービーは ジャパニースキル安打 japanese culture ライスターフォーン4 if you want to do you japanese 系 please サービス prime マイチャンネル デイズビデオを are you answer どぅ9 s 春 from my サブスクライブオーグードゥ明かさメーカービデオをオーバー how you can do all for family members in japanese アイカーショー enero ああっ atara バーマーダー レザーファーザーまあ んだライブ author in japanese rb ハーガー r ぷわー2世大ファミリーメンバー フォーマルわぁだパジョンバーってロワー dj コンビケイパー in japanese are you do say you do お外レッドアイビーをケアとフォア アイル醤油でフォーマルスター柄っていう誠意 your family member to call your family member 合計ファー ふぁーず 大津ん アイムソーリーで sometimes 娃娃ミステイク ライティングスペアーアイムソーリーオケピットんけー お外パワースポーン言っ お父さん お父さん とうさん お父さん ok mars いい おかあさーん か えっっ ok お父さん is ファーザー お母さん is マザー ok ティ実はフォーマルスタイルカジュアルスター ea ダーダ いい オヤジ やっぱ まあ まあまあ おふくろ 母ちゃん 父ちゃん父ちゃんあゆ総理父ちゃん ジーンズカジュアルサイ s bdu する場はデイリーカンバセーション be always 融通患者スター 2 call my ファーザーズああいいいいあっバー you do do you the form スター render t ユーザーレザーカジュアル e as to do do オヤジ ブーブ黒タートルアン かあちゃんアーティス areas オーリー you do ネイビーいうはがぁあ uud スワール endear a んだ多くはどぅビュアーがある 輸入版 better you see パパええまあインチアップリーフいうアーメン 輸入 this はまあまあまっ sbo 加わる nbd buf you have better you this for マンスターへ おとうさんおかあうぇぇん有望地 japanese tv show でんでアニメむびーえそういうリスがロップも ある 親父パパとちゃま ブーバーンそう言う add to do this were render カー じゃぶぁー you have ベールユースフォーマルスター柄を下船倉轟沈 to [音楽] do with ドン fires サービスとライブマン ef 4 ander japanese スプリーフィリーコメントびろーん お手上げセンスオーチー to do スター今たねー\n\nGenerate 5 multiple-choice questions that test key concepts from this content.\nIMPORTANT: Return ONLY valid JSON without markdown code blocks.",
+      "difficulty": "mixed",
+      "lecture_id": "youtube_LZIEeoAdlE4_eb67e094",
+      "auto_generated": true,
+      "generated_at": "2026-01-30T23:17:36.733201"
+    },
+    "updated_at": "2026-01-30T17:47:36.734238"
+  },
+  "youtube_JzP1hdMXb-M_5f1452da": {
+    "lecture_id": "youtube_JzP1hdMXb-M_5f1452da",
+    "title": "12. How to Speak Like a Native | What to call your Dad in Japanese | Basic Japanese Conversation",
+    "course_id": "jpn5",
+    "video_path": "https://www.youtube.com/watch?v=JzP1hdMXb-M",
+    "duration": 475,
+    "materials": [],
+    "created_at": "2026-01-30T12:18:28.417343",
+    "is_active": true,
+    "description": "",
+    "video_type": "youtube",
+    "playlist_title": "Beginner Japanese Lessons / JLPT N5 Level",
+    "playlist_id": "PL0A1mmE9MOVIS2KcY8hIA7wPt_EPhnVPt",
+    "youtube_video_id": "JzP1hdMXb-M",
+    "quiz": {
+      "title": "How to Call Your Dad in Japanese & Basic Conversation Quiz",
+      "description": "Test your knowledge of Japanese vocabulary, grammar, kanji readings, and cultural nuances related to addressing fathers and everyday conversation.",
+      "time_limit": 10,
+      "questions": [
+        {
+          "type": "mcq",
+          "question": "Which of the following is the most polite way to refer to your own father in a formal situation?",
+          "question_ja": "フォーマルな場面で自分の父親を呼ぶ最も丁寧な表現はどれですか？",
+          "options": {
+            "A": "お父さん",
+            "B": "父",
+            "C": "お父様",
+            "D": "パパ"
+          },
+          "correct_answer": "C",
+          "explanation": "お父様 (おとうさま) adds the honorific -様 and is used when speaking politely about one’s own father, especially in formal contexts.",
+          "difficulty": "easy"
+        },
+        {
+          "type": "mcq",
+          "question": "In the sentence \"昨日、父と話しました。\", what is the function of the particle と?",
+          "question_ja": "「昨日、父と話しました。」の文で助詞「と」の役割は何ですか？",
+          "options": {
+            "A": "対象を示す (indicates the object)",
+            "B": "同行・相手を示す (indicates a companion or partner)",
+            "C": "原因を示す (indicates cause)",
+            "D": "場所を示す (indicates place)"
+          },
+          "correct_answer": "B",
+          "explanation": "The particle と after a noun indicates the person you did something together with, i.e., “with my father”.",
+          "difficulty": "medium"
+        },
+        {
+          "type": "mcq",
+          "question": "Which kanji reading corresponds to the word \"父親\" when used in the phrase \"私の父親は医者です\"?",
+          "question_ja": "「私の父親は医者です」の「父親」の読み方はどれですか？",
+          "options": {
+            "A": "ちちおや",
+            "B": "ふぼ",
+            "C": "おやじ",
+            "D": "とうしん"
+          },
+          "correct_answer": "A",
+          "explanation": "The standard reading for 父親 is ちちおや. The other options are either slang or incorrect readings.",
+          "difficulty": "hard"
+        },
+        {
+          "type": "mcq",
+          "question": "Choose the most natural casual sentence to say “I talked with my dad yesterday.”",
+          "question_ja": "「昨日、父と話した。」と同じ意味で、自然なカジュアルな言い方はどれですか？",
+          "options": {
+            "A": "昨日、父親と話しました。",
+            "B": "昨日、パパと喋った。",
+            "C": "昨日、父と話したんだ。",
+            "D": "昨日、父様と会話いたしました。"
+          },
+          "correct_answer": "C",
+          "explanation": "「昨日、父と話したんだ。」 uses the plain past form with んだ for casual emphasis, fitting everyday conversation.",
+          "difficulty": "medium"
+        },
+        {
+          "type": "mcq",
+          "question": "What does the term \"親父\" (おやじ) convey in terms of nuance?",
+          "question_ja": "「親父（おやじ）」はどんなニュアンスを持っていますか？",
+          "options": {
+            "A": "Very formal and respectful",
+            "B": "Colloquial, sometimes rough or affectionate",
+            "C": "Used only for grandfathers",
+            "D": "A polite term for teachers"
+          },
+          "correct_answer": "B",
+          "explanation": "親父 is a colloquial term often used by men, can sound rough or endearing depending on context, but is not formal.",
+          "difficulty": "easy"
+        },
+        {
+          "type": "mcq",
+          "question": "In the sentence \"私の父は医者です\", which particle correctly marks the subject?",
+          "question_ja": "「私の父は医者です」の文で、主語を示す正しい助詞はどれですか？",
+          "options": {
+            "A": "が",
+            "B": "を",
+            "C": "は",
+            "D": "に"
+          },
+          "correct_answer": "C",
+          "explanation": "は is the topic particle used here to introduce \"私の父\" as the subject about which a statement is made.",
+          "difficulty": "easy"
+        },
+        {
+          "type": "mcq",
+          "question": "Which of the following sentences correctly uses a polite verb form when talking about your father’s occupation?",
+          "question_ja": "父親の職業について丁寧な形で述べた文はどれですか？",
+          "options": {
+            "A": "僕の父は医者だ。",
+            "B": "私の父は医者です。",
+            "C": "俺の父は医者だよ。",
+            "D": "父親は医者だぜ。"
+          },
+          "correct_answer": "B",
+          "explanation": "「です」 is the polite copula, making the sentence appropriate for formal or respectful contexts.",
+          "difficulty": "medium"
+        }
+      ],
+      "quiz_id": "quiz_f40d29c4",
+      "created_by": "ai_generated",
+      "created_at": "2026-01-30T23:22:44.614697",
+      "topic": "Create a quiz about: 12. How to Speak Like a Native | What to call your Dad in Japanese | Basic Japanese Conversation\n\nContent:\nTitle: 12. How to Speak Like a Native | What to call your Dad in Japanese | Basic Japanese Conversation\n\nVideo Content:\n描いず米軍というマイチャンネルあゆた母皆さんこんにちは 中でインディチャンネル桜エッグバーガーハウトゥー learn japanese んだ弱にづらいスターれる弱に買っちゃう演奏 そういう浮遊本というブーブよ japanese つける please スタッフ プライムまいちゃんにゃ ok デイズビデオを上げるアンサー your question グレープへ s ああああ降臨マイマザー マイファーザーんああああああは父母 いえさで i have ポッティ br あーわー通行枚パーズアーマージャパン in the bait rod いうはぁいいお父さん 編 mother is かーバーチャログ集たりー 田添父篇まず得ず母 サウゆうゆう re not you do mother ハァハァブルードゥアイディング see other ファー イエスとおおっ ブーブー枚マーズアーレ reseda ヌー sr フォース多くトゥーウェア= アーマーざーざーわーかなぁコールまあまあざー園ファーザー ゲーム4ロードスター nb す お父さん this is ファーザー this mars お子を押すおかあさーん もうマーカージュアル star anise 倒産 かあさん もうカジュアルスター yes フォーマルって言うか所を受け親父 んおふくろ パパ まあまあ in this case たーーーー wiiu ジャリーいうお父さんお母さん not 父 おおあぁんはぁはぁ deuse anus derideri to be a ファーザー sai アーレ in japanese フォーマルスター私は 昨日 父親と 話をしました i don ツアーウィードン tu 父 ok dc the form アルファいっぱい translator モーター カーじゃあいい 僕は 昨日 [音楽] お父さんと 話をした ok i are you still フレーズ お父さん もうカー所 ok 僕は昨日お父さんと話をした 僕は昨日お父さんと話をしたんだよ this is エリー カジュアルスターバーツさん僕 urk キスと服ラインテキストブック アイエスアーライティ 実際私は昨日父親と話をしました あー this is more フォーマールバート widow いうジョリー you do this type フレーズインドデイリー来ポケッラティ g シチュエーション src 種 i talk with my friend ano ワーカー about my パームリーを芸枚パーズ with dr i see 歩合制マイファーザー伊豆道来てる いいえ in japanese ea 私の 父親 は 医者です 大 僕の 倒産 は 医者です ok wiiu 者りーゆーず this type フレージーズ vertu ha ディフォーマーレジェンド ran フォーマーズスター if your 面ディフュアーム ors 5 ああああ ゆうゆう this type フレーズ ok 俺は あ味噌ビオレの俺の親父は 医者です 医者です ok if your girl いい いう融通私の パパーは 医者台を ok インディカンバセーションああいうドンとニューズ父 大母 you do ディスプレイ図 tree ディープエクスプレス ebca バー tendr japanese スタンプステーション ok ok this 感じ yes ふぁーず わーだーっ いやオフコース this 感じ見えずファーザーはだーっ andy オフコース愛ファリー this 感じ 父 ライブバー2 wid んてぃ牛ジョリー いうラクティスワード父 ファイトランフレーズ this world うううおとーさーん ok いやわー 父親 父親 ok this 監視 means バーざー this 感じ民ペアーレん rei ゾンダーディレクタースペアー ok pou dou dou 総合ちんまいりあ cnx タイバー またねー [音楽]\n\nGenerate 7 multiple-choice questions that test key concepts from this content.\nIMPORTANT: Return ONLY valid JSON without markdown code blocks.",
+      "difficulty": "mixed",
+      "lecture_id": "youtube_JzP1hdMXb-M_5f1452da",
+      "auto_generated": true,
+      "generated_at": "2026-01-30T23:22:44.614697"
+    },
+    "updated_at": "2026-01-30T17:52:44.616694"
+  },
+  "youtube_xuAWDLgySXg_d498eb53": {
+    "lecture_id": "youtube_xuAWDLgySXg_d498eb53",
+    "title": "13. 3 Meanings of Bowing in Japan | When & How to Bow in Japan | Japanese Culture",
+    "course_id": "jpn5",
+    "video_path": "https://www.youtube.com/watch?v=xuAWDLgySXg",
+    "duration": 201,
+    "materials": [],
+    "created_at": "2026-01-30T12:18:28.434219",
+    "is_active": true,
+    "description": "",
+    "video_type": "youtube",
+    "playlist_title": "Beginner Japanese Lessons / JLPT N5 Level",
+    "playlist_id": "PL0A1mmE9MOVIS2KcY8hIA7wPt_EPhnVPt",
+    "youtube_video_id": "xuAWDLgySXg",
+    "quiz": {
+      "title": "Quiz on Bowing in Japan (3 Meanings)",
+      "description": "Test your understanding of Japanese vocabulary, grammar, kanji, sentence structure, and cultural context related to bowing.",
+      "time_limit": 10,
+      "questions": [
+        {
+          "type": "mcq",
+          "question": "What does the verb \"お辞儀をする\" mean?",
+          "question_ja": "「お辞儀をする」は何を意味しますか？",
+          "options": {
+            "A": "to shake hands",
+            "B": "to bow",
+            "C": "to smile",
+            "D": "to sit"
+          },
+          "correct_answer": "B",
+          "explanation": "\"お辞儀をする\" literally means \"to do a bow\" and is used for the act of bowing.",
+          "difficulty": "easy"
+        },
+        {
+          "type": "mcq",
+          "question": "Choose the correct particle to complete the sentence: \"日本では、深いお辞儀は____敬意を表す。\"",
+          "question_ja": "次の文を完成させる正しい助詞はどれですか？「日本では、深いお辞儀は____敬意を表す。」",
+          "options": {
+            "A": "で",
+            "B": "が",
+            "C": "に",
+            "D": "を"
+          },
+          "correct_answer": "C",
+          "explanation": "The phrase \"敬意を表す\" means \"express respect\". The bow is the means, so the particle に (\"as a means of\") is appropriate: \"深いお辞儀はに敬意を表す\" → \"深いお辞儀は敬意を表す\" (the particle is omitted in natural speech, but when a particle is required, に is the best choice among the options).",
+          "difficulty": "medium"
+        },
+        {
+          "type": "mcq",
+          "question": "What is the on‑yomi (Chinese reading) of the kanji 礼?",
+          "question_ja": "漢字「礼」の音読みはどれですか？",
+          "options": {
+            "A": "rei",
+            "B": "rai",
+            "C": "shiro",
+            "D": "re"
+          },
+          "correct_answer": "A",
+          "explanation": "The kanji 礼 is read as \"rei\" in its on‑yomi, used in words like \"礼儀\" (reigi, etiquette) and \"お礼\" (orei, thanks).",
+          "difficulty": "easy"
+        },
+        {
+          "type": "mcq",
+          "question": "Which sentence correctly uses the expression \"頭を下げる\" to mean \"to bow (as an apology)\"?",
+          "question_ja": "「頭を下げる」を「謝罪の意味でお辞儀をする」と正しく使っている文はどれですか？",
+          "options": {
+            "A": "彼は会議で頭を下げて、遅刻したことを謝った。",
+            "B": "朝ごはんを食べる前に頭を下げた。",
+            "C": "彼女は映画を見ながら頭を下げて笑った。",
+            "D": "試合の後、選手は頭を下げて観客に手を振った。"
+          },
+          "correct_answer": "A",
+          "explanation": "「頭を下げる」 is commonly used for apologizing or showing remorse. Sentence A describes bowing to apologize for being late, which fits the usage.",
+          "difficulty": "hard"
+        },
+        {
+          "type": "mcq",
+          "question": "Which of the following is NOT a typical meaning of bowing in Japan?",
+          "question_ja": "次のうち、日本でお辞儀の典型的な意味ではないものはどれですか？",
+          "options": {
+            "A": "Greeting",
+            "B": "Apology",
+            "C": "Thankfulness",
+            "D": "Asking for a favor"
+          },
+          "correct_answer": "D",
+          "explanation": "Bowings are used to greet, apologize, and express gratitude. They are not normally used specifically to request a favor; requests are usually made with polite language rather than a bow.",
+          "difficulty": "medium"
+        }
+      ],
+      "quiz_id": "quiz_d8e4d194",
+      "created_by": "ai_generated",
+      "created_at": "2026-01-30T23:22:52.550786",
+      "topic": "Create a quiz about: 13. 3 Meanings of Bowing in Japan | When & How to Bow in Japan | Japanese Culture\n\nContent:\nTitle: 13. 3 Meanings of Bowing in Japan | When & How to Bow in Japan | Japanese Culture\n\nVideo Content:\n映画5冷淡という場合ちゃんねる相見た母皆さんこんにちはたかです this channel rio 米トークバーハウトゥーラン japanese andorra sp ライカーネイティブジャパニーズスピーカーウーハーウーファールードゥ please サブスクライブマイチャンネル ok プレース epice all i will answer your questions this question esd taka さんメーカービデオ y japanese people 暴飲無塩言い づらい tnt ondra ぷ暴走フィー名 んをっ kir ターリーいうクエスチョン バーナーと愛想リーズレリーフある to express ドアー ディファレント ディファレント某メール as per iphone di キャンティ アナウンサーズこれくてぃ パーッとあゆ貞祐で 終わった位に青ウィルジャパニー s うぃーあーるじゅうじゅありボーイ ok ウェッサイでおけ i can 者 barbora ボーイ ライターバー bee ハガー政治5みー ok ファーいいえジャックリー 急募ボーイ者スクリー t 甘いずジャパレスぴーぷらいくあ こんにちはおはようございます さようなら live day 3でぃあーゆー時より防衛者スクリーン ok 世間2nd day アプリ4 wii x プレイローションアパートアプシェ wiiu ジョリーボーリーありがとうございます本当にありがとう ございます4 d タイプを坊主3 アプシェラフ b es あ功労者です ウェアウィリーハーフピュア峰じゃああー wii wiiu ジャリボーイ すみませんでした deuse benro デー seus いいアブーバクル せいろゆゆいる to church が目チーズでてりゃいいんでさぁ館 おでーす大珍プレー0アーディ ai 通る du 者ぶりボーイ japanese 没スターへ pers abeno ウェイぐりーん tere cap ひゃあああ4 a チーズ beberapa パティ fuel rania 4 チーズ benio またねー [音楽]\n\nGenerate 5 multiple-choice questions that test key concepts from this content.\nIMPORTANT: Return ONLY valid JSON without markdown code blocks.",
+      "difficulty": "mixed",
+      "lecture_id": "youtube_xuAWDLgySXg_d498eb53",
+      "auto_generated": true,
+      "generated_at": "2026-01-30T23:22:52.550786"
+    },
+    "updated_at": "2026-01-30T17:52:52.566467"
+  },
+  "youtube_9nC7o4dW_H8_c04d8ba3": {
+    "lecture_id": "youtube_9nC7o4dW_H8_c04d8ba3",
+    "title": "14. Easy Tips How to Say \"I\" in Japanese You can Use This Word every Situation! Formal and Casual",
+    "course_id": "jpn5",
+    "video_path": "https://www.youtube.com/watch?v=9nC7o4dW_H8",
+    "duration": 308,
+    "materials": [],
+    "created_at": "2026-01-30T12:18:28.465814",
+    "is_active": true,
+    "description": "",
+    "video_type": "youtube",
+    "playlist_title": "Beginner Japanese Lessons / JLPT N5 Level",
+    "playlist_id": "PL0A1mmE9MOVIS2KcY8hIA7wPt_EPhnVPt",
+    "youtube_video_id": "9nC7o4dW_H8",
+    "quiz": {
+      "title": "Quiz: How to Say \"I\" in Japanese – Formal and Casual",
+      "description": "Test your knowledge of Japanese personal pronouns, their usage, kanji, grammar, and cultural nuances.",
+      "time_limit": 10,
+      "questions": [
+        {
+          "type": "mcq",
+          "question": "Which pronoun is considered the most formal and gender‑neutral way to say \"I\" in Japanese?",
+          "question_ja": "「I」を表す最も丁寧で性別に関係なく使える代名詞はどれですか？",
+          "options": {
+            "A": "わたし (watashi)",
+            "B": "ぼく (boku)",
+            "C": "おれ (ore)",
+            "D": "あたし (atashi)"
+          },
+          "correct_answer": "A",
+          "explanation": "\"わたし\" (私) is the standard formal, gender‑neutral pronoun used in most polite contexts.",
+          "difficulty": "easy"
+        },
+        {
+          "type": "mcq",
+          "question": "In a casual setting among male friends, which pronoun is most commonly used?",
+          "question_ja": "男性の友人同士のカジュアルな会話で最もよく使われる代名詞はどれですか？",
+          "options": {
+            "A": "わたし (watashi)",
+            "B": "ぼく (boku)",
+            "C": "おれ (ore)",
+            "D": "わがはい (wagahai)"
+          },
+          "correct_answer": "C",
+          "explanation": "\"おれ\" is a rough, masculine pronoun often used among close male friends.",
+          "difficulty": "easy"
+        },
+        {
+          "type": "mcq",
+          "question": "What is the correct kanji for the pronoun \"watashi\"?",
+          "question_ja": "\"watashi\" の正しい漢字はどれですか？",
+          "options": {
+            "A": "僕",
+            "B": "俺",
+            "C": "私",
+            "D": "私達"
+          },
+          "correct_answer": "C",
+          "explanation": "\"わたし\" is written as 私. The other kanji correspond to different pronouns.",
+          "difficulty": "medium"
+        },
+        {
+          "type": "mcq",
+          "question": "Which particle marks the topic in the sentence \"Watashi ___ gakusei desu\" (I am a student)?",
+          "question_ja": "「私は学生です」の文で、主語を示す助詞はどれですか？",
+          "options": {
+            "A": "が",
+            "B": "を",
+            "C": "に",
+            "D": "は"
+          },
+          "correct_answer": "D",
+          "explanation": "The topic particle \"は\" follows the pronoun to mark it as the topic of the sentence.",
+          "difficulty": "easy"
+        },
+        {
+          "type": "mcq",
+          "question": "Choose the most natural sentence for a young woman saying \"I will go to the store\".",
+          "question_ja": "若い女性が「店に行きます」と言うとき、最も自然な文はどれですか？",
+          "options": {
+            "A": "ぼくは店に行きます。",
+            "B": "おれは店に行きます。",
+            "C": "わたしは店に行きます。",
+            "D": "あたしは店に行きます。"
+          },
+          "correct_answer": "C",
+          "explanation": "\"わたしは\" is gender‑neutral and appropriate for a woman in a neutral or slightly formal context. \"あたし\" is also possible but more informal.",
+          "difficulty": "medium"
+        },
+        {
+          "type": "mcq",
+          "question": "In a business meeting, which pronoun should you use when referring to yourself?",
+          "question_ja": "ビジネスの会議で自分のことを指すとき、どの代名詞を使うべきですか？",
+          "options": {
+            "A": "おれ (ore)",
+            "B": "ぼく (boku)",
+            "C": "わたし (watashi)",
+            "D": "あたし (atashi)"
+          },
+          "correct_answer": "C",
+          "explanation": "In professional settings, \"わたし\" (私) is the polite and appropriate choice regardless of gender.",
+          "difficulty": "easy"
+        },
+        {
+          "type": "mcq",
+          "question": "Which pronoun is archaic, often used humorously by older men to sound pompous?",
+          "question_ja": "年配の男性がユーモラスに威張って使う、古風な代名詞はどれですか？",
+          "options": {
+            "A": "わがはい (wagahai)",
+            "B": "わたし (watashi)",
+            "C": "ぼく (boku)",
+            "D": "おれ (ore)"
+          },
+          "correct_answer": "A",
+          "explanation": "\"わがはい\" is an old‑fashioned, self‑important way to say \"I\", often used jokingly in modern speech.",
+          "difficulty": "hard"
+        }
+      ],
+      "quiz_id": "quiz_fe7e6703",
+      "created_by": "ai_generated",
+      "created_at": "2026-01-30T23:23:00.514461",
+      "topic": "Create a quiz about: 14. Easy Tips How to Say \"I\" in Japanese You can Use This Word every Situation! Formal and Casual\n\nContent:\nTitle: 14. Easy Tips How to Say \"I\" in Japanese You can Use This Word every Situation! Formal and Casual\n\nVideo Content:\n描いず米韓ばまいちゃんねらーゆうゆうはニューベーターの q マイチャンネル im ターター 皆さんこんにちは田中です in this channel ios 遠くバッハウ トゥーランチャーぷにゅジェンダーハウトゥーグーグルは java に助けよそう いう4 t speak ライトネイティブジャパニーズスピーカー フェイサーづらいまいちゃんやー ブーブー誠凛えへっ voodoo 4パティ border ディッパー ni ペーパー to do sca 新インディスペースウィークスチュエーション 方がカジュアル alawar ちゃ pou dou dou japanese phase efren アジャスター 以来 pain in this kei ディ はピットアップフェミ兄を 雨ますプリアージュ取り合いどんどプラン青春カプレットなぁ ぺティーチミー e 賞フィーメール are light フィーメールオーライ クーラーアメア をでああ 4えぐざんぽ if you はメール like me ああいう見るという言う 私僕をは俺を下アーディちゃっつダウン歳えっもうカージャルさいあいフューラーね ああいう間いう僕を俺もう4マンスターええ私 行けんユーザ私犬 ビジネス中春大プレゼントテーション ライト politician in my case ああいうジョリーいう北大津 this work キャン you do my opinion あーっあーっ北 です もう in 低減戦でもは祖父 インプレッション全部れ法華が俺いつもストーン音源でもうまえんでアニメ漫画6時 から来てユースもある俺いや this were ですもうストローん n もうは 以前僕そうかーサムスキャってルアーライカルーピー インドア b 前だなぁと sam the character ユーザーワードれ バーティインドビジネステーションいうハード米た理由 僕 ok 北 俺はたし ana クスや pr nodename 名 i 冬アフィミュアユニーるーユーザーワード私 this word キャンユーフォーまあ通過者 if your fear や バータウザー ta ジュース ot サウザー ガールああ muse this word 家 家バッグディスは0 sbdb チャイディー思想は優駿という this world business 中しょん twinkle エージェンシー uruma ああいうに入るという you this more 私を license for 某チークデイズいでよ愛飲中ジュースいうでああ how to say your せよ委員チャーかに ジャパニ sb ハーバーロップボアー たミーハー一通の倒立でいつもアズヘアー スエズビリティカーテンでコンピ系 party in japanese 貼っ eun eur ペディメンバーウォークあ ますディスはキャンユーデイリー中レイアービーズです ok フィギュアフィギュア ユニーる to remember 私後ファ ok this word 賢雄西武シチュエーションを芸 bully 北を破っ私 僕は私 usp drpg 6 eb くらい ap ドピュッずプライマー連邦チーム ex アーマーた ん [音楽]\n\nGenerate 7 multiple-choice questions that test key concepts from this content.\nIMPORTANT: Return ONLY valid JSON without markdown code blocks.",
+      "difficulty": "mixed",
+      "lecture_id": "youtube_9nC7o4dW_H8_c04d8ba3",
+      "auto_generated": true,
+      "generated_at": "2026-01-30T23:23:00.514461"
+    },
+    "updated_at": "2026-01-30T17:53:00.549089"
+  },
+  "youtube_jbuqScC0f9Q_ef15aae6": {
+    "lecture_id": "youtube_jbuqScC0f9Q_ef15aae6",
+    "title": "15. Most Common Mistakes You don't Know in Japanese Morning Phrases | Japanese Daily Conversation",
+    "course_id": "jpn5",
+    "video_path": "https://www.youtube.com/watch?v=jbuqScC0f9Q",
+    "duration": 336,
+    "materials": [],
+    "created_at": "2026-01-30T12:18:28.486866",
+    "is_active": true,
+    "description": "",
+    "video_type": "youtube",
+    "playlist_title": "Beginner Japanese Lessons / JLPT N5 Level",
+    "playlist_id": "PL0A1mmE9MOVIS2KcY8hIA7wPt_EPhnVPt",
+    "youtube_video_id": "jbuqScC0f9Q",
+    "quiz": {
+      "title": "Morning Phrases in Japanese – Common Mistakes Quiz",
+      "description": "Test your knowledge of everyday Japanese morning expressions, vocabulary, grammar, kanji readings, and cultural nuances.",
+      "time_limit": 10,
+      "questions": [
+        {
+          "type": "mcq",
+          "question": "Which of the following is the most natural way to greet a colleague in the morning at the office?",
+          "question_ja": "オフィスで同僚に朝の挨拶をするとき、最も自然な表現はどれですか？",
+          "options": {
+            "A": "おはよう",
+            "B": "おはようございます",
+            "C": "こんにちは",
+            "D": "こんばんは"
+          },
+          "correct_answer": "B",
+          "explanation": "In a workplace, the polite form おはようございます is preferred. おはよう is casual, こんにちは is for daytime, and こんばんは is for evening.",
+          "difficulty": "easy"
+        },
+        {
+          "type": "mcq",
+          "question": "What is the correct particle to use with 行く when you say \"I go to school\"?",
+          "question_ja": "「学校に行く」と言うとき、正しい助詞はどれですか？",
+          "options": {
+            "A": "が",
+            "B": "を",
+            "C": "に",
+            "D": "で"
+          },
+          "correct_answer": "C",
+          "explanation": "The destination of movement takes the particle に. 学校に行く means \"go to school\". が marks subject, を marks direct object, and で marks location of an action.",
+          "difficulty": "medium"
+        },
+        {
+          "type": "mcq",
+          "question": "Which kanji correctly represents the verb \"to wake up\"?",
+          "question_ja": "「起きる」の正しい漢字はどれですか？",
+          "options": {
+            "A": "起きる",
+            "B": "起す",
+            "C": "起き",
+            "D": "起"
+          },
+          "correct_answer": "A",
+          "explanation": "The verb \"to wake up\" is written 起きる. 起す is the transitive form (to wake someone), 起き and 起 are not standard dictionary forms for this verb.",
+          "difficulty": "easy"
+        },
+        {
+          "type": "mcq",
+          "question": "When leaving home in the morning, which phrase should you say to family members staying behind?",
+          "question_ja": "朝、家を出るとき、残っている家族に何と言うべきですか？",
+          "options": {
+            "A": "行ってきます",
+            "B": "行ってらっしゃい",
+            "C": "いただきます",
+            "D": "おやすみなさい"
+          },
+          "correct_answer": "A",
+          "explanation": "行ってきます is said by the person who is leaving, meaning \"I'm off\". 行ってらっしゃい is said to the person leaving. いただきます is said before meals, and おやすみなさい is for bedtime.",
+          "difficulty": "medium"
+        },
+        {
+          "type": "mcq",
+          "question": "Which of the following sentences correctly uses the て‑form to indicate “I will have breakfast after I wake up”?",
+          "question_ja": "「起きた後、朝ごはんを食べます」を自然な日本語にするとどれですか？",
+          "options": {
+            "A": "起きて、朝ごはんを食べます。",
+            "B": "起きた、朝ごはんを食べます。",
+            "C": "起き、朝ごはんを食べます。",
+            "D": "起きてから、朝ごはんを食べます。"
+          },
+          "correct_answer": "D",
+          "explanation": "起きてから、朝ごはんを食べます uses the て‑form + から to express “after waking up”. Option A lacks から, making the sequence ambiguous. B and C misuse the verb forms.",
+          "difficulty": "hard"
+        },
+        {
+          "type": "mcq",
+          "question": "In the phrase \"朝ごはんの時間です\", what does the particle の indicate?",
+          "question_ja": "「朝ごはんの時間です」の「の」は何を示していますか？",
+          "options": {
+            "A": "subject marker",
+            "B": "possessive/attributive relationship",
+            "C": "direction",
+            "D": "object marker"
+          },
+          "correct_answer": "B",
+          "explanation": "の links nouns in a possessive or attributive way, here meaning \"the time of breakfast\". It is not a subject, direction, or object marker.",
+          "difficulty": "medium"
+        },
+        {
+          "type": "mcq",
+          "question": "Which expression is culturally appropriate when you see a coworker who just arrived at the office in the morning?",
+          "question_ja": "朝、オフィスに来た同僚に対して、文化的に適切な挨拶はどれですか？",
+          "options": {
+            "A": "おはようございます、今日も頑張りましょう！",
+            "B": "お疲れ様です、もう仕事は終わりましたか？",
+            "C": "こんばんは、遅くまでお疲れ様です。",
+            "D": "ごめんなさい、遅刻しました。"
+          },
+          "correct_answer": "A",
+          "explanation": "A combines the polite morning greeting おはようございます with an encouraging phrase, suitable for a coworker just arriving. B is used later in the day, C is for evening, and D is an apology for being late, not a greeting.",
+          "difficulty": "easy"
+        }
+      ],
+      "quiz_id": "quiz_a8425d50",
+      "created_by": "ai_generated",
+      "created_at": "2026-01-30T23:25:02.009171",
+      "topic": "Create a quiz about: 15. Most Common Mistakes You don't Know in Japanese Morning Phrases | Japanese Daily Conversation\n\nContent:\nTitle: 15. Most Common Mistakes You don't Know in Japanese Morning Phrases | Japanese Daily Conversation\n\nVideo Content:\n描いべえくんというまえちゃんねあいたかみなさんこんにちはたかです インディちゃんだよ ios 族あハウトゥーランジャックリー sa んだー how to improve your japanese キャー そういうフォートゥー learn japanese エスプリスタープライマー チャンネルあ をで会プレビア iphone てシェアいうでパパに住もう リングプレイユーザー this ページ有権いうずアッパー森を現地レーサーエピソードああああいきゃんち ちゆうで 成分 jaf にモーリンプレイデイズ悩んで右腕見せていく湯に入るというの ok ライブスター ナンバーワン 1対9ベイカー起きる時間です 起きる時間です ok 悦イージー陥る時間です いったい陰2ウェイカー ok ナンバー2 ディスプレイ3オハヨーオハヨー ディズニー遠征愚問いい are you want to say ディスプレイも フォーマー おはようございます フォーマルセンテンス yes アイムソーリーなフォーマープレイ gf おはようございます もうカージュはいいえおはよう生ゼリー いっぱいん2ブレイク1スター 朝ごはんの時間です朝ごはん みー me a break フォースね時間 es times with time というブレイク worth 朝ごはんの 時間です 朝ごはんの時間です ok ねえくすええええ ハァハァ tule ハーフ pou dou dou たくしないと 持って ディスプレイ s voodoo はしたく って防水 s これ 支度しないとを準備しないと 法華 ネックレースいいえ im 強引5号いいってきます行ってきます 仕事に行ってきます学校に行ってきます 有権融通はディスプレイスアイム合意行ってきます ok big 山プロ先天性いっていう最後位というは仕事に行ってくるね いつもリリーカジュアル歳仕事に行ってくるねー冬アーディフューセールディスプレイ 図 tuu ファミール are your フレーム 仕事行ってくるねーお外 anx フェイス s 哲兄行ってらっしゃいの if you 合成行ってきますいうハルベて安静 いってらっしゃいぽい讒謗 if your はぁファム性という言う 行ってきます乗馬湯に入るというアンサ voodoo ウィザードんてぃいうジョリーいうディスプレイスで how are you this モリー はあああいうディープ森 in japanese 今朝の調子はどう 今朝の調子はどう this モーリー今朝 ok アーチデイズ森を下 this morning の調子は どう派ワイン ポケハ were you this も今朝の調子はどう 起こすディスプレイ図 納期ミス tareas クラブバーとういドン udx プレッシャーん you japanese カーネーション ウィザーセイハようございます大外青いじゃあ西軍もにー 合う挑んいうジャリーユーザー how are you we are カンバセーション in japan カンバセーション ok ok ウイ女性 おはようございますおはようお疲れ様 瀬尾グローブ井戸中ずアワーいう縁でハワイジュディスもういい ok を救おう to me ジャパニーキャンドゥディスプレイ あーディスプレイず meaning バーバッグウィードン遊女 nus ディスプレイ ok 2ああいう凡夫 sppd phew otoha ション are you doing myドゥ4 you have a question about japanese フィー フィー米ペルー ok 上げ sense 4チーム愛 basen サイバーいい またねー [音楽] [音楽]\n\nGenerate 7 multiple-choice questions that test key concepts from this content.\nIMPORTANT: Return ONLY valid JSON without markdown code blocks.",
+      "difficulty": "mixed",
+      "lecture_id": "youtube_jbuqScC0f9Q_ef15aae6",
+      "auto_generated": true,
+      "generated_at": "2026-01-30T23:25:02.009171"
+    },
+    "updated_at": "2026-01-30T17:55:02.009171"
+  },
+  "youtube_OyTcXZjm2lY_c0d24d07": {
+    "lecture_id": "youtube_OyTcXZjm2lY_c0d24d07",
+    "title": "16. Japanese common word and vocabulary you must know #1| Japanese Basic Phrases",
+    "course_id": "jpn5",
+    "video_path": "https://www.youtube.com/watch?v=OyTcXZjm2lY",
+    "duration": 271,
+    "materials": [],
+    "created_at": "2026-01-30T12:18:28.494131",
+    "is_active": true,
+    "description": "",
+    "video_type": "youtube",
+    "playlist_title": "Beginner Japanese Lessons / JLPT N5 Level",
+    "playlist_id": "PL0A1mmE9MOVIS2KcY8hIA7wPt_EPhnVPt",
+    "youtube_video_id": "OyTcXZjm2lY",
+    "quiz": {
+      "title": "16. Japanese Common Words and Vocabulary You Must Know #1 – Basic Phrases Quiz",
+      "description": "Test your knowledge of essential Japanese vocabulary, grammar, kanji, sentence structure, and cultural etiquette based on the introductory video on basic Japanese phrases.",
+      "time_limit": 10,
+      "questions": [
+        {
+          "type": "mcq",
+          "question": "What does the Japanese word \"ありがとう\" mean?",
+          "question_ja": "「ありがとう」は何の意味ですか？",
+          "options": {
+            "A": "Good morning",
+            "B": "Thank you",
+            "C": "Sorry",
+            "D": "Good night"
+          },
+          "correct_answer": "B",
+          "explanation": "\"ありがとう\" is the casual way to say \"thank you\" in Japanese.",
+          "difficulty": "easy"
+        },
+        {
+          "type": "mcq",
+          "question": "In the sentence \"私は学生です\", which particle marks the topic?",
+          "question_ja": "「私は学生です」の文で、トピックを示す助詞はどれですか？",
+          "options": {
+            "A": "が",
+            "B": "を",
+            "C": "は",
+            "D": "に"
+          },
+          "correct_answer": "C",
+          "explanation": "The particle \"は\" (wa) is the topic marker, indicating \"as for me\".",
+          "difficulty": "easy"
+        },
+        {
+          "type": "mcq",
+          "question": "How is the kanji \"名前\" read in hiragana?",
+          "question_ja": "漢字「名前」の読み方は何ですか？",
+          "options": {
+            "A": "なまえ",
+            "B": "みょうじ",
+            "C": "いみ",
+            "D": "しょめい"
+          },
+          "correct_answer": "A",
+          "explanation": "\"名前\" means \"name\" and is read as \"なまえ\" (namae).",
+          "difficulty": "medium"
+        },
+        {
+          "type": "mcq",
+          "question": "Choose the correct word order for the English sentence \"I eat sushi.\"",
+          "question_ja": "英語の \"I eat sushi.\" を日本語にするとき、正しい語順はどれですか？",
+          "options": {
+            "A": "寿司を食べます私",
+            "B": "私が寿司食べます",
+            "C": "私は寿司を食べます",
+            "D": "食べます私寿司を"
+          },
+          "correct_answer": "C",
+          "explanation": "The natural Japanese order is Subject‑Object‑Verb: \"私は寿司を食べます\".",
+          "difficulty": "medium"
+        },
+        {
+          "type": "mcq",
+          "question": "Which particle is used to mark the direct object in the sentence \"本を読む\"?",
+          "question_ja": "「本を読む」の文で、直接目的語を示す助詞はどれですか？",
+          "options": {
+            "A": "が",
+            "B": "を",
+            "C": "に",
+            "D": "で"
+          },
+          "correct_answer": "B",
+          "explanation": "The particle \"を\" (wo) marks the direct object, here \"本\" (book).",
+          "difficulty": "easy"
+        },
+        {
+          "type": "mcq",
+          "question": "When meeting someone for the first time in Japan, which phrase is most appropriate?",
+          "question_ja": "日本で初対面の人に会うとき、最も適切な挨拶はどれですか？",
+          "options": {
+            "A": "やあ！",
+            "B": "こんにちは",
+            "C": "どうもすみません",
+            "D": "バイバイ"
+          },
+          "correct_answer": "B",
+          "explanation": "\"こんにちは\" is a polite, neutral greeting suitable for first meetings. \"やあ\" is too casual, and \"バイバイ\" is a farewell.",
+          "difficulty": "easy"
+        },
+        {
+          "type": "mcq",
+          "question": "The phrase \"すみません\" can be used for which of the following situations?",
+          "question_ja": "「すみません」は次のうちどの状況で使えますか？",
+          "options": {
+            "A": "Apologizing for a mistake",
+            "B": "Getting someone's attention",
+            "C": "Thanking someone",
+            "D": "All of the above"
+          },
+          "correct_answer": "D",
+          "explanation": "\"すみません\" is versatile: it can mean \"I'm sorry,\" \"excuse me,\" or \"thank you\" depending on context.",
+          "difficulty": "hard"
+        }
+      ],
+      "quiz_id": "quiz_0eca98c6",
+      "created_by": "ai_generated",
+      "created_at": "2026-01-30T23:25:09.515360",
+      "topic": "Create a quiz about: 16. Japanese common word and vocabulary you must know #1| Japanese Basic Phrases\n\nContent:\nTitle: 16. Japanese common word and vocabulary you must know #1| Japanese Basic Phrases\n\nVideo Content:\nhey guys welcome to my channel I'm this channel I show you about how to improve your Japanese and Japanese culture in Japanese website today I have some meeting in this video anyway today I'm really excited because I will start a new series about how to learn Japanese but they see is I want to tell you I wouldn't show you the Japanese common phrase of course some YouTube channel and websites they cover Japanese comp raise ten or fifteen hundred thousand but they write it down just the English they not they don't pronounce rear Japanese we're in native Japanese so but my channel I always talk about native Japanese pronouns please enjoy my channel and if you want to please subscribe please give me a big ok number one you could eat good boy good boy equal number two me to Mir egal meter ego meter number 300 still got Oh Stoker oh no Babu yeah yeah en el carro en el carro number hi Corre Corre Corre eva kyoka sodas Kariba coca sodas number six sora sora sora wa nan desu ka' Saravanan disco no possible watashi watashi watashi no namae wa taqaddas watashi no namae wa taqaddas number eight shigoto shigoto shigoto go sukashi shigoto go sukashi number nine it's a it's a it's a camasta car it's a camasta car number 10 Tsuru Tsuru your tail chooses to do your tail to ishizu okay if you want to learn more about these phrases go back to the word and stop it you can hear my speaking my pronunciation I think this is a good way to improve your reasoning and pronunciation thanks for watching always see you next time you\n\nGenerate 7 multiple-choice questions that test key concepts from this content.\nIMPORTANT: Return ONLY valid JSON without markdown code blocks.",
+      "difficulty": "mixed",
+      "lecture_id": "youtube_OyTcXZjm2lY_c0d24d07",
+      "auto_generated": true,
+      "generated_at": "2026-01-30T23:25:09.515360"
+    },
+    "updated_at": "2026-01-30T17:55:09.528360"
+  },
+  "youtube_1QLzO2MQbZU_b89bbc46": {
+    "lecture_id": "youtube_1QLzO2MQbZU_b89bbc46",
+    "title": "17. Easy Tips Transform to Past Tense in Japanese | Japanese Basic Common Phrases and words #2",
+    "course_id": "jpn5",
+    "video_path": "https://www.youtube.com/watch?v=1QLzO2MQbZU",
+    "duration": 428,
+    "materials": [],
+    "created_at": "2026-01-30T12:18:28.527558",
+    "is_active": true,
+    "description": "",
+    "video_type": "youtube",
+    "playlist_title": "Beginner Japanese Lessons / JLPT N5 Level",
+    "playlist_id": "PL0A1mmE9MOVIS2KcY8hIA7wPt_EPhnVPt",
+    "youtube_video_id": "1QLzO2MQbZU",
+    "quiz": {
+      "title": "Past Tense Transformation Quiz – Japanese Basics #2",
+      "description": "Test your understanding of how to change present‑tense verbs to past tense, along with related vocabulary, particles, kanji readings, and cultural notes from the video.",
+      "time_limit": 10,
+      "questions": [
+        {
+          "type": "mcq",
+          "question": "What does the word 友達 (ともだち) mean?",
+          "question_ja": "「友達（ともだち）」の意味は何ですか？",
+          "options": {
+            "A": "Teacher",
+            "B": "Friend",
+            "C": "Parent",
+            "D": "Classmate"
+          },
+          "correct_answer": "B",
+          "explanation": "友達 means “friend”. It is a common noun used in everyday conversation.",
+          "difficulty": "easy"
+        },
+        {
+          "type": "mcq",
+          "question": "How do you change the verb 買う (かう) to its plain past tense form?",
+          "question_ja": "動詞「買う（かう）」を普通形の過去形に変えるとどうなりますか？",
+          "options": {
+            "A": "買います",
+            "B": "買える",
+            "C": "買った",
+            "D": "買い"
+          },
+          "correct_answer": "C",
+          "explanation": "The plain past form of 買う is 買った. The pattern is verb‑stem + た for godan verbs ending in ‑う.",
+          "difficulty": "easy"
+        },
+        {
+          "type": "mcq",
+          "question": "In the sentence 公園に子供がいっぱいいた, which particle marks the location where the children were?",
+          "question_ja": "「公園に子供がいっぱいいた」の文で、子供がいた場所を示す助詞はどれですか？",
+          "options": {
+            "A": "に",
+            "B": "で",
+            "C": "を",
+            "D": "が"
+          },
+          "correct_answer": "A",
+          "explanation": "に is used with existence verbs (いる/ある) to indicate the location where something exists. で would indicate the place where an action occurs.",
+          "difficulty": "medium"
+        },
+        {
+          "type": "mcq",
+          "question": "What is the correct on‑yomi (Chinese reading) for the kanji 思う?",
+          "question_ja": "漢字「思う」の正しい音読みはどれですか？",
+          "options": {
+            "A": "シ",
+            "B": "オモウ",
+            "C": "ス",
+            "D": "シン"
+          },
+          "correct_answer": "B",
+          "explanation": "思う is read as おもう (kun‑yomi). The on‑yomi シ is used in compounds like 思考 (しこう), but the verb itself uses the kun‑reading.",
+          "difficulty": "hard"
+        },
+        {
+          "type": "mcq",
+          "question": "Which of the following sentences is correctly expressed in the past tense?",
+          "question_ja": "次の文のうち、正しく過去形になっているものはどれですか？",
+          "options": {
+            "A": "私は本を読む。",
+            "B": "私は本を読んだ。",
+            "C": "私は本を読むた。",
+            "D": "私は本を読ました。"
+          },
+          "correct_answer": "B",
+          "explanation": "読む → 読んだ is the correct past form. Option D uses the polite past incorrectly (読ました should be 読みました).",
+          "difficulty": "easy"
+        },
+        {
+          "type": "mcq",
+          "question": "The phrase ユーチューバーになる means:",
+          "question_ja": "「ユーチューバーになる」の意味は次のうちどれですか？",
+          "options": {
+            "A": "to become a teacher",
+            "B": "to become a YouTuber",
+            "C": "to become a chef",
+            "D": "to become a student"
+          },
+          "correct_answer": "B",
+          "explanation": "ユーチューバー is a loanword for “YouTuber”. なる means “to become”, so the phrase means “to become a YouTuber”.",
+          "difficulty": "easy"
+        },
+        {
+          "type": "mcq",
+          "question": "How do you say “was holding (a heavy bag)” in Japanese using the past continuous form?",
+          "question_ja": "「重い荷物を持っていた」の正しい過去形はどれですか？",
+          "options": {
+            "A": "持っていた",
+            "B": "持っているた",
+            "C": "持ってました",
+            "D": "持ってた"
+          },
+          "correct_answer": "A",
+          "explanation": "The past continuous (state) of 持っている is 持っていた. Option D (持ってた) is colloquial but still acceptable; however, the textbook‑style answer is 持っていた.",
+          "difficulty": "medium"
+        }
+      ],
+      "quiz_id": "quiz_8b41f8e7",
+      "created_by": "ai_generated",
+      "created_at": "2026-01-30T23:25:17.872822",
+      "topic": "Create a quiz about: 17. Easy Tips Transform to Past Tense in Japanese | Japanese Basic Common Phrases and words #2\n\nContent:\nTitle: 17. Easy Tips Transform to Past Tense in Japanese | Japanese Basic Common Phrases and words #2\n\nVideo Content:\n描いスウェー買うという間にちゃんやアユパター 今日は誰かですインディちゃんねーよ oh baby talk by happy groovy は java 2月 より悩んだら ああいう醤油や japanese rice tan ジョブ立たっちゃあゾーン さぁ有もというブームは javari つけるプーさんスライムね please be 4 p クラークテリー3 d のは大勢醤油 ジャパンのかもをプレイ nagare 線を ニュージーズいう規模ちん bcas 有望 cavalier the ep dk by day 4 if you want you 隠避 理由はボキャブラリー please keep をチンギス秒 を芸レーサーという ok ナンバーウォン 出る 出る もう家を出た もう家を出た ナンバー2 使う 使う 頭を使う 頭を使う ナンバースリー 作る 作る 友達を作る 友達を作る ナンバー4 思う 思う 私はそう思う 私はそう思う ナンバーファイバー 持っ 持っ 重い荷物を持っている 重い荷物を持っている ナンバー c 買う 買う ノートパソコンを買う ノートパソコンを買う 名波7 時間 時間 今何時ですか 今何時ですか ナンバーへ 子供 子供 公園に子供がいっぱいいた 公園に子供がいっぱいいた ナンバーなねー 新しい 新しい 新しい車を買った 新しい車を買った ナンバー10 なる なる ユーチューバーになる ユーチューバーになる ok iphone というアディショナルインフォメーション about to post ローン ディスプレイずリトルビッグカード this sentence はぁブロ3 section もう [音楽] データ ディスプレイズハブロ3わーもう民ず ベリー 家を延々ず my house ああ でたミーンズパス店で単位ざーパスとてぬ of the てやる dell e ん データー 何 プレイ普通 そう this is the pattern 住んでるいざ プレゼントぬ data is the past 店風るー プランス4たーーーザー イージーウェイク9トランスポンダーパス点数 ok アンテアナズ融通 ds 頭を使う 見えず ゆず my brain i s 様武勇 ティング頭ミーエンざー 雷頭ハブ サムダミーリングの豚リーダーヘアーと battles of rain ok u 酢 my brain ず頭を使う おけるラーディスフェイス ios ou ず員がパプ10th いた 公園に子供が by いっ 入った ok 公園 means パーカー the パーカー 子供が見えんす中どれん ばいにー園 女に 入った yes は そう ディスプレイディスプレイ図 融通がパス天削 normal normal 体の砂アイドンノーは冷静 english あプレゼン提案すプレゼン店シーズ いるあーチェンジパス10th 入った ルー change た ok いいるっぴーへ いい 入ったいいえ わっっ お外 change the past tense です 2パ ok please ウォッチ tsr るー 2 ok 上げ公園に子供がいっぱいいた dc the path 店 いるー change たウイ店 changes でプレゼン10 to the past tense イーズリー 2ターン ok センス横暴チングテレーズビデオは sam the プレイ g 税 のワーズビリッ日があるとああうわあずああ レイリー d 1 a for you バー2 voodoo s ファーレ so 賃金0 c 熱タイプ5 またねー [音楽]\n\nGenerate 7 multiple-choice questions that test key concepts from this content.\nIMPORTANT: Return ONLY valid JSON without markdown code blocks.",
+      "difficulty": "mixed",
+      "lecture_id": "youtube_1QLzO2MQbZU_b89bbc46",
+      "auto_generated": true,
+      "generated_at": "2026-01-30T23:25:17.872822"
+    },
+    "updated_at": "2026-01-30T17:55:17.887212"
+  },
+  "youtube_DUG0A_imjnE_4a40e333": {
+    "lecture_id": "youtube_DUG0A_imjnE_4a40e333",
+    "title": "18. 6 Must-Know Japanese Words! What, Who, Where, When, Why, How in Japanese",
+    "course_id": "jpn5",
+    "video_path": "https://www.youtube.com/watch?v=DUG0A_imjnE",
+    "duration": 353,
+    "materials": [],
+    "created_at": "2026-01-30T12:18:28.544105",
+    "is_active": true,
+    "description": "",
+    "video_type": "youtube",
+    "playlist_title": "Beginner Japanese Lessons / JLPT N5 Level",
+    "playlist_id": "PL0A1mmE9MOVIS2KcY8hIA7wPt_EPhnVPt",
+    "youtube_video_id": "DUG0A_imjnE",
+    "quiz": {
+      "title": "6 Must‑Know Japanese Question Words Quiz",
+      "description": "Test your knowledge of the essential Japanese interrogatives (what, who, where, when, why, how) and the grammar, particles, and cultural nuances that go with them.",
+      "time_limit": 10,
+      "questions": [
+        {
+          "type": "mcq",
+          "question": "Which reading is appropriate for the question word \"何\" when it appears before a verb, as in \"何を食べますか\"?",
+          "question_ja": "動詞の前に来る質問詞「何」の正しい読み方はどれですか？（例：何を食べますか）",
+          "options": {
+            "A": "なん",
+            "B": "なに",
+            "C": "どれ",
+            "D": "いつ"
+          },
+          "correct_answer": "B",
+          "explanation": "When \"何\" is used as a standalone noun before a particle (を, が, に, etc.) it is read as \"なに\". \"なん\" is used before certain counters (e.g., 何人).",
+          "difficulty": "easy"
+        },
+        {
+          "type": "mcq",
+          "question": "Choose the most natural formal way to ask \"What are you doing?\" in Japanese.",
+          "question_ja": "「What are you doing?」を最も自然な敬語で聞くとしたらどれですか。",
+          "options": {
+            "A": "何してるの？",
+            "B": "何をしているんですか？",
+            "C": "何してますか？",
+            "D": "何をしているのですか？"
+          },
+          "correct_answer": "D",
+          "explanation": "The formal pattern uses the polite verb ending \"ですか\" after the nominalized verb phrase: \"何をしているのですか？\" Option B is polite but slightly less formal because it uses \"んですか\" which adds an explanatory nuance.",
+          "difficulty": "medium"
+        },
+        {
+          "type": "mcq",
+          "question": "In the sentence \"___ が好きですか。\" which particle correctly marks the person you like?",
+          "question_ja": "「___ が好きですか。」の空欄に入れるべき正しい助詞はどれですか。",
+          "options": {
+            "A": "を",
+            "B": "が",
+            "C": "に",
+            "D": "へ"
+          },
+          "correct_answer": "B",
+          "explanation": "\"好き\" is an adjective that takes the subject marked by が. \"誰が好きですか\" means \"Who do you like?\" Using を would be incorrect because 好き does not take a direct object.",
+          "difficulty": "easy"
+        },
+        {
+          "type": "mcq",
+          "question": "What is the correct kanji and reading for the question word meaning \"when\"?",
+          "question_ja": "「when」を表す質問詞の正しい漢字と読みはどれですか。",
+          "options": {
+            "A": "何時（いつ）",
+            "B": "何日（なんにち）",
+            "C": "何処（どこ）",
+            "D": "何人（なんにん）"
+          },
+          "correct_answer": "A",
+          "explanation": "The interrogative \"when\" is written as 何時 and read as \"いつ\". The other options correspond to \"what day\", \"where\", and \"how many people\" respectively.",
+          "difficulty": "easy"
+        },
+        {
+          "type": "mcq",
+          "question": "Select the most natural casual way to ask \"Where did you go?\"",
+          "question_ja": "「Where did you go?」をカジュアルに聞く自然な言い方はどれですか。",
+          "options": {
+            "A": "どこへ行きましたか？",
+            "B": "どこに行ったの？",
+            "C": "どこへ行かれましたか？",
+            "D": "どこに行かれましたか？"
+          },
+          "correct_answer": "B",
+          "explanation": "Option B uses the casual past form \"行った\" with the particle に, which is the everyday spoken form. Options A and C/D are formal/polite.",
+          "difficulty": "medium"
+        },
+        {
+          "type": "mcq",
+          "question": "Which of the following best explains the nuance difference between \"なぜ\" and \"どうして\" when asking \"Why is Japanese difficult?\"",
+          "question_ja": "「なぜ日本語は難しいですか」と「どうして日本語は難しいですか」のニュアンスの違いを最も正しく説明しているのはどれですか。",
+          "options": {
+            "A": "\"なぜ\" is more formal and seeks a logical reason; \"どうして\" is more conversational and can also express personal feeling.",
+            "B": "\"なぜ\" is only used in written language; \"どうして\" is only used in spoken language.",
+            "C": "\"なぜ\" asks for a cause, while \"どうして\" asks for a method.",
+            "D": "There is no difference; they are interchangeable in all contexts."
+          },
+          "correct_answer": "A",
+          "explanation": "\"なぜ\" tends to appear in formal or written contexts and asks for a rational explanation. \"どうして\" is more colloquial and can also convey a speaker's curiosity or emotional nuance.",
+          "difficulty": "hard"
+        },
+        {
+          "type": "mcq",
+          "question": "How would you say \"How do you get to the station?\" using the appropriate \"how\" question word?",
+          "question_ja": "\"How do you get to the station?\" を日本語で自然に言うとしたらどれですか。",
+          "options": {
+            "A": "駅はどうやって行きますか？",
+            "B": "駅へどうやって行きますか？",
+            "C": "駅へどうやって行くのですか？",
+            "D": "駅へどうやって行くか？"
+          },
+          "correct_answer": "C",
+          "explanation": "The most natural polite form is \"駅へどうやって行くのですか？\" It uses the question word \"どうやって\" (how) and the polite explanatory ending \"のですか\". Option B is close but lacks the explanatory nuance; A uses the wrong particle (は) and sounds odd.",
+          "difficulty": "medium"
+        }
+      ],
+      "quiz_id": "quiz_a4fc0102",
+      "created_by": "ai_generated",
+      "created_at": "2026-01-30T23:28:12.697086",
+      "topic": "Create a quiz about: 18. 6 Must-Know Japanese Words! What, Who, Where, When, Why, How in Japanese\n\nContent:\nTitle: 18. 6 Must-Know Japanese Words! What, Who, Where, When, Why, How in Japanese\n\nVideo Content:\nhey i 税関というマイチャンネルアイムた母皆さんこんにちは 様です in this ちゃんねああいう os 遠く outing learn japanese フェンダーハートリーブーブーあじゃぱですけどそういう you want to learn japanese クリスサブプライムまいちゃん ok デープ for iphone t 中 japanese プレイ子を下へ trees bad to もあっ ふぅ わーいウェアウェア はぁっていうのはっていう聖わぁ teen japanese をゲイナージンス pages are green ポーターん インディカーパーテーション総湯ニールトゥーの いうますのデイスプレイティをゲーム等つやつたーーーーでおきゃー ディズ sase cx japanese are you must know わっ プーンウェアーワイハーハー in japanese レッツスターとナンバーは何 this means わーっ ok フォーマルセンテンス家で何をしているのです か 何をしているのですかディスニー m はだ you doing ベリーベーシック sentence 何をしているのですか ok へトランスフォーム果樹合う 何してるの 何してるの武勇ジョリーユーザー ディスプレイ喘息にしてるのばインドビジネスはもうフォーマルスチュエーション いうに入るといういうず何をしているのですか ok x フレーズ良いです誰 誰 this means 風誰 フォーマルセンテンスいえず誰が好きですか 誰が好きですか this means who do you live who do you like いいん this 兄別キャラクター風 do you like nbts ok 誰が好きですか カジュアルセンテンス es 誰が好き 誰が好き保険ば35 5 this means i example センター ses 5行きましたか 5位来ましたか this means wendy 15 wendy 10号 5位来ましたか受けもはカジュアルスター is いつ行ったの いつ行ったのつ海外に行ったの あなたはいつ海外に行ったのあなたは 5 海外に たの this means a war t 中 go abroad う あブロー追いついたのあなたはいつ 海外に行ったの ok nxt ディスプレイ水 a でどこ 同校 means 部エア ok いざんぷうセンター se ずどこから来ましたか どこから来ましたかエアー湯フロン どこから来ましたかまあカジュアルスター ed どこから来たのどこから来たの お外あ this sentence is エリージュース for you to talk with 4 n 雷 ok どこから来ましたか next 0 ga ずなぜ なんで this 戦3人なぜなんで ok なぜ相撲フォーマルフォーマル 何デイズもうか所 ok ミーンズはい ok y japanese is d 太ある y japanese is ディーフカールフォーマルスター l フォーマル センテンスいいです なぜ日本語は 日本語 hr パニエ3 45 ok なぜ日本語は難しいのですか なぜ日本語は難しいのですかなーぜ もうカジュアルスター s なんで日本語は難しいのなんで日本語は難しいの オキャディーするフェーズ道 道 ウィンズはぁ howdy いうスイングどう思いますか どう思いますか もうカージャル starry どう思う どう思うミュージャリーいうディスプレイどう思う どう思うお外へ連れアイトールドユーユー 何 誰 5 どこ なぜ をなんで 道 ブーバー garagesale a porter to speak to do so kron ode usd to do ねぬっこオスいう葉は柄にクエスチョンパワーを直に s フィフィーコメント秒お外 上げ sense 4号ちん紛れ雄汁ねストーンわー またねー [音楽] [音楽]\n\nGenerate 7 multiple-choice questions that test key concepts from this content.\nIMPORTANT: Return ONLY valid JSON without markdown code blocks.",
+      "difficulty": "mixed",
+      "lecture_id": "youtube_DUG0A_imjnE_4a40e333",
+      "auto_generated": true,
+      "generated_at": "2026-01-30T23:28:12.697086"
+    },
+    "updated_at": "2026-01-30T17:58:12.700541"
+  },
+  "youtube_eG4uqWgAc_c_0edddf08": {
+    "lecture_id": "youtube_eG4uqWgAc_c_0edddf08",
+    "title": "19. Simple Japanese Particles You Must Know | Basic Japanese Grammar",
+    "course_id": "jpn5",
+    "video_path": "https://www.youtube.com/watch?v=eG4uqWgAc_c",
+    "duration": 403,
+    "materials": [],
+    "created_at": "2026-01-30T12:18:28.572816",
+    "is_active": true,
+    "description": "",
+    "video_type": "youtube",
+    "playlist_title": "Beginner Japanese Lessons / JLPT N5 Level",
+    "playlist_id": "PL0A1mmE9MOVIS2KcY8hIA7wPt_EPhnVPt",
+    "youtube_video_id": "eG4uqWgAc_c",
+    "quiz": {
+      "title": "Simple Japanese Particles Quiz",
+      "description": "Test your understanding of essential Japanese particles, their usage, kanji origins, and cultural nuances.",
+      "time_limit": 5,
+      "questions": [
+        {
+          "type": "mcq",
+          "question": "Choose the correct particle to complete the sentence: \"私は日本_____行きたいです。\" (I want to go to Japan.)",
+          "question_ja": "文を完成させる正しい助詞を選んでください: 「私は日本_____行きたいです。」",
+          "options": {
+            "A": "へ",
+            "B": "で",
+            "C": "が",
+            "D": "を"
+          },
+          "correct_answer": "A",
+          "explanation": "The particle へ (pronounced \"e\") indicates direction or destination, making \"日本へ行きたい\" mean \"want to go to Japan\". Using で would imply location of an action, が marks subject, and を marks the direct object.",
+          "difficulty": "easy"
+        },
+        {
+          "type": "mcq",
+          "question": "Which particle is used to mark the place where an action occurs?",
+          "question_ja": "動作が行われる場所を示す助詞はどれですか？",
+          "options": {
+            "A": "に",
+            "B": "で",
+            "C": "へ",
+            "D": "を"
+          },
+          "correct_answer": "B",
+          "explanation": "で marks the location of an action (e.g., 学校で勉強する \"study at school\"). に can indicate a static location or time, へ indicates direction, and を marks the direct object.",
+          "difficulty": "medium"
+        },
+        {
+          "type": "mcq",
+          "question": "The hiragana は used as a particle originated from which kanji?",
+          "question_ja": "助詞として使われるひらがなの「は」は、どの漢字から派生したものですか？",
+          "options": {
+            "A": "は (ha) from 端",
+            "B": "は (wa) from 波",
+            "C": "は (wa) from 葉",
+            "D": "は (ha) from 力"
+          },
+          "correct_answer": "B",
+          "explanation": "The hiragana は was derived from the cursive form of the kanji 波 (meaning \"wave\"). When used as a particle, it is pronounced \"wa\" even though the original kanji reading is \"ha\".",
+          "difficulty": "hard"
+        }
+      ],
+      "quiz_id": "quiz_c6a5a845",
+      "created_by": "ai_generated",
+      "created_at": "2026-01-30T23:28:19.687912",
+      "topic": "Create a quiz about: 19. Simple Japanese Particles You Must Know | Basic Japanese Grammar\n\nContent:\nTitle: 19. Simple Japanese Particles You Must Know | Basic Japanese Grammar\n\nGenerate 3 multiple-choice questions that test key concepts from this content.\nIMPORTANT: Return ONLY valid JSON without markdown code blocks.",
+      "difficulty": "mixed",
+      "lecture_id": "youtube_eG4uqWgAc_c_0edddf08",
+      "auto_generated": true,
+      "generated_at": "2026-01-30T23:28:19.687912"
+    },
+    "updated_at": "2026-01-30T17:58:19.693896"
+  },
+  "youtube_r0_MhCbel3E_2afb9ec8": {
+    "lecture_id": "youtube_r0_MhCbel3E_2afb9ec8",
+    "title": "20. Easy Tips How to Remember Kanji | You can Write Kanji After Watching This Video!",
+    "course_id": "jpn5",
+    "video_path": "https://www.youtube.com/watch?v=r0_MhCbel3E",
+    "duration": 511,
+    "materials": [],
+    "created_at": "2026-01-30T12:18:28.594231",
+    "is_active": true,
+    "description": "",
+    "video_type": "youtube",
+    "playlist_title": "Beginner Japanese Lessons / JLPT N5 Level",
+    "playlist_id": "PL0A1mmE9MOVIS2KcY8hIA7wPt_EPhnVPt",
+    "youtube_video_id": "r0_MhCbel3E",
+    "quiz": {
+      "title": "Kanji Memory Tips & Days of the Week Quiz",
+      "description": "Test your knowledge of the kanji used for the days of the week, their meanings, readings, and related grammar points presented in the video.",
+      "time_limit": 10,
+      "questions": [
+        {
+          "type": "mcq",
+          "question": "Which kanji is used for \"Monday\" and what is its basic meaning?",
+          "question_ja": "「月曜日」に使われている漢字はどれで、その基本的な意味は何ですか？",
+          "options": {
+            "A": "火 – fire",
+            "B": "月 – moon",
+            "C": "水 – water",
+            "D": "木 – tree"
+          },
+          "correct_answer": "B",
+          "explanation": "Monday is 月曜日 (getsuyōbi). The kanji 月 means \"moon\" and is the first character of the word.",
+          "difficulty": "easy"
+        },
+        {
+          "type": "mcq",
+          "question": "What is the on‑yomi (Chinese reading) of the kanji 火 used in 火曜日 (Tuesday)?",
+          "question_ja": "火曜日に使われている漢字「火」の音読みは何ですか？",
+          "options": {
+            "A": "か",
+            "B": "すい",
+            "C": "もく",
+            "D": "き"
+          },
+          "correct_answer": "A",
+          "explanation": "The on‑yomi of 火 is カ (ka). In 火曜日 it is read as \"ka\" (火 = ka, 曜日 = yōbi).",
+          "difficulty": "medium"
+        },
+        {
+          "type": "mcq",
+          "question": "Which particle would you use to say \"I study Japanese on Monday\"?",
+          "question_ja": "「月曜日に日本語を勉強します」と言うとき、どの助詞を使いますか？",
+          "options": {
+            "A": "が",
+            "B": "を",
+            "C": "に",
+            "D": "で"
+          },
+          "correct_answer": "C",
+          "explanation": "The particle に marks a point in time when an action occurs. \"月曜日に\" means \"on Monday\".",
+          "difficulty": "easy"
+        },
+        {
+          "type": "mcq",
+          "question": "In the mnemonic from the video, which element is associated with 水曜日 (Wednesday)?",
+          "question_ja": "ビデオの記憶術で、水曜日（水曜日）に結び付けられている要素は何ですか？",
+          "options": {
+            "A": "Fire",
+            "B": "Moon",
+            "C": "Water",
+            "D": "Gold"
+          },
+          "correct_answer": "C",
+          "explanation": "水 (すい) means \"water\"; the video suggests imagining water to remember 水曜日.",
+          "difficulty": "easy"
+        },
+        {
+          "type": "mcq",
+          "question": "Choose the correct sentence that uses the word \"金曜日\" (Friday) with the appropriate particle for \"on\".",
+          "question_ja": "「金曜日」を「～に」の形で正しく使った文はどれですか？",
+          "options": {
+            "A": "金曜日が映画を見ます。",
+            "B": "金曜日に映画を見ます。",
+            "C": "金曜日を映画を見ます。",
+            "D": "金曜日で映画を見ます。"
+          },
+          "correct_answer": "B",
+          "explanation": "金曜日に映画を見ます。 uses に to indicate the day on which the action takes place.",
+          "difficulty": "medium"
+        },
+        {
+          "type": "mcq",
+          "question": "Which of the following kanji combinations correctly forms the word for \"Saturday\"?",
+          "question_ja": "「土曜日」を正しく構成している漢字の組み合わせはどれですか？",
+          "options": {
+            "A": "土 + 曜日",
+            "B": "金 + 曜日",
+            "C": "木 + 曜日",
+            "D": "日 + 曜日"
+          },
+          "correct_answer": "A",
+          "explanation": "Saturday is 土曜日 (doyōbi). The kanji 土 means \"earth\" and is combined with 曜日.",
+          "difficulty": "easy"
+        },
+        {
+          "type": "mcq",
+          "question": "Culturally, why is Sunday associated with the kanji 日 (sun) in Japanese?",
+          "question_ja": "文化的に、なぜ日曜日は漢字「日」（太陽）と結び付けられているのでしょうか？",
+          "options": {
+            "A": "Because Japan's calendar was originally based on the moon.",
+            "B": "Because the sun is considered the first day of the week in many East Asian traditions.",
+            "C": "Because Sunday is a holiday for sun worship in modern Japan.",
+            "D": "Because the word for \"sun\" sounds like \"Sunday\" in Japanese."
+          },
+          "correct_answer": "B",
+          "explanation": "In traditional East Asian calendars, the sun (日) represents the first day of the week, so Sunday is called 日曜日 (nichiyōbi).",
+          "difficulty": "hard"
+        }
+      ],
+      "quiz_id": "quiz_32260afb",
+      "created_by": "ai_generated",
+      "created_at": "2026-01-30T23:28:27.413235",
+      "topic": "Create a quiz about: 20. Easy Tips How to Remember Kanji | You can Write Kanji After Watching This Video!\n\nContent:\nTitle: 20. Easy Tips How to Remember Kanji | You can Write Kanji After Watching This Video!\n\nVideo Content:\nhey guys welcome to my channel or Alchemist at minimum red pepper in a psychologist in this channel we always talk about how to learn Japanese so if you want to improve your Japanese here please subscribe my channel ok today's video I want to share you the easy tips to remember the kanji today's episode is really useful for you if you feel struggle to remember kanji please keep watching today's video okay let's get started okay today's topics is how to write the day of the week in kanji okay at past this kanji is a basic phrase you'll be you'll be okay you'll be Kyra Donna is you'll be you'll be before this kanji you need a specific word get car see mock king though each each kanji has a meaning and Monday Tuesday Wednesday Thursday Friday Saturday and Sunday okay at first you need to remember this kanji you will be so each kanji has a meaning it's easy to remember when you understand the meaning so today I want to tell you the meaning of the specific kanji geez I'm sorry this and this this this if you can understand these kanji is meanings it's very easy to remember this okay at first Monday in Japanese is gets you be get so you'll be here Adana yes okay so you'll be okay yo be is this okay get yo be get yo you need to remember this kanji and in front of them you put on this type of kanji gets okay this kanji meaning is moon a moon yes like this right mmm okay change change okay okay like this so it's really easy to remember it this kanji means moon and get the UV is Monday next Tuesday Tuesday is Kai you'll be your pick this kanji means fire fire okay a fire fire fire yeah okay easy to remember okay you need to imagine fire if when you watching you looking this kanji okay this kanji has a meaning on fire okay so fire change the world this country and put on in front of this kanji meaning coyote okay okay next Wednesday Wednesday is real be real okay this kanji means water I don't know why this water change that this country I don't know but this kanji meaning its ...\n\nGenerate 7 multiple-choice questions that test key concepts from this content.\nIMPORTANT: Return ONLY valid JSON without markdown code blocks.",
+      "difficulty": "mixed",
+      "lecture_id": "youtube_r0_MhCbel3E_2afb9ec8",
+      "auto_generated": true,
+      "generated_at": "2026-01-30T23:28:27.413235"
+    },
+    "updated_at": "2026-01-30T17:58:27.413235"
+  },
+  "youtube_XTnQG2tF6LA_ea7170bd": {
+    "lecture_id": "youtube_XTnQG2tF6LA_ea7170bd",
+    "title": "21. Most Simple Japanese Sentence Structure for Beginners | Japanese Basic Grammar",
+    "course_id": "jpn5",
+    "video_path": "https://www.youtube.com/watch?v=XTnQG2tF6LA",
+    "duration": 434,
+    "materials": [],
+    "created_at": "2026-01-30T12:18:28.616805",
+    "is_active": true,
+    "description": "",
+    "video_type": "youtube",
+    "playlist_title": "Beginner Japanese Lessons / JLPT N5 Level",
+    "playlist_id": "PL0A1mmE9MOVIS2KcY8hIA7wPt_EPhnVPt",
+    "youtube_video_id": "XTnQG2tF6LA"
+  },
+  "youtube_aJBV_sQaxFY_e722c887": {
+    "lecture_id": "youtube_aJBV_sQaxFY_e722c887",
+    "title": "22. How to say \"Give and take\" in Japanese | Basic Japanese Lessons",
+    "course_id": "jpn5",
+    "video_path": "https://www.youtube.com/watch?v=aJBV_sQaxFY",
+    "duration": 200,
+    "materials": [],
+    "created_at": "2026-01-30T12:18:28.640497",
+    "is_active": true,
+    "description": "",
+    "video_type": "youtube",
+    "playlist_title": "Beginner Japanese Lessons / JLPT N5 Level",
+    "playlist_id": "PL0A1mmE9MOVIS2KcY8hIA7wPt_EPhnVPt",
+    "youtube_video_id": "aJBV_sQaxFY"
+  },
+  "youtube_7Ol--YWrYEc_0e396ef8": {
+    "lecture_id": "youtube_7Ol--YWrYEc_0e396ef8",
+    "title": "23. Easy tips How to Introduce Yourself in Japanese | Basic Japanese Lesson",
+    "course_id": "jpn5",
+    "video_path": "https://www.youtube.com/watch?v=7Ol--YWrYEc",
+    "duration": 584,
+    "materials": [],
+    "created_at": "2026-01-30T12:18:28.664274",
+    "is_active": true,
+    "description": "",
+    "video_type": "youtube",
+    "playlist_title": "Beginner Japanese Lessons / JLPT N5 Level",
+    "playlist_id": "PL0A1mmE9MOVIS2KcY8hIA7wPt_EPhnVPt",
+    "youtube_video_id": "7Ol--YWrYEc"
+  },
+  "youtube_mwVPT5Fl8kc_6477be14": {
+    "lecture_id": "youtube_mwVPT5Fl8kc_6477be14",
+    "title": "24. How to Change Sentences into Negative Form | Japanese Verb Conjugation | Basic Grammar Lesson",
+    "course_id": "jpn5",
+    "video_path": "https://www.youtube.com/watch?v=mwVPT5Fl8kc",
+    "duration": 589,
+    "materials": [],
+    "created_at": "2026-01-30T12:18:28.686588",
+    "is_active": true,
+    "description": "",
+    "video_type": "youtube",
+    "playlist_title": "Beginner Japanese Lessons / JLPT N5 Level",
+    "playlist_id": "PL0A1mmE9MOVIS2KcY8hIA7wPt_EPhnVPt",
+    "youtube_video_id": "mwVPT5Fl8kc"
+  },
+  "youtube_IaODRYKFbrc_056cb37c": {
+    "lecture_id": "youtube_IaODRYKFbrc_056cb37c",
+    "title": "25. How the 5-Hour Rule Turns Average People into Experts",
+    "course_id": "jpn5",
+    "video_path": "https://www.youtube.com/watch?v=IaODRYKFbrc",
+    "duration": 381,
+    "materials": [],
+    "created_at": "2026-01-30T12:18:28.708348",
+    "is_active": true,
+    "description": "",
+    "video_type": "youtube",
+    "playlist_title": "Beginner Japanese Lessons / JLPT N5 Level",
+    "playlist_id": "PL0A1mmE9MOVIS2KcY8hIA7wPt_EPhnVPt",
+    "youtube_video_id": "IaODRYKFbrc"
+  },
+  "youtube_Mk8fcxUVytE_37969689": {
+    "lecture_id": "youtube_Mk8fcxUVytE_37969689",
+    "title": "26. Learn Basic Japanese Grammar | Japanese Particles に and と | Simple Japanese Lessons",
+    "course_id": "jpn5",
+    "video_path": "https://www.youtube.com/watch?v=Mk8fcxUVytE",
+    "duration": 516,
+    "materials": [],
+    "created_at": "2026-01-30T12:18:28.727760",
+    "is_active": true,
+    "description": "",
+    "video_type": "youtube",
+    "playlist_title": "Beginner Japanese Lessons / JLPT N5 Level",
+    "playlist_id": "PL0A1mmE9MOVIS2KcY8hIA7wPt_EPhnVPt",
+    "youtube_video_id": "Mk8fcxUVytE"
+  },
+  "youtube_uVHRyu8y75w_7bc1348e": {
+    "lecture_id": "youtube_uVHRyu8y75w_7bc1348e",
+    "title": "27. 7 Must Know Japanese Verb Conjugation | Basic Japanese Language lesson about Grammar",
+    "course_id": "jpn5",
+    "video_path": "https://www.youtube.com/watch?v=uVHRyu8y75w",
+    "duration": 485,
+    "materials": [],
+    "created_at": "2026-01-30T12:18:28.753211",
+    "is_active": true,
+    "description": "",
+    "video_type": "youtube",
+    "playlist_title": "Beginner Japanese Lessons / JLPT N5 Level",
+    "playlist_id": "PL0A1mmE9MOVIS2KcY8hIA7wPt_EPhnVPt",
+    "youtube_video_id": "uVHRyu8y75w"
+  },
+  "youtube_uVHRyu8y75w_8fcccc90": {
+    "lecture_id": "youtube_uVHRyu8y75w_8fcccc90",
+    "title": "28. 7 Must Know Japanese Verb Conjugation | Basic Japanese Language lesson about Grammar",
+    "course_id": "jpn5",
+    "video_path": "https://www.youtube.com/watch?v=uVHRyu8y75w",
+    "duration": 485,
+    "materials": [],
+    "created_at": "2026-01-30T12:18:28.779477",
+    "is_active": true,
+    "description": "",
+    "video_type": "youtube",
+    "playlist_title": "Beginner Japanese Lessons / JLPT N5 Level",
+    "playlist_id": "PL0A1mmE9MOVIS2KcY8hIA7wPt_EPhnVPt",
+    "youtube_video_id": "uVHRyu8y75w"
+  },
+  "youtube_8C1f-RAcfws_a0f09c7c": {
+    "lecture_id": "youtube_8C1f-RAcfws_a0f09c7c",
+    "title": "29. How to Use Japanese Keyboard on iPhone | How Japanese People Type Japanese on Smartphone",
+    "course_id": "jpn5",
+    "video_path": "https://www.youtube.com/watch?v=8C1f-RAcfws",
+    "duration": 353,
+    "materials": [],
+    "created_at": "2026-01-30T12:18:28.797072",
+    "is_active": true,
+    "description": "",
+    "video_type": "youtube",
+    "playlist_title": "Beginner Japanese Lessons / JLPT N5 Level",
+    "playlist_id": "PL0A1mmE9MOVIS2KcY8hIA7wPt_EPhnVPt",
+    "youtube_video_id": "8C1f-RAcfws"
+  },
+  "youtube_8C1f-RAcfws_3e2be355": {
+    "lecture_id": "youtube_8C1f-RAcfws_3e2be355",
+    "title": "30. How to Use Japanese Keyboard on iPhone | How Japanese People Type Japanese on Smartphone",
+    "course_id": "jpn5",
+    "video_path": "https://www.youtube.com/watch?v=8C1f-RAcfws",
+    "duration": 353,
+    "materials": [],
+    "created_at": "2026-01-30T12:18:28.822510",
+    "is_active": true,
+    "description": "",
+    "video_type": "youtube",
+    "playlist_title": "Beginner Japanese Lessons / JLPT N5 Level",
+    "playlist_id": "PL0A1mmE9MOVIS2KcY8hIA7wPt_EPhnVPt",
+    "youtube_video_id": "8C1f-RAcfws"
+  },
+  "youtube_puX9y_LvA8s_37700402": {
+    "lecture_id": "youtube_puX9y_LvA8s_37700402",
+    "title": "31. Japanese Lessons for Beginners | How to Say Hight & Weight in Japanese?",
+    "course_id": "jpn5",
+    "video_path": "https://www.youtube.com/watch?v=puX9y_LvA8s",
+    "duration": 376,
+    "materials": [],
+    "created_at": "2026-01-30T12:18:28.844339",
+    "is_active": true,
+    "description": "",
+    "video_type": "youtube",
+    "playlist_title": "Beginner Japanese Lessons / JLPT N5 Level",
+    "playlist_id": "PL0A1mmE9MOVIS2KcY8hIA7wPt_EPhnVPt",
+    "youtube_video_id": "puX9y_LvA8s"
+  },
+  "youtube_puX9y_LvA8s_9609da9b": {
+    "lecture_id": "youtube_puX9y_LvA8s_9609da9b",
+    "title": "32. Japanese Lessons for Beginners | How to Say Hight & Weight in Japanese?",
+    "course_id": "jpn5",
+    "video_path": "https://www.youtube.com/watch?v=puX9y_LvA8s",
+    "duration": 376,
+    "materials": [],
+    "created_at": "2026-01-30T12:18:28.862856",
+    "is_active": true,
+    "description": "",
+    "video_type": "youtube",
+    "playlist_title": "Beginner Japanese Lessons / JLPT N5 Level",
+    "playlist_id": "PL0A1mmE9MOVIS2KcY8hIA7wPt_EPhnVPt",
+    "youtube_video_id": "puX9y_LvA8s"
+  },
+  "youtube_IALyV7L8sPc_23c72f3a": {
+    "lecture_id": "youtube_IALyV7L8sPc_23c72f3a",
+    "title": "33. How to Write Hiragana and Katakana | Give You Free Worksheet Practice Japanese Alphabet",
+    "course_id": "jpn5",
+    "video_path": "https://www.youtube.com/watch?v=IALyV7L8sPc",
+    "duration": 509,
+    "materials": [],
+    "created_at": "2026-01-30T12:18:28.892729",
+    "is_active": true,
+    "description": "",
+    "video_type": "youtube",
+    "playlist_title": "Beginner Japanese Lessons / JLPT N5 Level",
+    "playlist_id": "PL0A1mmE9MOVIS2KcY8hIA7wPt_EPhnVPt",
+    "youtube_video_id": "IALyV7L8sPc"
+  },
+  "youtube_QkpFbTCkGWg_5945baa4": {
+    "lecture_id": "youtube_QkpFbTCkGWg_5945baa4",
+    "title": "34. Basic Japanese Grammar for Beginners | Simple Japanese Language Lesson",
+    "course_id": "jpn5",
+    "video_path": "https://www.youtube.com/watch?v=QkpFbTCkGWg",
+    "duration": 559,
+    "materials": [],
+    "created_at": "2026-01-30T12:18:28.934947",
+    "is_active": true,
+    "description": "",
+    "video_type": "youtube",
+    "playlist_title": "Beginner Japanese Lessons / JLPT N5 Level",
+    "playlist_id": "PL0A1mmE9MOVIS2KcY8hIA7wPt_EPhnVPt",
+    "youtube_video_id": "QkpFbTCkGWg"
+  },
+  "youtube_pjdFt131-vw_e19f6ec5": {
+    "lecture_id": "youtube_pjdFt131-vw_e19f6ec5",
+    "title": "35. Basic Japanese Self Introduction | How to Introduce Yourself in Japanese for Beginners",
+    "course_id": "jpn5",
+    "video_path": "https://www.youtube.com/watch?v=pjdFt131-vw",
+    "duration": 788,
+    "materials": [],
+    "created_at": "2026-01-30T12:18:28.964802",
+    "is_active": true,
+    "description": "",
+    "video_type": "youtube",
+    "playlist_title": "Beginner Japanese Lessons / JLPT N5 Level",
+    "playlist_id": "PL0A1mmE9MOVIS2KcY8hIA7wPt_EPhnVPt",
+    "youtube_video_id": "pjdFt131-vw"
+  },
+  "youtube_v9M3HvQjP1U_1eae29e7": {
+    "lecture_id": "youtube_v9M3HvQjP1U_1eae29e7",
+    "title": "36. Easy Chart 7 Japanese Verb Conjugation #2 | Basic Japanese Grammar for Beginners",
+    "course_id": "jpn5",
+    "video_path": "https://www.youtube.com/watch?v=v9M3HvQjP1U",
+    "duration": 513,
+    "materials": [],
+    "created_at": "2026-01-30T12:18:28.992263",
+    "is_active": true,
+    "description": "",
+    "video_type": "youtube",
+    "playlist_title": "Beginner Japanese Lessons / JLPT N5 Level",
+    "playlist_id": "PL0A1mmE9MOVIS2KcY8hIA7wPt_EPhnVPt",
+    "youtube_video_id": "v9M3HvQjP1U"
+  },
+  "youtube_j7C-kCXoYFE_c66c8d2a": {
+    "lecture_id": "youtube_j7C-kCXoYFE_c66c8d2a",
+    "title": "37. Easy Tips How to Use Japanese Keyboard on iPhone | How to Type Japanese Hiragana and Katakana",
+    "course_id": "jpn5",
+    "video_path": "https://www.youtube.com/watch?v=j7C-kCXoYFE",
+    "duration": 245,
+    "materials": [],
+    "created_at": "2026-01-30T12:18:29.012826",
+    "is_active": true,
+    "description": "",
+    "video_type": "youtube",
+    "playlist_title": "Beginner Japanese Lessons / JLPT N5 Level",
+    "playlist_id": "PL0A1mmE9MOVIS2KcY8hIA7wPt_EPhnVPt",
+    "youtube_video_id": "j7C-kCXoYFE"
+  },
+  "youtube_xDqyHNIfpLE_bd17c211": {
+    "lecture_id": "youtube_xDqyHNIfpLE_bd17c211",
+    "title": "38. Must Know Japanese Question Words and Particles | Basic Japanese Grammar",
+    "course_id": "jpn5",
+    "video_path": "https://www.youtube.com/watch?v=xDqyHNIfpLE",
+    "duration": 487,
+    "materials": [],
+    "created_at": "2026-01-30T12:18:29.029173",
+    "is_active": true,
+    "description": "",
+    "video_type": "youtube",
+    "playlist_title": "Beginner Japanese Lessons / JLPT N5 Level",
+    "playlist_id": "PL0A1mmE9MOVIS2KcY8hIA7wPt_EPhnVPt",
+    "youtube_video_id": "xDqyHNIfpLE"
+  },
+  "youtube_u2pLXPRkT_c_6b9f6695": {
+    "lecture_id": "youtube_u2pLXPRkT_c_6b9f6695",
+    "title": "39. Basic Japanese Verb How to use ひく | Japanese Lessons for Beginners",
+    "course_id": "jpn5",
+    "video_path": "https://www.youtube.com/watch?v=u2pLXPRkT_c",
+    "duration": 310,
+    "materials": [],
+    "created_at": "2026-01-30T12:18:29.055960",
+    "is_active": true,
+    "description": "",
+    "video_type": "youtube",
+    "playlist_title": "Beginner Japanese Lessons / JLPT N5 Level",
+    "playlist_id": "PL0A1mmE9MOVIS2KcY8hIA7wPt_EPhnVPt",
+    "youtube_video_id": "u2pLXPRkT_c"
+  },
+  "youtube_wEaB2lPacj8_45fddc00": {
+    "lecture_id": "youtube_wEaB2lPacj8_45fddc00",
+    "title": "40. Basic Japanese Words in Math | How to Say \"1+1=2\" in Japanese",
+    "course_id": "jpn5",
+    "video_path": "https://www.youtube.com/watch?v=wEaB2lPacj8",
+    "duration": 604,
+    "materials": [],
+    "created_at": "2026-01-30T12:18:29.080707",
+    "is_active": true,
+    "description": "",
+    "video_type": "youtube",
+    "playlist_title": "Beginner Japanese Lessons / JLPT N5 Level",
+    "playlist_id": "PL0A1mmE9MOVIS2KcY8hIA7wPt_EPhnVPt",
+    "youtube_video_id": "wEaB2lPacj8"
+  },
+  "youtube_woOJLtFMRQY_e727cdaf": {
+    "lecture_id": "youtube_woOJLtFMRQY_e727cdaf",
+    "title": "41. Top 10 Common Japanese Last Names | How to Pronounce well",
+    "course_id": "jpn5",
+    "video_path": "https://www.youtube.com/watch?v=woOJLtFMRQY",
+    "duration": 415,
+    "materials": [],
+    "created_at": "2026-01-30T12:18:29.101674",
+    "is_active": true,
+    "description": "",
+    "video_type": "youtube",
+    "playlist_title": "Beginner Japanese Lessons / JLPT N5 Level",
+    "playlist_id": "PL0A1mmE9MOVIS2KcY8hIA7wPt_EPhnVPt",
+    "youtube_video_id": "woOJLtFMRQY"
+  },
+  "youtube_woOJLtFMRQY_de81894e": {
+    "lecture_id": "youtube_woOJLtFMRQY_de81894e",
+    "title": "42. Top 10 Common Japanese Last Names | How to Pronounce well",
+    "course_id": "jpn5",
+    "video_path": "https://www.youtube.com/watch?v=woOJLtFMRQY",
+    "duration": 415,
+    "materials": [],
+    "created_at": "2026-01-30T12:18:29.114681",
+    "is_active": true,
+    "description": "",
+    "video_type": "youtube",
+    "playlist_title": "Beginner Japanese Lessons / JLPT N5 Level",
+    "playlist_id": "PL0A1mmE9MOVIS2KcY8hIA7wPt_EPhnVPt",
+    "youtube_video_id": "woOJLtFMRQY"
+  },
+  "youtube_Na1Tr7iVFyw_d8652d09": {
+    "lecture_id": "youtube_Na1Tr7iVFyw_d8652d09",
+    "title": "43. Japanese Sentence Structure for Beginners | JLPT N5 Grammar",
+    "course_id": "jpn5",
+    "video_path": "https://www.youtube.com/watch?v=Na1Tr7iVFyw",
+    "duration": 445,
+    "materials": [],
+    "created_at": "2026-01-30T12:18:29.144125",
+    "is_active": true,
+    "description": "",
+    "video_type": "youtube",
+    "playlist_title": "Beginner Japanese Lessons / JLPT N5 Level",
+    "playlist_id": "PL0A1mmE9MOVIS2KcY8hIA7wPt_EPhnVPt",
+    "youtube_video_id": "Na1Tr7iVFyw"
+  },
+  "youtube_5nqRHzzTchw_4dd08955": {
+    "lecture_id": "youtube_5nqRHzzTchw_4dd08955",
+    "title": "44. Basic Japanese Sentence Structure for Beginners | JLPT N5 Grammar Lesson",
+    "course_id": "jpn5",
+    "video_path": "https://www.youtube.com/watch?v=5nqRHzzTchw",
+    "duration": 389,
+    "materials": [],
+    "created_at": "2026-01-30T12:18:29.164580",
+    "is_active": true,
+    "description": "",
+    "video_type": "youtube",
+    "playlist_title": "Beginner Japanese Lessons / JLPT N5 Level",
+    "playlist_id": "PL0A1mmE9MOVIS2KcY8hIA7wPt_EPhnVPt",
+    "youtube_video_id": "5nqRHzzTchw"
+  },
+  "youtube_hxeyNZMtacs_4e3abab6": {
+    "lecture_id": "youtube_hxeyNZMtacs_4e3abab6",
+    "title": "45. How Japanese People Type in Japanese | How to Use Japanese keyboard on iPhone",
+    "course_id": "jpn5",
+    "video_path": "https://www.youtube.com/watch?v=hxeyNZMtacs",
+    "duration": 340,
+    "materials": [],
+    "created_at": "2026-01-30T12:18:29.187099",
+    "is_active": true,
+    "description": "",
+    "video_type": "youtube",
+    "playlist_title": "Beginner Japanese Lessons / JLPT N5 Level",
+    "playlist_id": "PL0A1mmE9MOVIS2KcY8hIA7wPt_EPhnVPt",
+    "youtube_video_id": "hxeyNZMtacs"
+  },
+  "youtube_piiB41qLMug_23d6a2ec": {
+    "lecture_id": "youtube_piiB41qLMug_23d6a2ec",
+    "title": "46. Basic Japanese Grammar Past Tense & Negative Form in Japanese | Japanese Verb Conjugation",
+    "course_id": "jpn5",
+    "video_path": "https://www.youtube.com/watch?v=piiB41qLMug",
+    "duration": 497,
+    "materials": [],
+    "created_at": "2026-01-30T12:18:29.220633",
+    "is_active": true,
+    "description": "",
+    "video_type": "youtube",
+    "playlist_title": "Beginner Japanese Lessons / JLPT N5 Level",
+    "playlist_id": "PL0A1mmE9MOVIS2KcY8hIA7wPt_EPhnVPt",
+    "youtube_video_id": "piiB41qLMug"
+  },
+  "youtube_kjN6uJFK8So_7d1591c0": {
+    "lecture_id": "youtube_kjN6uJFK8So_7d1591c0",
+    "title": "47. How to start learning a new language from ZERO from Scratch",
+    "course_id": "jpn5",
+    "video_path": "https://www.youtube.com/watch?v=kjN6uJFK8So",
+    "duration": 814,
+    "materials": [],
+    "created_at": "2026-01-30T12:18:29.247087",
+    "is_active": true,
+    "description": "",
+    "video_type": "youtube",
+    "playlist_title": "Beginner Japanese Lessons / JLPT N5 Level",
+    "playlist_id": "PL0A1mmE9MOVIS2KcY8hIA7wPt_EPhnVPt",
+    "youtube_video_id": "kjN6uJFK8So"
+  },
+  "youtube_8ZlyfAybyo8_d6bdc3ba": {
+    "lecture_id": "youtube_8ZlyfAybyo8_d6bdc3ba",
+    "title": "48. How to Use Japanese Words その and そんな | Basic Japanese Grammar You Must Know",
+    "course_id": "jpn5",
+    "video_path": "https://www.youtube.com/watch?v=8ZlyfAybyo8",
+    "duration": 338,
+    "materials": [],
+    "created_at": "2026-01-30T12:18:29.262333",
+    "is_active": true,
+    "description": "",
+    "video_type": "youtube",
+    "playlist_title": "Beginner Japanese Lessons / JLPT N5 Level",
+    "playlist_id": "PL0A1mmE9MOVIS2KcY8hIA7wPt_EPhnVPt",
+    "youtube_video_id": "8ZlyfAybyo8"
+  },
+  "youtube_oPDGGjVFqOI_fbe52ddf": {
+    "lecture_id": "youtube_oPDGGjVFqOI_fbe52ddf",
+    "title": "49. The Difference Between いる vs ある | Basic Japanese Grammar Lesson",
+    "course_id": "jpn5",
+    "video_path": "https://www.youtube.com/watch?v=oPDGGjVFqOI",
+    "duration": 459,
+    "materials": [],
+    "created_at": "2026-01-30T12:18:29.278774",
+    "is_active": true,
+    "description": "",
+    "video_type": "youtube",
+    "playlist_title": "Beginner Japanese Lessons / JLPT N5 Level",
+    "playlist_id": "PL0A1mmE9MOVIS2KcY8hIA7wPt_EPhnVPt",
+    "youtube_video_id": "oPDGGjVFqOI"
+  },
+  "youtube_pC8xnyd2MCA_c4a0d042": {
+    "lecture_id": "youtube_pC8xnyd2MCA_c4a0d042",
+    "title": "50. Japanese Verb  Conjugation How to Make Negative Form | ない Form",
+    "course_id": "jpn5",
+    "video_path": "https://www.youtube.com/watch?v=pC8xnyd2MCA",
+    "duration": 468,
+    "materials": [],
+    "created_at": "2026-01-30T12:18:29.311823",
+    "is_active": true,
+    "description": "",
+    "video_type": "youtube",
+    "playlist_title": "Beginner Japanese Lessons / JLPT N5 Level",
+    "playlist_id": "PL0A1mmE9MOVIS2KcY8hIA7wPt_EPhnVPt",
+    "youtube_video_id": "pC8xnyd2MCA"
+  },
+  "youtube_BZgaHHzmT-8_e7eeb6dc": {
+    "lecture_id": "youtube_BZgaHHzmT-8_e7eeb6dc",
+    "title": "51. Question Words and Question Form in Japanese Language | JLPT N5 Basic Lesson",
+    "course_id": "jpn5",
+    "video_path": "https://www.youtube.com/watch?v=BZgaHHzmT-8",
+    "duration": 638,
+    "materials": [],
+    "created_at": "2026-01-30T12:18:29.328849",
+    "is_active": true,
+    "description": "",
+    "video_type": "youtube",
+    "playlist_title": "Beginner Japanese Lessons / JLPT N5 Level",
+    "playlist_id": "PL0A1mmE9MOVIS2KcY8hIA7wPt_EPhnVPt",
+    "youtube_video_id": "BZgaHHzmT-8"
+  },
+  "youtube_7DCCN3pCGtk_a17ec8f9": {
+    "lecture_id": "youtube_7DCCN3pCGtk_a17ec8f9",
+    "title": "52. Ultimate Guide How to Read and Pronounce Japanese Alphabet Hiragana in 10 minutes",
+    "course_id": "jpn5",
+    "video_path": "https://www.youtube.com/watch?v=7DCCN3pCGtk",
+    "duration": 681,
+    "materials": [],
+    "created_at": "2026-01-30T12:18:29.346639",
+    "is_active": true,
+    "description": "",
+    "video_type": "youtube",
+    "playlist_title": "Beginner Japanese Lessons / JLPT N5 Level",
+    "playlist_id": "PL0A1mmE9MOVIS2KcY8hIA7wPt_EPhnVPt",
+    "youtube_video_id": "7DCCN3pCGtk"
+  },
+  "youtube_gQPoky4Z3jU_73f29ad1": {
+    "lecture_id": "youtube_gQPoky4Z3jU_73f29ad1",
+    "title": "53. How to Make Past Tense & Future Tense Sentences in Japanese | Basic Japanese Grammar",
+    "course_id": "jpn5",
+    "video_path": "https://www.youtube.com/watch?v=gQPoky4Z3jU",
+    "duration": 695,
+    "materials": [],
+    "created_at": "2026-01-30T12:18:29.381044",
+    "is_active": true,
+    "description": "",
+    "video_type": "youtube",
+    "playlist_title": "Beginner Japanese Lessons / JLPT N5 Level",
+    "playlist_id": "PL0A1mmE9MOVIS2KcY8hIA7wPt_EPhnVPt",
+    "youtube_video_id": "gQPoky4Z3jU"
+  },
+  "youtube_m3k4mwMQHQI_c8d78557": {
+    "lecture_id": "youtube_m3k4mwMQHQI_c8d78557",
+    "title": "54. Easy Tips How to Say \"Can\" in Japanese | Basic Japanese Grammar for Beginners",
+    "course_id": "jpn5",
+    "video_path": "https://www.youtube.com/watch?v=m3k4mwMQHQI",
+    "duration": 695,
+    "materials": [],
+    "created_at": "2026-01-30T12:18:29.394212",
+    "is_active": true,
+    "description": "",
+    "video_type": "youtube",
+    "playlist_title": "Beginner Japanese Lessons / JLPT N5 Level",
+    "playlist_id": "PL0A1mmE9MOVIS2KcY8hIA7wPt_EPhnVPt",
+    "youtube_video_id": "m3k4mwMQHQI"
+  },
+  "youtube_9qSbvcAa4R0_314e0bb8": {
+    "lecture_id": "youtube_9qSbvcAa4R0_314e0bb8",
+    "title": "55. How to Say \"Mine & Yours\" in Japanese! Basic Japanese Particles Lesson",
+    "course_id": "jpn5",
+    "video_path": "https://www.youtube.com/watch?v=9qSbvcAa4R0",
+    "duration": 714,
+    "materials": [],
+    "created_at": "2026-01-30T12:18:29.425888",
+    "is_active": true,
+    "description": "",
+    "video_type": "youtube",
+    "playlist_title": "Beginner Japanese Lessons / JLPT N5 Level",
+    "playlist_id": "PL0A1mmE9MOVIS2KcY8hIA7wPt_EPhnVPt",
+    "youtube_video_id": "9qSbvcAa4R0"
+  },
+  "youtube_WpTqbDig2Ek_5b121466": {
+    "lecture_id": "youtube_WpTqbDig2Ek_5b121466",
+    "title": "56. 30 Must Know Japanese Verbs #3 | Essential Japanese Words",
+    "course_id": "jpn5",
+    "video_path": "https://www.youtube.com/watch?v=WpTqbDig2Ek",
+    "duration": 617,
+    "materials": [],
+    "created_at": "2026-01-30T12:18:29.442443",
+    "is_active": true,
+    "description": "",
+    "video_type": "youtube",
+    "playlist_title": "Beginner Japanese Lessons / JLPT N5 Level",
+    "playlist_id": "PL0A1mmE9MOVIS2KcY8hIA7wPt_EPhnVPt",
+    "youtube_video_id": "WpTqbDig2Ek"
+  },
+  "youtube_WIClLDWeJyw_9052e5bb": {
+    "lecture_id": "youtube_WIClLDWeJyw_9052e5bb",
+    "title": "57. Comparative and Superlative Adjectives in Japanese | Basic Japanese Grammar Lesson",
+    "course_id": "jpn5",
+    "video_path": "https://www.youtube.com/watch?v=WIClLDWeJyw",
+    "duration": 646,
+    "materials": [],
+    "created_at": "2026-01-30T12:18:29.458273",
+    "is_active": true,
+    "description": "",
+    "video_type": "youtube",
+    "playlist_title": "Beginner Japanese Lessons / JLPT N5 Level",
+    "playlist_id": "PL0A1mmE9MOVIS2KcY8hIA7wPt_EPhnVPt",
+    "youtube_video_id": "WIClLDWeJyw"
+  },
+  "youtube_E-GANpIYJOw_de8ed4c1": {
+    "lecture_id": "youtube_E-GANpIYJOw_de8ed4c1",
+    "title": "58. 2 Meanings You Should Know about These Japanese Words | Why Japanese People often Say けど",
+    "course_id": "jpn5",
+    "video_path": "https://www.youtube.com/watch?v=E-GANpIYJOw",
+    "duration": 691,
+    "materials": [],
+    "created_at": "2026-01-30T12:18:29.476312",
+    "is_active": true,
+    "description": "",
+    "video_type": "youtube",
+    "playlist_title": "Beginner Japanese Lessons / JLPT N5 Level",
+    "playlist_id": "PL0A1mmE9MOVIS2KcY8hIA7wPt_EPhnVPt",
+    "youtube_video_id": "E-GANpIYJOw"
+  },
+  "youtube_h2nH85LwPgs_51766e5c": {
+    "lecture_id": "youtube_h2nH85LwPgs_51766e5c",
+    "title": "59. 5+ Important N5 Words & Sentences | Japanese Vocabulary JLPT N5",
+    "course_id": "jpn5",
+    "video_path": "https://www.youtube.com/watch?v=h2nH85LwPgs",
+    "duration": 529,
+    "materials": [],
+    "created_at": "2026-01-30T12:18:29.506096",
+    "is_active": true,
+    "description": "",
+    "video_type": "youtube",
+    "playlist_title": "Beginner Japanese Lessons / JLPT N5 Level",
+    "playlist_id": "PL0A1mmE9MOVIS2KcY8hIA7wPt_EPhnVPt",
+    "youtube_video_id": "h2nH85LwPgs"
+  },
+  "youtube_MOJQRdLMaJ0_8d91dfd7": {
+    "lecture_id": "youtube_MOJQRdLMaJ0_8d91dfd7",
+    "title": "60. How to describe Personality and Character in Japanese + Slangs",
+    "course_id": "jpn5",
+    "video_path": "https://www.youtube.com/watch?v=MOJQRdLMaJ0",
+    "duration": 849,
+    "materials": [],
+    "created_at": "2026-01-30T12:18:29.532405",
+    "is_active": true,
+    "description": "",
+    "video_type": "youtube",
+    "playlist_title": "Beginner Japanese Lessons / JLPT N5 Level",
+    "playlist_id": "PL0A1mmE9MOVIS2KcY8hIA7wPt_EPhnVPt",
+    "youtube_video_id": "MOJQRdLMaJ0"
+  },
+  "youtube_4BcDIr7KPxU_32afdcd9": {
+    "lecture_id": "youtube_4BcDIr7KPxU_32afdcd9",
+    "title": "61. Easy Tips How to Ask Questions in Japanese | Essential Japanese Grammar for Beginners",
+    "course_id": "jpn5",
+    "video_path": "https://www.youtube.com/watch?v=4BcDIr7KPxU",
+    "duration": 368,
+    "materials": [],
+    "created_at": "2026-01-30T12:18:29.553401",
+    "is_active": true,
+    "description": "",
+    "video_type": "youtube",
+    "playlist_title": "Beginner Japanese Lessons / JLPT N5 Level",
+    "playlist_id": "PL0A1mmE9MOVIS2KcY8hIA7wPt_EPhnVPt",
+    "youtube_video_id": "4BcDIr7KPxU"
+  },
+  "youtube_847ysjo03lQ_40a3333e": {
+    "lecture_id": "youtube_847ysjo03lQ_40a3333e",
+    "title": "62. 10+ Basic Japanese Vocabulary with Example Sentences | Beginner-JLPT N5 Level",
+    "course_id": "jpn5",
+    "video_path": "https://www.youtube.com/watch?v=847ysjo03lQ",
+    "duration": 739,
+    "materials": [],
+    "created_at": "2026-01-30T12:18:29.574595",
+    "is_active": true,
+    "description": "",
+    "video_type": "youtube",
+    "playlist_title": "Beginner Japanese Lessons / JLPT N5 Level",
+    "playlist_id": "PL0A1mmE9MOVIS2KcY8hIA7wPt_EPhnVPt",
+    "youtube_video_id": "847ysjo03lQ"
+  },
+  "youtube_n3xe1vFffag_a5e21a04": {
+    "lecture_id": "youtube_n3xe1vFffag_a5e21a04",
+    "title": "63. How to Pay the Money in Japan | Credit Cards? Cash ? Tips for Paying YEN",
+    "course_id": "jpn5",
+    "video_path": "https://www.youtube.com/watch?v=n3xe1vFffag",
+    "duration": 503,
+    "materials": [],
+    "created_at": "2026-01-30T12:18:29.582505",
+    "is_active": true,
+    "description": "",
+    "video_type": "youtube",
+    "playlist_title": "Beginner Japanese Lessons / JLPT N5 Level",
+    "playlist_id": "PL0A1mmE9MOVIS2KcY8hIA7wPt_EPhnVPt",
+    "youtube_video_id": "n3xe1vFffag"
+  },
+  "youtube_tFY2xmTOatc_0178ad72": {
+    "lecture_id": "youtube_tFY2xmTOatc_0178ad72",
+    "title": "64. 7+ Japanese Must-Know Greetings with Example sentences",
+    "course_id": "jpn5",
+    "video_path": "https://www.youtube.com/watch?v=tFY2xmTOatc",
+    "duration": 551,
+    "materials": [],
+    "created_at": "2026-01-30T12:18:29.629989",
+    "is_active": true,
+    "description": "",
+    "video_type": "youtube",
+    "playlist_title": "Beginner Japanese Lessons / JLPT N5 Level",
+    "playlist_id": "PL0A1mmE9MOVIS2KcY8hIA7wPt_EPhnVPt",
+    "youtube_video_id": "tFY2xmTOatc"
+  },
+  "youtube_qZ0qFTV0HmE_5d5cbf33": {
+    "lecture_id": "youtube_qZ0qFTV0HmE_5d5cbf33",
+    "title": "65. 5+ Basic Japanese Conversation How to Describe Your Symptoms in Japanese",
+    "course_id": "jpn5",
+    "video_path": "https://www.youtube.com/watch?v=qZ0qFTV0HmE",
+    "duration": 592,
+    "materials": [],
+    "created_at": "2026-01-30T12:18:29.661654",
+    "is_active": true,
+    "description": "",
+    "video_type": "youtube",
+    "playlist_title": "Beginner Japanese Lessons / JLPT N5 Level",
+    "playlist_id": "PL0A1mmE9MOVIS2KcY8hIA7wPt_EPhnVPt",
+    "youtube_video_id": "qZ0qFTV0HmE"
+  },
+  "youtube_tq7rvTZuV20_4f2d2e59": {
+    "lecture_id": "youtube_tq7rvTZuV20_4f2d2e59",
+    "title": "66. Colors in Japanese | How to Use Japanese Color Words & Phrases",
+    "course_id": "jpn5",
+    "video_path": "https://www.youtube.com/watch?v=tq7rvTZuV20",
+    "duration": 519,
+    "materials": [],
+    "created_at": "2026-01-30T12:18:29.677560",
+    "is_active": true,
+    "description": "",
+    "video_type": "youtube",
+    "playlist_title": "Beginner Japanese Lessons / JLPT N5 Level",
+    "playlist_id": "PL0A1mmE9MOVIS2KcY8hIA7wPt_EPhnVPt",
+    "youtube_video_id": "tq7rvTZuV20"
+  },
+  "youtube_TMPjH__7xfE_e9f74f25": {
+    "lecture_id": "youtube_TMPjH__7xfE_e9f74f25",
+    "title": "67. How to Use Japanese Keyboard on Your Mac and Windows PC | How Japanese People Type Japanese",
+    "course_id": "jpn5",
+    "video_path": "https://www.youtube.com/watch?v=TMPjH__7xfE",
+    "duration": 307,
+    "materials": [],
+    "created_at": "2026-01-30T12:18:29.709434",
+    "is_active": true,
+    "description": "",
+    "video_type": "youtube",
+    "playlist_title": "Beginner Japanese Lessons / JLPT N5 Level",
+    "playlist_id": "PL0A1mmE9MOVIS2KcY8hIA7wPt_EPhnVPt",
+    "youtube_video_id": "TMPjH__7xfE"
+  },
+  "youtube_hqNjN3BMKGs_8cb35b2f": {
+    "lecture_id": "youtube_hqNjN3BMKGs_8cb35b2f",
+    "title": "68. Years, Months And Days in Japanese | Super Basic Japanese Words for Beginners",
+    "course_id": "jpn5",
+    "video_path": "https://www.youtube.com/watch?v=hqNjN3BMKGs",
+    "duration": 840,
+    "materials": [],
+    "created_at": "2026-01-30T12:18:29.727518",
+    "is_active": true,
+    "description": "",
+    "video_type": "youtube",
+    "playlist_title": "Beginner Japanese Lessons / JLPT N5 Level",
+    "playlist_id": "PL0A1mmE9MOVIS2KcY8hIA7wPt_EPhnVPt",
+    "youtube_video_id": "hqNjN3BMKGs"
+  },
+  "youtube_pH65bv39g8M_97e75cd1": {
+    "lecture_id": "youtube_pH65bv39g8M_97e75cd1",
+    "title": "69. Why Japanese People Often Say けど (KEDO) | Basic Japanese Grammar Lesson",
+    "course_id": "jpn5",
+    "video_path": "https://www.youtube.com/watch?v=pH65bv39g8M",
+    "duration": 595,
+    "materials": [],
+    "created_at": "2026-01-30T12:18:29.754041",
+    "is_active": true,
+    "description": "",
+    "video_type": "youtube",
+    "playlist_title": "Beginner Japanese Lessons / JLPT N5 Level",
+    "playlist_id": "PL0A1mmE9MOVIS2KcY8hIA7wPt_EPhnVPt",
+    "youtube_video_id": "pH65bv39g8M"
+  },
+  "youtube_1_UogCLCXns_8af6966b": {
+    "lecture_id": "youtube_1_UogCLCXns_8af6966b",
+    "title": "70. How to Call your Mom and Dad in Japanese? This is an Easy Japanese Phrase",
+    "course_id": "jpn5",
+    "video_path": "https://www.youtube.com/watch?v=1_UogCLCXns",
+    "duration": 648,
+    "materials": [],
+    "created_at": "2026-01-30T12:18:29.776413",
+    "is_active": true,
+    "description": "",
+    "video_type": "youtube",
+    "playlist_title": "Beginner Japanese Lessons / JLPT N5 Level",
+    "playlist_id": "PL0A1mmE9MOVIS2KcY8hIA7wPt_EPhnVPt",
+    "youtube_video_id": "1_UogCLCXns"
+  },
+  "youtube_mOaulEvAVGw_eb3cdc38": {
+    "lecture_id": "youtube_mOaulEvAVGw_eb3cdc38",
+    "title": "71. JLPT N5 Grammar から (kara) | Japanese Basic Phrase Lesson",
+    "course_id": "jpn5",
+    "video_path": "https://www.youtube.com/watch?v=mOaulEvAVGw",
+    "duration": 509,
+    "materials": [],
+    "created_at": "2026-01-30T12:18:29.794270",
+    "is_active": true,
+    "description": "",
+    "video_type": "youtube",
+    "playlist_title": "Beginner Japanese Lessons / JLPT N5 Level",
+    "playlist_id": "PL0A1mmE9MOVIS2KcY8hIA7wPt_EPhnVPt",
+    "youtube_video_id": "mOaulEvAVGw"
+  },
+  "youtube_tm9jX_A7hyo_728b83ce": {
+    "lecture_id": "youtube_tm9jX_A7hyo_728b83ce",
+    "title": "72. How to Write KANJI | 10 minutes KANJI practice #1-2",
+    "course_id": "jpn5",
+    "video_path": "https://www.youtube.com/watch?v=tm9jX_A7hyo",
+    "duration": 792,
+    "materials": [],
+    "created_at": "2026-01-30T12:18:29.820129",
+    "is_active": true,
+    "description": "",
+    "video_type": "youtube",
+    "playlist_title": "Beginner Japanese Lessons / JLPT N5 Level",
+    "playlist_id": "PL0A1mmE9MOVIS2KcY8hIA7wPt_EPhnVPt",
+    "youtube_video_id": "tm9jX_A7hyo"
+  },
+  "youtube_jFM6ZC11cME_aa0c5047": {
+    "lecture_id": "youtube_jFM6ZC11cME_aa0c5047",
+    "title": "73. Casual Japanese Conversation for Beginners 🇯🇵 what do you have for breakfast?",
+    "course_id": "jpn5",
+    "video_path": "https://www.youtube.com/watch?v=jFM6ZC11cME",
+    "duration": 892,
+    "materials": [],
+    "created_at": "2026-01-30T12:18:29.841548",
+    "is_active": true,
+    "description": "",
+    "video_type": "youtube",
+    "playlist_title": "Beginner Japanese Lessons / JLPT N5 Level",
+    "playlist_id": "PL0A1mmE9MOVIS2KcY8hIA7wPt_EPhnVPt",
+    "youtube_video_id": "jFM6ZC11cME"
+  },
+  "youtube_12nNl8Ypiss_5d1781ee": {
+    "lecture_id": "youtube_12nNl8Ypiss_5d1781ee",
+    "title": "74. What is Difference しておく vs する | Easy Japanese Grammar Lesson",
+    "course_id": "jpn5",
+    "video_path": "https://www.youtube.com/watch?v=12nNl8Ypiss",
+    "duration": 633,
+    "materials": [],
+    "created_at": "2026-01-30T12:18:29.857191",
+    "is_active": true,
+    "description": "",
+    "video_type": "youtube",
+    "playlist_title": "Beginner Japanese Lessons / JLPT N5 Level",
+    "playlist_id": "PL0A1mmE9MOVIS2KcY8hIA7wPt_EPhnVPt",
+    "youtube_video_id": "12nNl8Ypiss"
+  },
+  "youtube_KF8V6eOE_M8_75cdf9b8": {
+    "lecture_id": "youtube_KF8V6eOE_M8_75cdf9b8",
+    "title": "75. 3 Free Website You Can Read the NEWS in Japanese and English",
+    "course_id": "jpn5",
+    "video_path": "https://www.youtube.com/watch?v=KF8V6eOE_M8",
+    "duration": 805,
+    "materials": [],
+    "created_at": "2026-01-30T12:18:29.873282",
+    "is_active": true,
+    "description": "",
+    "video_type": "youtube",
+    "playlist_title": "Beginner Japanese Lessons / JLPT N5 Level",
+    "playlist_id": "PL0A1mmE9MOVIS2KcY8hIA7wPt_EPhnVPt",
+    "youtube_video_id": "KF8V6eOE_M8"
+  },
+  "youtube_elBLks68OOY_f535457a": {
+    "lecture_id": "youtube_elBLks68OOY_f535457a",
+    "title": "76. How to Say \"Want\" in Japanese? ほしい vs したい 🇯🇵",
+    "course_id": "jpn5",
+    "video_path": "https://www.youtube.com/watch?v=elBLks68OOY",
+    "duration": 812,
+    "materials": [],
+    "created_at": "2026-01-30T12:18:29.905224",
+    "is_active": true,
+    "description": "",
+    "video_type": "youtube",
+    "playlist_title": "Beginner Japanese Lessons / JLPT N5 Level",
+    "playlist_id": "PL0A1mmE9MOVIS2KcY8hIA7wPt_EPhnVPt",
+    "youtube_video_id": "elBLks68OOY"
+  },
+  "youtube_PDnUXqbWkoU_7c1d9bec": {
+    "lecture_id": "youtube_PDnUXqbWkoU_7c1d9bec",
+    "title": "77. Casual Japanese Conversation for Beginners 🇯🇵 It doesn't mean that I'm busy",
+    "course_id": "jpn5",
+    "video_path": "https://www.youtube.com/watch?v=PDnUXqbWkoU",
+    "duration": 681,
+    "materials": [],
+    "created_at": "2026-01-30T12:18:29.927738",
+    "is_active": true,
+    "description": "",
+    "video_type": "youtube",
+    "playlist_title": "Beginner Japanese Lessons / JLPT N5 Level",
+    "playlist_id": "PL0A1mmE9MOVIS2KcY8hIA7wPt_EPhnVPt",
+    "youtube_video_id": "PDnUXqbWkoU"
+  },
+  "youtube_J0U-JK5NuEs_abf35f34": {
+    "lecture_id": "youtube_J0U-JK5NuEs_abf35f34",
+    "title": "78. How to Exchange Your Language 🇯🇵 Where is the Best Community for You?",
+    "course_id": "jpn5",
+    "video_path": "https://www.youtube.com/watch?v=J0U-JK5NuEs",
+    "duration": 631,
+    "materials": [],
+    "created_at": "2026-01-30T12:18:29.947039",
+    "is_active": true,
+    "description": "",
+    "video_type": "youtube",
+    "playlist_title": "Beginner Japanese Lessons / JLPT N5 Level",
+    "playlist_id": "PL0A1mmE9MOVIS2KcY8hIA7wPt_EPhnVPt",
+    "youtube_video_id": "J0U-JK5NuEs"
+  },
+  "youtube_NkpMbhk7mMc_1ad4667e": {
+    "lecture_id": "youtube_NkpMbhk7mMc_1ad4667e",
+    "title": "79. How to Say Remember in Japanese 🇯🇵 Basic Japanese Phrase Practice",
+    "course_id": "jpn5",
+    "video_path": "https://www.youtube.com/watch?v=NkpMbhk7mMc",
+    "duration": 492,
+    "materials": [],
+    "created_at": "2026-01-30T12:18:29.974786",
+    "is_active": true,
+    "description": "",
+    "video_type": "youtube",
+    "playlist_title": "Beginner Japanese Lessons / JLPT N5 Level",
+    "playlist_id": "PL0A1mmE9MOVIS2KcY8hIA7wPt_EPhnVPt",
+    "youtube_video_id": "NkpMbhk7mMc"
+  },
+  "youtube_1GzV7vBuHI4_186e48a5": {
+    "lecture_id": "youtube_1GzV7vBuHI4_186e48a5",
+    "title": "80. How to Make NEGATIVE sentences in Japanese | できない vs しない",
+    "course_id": "jpn5",
+    "video_path": "https://www.youtube.com/watch?v=1GzV7vBuHI4",
+    "duration": 530,
+    "materials": [],
+    "created_at": "2026-01-30T12:18:29.996157",
+    "is_active": true,
+    "description": "",
+    "video_type": "youtube",
+    "playlist_title": "Beginner Japanese Lessons / JLPT N5 Level",
+    "playlist_id": "PL0A1mmE9MOVIS2KcY8hIA7wPt_EPhnVPt",
+    "youtube_video_id": "1GzV7vBuHI4"
+  },
+  "youtube_-YZRHRmYKL8_9294a265": {
+    "lecture_id": "youtube_-YZRHRmYKL8_9294a265",
+    "title": "81. Which is the Best apps to learn Japanese for You 🇯🇵  You can Practice Hiragana",
+    "course_id": "jpn5",
+    "video_path": "https://www.youtube.com/watch?v=-YZRHRmYKL8",
+    "duration": 526,
+    "materials": [],
+    "created_at": "2026-01-30T12:18:30.013483",
+    "is_active": true,
+    "description": "",
+    "video_type": "youtube",
+    "playlist_title": "Beginner Japanese Lessons / JLPT N5 Level",
+    "playlist_id": "PL0A1mmE9MOVIS2KcY8hIA7wPt_EPhnVPt",
+    "youtube_video_id": "-YZRHRmYKL8"
+  },
+  "youtube_yR9wsjU-MZ4_d0e3cf3a": {
+    "lecture_id": "youtube_yR9wsjU-MZ4_d0e3cf3a",
+    "title": "82. 5 ways How to Say Goodbye in Japanese | These are Common Mistakes",
+    "course_id": "jpn5",
+    "video_path": "https://www.youtube.com/watch?v=yR9wsjU-MZ4",
+    "duration": 662,
+    "materials": [],
+    "created_at": "2026-01-30T12:18:30.044285",
+    "is_active": true,
+    "description": "",
+    "video_type": "youtube",
+    "playlist_title": "Beginner Japanese Lessons / JLPT N5 Level",
+    "playlist_id": "PL0A1mmE9MOVIS2KcY8hIA7wPt_EPhnVPt",
+    "youtube_video_id": "yR9wsjU-MZ4"
+  },
+  "youtube_2dPl5dh-5KM_b21ee945": {
+    "lecture_id": "youtube_2dPl5dh-5KM_b21ee945",
+    "title": "83. The BEST Japanese Online Private Classes & Lessons 🇯🇵",
+    "course_id": "jpn5",
+    "video_path": "https://www.youtube.com/watch?v=2dPl5dh-5KM",
+    "duration": 378,
+    "materials": [],
+    "created_at": "2026-01-30T12:18:30.063528",
+    "is_active": true,
+    "description": "",
+    "video_type": "youtube",
+    "playlist_title": "Beginner Japanese Lessons / JLPT N5 Level",
+    "playlist_id": "PL0A1mmE9MOVIS2KcY8hIA7wPt_EPhnVPt",
+    "youtube_video_id": "2dPl5dh-5KM"
+  },
+  "youtube_rBoxXV78KS4_d3a3bf99": {
+    "lecture_id": "youtube_rBoxXV78KS4_d3a3bf99",
+    "title": "84. 🔴  FULL Lesson of HIRAGANA & KATAKANA | Japanese Class for Beginners",
+    "course_id": "jpn5",
+    "video_path": "https://www.youtube.com/watch?v=rBoxXV78KS4",
+    "duration": 7146,
+    "materials": [],
+    "created_at": "2026-01-30T12:18:30.083513",
+    "is_active": true,
+    "description": "",
+    "video_type": "youtube",
+    "playlist_title": "Beginner Japanese Lessons / JLPT N5 Level",
+    "playlist_id": "PL0A1mmE9MOVIS2KcY8hIA7wPt_EPhnVPt",
+    "youtube_video_id": "rBoxXV78KS4"
+  },
+  "youtube_aquNARAmqSI_e8ddfdbf": {
+    "lecture_id": "youtube_aquNARAmqSI_e8ddfdbf",
+    "title": "85. Learn ALL Hiragana in 30 Minutes | Perfect Hiragana Chart",
+    "course_id": "jpn5",
+    "video_path": "https://www.youtube.com/watch?v=aquNARAmqSI",
+    "duration": 1725,
+    "materials": [],
+    "created_at": "2026-01-30T12:18:30.112737",
+    "is_active": true,
+    "description": "",
+    "video_type": "youtube",
+    "playlist_title": "Beginner Japanese Lessons / JLPT N5 Level",
+    "playlist_id": "PL0A1mmE9MOVIS2KcY8hIA7wPt_EPhnVPt",
+    "youtube_video_id": "aquNARAmqSI"
+  },
+  "youtube_9NfpMDqgHlE_b12e5485": {
+    "lecture_id": "youtube_9NfpMDqgHlE_b12e5485",
+    "title": "86. How to Write & Pronounce Katakana | Learn ALL Katakana in 50 minutes",
+    "course_id": "jpn5",
+    "video_path": "https://www.youtube.com/watch?v=9NfpMDqgHlE",
+    "duration": 2687,
+    "materials": [],
+    "created_at": "2026-01-30T12:18:30.138565",
+    "is_active": true,
+    "description": "",
+    "video_type": "youtube",
+    "playlist_title": "Beginner Japanese Lessons / JLPT N5 Level",
+    "playlist_id": "PL0A1mmE9MOVIS2KcY8hIA7wPt_EPhnVPt",
+    "youtube_video_id": "9NfpMDqgHlE"
+  },
+  "youtube_VM7h9fdv0_4_02db3208": {
+    "lecture_id": "youtube_VM7h9fdv0_4_02db3208",
+    "title": "87. 10+ Basic Japanese Greetings | Pitch-Accent Practice",
+    "course_id": "jpn5",
+    "video_path": "https://www.youtube.com/watch?v=VM7h9fdv0_4",
+    "duration": 851,
+    "materials": [],
+    "created_at": "2026-01-30T12:18:30.162747",
+    "is_active": true,
+    "description": "",
+    "video_type": "youtube",
+    "playlist_title": "Beginner Japanese Lessons / JLPT N5 Level",
+    "playlist_id": "PL0A1mmE9MOVIS2KcY8hIA7wPt_EPhnVPt",
+    "youtube_video_id": "VM7h9fdv0_4"
+  },
+  "youtube_BafVcNxiKdU_42773cdf": {
+    "lecture_id": "youtube_BafVcNxiKdU_42773cdf",
+    "title": "88. Super Basic Japanese Grammar Lesson1 Everyone should Know THIS",
+    "course_id": "jpn5",
+    "video_path": "https://www.youtube.com/watch?v=BafVcNxiKdU",
+    "duration": 609,
+    "materials": [],
+    "created_at": "2026-01-30T12:18:30.186497",
+    "is_active": true,
+    "description": "",
+    "video_type": "youtube",
+    "playlist_title": "Beginner Japanese Lessons / JLPT N5 Level",
+    "playlist_id": "PL0A1mmE9MOVIS2KcY8hIA7wPt_EPhnVPt",
+    "youtube_video_id": "BafVcNxiKdU"
+  },
+  "youtube_aoFhzxtOzFw_21285aee": {
+    "lecture_id": "youtube_aoFhzxtOzFw_21285aee",
+    "title": "89. 3 Tips How to Use だいじょうぶ Properly | JLPT N5 Grammar",
+    "course_id": "jpn5",
+    "video_path": "https://www.youtube.com/watch?v=aoFhzxtOzFw",
+    "duration": 692,
+    "materials": [],
+    "created_at": "2026-01-30T12:18:30.208435",
+    "is_active": true,
+    "description": "",
+    "video_type": "youtube",
+    "playlist_title": "Beginner Japanese Lessons / JLPT N5 Level",
+    "playlist_id": "PL0A1mmE9MOVIS2KcY8hIA7wPt_EPhnVPt",
+    "youtube_video_id": "aoFhzxtOzFw"
+  },
+  "youtube_2JJirPMPy44_778d589c": {
+    "lecture_id": "youtube_2JJirPMPy44_778d589c",
+    "title": "90. GENKI JAPANESE Lesson 1 | Super Basic Japanese Grammar",
+    "course_id": "jpn5",
+    "video_path": "https://www.youtube.com/watch?v=2JJirPMPy44",
+    "duration": 660,
+    "materials": [],
+    "created_at": "2026-01-30T12:18:30.232564",
+    "is_active": true,
+    "description": "",
+    "video_type": "youtube",
+    "playlist_title": "Beginner Japanese Lessons / JLPT N5 Level",
+    "playlist_id": "PL0A1mmE9MOVIS2KcY8hIA7wPt_EPhnVPt",
+    "youtube_video_id": "2JJirPMPy44"
+  },
+  "youtube_haBG8wy3jTc_04a5e505": {
+    "lecture_id": "youtube_haBG8wy3jTc_04a5e505",
+    "title": "91. 10 Japanese Position Words | On, Under, in, behind, etc in Japanese",
+    "course_id": "jpn5",
+    "video_path": "https://www.youtube.com/watch?v=haBG8wy3jTc",
+    "duration": 858,
+    "materials": [],
+    "created_at": "2026-01-30T12:18:30.254350",
+    "is_active": true,
+    "description": "",
+    "video_type": "youtube",
+    "playlist_title": "Beginner Japanese Lessons / JLPT N5 Level",
+    "playlist_id": "PL0A1mmE9MOVIS2KcY8hIA7wPt_EPhnVPt",
+    "youtube_video_id": "haBG8wy3jTc"
+  },
+  "youtube_JoXaVnAMd5E_64341be8": {
+    "lecture_id": "youtube_JoXaVnAMd5E_64341be8",
+    "title": "92. GENKI JAPANESE Lesson 2 | Basic Japanese Sentence Structure",
+    "course_id": "jpn5",
+    "video_path": "https://www.youtube.com/watch?v=JoXaVnAMd5E",
+    "duration": 851,
+    "materials": [],
+    "created_at": "2026-01-30T12:18:30.274069",
+    "is_active": true,
+    "description": "",
+    "video_type": "youtube",
+    "playlist_title": "Beginner Japanese Lessons / JLPT N5 Level",
+    "playlist_id": "PL0A1mmE9MOVIS2KcY8hIA7wPt_EPhnVPt",
+    "youtube_video_id": "JoXaVnAMd5E"
+  },
+  "youtube_Ljx_f1SmfUg_f4f01852": {
+    "lecture_id": "youtube_Ljx_f1SmfUg_f4f01852",
+    "title": "93. 5 Easy Japanese Filler Words You Must Start Using  Now",
+    "course_id": "jpn5",
+    "video_path": "https://www.youtube.com/watch?v=Ljx_f1SmfUg",
+    "duration": 766,
+    "materials": [],
+    "created_at": "2026-01-30T12:18:30.286654",
+    "is_active": true,
+    "description": "",
+    "video_type": "youtube",
+    "playlist_title": "Beginner Japanese Lessons / JLPT N5 Level",
+    "playlist_id": "PL0A1mmE9MOVIS2KcY8hIA7wPt_EPhnVPt",
+    "youtube_video_id": "Ljx_f1SmfUg"
+  },
+  "youtube_9eBA2kkHW84_3dd8b217": {
+    "lecture_id": "youtube_9eBA2kkHW84_3dd8b217",
+    "title": "94. GENKI Japanese Lesson 3 | Japanese particles & verb conjugations",
+    "course_id": "jpn5",
+    "video_path": "https://www.youtube.com/watch?v=9eBA2kkHW84",
+    "duration": 999,
+    "materials": [],
+    "created_at": "2026-01-30T12:18:30.318573",
+    "is_active": true,
+    "description": "",
+    "video_type": "youtube",
+    "playlist_title": "Beginner Japanese Lessons / JLPT N5 Level",
+    "playlist_id": "PL0A1mmE9MOVIS2KcY8hIA7wPt_EPhnVPt",
+    "youtube_video_id": "9eBA2kkHW84"
+  },
+  "youtube_UBBlFxN-dDo_cba83c88": {
+    "lecture_id": "youtube_UBBlFxN-dDo_cba83c88",
+    "title": "95. Here is the Best Free Language Exchange Community",
+    "course_id": "jpn5",
+    "video_path": "https://www.youtube.com/watch?v=UBBlFxN-dDo",
+    "duration": 413,
+    "materials": [],
+    "created_at": "2026-01-30T12:18:30.344455",
+    "is_active": true,
+    "description": "",
+    "video_type": "youtube",
+    "playlist_title": "Beginner Japanese Lessons / JLPT N5 Level",
+    "playlist_id": "PL0A1mmE9MOVIS2KcY8hIA7wPt_EPhnVPt",
+    "youtube_video_id": "UBBlFxN-dDo"
+  },
+  "youtube_EWHfMnQv8cw_5df648c4": {
+    "lecture_id": "youtube_EWHfMnQv8cw_5df648c4",
+    "title": "96. Japanese TextBook Review Which one is the Best for you?",
+    "course_id": "jpn5",
+    "video_path": "https://www.youtube.com/watch?v=EWHfMnQv8cw",
+    "duration": 564,
+    "materials": [],
+    "created_at": "2026-01-30T12:18:30.361524",
+    "is_active": true,
+    "description": "",
+    "video_type": "youtube",
+    "playlist_title": "Beginner Japanese Lessons / JLPT N5 Level",
+    "playlist_id": "PL0A1mmE9MOVIS2KcY8hIA7wPt_EPhnVPt",
+    "youtube_video_id": "EWHfMnQv8cw"
+  },
+  "youtube_Yl8Jb6ilXNc_f3c8c94b": {
+    "lecture_id": "youtube_Yl8Jb6ilXNc_f3c8c94b",
+    "title": "97. Japanese Textbook GENKI Lesson 4 | Support Self-Studying Japanese",
+    "course_id": "jpn5",
+    "video_path": "https://www.youtube.com/watch?v=Yl8Jb6ilXNc",
+    "duration": 1085,
+    "materials": [],
+    "created_at": "2026-01-30T12:18:30.377276",
+    "is_active": true,
+    "description": "",
+    "video_type": "youtube",
+    "playlist_title": "Beginner Japanese Lessons / JLPT N5 Level",
+    "playlist_id": "PL0A1mmE9MOVIS2KcY8hIA7wPt_EPhnVPt",
+    "youtube_video_id": "Yl8Jb6ilXNc"
+  },
+  "youtube_alFdewoPb38_cd3549c9": {
+    "lecture_id": "youtube_alFdewoPb38_cd3549c9",
+    "title": "98. Natural Japanese Daily’s Vocabulary in the Room",
+    "course_id": "jpn5",
+    "video_path": "https://www.youtube.com/watch?v=alFdewoPb38",
+    "duration": 949,
+    "materials": [],
+    "created_at": "2026-01-30T12:18:30.409039",
+    "is_active": true,
+    "description": "",
+    "video_type": "youtube",
+    "playlist_title": "Beginner Japanese Lessons / JLPT N5 Level",
+    "playlist_id": "PL0A1mmE9MOVIS2KcY8hIA7wPt_EPhnVPt",
+    "youtube_video_id": "alFdewoPb38"
+  },
+  "youtube_bfHlXKWgQdE_d9f61324": {
+    "lecture_id": "youtube_bfHlXKWgQdE_d9f61324",
+    "title": "99. How to Say like and Dislike in Japanese | GENKI Japanese Lesson ep. 5",
+    "course_id": "jpn5",
+    "video_path": "https://www.youtube.com/watch?v=bfHlXKWgQdE",
+    "duration": 604,
+    "materials": [],
+    "created_at": "2026-01-30T12:18:30.440811",
+    "is_active": true,
+    "description": "",
+    "video_type": "youtube",
+    "playlist_title": "Beginner Japanese Lessons / JLPT N5 Level",
+    "playlist_id": "PL0A1mmE9MOVIS2KcY8hIA7wPt_EPhnVPt",
+    "youtube_video_id": "bfHlXKWgQdE"
+  },
+  "youtube_yUC-a7VI9FE_21f0fb79": {
+    "lecture_id": "youtube_yUC-a7VI9FE_21f0fb79",
+    "title": "100. 5 meanings You Must Know about \"とる\" in Japanese",
+    "course_id": "jpn5",
+    "video_path": "https://www.youtube.com/watch?v=yUC-a7VI9FE",
+    "duration": 359,
+    "materials": [],
+    "created_at": "2026-01-30T12:18:30.456859",
+    "is_active": true,
+    "description": "",
+    "video_type": "youtube",
+    "playlist_title": "Beginner Japanese Lessons / JLPT N5 Level",
+    "playlist_id": "PL0A1mmE9MOVIS2KcY8hIA7wPt_EPhnVPt",
+    "youtube_video_id": "yUC-a7VI9FE"
   }
 }

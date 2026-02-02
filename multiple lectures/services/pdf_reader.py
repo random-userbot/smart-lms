@@ -10,6 +10,9 @@ from pathlib import Path
 import base64
 from typing import Dict, Optional
 import csv
+import sys
+sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
+from services.universal_logger import log_pdf_action, log_download
 
 
 class PDFReaderService:
@@ -104,29 +107,89 @@ class PDFReaderService:
                 'last_update': datetime.now(),
                 'total_seconds': 0
             }
+            # Log PDF open on first view
+            log_pdf_action(student_id, 'pdf_open', course_id, lecture_id, material_id)
         
         # Calculate reading time
         reading_session = st.session_state[session_key]
         current_time = datetime.now()
         session_duration = (current_time - reading_session['start_time']).total_seconds()
         
-        # Display PDF info header
+        # Display PDF info header with real-time timer
         col1, col2, col3 = st.columns([2, 1, 1])
         
         with col1:
             st.markdown(f"### 📄 {material_title}")
         
         with col2:
-            # Show current session reading time
-            minutes = int(session_duration // 60)
-            seconds = int(session_duration % 60)
-            st.metric("⏱️ Reading Time", f"{minutes}m {seconds}s")
+            # Placeholder for real-time reading time
+            reading_time_placeholder = st.empty()
         
         with col3:
             # Show total reading time across all sessions
             total_time = self.get_total_reading_time(student_id, material_id)
             total_minutes = int(total_time // 60)
-            st.metric("📊 Total Time", f"{total_minutes} min")
+            total_time_placeholder = st.empty()
+            total_time_placeholder.metric("📊 Total Time", f"{total_minutes} min")
+        
+        # JavaScript for real-time timer update
+        start_timestamp = int(reading_session['start_time'].timestamp() * 1000)
+        
+        timer_html = f"""
+        <script>
+            let startTime = {start_timestamp};
+            let timerElement = window.parent.document.querySelector('[data-testid="stMetricValue"]');
+            
+            function updateTimer() {{
+                let now = Date.now();
+                let elapsed = Math.floor((now - startTime) / 1000);
+                let minutes = Math.floor(elapsed / 60);
+                let seconds = elapsed % 60;
+                
+                // Update the reading time display
+                let readingTimeElements = window.parent.document.querySelectorAll('[data-testid="stMetric"]');
+                if (readingTimeElements.length > 1) {{
+                    let readingTimeMetric = readingTimeElements[1];
+                    let valueElement = readingTimeMetric.querySelector('[data-testid="stMetricValue"]');
+                    if (valueElement) {{
+                        valueElement.textContent = minutes + 'm ' + seconds + 's';
+                    }}
+                }}
+                
+                // Store time in session storage for tracking
+                sessionStorage.setItem('pdf_reading_time_{material_id}', elapsed);
+            }}
+            
+            // Update every second
+            setInterval(updateTimer, 1000);
+            updateTimer();
+            
+            // Track page visibility for accurate time tracking
+            let isVisible = true;
+            let pausedTime = 0;
+            
+            document.addEventListener('visibilitychange', function() {{
+                if (document.hidden) {{
+                    isVisible = false;
+                    pausedTime = Date.now();
+                }} else {{
+                    isVisible = true;
+                    if (pausedTime > 0) {{
+                        // Adjust start time to exclude time when page was hidden
+                        startTime += (Date.now() - pausedTime);
+                        pausedTime = 0;
+                    }}
+                }}
+            }});
+        </script>
+        """
+        
+        st.components.v1.html(timer_html, height=0)
+        
+        # Update the reading time display
+        minutes = int(session_duration // 60)
+        seconds = int(session_duration % 60)
+        reading_time_placeholder.metric("⏱️ Reading Time", f"{minutes}m {seconds}s")
         
         st.markdown("---")
         
@@ -160,13 +223,16 @@ class PDFReaderService:
             
             with col1:
                 # Download button
-                st.download_button(
+                if st.download_button(
                     label="📥 Download PDF",
                     data=pdf_bytes,
                     file_name=f"{material_title}.pdf",
                     mime="application/pdf",
                     use_container_width=True
-                )
+                ):
+                    # Log download action
+                    log_download(student_id, 'pdf', course_id, lecture_id, material_id, 
+                               file_size=len(pdf_bytes))
             
             with col2:
                 # Mark as read button
@@ -180,6 +246,9 @@ class PDFReaderService:
                         material_title=material_title,
                         reading_duration=int(session_duration)
                     )
+                    # Log reading completion for intelligent engagement
+                    log_pdf_action(student_id, 'pdf_complete', course_id, lecture_id, 
+                                 material_id, duration=int(session_duration))
                     st.success(f"✅ Logged {minutes}m {seconds}s of reading time!")
                     st.balloons()
             

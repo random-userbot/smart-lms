@@ -10,15 +10,48 @@ sys.path.append(os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(
 
 from services.auth import get_auth
 from services.storage import get_storage
+from services.universal_logger import log_assessment
 from datetime import datetime
 import uuid
 
 
 def show_quiz_attempt(quiz, lecture_id, course_id):
     """Display quiz for student to attempt"""
+    storage = get_storage()
+    user = st.session_state.user
+    quiz_id = quiz.get('quiz_id')
+    
+    # Check if student has already attempted this quiz
+    if storage.has_attempted_quiz(user['user_id'], quiz_id):
+        st.warning("⚠️ You have already attempted this quiz. Retries are not allowed.")
+        
+        # Show their previous attempt
+        attempt = storage.get_student_quiz_attempt(user['user_id'], quiz_id)
+        if attempt:
+            st.markdown("### Your Previous Attempt:")
+            col1, col2, col3 = st.columns(3)
+            
+            with col1:
+                st.metric("Score", f"{attempt.get('score', 0)}/{attempt.get('max_score', 0)}")
+            with col2:
+                st.metric("Percentage", f"{attempt.get('percentage', 0):.1f}%")
+            with col3:
+                percentage = attempt.get('percentage', 0)
+                grade = "A" if percentage >= 80 else "B" if percentage >= 60 else "C" if percentage >= 40 else "D"
+                st.metric("Grade", grade)
+            
+            st.caption(f"Submitted: {attempt.get('timestamp', 'Unknown')[:19]}")
+        
+        if st.button("← Back to Quizzes"):
+            st.session_state.current_page = 'quizzes'
+            st.rerun()
+        
+        return
+    
     st.title(f"📝 {quiz['title']}")
-    st.markdown(f"**Time Limit:** {quiz['time_limit']} minutes")
-    st.markdown(f"**Questions:** {len(quiz['questions'])}")
+    st.markdown(f"**Time Limit:** {quiz.get('time_limit', 30)} minutes")
+    st.markdown(f"**Questions:** {len(quiz.get('questions', []))}")
+    st.warning("⚠️ **Important:** You can only attempt this quiz ONCE. No retries are allowed!")
     st.markdown("---")
     
     # Initialize quiz state
@@ -33,6 +66,8 @@ def show_quiz_attempt(quiz, lecture_id, course_id):
         if st.button("▶️ Start Quiz", use_container_width=True):
             st.session_state.quiz_started = True
             st.session_state.quiz_start_time = datetime.utcnow()
+            # Log intelligent engagement
+            log_assessment(user['user_id'], 'quiz_start', course_id, lecture_id, quiz_id)
             st.rerun()
         
         return
@@ -41,21 +76,35 @@ def show_quiz_attempt(quiz, lecture_id, course_id):
     with st.form("quiz_form"):
         answers = {}
         
-        for i, question in enumerate(quiz['questions']):
+        for i, question in enumerate(quiz.get('questions', [])):
             st.markdown(f"### Question {i+1}")
-            st.markdown(question['question'])
+            st.markdown(question.get('question', ''))
             
-            if question['type'] == 'mcq':
-                options = question['options']
-                answer = st.radio(
-                    "Select your answer:",
-                    options=['A', 'B', 'C', 'D'],
-                    format_func=lambda x: f"{x}. {options[x]}",
-                    key=f"q_{i}"
-                )
-                answers[i] = answer
+            # Determine question type
+            question_type = question.get('question_type', question.get('type', 'multiple_choice'))
             
-            elif question['type'] == 'true_false':
+            if question_type in ['mcq', 'multiple_choice']:
+                options = question.get('options', [])
+                if options:
+                    # Parse options to get just the letters
+                    option_keys = []
+                    option_texts = {}
+                    
+                    for opt in options:
+                        if isinstance(opt, str) and len(opt) > 0:
+                            key = opt[0]  # Get 'A', 'B', 'C', or 'D'
+                            option_keys.append(key)
+                            option_texts[key] = opt
+                    
+                    answer = st.radio(
+                        "Select your answer:",
+                        options=option_keys,
+                        format_func=lambda x: option_texts.get(x, x),
+                        key=f"q_{i}"
+                    )
+                    answers[i] = answer
+            
+            elif question_type == 'true_false':
                 answer = st.radio(
                     "Select your answer:",
                     options=['True', 'False'],
@@ -70,31 +119,40 @@ def show_quiz_attempt(quiz, lecture_id, course_id):
         if submit:
             # Calculate score
             correct_count = 0
-            total_questions = len(quiz['questions'])
+            total_questions = len(quiz.get('questions', []))
             
-            for i, question in enumerate(quiz['questions']):
-                if answers.get(i) == question['correct_answer']:
-                    correct_count += 1
+            for i, question in enumerate(quiz.get('questions', [])):
+                student_answer = answers.get(i, '')
+                correct_answer = question.get('correct_answer', '')
+                
+                # Normalize answers for comparison
+                if student_answer and correct_answer:
+                    if student_answer[0] == correct_answer[0]:
+                        correct_count += 1
             
             score = correct_count
             max_score = total_questions
-            percentage = (correct_count / total_questions) * 100
+            percentage = (correct_count / total_questions) * 100 if total_questions > 0 else 0
             
-            # Save grade
-            storage = get_storage()
-            user = st.session_state.user
+            time_taken = (datetime.utcnow() - st.session_state.quiz_start_time).total_seconds()
             
-            storage.save_grade(
+            # Save attempt using new method (prevents retries)
+            success = storage.submit_quiz_attempt(
                 student_id=user['user_id'],
                 course_id=course_id,
-                assessment_type='quiz',
-                assessment_id=quiz['quiz_id'],
-                score=score,
-                max_score=max_score,
-                lecture_id=lecture_id,
+                quiz_id=quiz_id,
                 answers=answers,
-                time_taken=(datetime.utcnow() - st.session_state.quiz_start_time).total_seconds()
+                score=percentage,
+                max_score=100
             )
+            
+            if not success:
+                st.error("Failed to submit quiz. You may have already attempted it.")
+                return
+            
+            # Log intelligent engagement
+            log_assessment(user['user_id'], 'quiz_submit', course_id, lecture_id, 
+                         quiz_id, score=percentage, duration=time_taken)
             
             # Show results
             st.session_state.quiz_result = {
@@ -252,7 +310,14 @@ def show_available_quizzes():
     for course_id, course in enrolled_courses.items():
         lectures = storage.get_course_lectures(course_id)
         for lecture in lectures:
-            for quiz in lecture.get('quizzes', []):
+            # Check both 'quiz' (singular) and 'quizzes' (plural) for compatibility
+            quizzes = []
+            if 'quiz' in lecture and lecture['quiz']:
+                quizzes = [lecture['quiz']]
+            elif 'quizzes' in lecture:
+                quizzes = lecture['quizzes']
+            
+            for quiz in quizzes:
                 total_quizzes += 1
                 if quiz['quiz_id'] in completed_quizzes:
                     completed_count += 1
@@ -289,7 +354,14 @@ def show_available_quizzes():
         
         course_quizzes = []
         for lecture in lectures:
-            for quiz in lecture.get('quizzes', []):
+            # Check both 'quiz' (singular) and 'quizzes' (plural)
+            quizzes = []
+            if 'quiz' in lecture and lecture['quiz']:
+                quizzes = [lecture['quiz']]
+            elif 'quizzes' in lecture:
+                quizzes = lecture['quizzes']
+            
+            for quiz in quizzes:
                 quiz_id = quiz['quiz_id']
                 is_completed = quiz_id in completed_quizzes
                 

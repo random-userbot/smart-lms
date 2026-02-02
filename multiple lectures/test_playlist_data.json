@@ -1,0 +1,133 @@
+{
+  "playlist_id": "PLWKjhJtqVAbnqBxcdjVGgT3uVR10bzTEB",
+  "title": "Test Python Playlist",
+  "description": "Testing auto-fetch functionality",
+  "playlist_url": "https://www.youtube.com/playlist?list=PLWKjhJtqVAbnqBxcdjVGgT3uVR10bzTEB",
+  "video_count": 12,
+  "videos": [
+    {
+      "video_id": "eWRfhZUzrAc",
+      "title": "Python for Beginners – Full Course [Programming Tutorial]",
+      "description": "",
+      "video_url": "https://www.youtube.com/watch?v=eWRfhZUzrAc",
+      "order": 1,
+      "duration": 16800,
+      "materials": [],
+      "added_at": "2026-01-30T11:35:07.319885"
+    },
+    {
+      "video_id": "HGOBQPFzWKo",
+      "title": "Intermediate Python Programming Course",
+      "description": "",
+      "video_url": "https://www.youtube.com/watch?v=HGOBQPFzWKo",
+      "order": 2,
+      "duration": 21347,
+      "materials": [],
+      "added_at": "2026-01-30T11:35:07.319885"
+    },
+    {
+      "video_id": "8DvywoWv6fI",
+      "title": "Python for Everybody - Full University Python Course",
+      "description": "",
+      "video_url": "https://www.youtube.com/watch?v=8DvywoWv6fI",
+      "order": 3,
+      "duration": 49210,
+      "materials": [],
+      "added_at": "2026-01-30T11:35:07.319885"
+    },
+    {
+      "video_id": "Ej_02ICOIgs",
+      "title": "Object Oriented Programming with Python - Full Course for Beginners",
+      "description": "",
+      "video_url": "https://www.youtube.com/watch?v=Ej_02ICOIgs",
+      "order": 4,
+      "duration": 7955,
+      "materials": [],
+      "added_at": "2026-01-30T11:35:07.319885"
+    },
+    {
+      "video_id": "LHBE6Q9XlzI",
+      "title": "Python for Data Science - Course for Beginners (Learn Python, Pandas, NumPy, Matplotlib)",
+      "description": "",
+      "video_url": "https://www.youtube.com/watch?v=LHBE6Q9XlzI",
+      "order": 5,
+      "duration": 44392,
+      "materials": [],
+      "added_at": "2026-01-30T11:35:07.319885"
+    },
+    {
+      "video_id": "Qr4QMBUPxWo",
+      "title": "Flask Course - Python Web Application Development",
+      "description": "",
+      "video_url": "https://www.youtube.com/watch?v=Qr4QMBUPxWo",
+      "order": 6,
+      "duration": 22864,
+      "materials": [],
+      "added_at": "2026-01-30T11:35:07.319885"
+    },
+    {
+      "video_id": "o0XbHvKxw7Y",
+      "title": "Django For Everybody - Full Python University Course",
+      "description": "",
+      "video_url": "https://www.youtube.com/watch?v=o0XbHvKxw7Y",
+      "order": 7,
+      "duration": 66766,
+      "materials": [],
+      "added_at": "2026-01-30T11:35:07.319885"
+    },
+    {
+      "video_id": "WcDaZ67TVRo",
+      "title": "Data Analysis with Python for Excel Users - Full Course",
+      "description": "",
+      "video_url": "https://www.youtube.com/watch?v=WcDaZ67TVRo",
+      "order": 8,
+      "duration": 14266,
+      "materials": [],
+      "added_at": "2026-01-30T11:35:07.319885"
+    },
+    {
+      "video_id": "YXPyB4XeYLA",
+      "title": "Tkinter Course - Create Graphic User Interfaces in Python Tutorial",
+      "description": "",
+      "video_url": "https://www.youtube.com/watch?v=YXPyB4XeYLA",
+      "order": 9,
+      "duration": 20251,
+      "materials": [],
+      "added_at": "2026-01-30T11:35:07.319885"
+    },
+    {
+      "video_id": "0sOvCWFmrtA",
+      "title": "Python API Development - Comprehensive Course for Beginners",
+      "description": "",
+      "video_url": "https://www.youtube.com/watch?v=0sOvCWFmrtA",
+      "order": 10,
+      "duration": 68427,
+      "materials": [],
+      "added_at": "2026-01-30T11:35:07.319885"
+    },
+    {
+      "video_id": "jBzwzrDvZ18",
+      "title": "Python Backend Web Development Course (with Django)",
+      "description": "",
+      "video_url": "https://www.youtube.com/watch?v=jBzwzrDvZ18",
+      "order": 11,
+      "duration": 36712,
+      "materials": [],
+      "added_at": "2026-01-30T11:35:07.319885"
+    },
+    {
+      "video_id": "pkYVOmU3MgA",
+      "title": "Data Structures and Algorithms in Python - Full Course for Beginners",
+      "description": "",
+      "video_url": "https://www.youtube.com/watch?v=pkYVOmU3MgA",
+      "order": 12,
+      "duration": 45050,
+      "materials": [],
+      "added_at": "2026-01-30T11:35:07.319885"
+    }
+  ],
+  "created_at": "2026-01-30T11:35:07.319885",
+  "fetch_method": "automatic",
+  "channel": "freeCodeCamp.org",
+  "channel_url": "https://www.youtube.com/@freecodecamp"
+}

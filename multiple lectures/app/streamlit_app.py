@@ -13,6 +13,9 @@ sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 from services.auth import get_auth
 from services.storage import get_storage
 from services.ui_theme import get_theme_manager
+from services.universal_logger import get_activity_logger
+from services.auto_quiz_generator import get_auto_quiz_generator
+from config.theme import get_theme_css, THEME_LIGHT, THEME_DARK
 
 
 # Page configuration
@@ -23,80 +26,42 @@ st.set_page_config(
     initial_sidebar_state="expanded"
 )
 
-# Custom CSS for better UI and visibility
+# Initialize theme
+if 'theme' not in st.session_state:
+    st.session_state.theme = 'light'
+
+# Apply theme CSS
+st.markdown(get_theme_css(st.session_state.theme), unsafe_allow_html=True)
+
+# DISABLED: Auto quiz generator (teachers now manually generate quizzes)
+# Automatic quiz generation is disabled per system requirements
+# Teachers must use "Generate Quiz" button in the Quizzes tab
+
+# Additional custom CSS for login/auth pages
 st.markdown("""
 <style>
-    /* Main container styling */
-    .main {
-        background-color: #ffffff;
-    }
-    
-    /* Headers with high contrast */
     .main-header {
         font-size: 2.5rem;
         font-weight: bold;
-        color: #1f77b4;
         text-align: center;
         margin-bottom: 2rem;
-        text-shadow: 1px 1px 2px rgba(0,0,0,0.1);
     }
     
     .sub-header {
         font-size: 1.5rem;
-        color: #2c3e50;
         text-align: center;
         margin-bottom: 1rem;
         font-weight: 600;
     }
     
-    /* Login/Register container */
     .login-container {
         max-width: 500px;
         margin: 0 auto;
         padding: 2rem;
-        background-color: #f8f9fa;
-        border-radius: 10px;
-        box-shadow: 0 4px 15px rgba(0,0,0,0.15);
+        background-color: var(--card-bg);
+        border-radius: 12px;
+        box-shadow: 0 4px 15px rgba(0,0,0,0.1);
     }
-    
-    /* Improve text input visibility */
-    .stTextInput > div > div > input {
-        background-color: #ffffff !important;
-        color: #2c3e50 !important;
-        border: 2px solid #ddd !important;
-        font-size: 16px !important;
-        padding: 12px !important;
-    }
-    
-    .stTextInput > div > div > input::placeholder {
-        color: #95a5a6 !important;
-        opacity: 1 !important;
-    }
-    
-    .stTextInput > label {
-        color: #2c3e50 !important;
-        font-weight: 600 !important;
-        font-size: 16px !important;
-        margin-bottom: 8px !important;
-    }
-    
-    /* Improve selectbox visibility */
-    .stSelectbox > div > div > div {
-        background-color: #ffffff !important;
-        color: #2c3e50 !important;
-        border: 2px solid #ddd !important;
-    }
-    
-    .stSelectbox > label {
-        color: #2c3e50 !important;
-        font-weight: 600 !important;
-        font-size: 16px !important;
-    }
-    
-    /* Button styling with high contrast */
-    .stButton>button {
-        width: 100%;
-        background: linear-gradient(135deg, #1f77b4 0%, #155a8a 100%);
         color: white !important;
         border-radius: 8px;
         padding: 12px 24px;
@@ -550,15 +515,48 @@ def show_dashboard():
     elif page in ['assignments', 'submit_assignment'] and role == 'student':
         from pages import assignments
         assignments.main()
+    elif page == 'ai_tutor':
+        from pages import ai_tutor
+        ai_tutor.show_ai_tutor()
+    elif page == 'audio_practice':
+        from pages import audio_practice
+        audio_practice.show_audio_practice()
     elif page == 'progress':
         from pages import progress
         progress.main()
+    elif page == 'analytics':
+        from pages import analytics
+        analytics.show_engagement_analytics()
+    elif page == 'teaching_analytics' and role in ['teacher', 'admin']:
+        from pages import teaching_analytics
+        teaching_analytics.show_teaching_analytics()
+    elif page == 'course_management' and role == 'teacher':
+        from pages import course_management
+        course_management.show_course_management()
+    elif page == 'ai_quiz_generator' and role == 'teacher':
+        from pages import ai_quiz_generator_page
+        ai_quiz_generator_page.show_ai_quiz_generator()
+    elif page == 'playlist_manager' and role == 'teacher':
+        from pages import playlist_manager
+        playlist_manager.main()
+    elif page == 'youtube_playlists' and role == 'student':
+        from pages import youtube_playlists
+        youtube_playlists.main()
     elif page == 'attendance':
         from pages import attendance
         attendance.main()
     elif page == 'teacher_evaluation':
         from pages import teacher_evaluation
         teacher_evaluation.show_teacher_evaluation()
+    elif page == 'tracking' and role in ['teacher', 'admin']:
+        from pages import tracking
+        tracking.main()
+    elif page == 'analytics_dashboard' and role in ['teacher', 'admin']:
+        from pages import analytics_dashboard
+        analytics_dashboard.main()
+    elif page == 'student_activity' and role == 'student':
+        from pages import student_activity
+        student_activity.main()
     elif page == 'dashboard':
         if role == 'admin':
             show_admin_dashboard()
@@ -592,16 +590,12 @@ def show_admin_navigation():
         st.session_state.current_page = 'courses'
         st.rerun()
     
-    if st.button("� Resources", key="admin_nav_resources", use_container_width=True):
+    if st.button("📄 Resources", key="admin_nav_resources", use_container_width=True):
         st.session_state.current_page = 'resources'
         st.rerun()
     
-    if st.button("�📈 Analytics", key="admin_nav_analytics", use_container_width=True):
-        st.session_state.current_page = 'analytics'
-        st.rerun()
-    
-    if st.button("🌲 Teacher Evaluation", key="admin_nav_evaluation", use_container_width=True):
-        st.session_state.current_page = 'evaluation'
+    if st.button("� Teaching Analytics", key="admin_nav_teaching_analytics", use_container_width=True):
+        st.session_state.current_page = 'teaching_analytics'
         st.rerun()
     
     if st.button("🔒 Ethical AI Dashboard", key="admin_nav_ethical", use_container_width=True):
@@ -617,12 +611,12 @@ def show_teacher_navigation():
         st.session_state.current_page = 'dashboard'
         st.rerun()
     
-    if st.button("📚 My Courses", key="teacher_nav_courses", use_container_width=True):
-        st.session_state.current_page = 'courses'
+    if st.button("📚 Course Management", key="teacher_nav_course_mgmt", use_container_width=True):
+        st.session_state.current_page = 'course_management'
         st.rerun()
     
-    if st.button("📤 Upload Content", key="teacher_nav_upload", use_container_width=True):
-        st.session_state.current_page = 'upload'
+    if st.button("🤖 Quiz Generator", key="teacher_nav_quiz_gen", use_container_width=True):
+        st.session_state.current_page = 'ai_quiz_generator'
         st.rerun()
     
     if st.button("📝 Enrollment Requests", key="teacher_nav_enrollment", use_container_width=True):
@@ -637,11 +631,15 @@ def show_teacher_navigation():
         st.session_state.current_page = 'resources'
         st.rerun()
     
-    if st.button("📈 Analytics", key="teacher_nav_analytics", use_container_width=True):
-        st.session_state.current_page = 'analytics'
+    if st.button("📺 Import YouTube", key="teacher_nav_playlists", use_container_width=True):
+        st.session_state.current_page = 'playlist_manager'
         st.rerun()
     
-    if st.button("👥 Students", key="teacher_nav_students", use_container_width=True):
+    if st.button("📊 Teaching Analytics", key="teacher_nav_teaching_analytics", use_container_width=True):
+        st.session_state.current_page = 'teaching_analytics'
+        st.rerun()
+    
+    if st.button("�👥 Students", key="teacher_nav_students", use_container_width=True):
         st.session_state.current_page = 'students'
         st.rerun()
     
@@ -651,8 +649,17 @@ def show_teacher_navigation():
 
 
 def show_student_navigation():
-    """Student navigation menu"""
+    """Student navigation menu with theme switcher"""
     st.markdown("### 🎓 Student Panel")
+    
+    # Theme switcher at top
+    current_theme = st.session_state.get('theme', 'light')
+    theme_icon = "🌙" if current_theme == "light" else "☀️"
+    if st.button(theme_icon, key="student_theme_toggle", help="Toggle theme", use_container_width=True):
+        st.session_state.theme = 'dark' if current_theme == 'light' else 'light'
+        st.rerun()
+    
+    st.markdown("---")
     
     if st.button("📊 Dashboard", key="nav_dashboard", use_container_width=True):
         st.session_state.current_page = 'dashboard'
@@ -666,6 +673,14 @@ def show_student_navigation():
         st.session_state.current_page = 'lectures'
         st.rerun()
     
+    if st.button("🤖 AI Tutor", key="nav_ai_tutor", use_container_width=True):
+        st.session_state.current_page = 'ai_tutor'
+        st.rerun()
+    
+    if st.button("🎧 Audio Practice", key="nav_audio_practice", use_container_width=True):
+        st.session_state.current_page = 'audio_practice'
+        st.rerun()
+
     if st.button("📄 Resources", key="nav_resources", use_container_width=True):
         st.session_state.current_page = 'resources'
         st.rerun()
@@ -681,6 +696,19 @@ def show_student_navigation():
     if st.button("📈 My Progress", key="nav_progress", use_container_width=True):
         st.session_state.current_page = 'progress'
         st.rerun()
+    
+    if st.button("📊 Engagement Analytics", key="nav_analytics", use_container_width=True):
+        st.session_state.current_page = 'analytics'
+        st.rerun()
+    
+    if st.button("📊 My Activity", key="nav_my_activity", use_container_width=True):
+        st.session_state.current_page = 'student_activity'
+        st.rerun()
+    
+    # Note: Auto Quiz Generator is now disabled (manual only)
+    st.markdown("---")
+    st.markdown("### 📝 Quiz Info")
+    st.info("📝 Quizzes are created by teachers")
 
 
 def show_admin_dashboard():
@@ -897,6 +925,22 @@ def main():
     # Apply theme
     theme_manager = get_theme_manager()
     theme_manager.apply_theme()
+    
+    # Track page navigation for logged-in users
+    if 'user' in st.session_state:
+        logger = get_activity_logger()
+        user_id = st.session_state.user['user_id']
+        user_role = st.session_state.user['role']
+        current_page = st.session_state.get('current_page', 'dashboard')
+        
+        # Track page view (only log if page changed)
+        if 'last_logged_page' not in st.session_state or st.session_state.last_logged_page != current_page:
+            logger.log_action(
+                user_id, user_role, 'page_view',
+                {'page_name': current_page},
+                {'previous_page': st.session_state.get('last_logged_page', 'login')}
+            )
+            st.session_state.last_logged_page = current_page
     
     # Check if user is logged in
     if 'user' not in st.session_state:

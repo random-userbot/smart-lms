@@ -284,31 +284,26 @@ class EnsembleEngagementDetector:
                 result['predictions'][dim]['confidence'] = confidence
                 result['predictions'][dim]['probabilities'] = probs.tolist()
         
-        # Calculate overall engagement score (0-100)
-        # Primary metric: Engagement dimension (directly predicts engagement level)
-        # Secondary metrics: Negative emotions reduce the score
-        
+        # Calculate overall engagement score (0-1)
         engagement_class = result['predictions']['Engagement']['class_id']
         boredom_class = result['predictions']['Boredom']['class_id']
         confusion_class = result['predictions']['Confusion']['class_id']
         frustration_class = result['predictions']['Frustration']['class_id']
         
-        # Base score from Engagement prediction (0-100)
-        # Very Low=0 → 12.5%, Low=1 → 37.5%, High=2 → 62.5%, Very High=3 → 87.5%
-        base_engagement = (engagement_class + 0.5) * 25.0  # Maps to 12.5, 37.5, 62.5, 87.5
+        # Engagement contributes positively, others contribute negatively
+        # Scale: Very Low=0, Low=1, High=2, Very High=3
+        engagement_positive = engagement_class * 33.33  # 0 to 100
+        boredom_negative = boredom_class * 25.0  # 0 to 75
+        confusion_negative = confusion_class * 16.67  # 0 to 50
+        frustration_negative = frustration_class * 16.67  # 0 to 50
         
-        # Negative emotion penalties (each reduces score proportionally)
-        # Boredom: Very High (-30%), High (-20%), Low (-10%), Very Low (0%)
-        boredom_penalty = boredom_class * 10.0
-        
-        # Confusion: Very High (-20%), High (-13%), Low (-7%), Very Low (0%)
-        confusion_penalty = confusion_class * 6.67
-        
-        # Frustration: Very High (-20%), High (-13%), Low (-7%), Very Low (0%)
-        frustration_penalty = frustration_class * 6.67
-        
-        # Combined score (base engagement minus penalties)
-        raw_score = base_engagement - (boredom_penalty + confusion_penalty + frustration_penalty)
+        # Combined score with weights
+        raw_score = (
+            engagement_positive * 1.5 +  # Weight engagement more
+            (100 - boredom_negative) * 1.0 +
+            (100 - confusion_negative) * 0.7 +
+            (100 - frustration_negative) * 0.8
+        ) / 4.0
         
         # Clamp to 0-100 range
         result['engagement_score'] = float(np.clip(raw_score, 0, 100))

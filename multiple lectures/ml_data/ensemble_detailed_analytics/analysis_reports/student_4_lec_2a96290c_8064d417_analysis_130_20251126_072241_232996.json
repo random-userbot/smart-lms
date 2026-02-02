@@ -1,0 +1,85 @@
+{
+  "timestamp": "2025-11-26T07:22:41.236995",
+  "frame_number": 130,
+  "session_id": "student_4_lec_2a96290c_8064d417",
+  "analysis_version": "2.0_explainable_ai",
+  "openface_metrics": {
+    "engagement_score": 57.93,
+    "status": "engaged",
+    "face_detected": 1,
+    "confidence": 0.95,
+    "gaze": {
+      "angle_x": -3.71,
+      "angle_y": -137.47,
+      "interpretation": {
+        "direction": "up_left",
+        "attention_level": "distracted",
+        "description": "Gaze away from screen - likely distracted"
+      }
+    },
+    "head_pose": {
+      "rotation_x": -160.01,
+      "rotation_y": 22.74,
+      "rotation_z": -3.44,
+      "interpretation": {
+        "posture": "partially_engaged",
+        "engagement_indicator": "neutral",
+        "description": "Head slightly turned - divided attention"
+      }
+    }
+  },
+  "feature_analysis": {
+    "feature_vector_shape": [
+      35
+    ],
+    "feature_statistics": {
+      "mean": 1.0217939383494468e-08,
+      "std": 1.0,
+      "min": -0.6624832153320312,
+      "max": 5.7742695808410645,
+      "non_zero_count": 35
+    },
+    "feature_breakdown": {
+      "gaze_features": {
+        "gaze_x": -0.1755961924791336,
+        "gaze_y": -0.5922693014144897,
+        "magnitude": 0.6177515262718309,
+        "interpretation": "Low magnitude = focused, High = distracted"
+      },
+      "head_pose_rotation": {
+        "pitch_rx": -0.12771740555763245,
+        "yaw_ry": 0.32390692830085754,
+        "roll_rz": 5.7742695808410645,
+        "interpretation": "Near zero = facing screen, Large values = turned away"
+      },
+      "head_pose_translation": {
+        "tx": -0.6624832153320312,
+        "ty": -0.09320232272148132,
+        "tz": -0.17475512623786926,
+        "interpretation": "Distance and position relative to camera"
+      },
+      "action_units": {
+        "count": 27,
+        "active_aus": 0,
+        "mean_activation": -0.15822789072990417,
+        "interpretation": "Facial expressions indicating emotional state"
+      }
+    },
+    "engagement_indicators": {
+      "gaze_stability": "poor",
+      "head_orientation": "good",
+      "facial_activity": "neutral"
+    }
+  },
+  "session_context": {
+    "total_frames_processed": 130,
+    "average_engagement_so_far": 59.30038759689923,
+    "engagement_trend": {
+      "trend": "Engagement levels stable throughout session",
+      "direction": "stable",
+      "change": 2.228031250000008,
+      "recent_average": 62.496,
+      "session_average": 59.30038759689923
+    }
+  }
+}
