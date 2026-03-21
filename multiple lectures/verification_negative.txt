@@ -1,0 +1,29 @@
+--- Verification Results ---
+
+Text: 'The instructor speaks too fast.'
+  Label=negative, Comp=-0.3612
+  Pos=0.0, Neu=0.615, Neg=0.385
+
+Text: 'Recorded videos are too long and confusing.'
+  Label=negative, Comp=-0.6124
+  Pos=0.0, Neu=0.444, Neg=0.556
+
+Text: 'Technical issues happen in almost every session.'
+  Label=negative, Comp=-0.4588
+  Pos=0.0, Neu=0.667, Neg=0.333
+
+Text: 'too fast'
+  Label=negative, Comp=-0.3612
+  Pos=0.0, Neu=0.286, Neg=0.714
+
+Text: 'too long'
+  Label=negative, Comp=-0.3612
+  Pos=0.0, Neu=0.0, Neg=1.0
+
+Text: 'confusing'
+  Label=negative, Comp=-0.3612
+  Pos=0.0, Neu=0.0, Neg=1.0
+
+Text: 'technical issues'
+  Label=negative, Comp=-0.4588
+  Pos=0.0, Neu=0.25, Neg=0.75

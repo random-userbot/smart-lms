@@ -1,1 +1,28 @@
-{}
+{
+  "teacher_2": [
+    {
+      "activity_id": "9a9fbb1b-ac75-4d7e-9b69-b029587f914f",
+      "action": "upload_lecture",
+      "details": {
+        "lecture_id": "lec_99983acc",
+        "course_id": "iot101",
+        "title": "Lecture 1: Introduction",
+        "type": "youtube"
+      },
+      "timestamp": "2025-11-25T15:32:25.456890"
+    }
+  ],
+  "teacher_3": [
+    {
+      "activity_id": "547638d0-7a5a-4a8b-86ec-37c281ebdb3d",
+      "action": "upload_lecture",
+      "details": {
+        "lecture_id": "lec_0857dbe3",
+        "course_id": "cn123",
+        "title": "Lecture-1",
+        "type": "youtube"
+      },
+      "timestamp": "2026-02-10T12:19:01.539662"
+    }
+  ]
+}

@@ -1,0 +1,16 @@
+--- Verification Results ---
+
+Text: 'The sessions are interactive and engaging.'
+  Label=positive, Comp=0.34
+  Pos=0.324, Neu=0.676, Neg=0.0
+  Cleaned: 'the sessions are interactive and engaging.'
+
+Text: 'Audio and video quality are excellent.'
+  Label=positive, Comp=0.5719
+  Pos=0.425, Neu=0.575, Neg=0.0
+  Cleaned: 'audio and video quality are excellent.'
+
+Text: 'The lecturer answers questions patiently.'
+  Label=neutral, Comp=0.0
+  Pos=0.0, Neu=1.0, Neg=0.0
+  Cleaned: 'the lecturer answers questions patiently.'

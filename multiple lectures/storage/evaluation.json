@@ -1,1 +1,108 @@
-{}
+{
+  "teacher_2": {
+    "teacher_id": "teacher_2",
+    "total_feedback_count": 15,
+    "average_ratings": {
+      "overall": 3.0,
+      "content_quality": 3.1333333333333333,
+      "clarity": 2.8666666666666667,
+      "pace": 2.8,
+      "engagement": 2.8666666666666667,
+      "visual_aids": 2.533333333333333,
+      "composite": 2.8666666666666667
+    },
+    "sentiment_distribution": {
+      "positive": 14,
+      "neutral": 0,
+      "negative": 1
+    },
+    "feedback_by_course": {
+      "iot101": {
+        "count": 15,
+        "avg_composite": 2.8666666666666667,
+        "feedback_ids": [
+          "b07aee17-69de-4f64-8792-b71b058f6feb",
+          "b07aee17-69de-4f64-8792-b71b058f6feb",
+          "b07aee17-69de-4f64-8792-b71b058f6feb",
+          "b07aee17-69de-4f64-8792-b71b058f6feb",
+          "b07aee17-69de-4f64-8792-b71b058f6feb",
+          "b07aee17-69de-4f64-8792-b71b058f6feb",
+          "b07aee17-69de-4f64-8792-b71b058f6feb",
+          "b07aee17-69de-4f64-8792-b71b058f6feb",
+          "b07aee17-69de-4f64-8792-b71b058f6feb",
+          "b07aee17-69de-4f64-8792-b71b058f6feb",
+          "b07aee17-69de-4f64-8792-b71b058f6feb",
+          "b07aee17-69de-4f64-8792-b71b058f6feb",
+          "b07aee17-69de-4f64-8792-b71b058f6feb",
+          "b07aee17-69de-4f64-8792-b71b058f6feb",
+          "b07aee17-69de-4f64-8792-b71b058f6feb"
+        ]
+      }
+    },
+    "feedback_by_lecture": {
+      "lec_99983acc": {
+        "count": 15,
+        "avg_composite": 2.8666666666666667,
+        "feedback_ids": [
+          "b07aee17-69de-4f64-8792-b71b058f6feb",
+          "b07aee17-69de-4f64-8792-b71b058f6feb",
+          "b07aee17-69de-4f64-8792-b71b058f6feb",
+          "b07aee17-69de-4f64-8792-b71b058f6feb",
+          "b07aee17-69de-4f64-8792-b71b058f6feb",
+          "b07aee17-69de-4f64-8792-b71b058f6feb",
+          "b07aee17-69de-4f64-8792-b71b058f6feb",
+          "b07aee17-69de-4f64-8792-b71b058f6feb",
+          "b07aee17-69de-4f64-8792-b71b058f6feb",
+          "b07aee17-69de-4f64-8792-b71b058f6feb",
+          "b07aee17-69de-4f64-8792-b71b058f6feb",
+          "b07aee17-69de-4f64-8792-b71b058f6feb",
+          "b07aee17-69de-4f64-8792-b71b058f6feb",
+          "b07aee17-69de-4f64-8792-b71b058f6feb",
+          "b07aee17-69de-4f64-8792-b71b058f6feb"
+        ]
+      }
+    },
+    "last_updated": "2026-02-11T09:45:29.403681"
+  },
+  "teacher_3": {
+    "teacher_id": "teacher_3",
+    "total_feedback_count": 3,
+    "average_ratings": {
+      "overall": 2.3333333333333335,
+      "content_quality": 3.3333333333333335,
+      "clarity": 3.0,
+      "pace": 2.3333333333333335,
+      "engagement": 3.3333333333333335,
+      "visual_aids": 2.6666666666666665,
+      "composite": 2.8333333333333335
+    },
+    "sentiment_distribution": {
+      "positive": 3,
+      "neutral": 0,
+      "negative": 0
+    },
+    "feedback_by_course": {
+      "cn123": {
+        "count": 3,
+        "avg_composite": 2.8333333333333335,
+        "feedback_ids": [
+          "aa22c75b-8d75-412f-99f8-4cd409bcd93c",
+          "aa22c75b-8d75-412f-99f8-4cd409bcd93c",
+          "aa22c75b-8d75-412f-99f8-4cd409bcd93c"
+        ]
+      }
+    },
+    "feedback_by_lecture": {
+      "lec_0857dbe3": {
+        "count": 3,
+        "avg_composite": 2.8333333333333335,
+        "feedback_ids": [
+          "aa22c75b-8d75-412f-99f8-4cd409bcd93c",
+          "aa22c75b-8d75-412f-99f8-4cd409bcd93c",
+          "aa22c75b-8d75-412f-99f8-4cd409bcd93c"
+        ]
+      }
+    },
+    "last_updated": "2026-02-11T12:29:25.325911"
+  }
+}

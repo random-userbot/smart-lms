@@ -1,0 +1,16 @@
+--- Verification Results ---
+
+Text: 'patiently'
+  Label=positive, Comp=0.4588
+
+Text: 'interactive'
+  Label=positive, Comp=0.4588
+
+Text: 'engaging'
+  Label=positive, Comp=0.4588
+
+Text: 'answers'
+  Label=positive, Comp=0.25
+
+Text: 'The sessions are interactive and engaging. Audio and video quality are excellent. The lecturer answers questions patiently.'
+  Label=positive, Comp=0.9325

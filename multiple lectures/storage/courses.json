@@ -1,1 +1,72 @@
-{}
+{
+  "iot101": {
+    "course_id": "iot101",
+    "name": "PS-IOT",
+    "teacher_id": "teacher_2",
+    "description": "Privacy and Security in IoT",
+    "lectures": [
+      "lec_99983acc"
+    ],
+    "enrolled_students": [
+      "student_1"
+    ],
+    "created_at": "2025-11-25T15:30:47.899877",
+    "is_active": true,
+    "code": "IoT101",
+    "department": "CSN",
+    "credits": 3,
+    "semester": "Spring",
+    "year": 2025,
+    "max_students": 100,
+    "allow_self_enroll": true,
+    "requires_approval": false,
+    "is_public": true,
+    "updated_at": "2025-11-25T15:31:03.469458"
+  },
+  "iot112": {
+    "course_id": "iot112",
+    "name": "IoT-TT",
+    "teacher_id": "teacher_2",
+    "description": "Internet Of Things-Training and Testing",
+    "lectures": [],
+    "enrolled_students": [
+      "student_1"
+    ],
+    "created_at": "2025-11-25T18:37:45.742771",
+    "is_active": true,
+    "code": "Iot112",
+    "department": "CSN",
+    "credits": 1,
+    "semester": "Spring",
+    "year": 2025,
+    "max_students": 100,
+    "allow_self_enroll": true,
+    "requires_approval": false,
+    "is_public": true,
+    "updated_at": "2025-11-25T18:37:59.917571"
+  },
+  "cn123": {
+    "course_id": "cn123",
+    "name": "Computer Networks",
+    "teacher_id": "teacher_3",
+    "description": "Computer Networking",
+    "lectures": [
+      "lec_0857dbe3"
+    ],
+    "enrolled_students": [
+      "student_1"
+    ],
+    "created_at": "2026-02-10T12:17:24.020653",
+    "is_active": true,
+    "code": "CN123",
+    "department": "CSN",
+    "credits": 3,
+    "semester": "Summer",
+    "year": 2026,
+    "max_students": 100,
+    "allow_self_enroll": false,
+    "requires_approval": true,
+    "is_public": true,
+    "updated_at": "2026-02-10T12:21:35.725226"
+  }
+}

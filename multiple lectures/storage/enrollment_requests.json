@@ -1,1 +1,13 @@
-{}
+{
+  "req_8979b564": {
+    "request_id": "req_8979b564",
+    "student_id": "student_1",
+    "course_id": "cn123",
+    "status": "approved",
+    "requested_at": "2026-02-10T12:20:30.793370",
+    "processed_at": "2026-02-10T12:21:35.723222",
+    "processed_by": "teacher_3",
+    "student_name": "Fahad Ahmed",
+    "course_name": "Computer Networks"
+  }
+}

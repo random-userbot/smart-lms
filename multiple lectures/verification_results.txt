@@ -1,0 +1,8 @@
+--- Verification Results ---
+'nothing': Label=negative, Comp=-0.36, Pos=0.0, Neg=0.6, Mixed=False
+'nothing good': Label=negative, Comp=-0.3412, Pos=0.0, Neg=0.706, Mixed=False
+'nothing good about the lecture': Label=negative, Comp=-0.3412, Pos=0.0, Neg=0.376, Mixed=False
+'there was nothing good': Label=negative, Comp=-0.3412, Pos=0.0, Neg=0.445, Mixed=False
+'not good': Label=negative, Comp=-0.3412, Pos=0.0, Neg=0.706, Mixed=False
+'nothing interesting': Label=negative, Comp=-0.3089, Pos=0.0, Neg=0.693, Mixed=False
+'nothing wrong': Label=positive, Comp=0.3724, Pos=0.719, Neg=0.0, Mixed=False

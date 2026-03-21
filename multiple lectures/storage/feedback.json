@@ -1,1 +1,111 @@
-{}
+{
+  "b07aee17-69de-4f64-8792-b71b058f6feb": {
+    "feedback_id": "b07aee17-69de-4f64-8792-b71b058f6feb",
+    "student_id": "student_1",
+    "lecture_id": "lec_99983acc",
+    "course_id": "iot101",
+    "ratings": {
+      "overall": 3,
+      "content_quality": 3,
+      "clarity": 3,
+      "pace": 3,
+      "engagement": 3,
+      "visual_aids": 3,
+      "composite_score": 3.0
+    },
+    "written_feedback": {
+      "strengths": "Pace is very good",
+      "improvements": "lecture is a bit boring",
+      "additional_comments": "add more examples",
+      "combined_text": "Strengths: Pace is very good\n                Improvements: lecture is a bit boring\n                Additional Comments: add more examples"
+    },
+    "metadata": {
+      "difficulty_level": "Just Right",
+      "would_recommend": true,
+      "had_technical_issues": false,
+      "technical_details": ""
+    },
+    "nlp_analysis": {
+      "sentiment": {
+        "label": "positive",
+        "positive": 0.369,
+        "neutral": 0.522,
+        "negative": 0.109,
+        "compound": 0.7159,
+        "is_mixed": true
+      },
+      "keywords": [
+        "strengths",
+        "pace",
+        "good",
+        "improvements",
+        "lecture",
+        "boring",
+        "additional",
+        "comments",
+        "examples"
+      ],
+      "themes": [
+        "pace",
+        "engagement",
+        "examples"
+      ]
+    },
+    "created_at": "2026-02-11T09:45:29.363510",
+    "updated_at": "2026-02-11T09:45:29.363510"
+  },
+  "aa22c75b-8d75-412f-99f8-4cd409bcd93c": {
+    "feedback_id": "aa22c75b-8d75-412f-99f8-4cd409bcd93c",
+    "student_id": "student_1",
+    "lecture_id": "lec_0857dbe3",
+    "course_id": "cn123",
+    "ratings": {
+      "overall": 3,
+      "content_quality": 3,
+      "clarity": 3,
+      "pace": 3,
+      "engagement": 3,
+      "visual_aids": 3,
+      "composite_score": 3.0
+    },
+    "written_feedback": {
+      "strengths": "good examples",
+      "improvements": "pace must be slowe",
+      "additional_comments": "",
+      "combined_text": "Strengths: good examples\n                Improvements: pace must be slowe\n                Additional Comments:"
+    },
+    "metadata": {
+      "difficulty_level": "Just Right",
+      "would_recommend": true,
+      "had_technical_issues": false,
+      "technical_details": ""
+    },
+    "nlp_analysis": {
+      "sentiment": {
+        "label": "positive",
+        "positive": 0.53,
+        "neutral": 0.47,
+        "negative": 0.0,
+        "compound": 0.7845,
+        "is_mixed": false
+      },
+      "keywords": [
+        "strengths",
+        "good",
+        "examples",
+        "improvements",
+        "pace",
+        "must",
+        "slowe",
+        "additional",
+        "comments"
+      ],
+      "themes": [
+        "pace",
+        "examples"
+      ]
+    },
+    "created_at": "2026-02-11T12:29:25.284489",
+    "updated_at": "2026-02-11T12:29:25.284489"
+  }
+}

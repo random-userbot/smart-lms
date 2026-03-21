@@ -1,0 +1,13 @@
+--- Extended Verification Results ---
+
+Text: 'nothing good about the lecture'
+  General Sentiment: Label=negative, Comp=-0.3412
+  Aspect Sentiment: {'content': {'sentiment': 'not_mentioned', 'score': 0.0, 'mentioned': False}, 'teaching': {'sentiment': 'not_mentioned', 'score': 0.0, 'mentioned': False}, 'delivery': {'sentiment': 'not_mentioned', 'score': 0.0, 'mentioned': False}, 'technical': {'sentiment': 'not_mentioned', 'score': 0.0, 'mentioned': False}, 'engagement': {'sentiment': 'not_mentioned', 'score': 0.0, 'mentioned': False}, 'difficulty': {'sentiment': 'not_mentioned', 'score': 0.0, 'mentioned': False}}
+
+Text: 'nothing good about the content'
+  General Sentiment: Label=negative, Comp=-0.3412
+  Aspect Sentiment: {'content': {'sentiment': 'negative', 'score': -0.3412, 'mentioned': True}, 'teaching': {'sentiment': 'not_mentioned', 'score': 0.0, 'mentioned': False}, 'delivery': {'sentiment': 'not_mentioned', 'score': 0.0, 'mentioned': False}, 'technical': {'sentiment': 'not_mentioned', 'score': 0.0, 'mentioned': False}, 'engagement': {'sentiment': 'not_mentioned', 'score': 0.0, 'mentioned': False}, 'difficulty': {'sentiment': 'not_mentioned', 'score': 0.0, 'mentioned': False}}
+
+Text: 'nothing good about the teaching'
+  General Sentiment: Label=negative, Comp=-0.3412
+  Aspect Sentiment: {'content': {'sentiment': 'not_mentioned', 'score': 0.0, 'mentioned': False}, 'teaching': {'sentiment': 'negative', 'score': -0.3412, 'mentioned': True}, 'delivery': {'sentiment': 'not_mentioned', 'score': 0.0, 'mentioned': False}, 'technical': {'sentiment': 'not_mentioned', 'score': 0.0, 'mentioned': False}, 'engagement': {'sentiment': 'not_mentioned', 'score': 0.0, 'mentioned': False}, 'difficulty': {'sentiment': 'not_mentioned', 'score': 0.0, 'mentioned': False}}

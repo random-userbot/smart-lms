@@ -1,0 +1,26 @@
+--- Verification Results ---
+
+Text: 'Online lectures feel less effective than offline classes'
+  Label=negative, Comp=-0.2924
+  Pos=0.138, Neu=0.605, Neg=0.257
+  Aspects: {'content': {'sentiment': 'not_mentioned', 'score': 0.0, 'mentioned': False}, 'teaching': {'sentiment': 'not_mentioned', 'score': 0.0, 'mentioned': False}, 'delivery': {'sentiment': 'not_mentioned', 'score': 0.0, 'mentioned': False}, 'technical': {'sentiment': 'not_mentioned', 'score': 0.0, 'mentioned': False}, 'engagement': {'sentiment': 'not_mentioned', 'score': 0.0, 'mentioned': False}, 'difficulty': {'sentiment': 'not_mentioned', 'score': 0.0, 'mentioned': False}}
+
+Text: 'less effective'
+  Label=negative, Comp=-0.3724
+  Pos=0.0, Neu=0.281, Neg=0.719
+  Aspects: {'content': {'sentiment': 'not_mentioned', 'score': 0.0, 'mentioned': False}, 'teaching': {'sentiment': 'not_mentioned', 'score': 0.0, 'mentioned': False}, 'delivery': {'sentiment': 'not_mentioned', 'score': 0.0, 'mentioned': False}, 'technical': {'sentiment': 'not_mentioned', 'score': 0.0, 'mentioned': False}, 'engagement': {'sentiment': 'not_mentioned', 'score': 0.0, 'mentioned': False}, 'difficulty': {'sentiment': 'not_mentioned', 'score': 0.0, 'mentioned': False}}
+
+Text: 'not effective'
+  Label=negative, Comp=-0.3724
+  Pos=0.0, Neu=0.281, Neg=0.719
+  Aspects: {'content': {'sentiment': 'not_mentioned', 'score': 0.0, 'mentioned': False}, 'teaching': {'sentiment': 'not_mentioned', 'score': 0.0, 'mentioned': False}, 'delivery': {'sentiment': 'not_mentioned', 'score': 0.0, 'mentioned': False}, 'technical': {'sentiment': 'not_mentioned', 'score': 0.0, 'mentioned': False}, 'engagement': {'sentiment': 'not_mentioned', 'score': 0.0, 'mentioned': False}, 'difficulty': {'sentiment': 'not_mentioned', 'score': 0.0, 'mentioned': False}}
+
+Text: 'effective'
+  Label=positive, Comp=0.4767
+  Pos=1.0, Neu=0.0, Neg=0.0
+  Aspects: {'content': {'sentiment': 'not_mentioned', 'score': 0.0, 'mentioned': False}, 'teaching': {'sentiment': 'not_mentioned', 'score': 0.0, 'mentioned': False}, 'delivery': {'sentiment': 'not_mentioned', 'score': 0.0, 'mentioned': False}, 'technical': {'sentiment': 'not_mentioned', 'score': 0.0, 'mentioned': False}, 'engagement': {'sentiment': 'not_mentioned', 'score': 0.0, 'mentioned': False}, 'difficulty': {'sentiment': 'not_mentioned', 'score': 0.0, 'mentioned': False}}
+
+Text: 'much less effective'
+  Label=negative, Comp=-0.3724
+  Pos=0.0, Neu=0.439, Neg=0.561
+  Aspects: {'content': {'sentiment': 'not_mentioned', 'score': 0.0, 'mentioned': False}, 'teaching': {'sentiment': 'not_mentioned', 'score': 0.0, 'mentioned': False}, 'delivery': {'sentiment': 'not_mentioned', 'score': 0.0, 'mentioned': False}, 'technical': {'sentiment': 'not_mentioned', 'score': 0.0, 'mentioned': False}, 'engagement': {'sentiment': 'not_mentioned', 'score': 0.0, 'mentioned': False}, 'difficulty': {'sentiment': 'not_mentioned', 'score': 0.0, 'mentioned': False}}

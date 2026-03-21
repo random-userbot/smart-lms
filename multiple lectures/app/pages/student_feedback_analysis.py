@@ -1,7 +1,4 @@
-"""
-Smart LMS - Bulk Feedback Analysis
-Analyze multiple student feedbacks in batch using NLP
-"""
+
 
 import streamlit as st
 import sys
@@ -10,26 +7,54 @@ import pandas as pd
 import plotly.express as px
 import plotly.graph_objects as go
 
-# Add parent directory to path to import services
+
 sys.path.append(os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__)))))
 
 from services.auth import get_auth
 from services.nlp import get_nlp_service
+from services.storage import get_storage
 
 def show_bulk_analysis():
-    st.title("📊 Student Feedback Analysis")
-    st.markdown("Analyze large volumes of student feedback using AI to extract insights, sentiment, and themes.")
+    st.title(" STUDENT FEEDBACK ANALYSIS")
+    st.markdown("")
 
     nlp_service = get_nlp_service()
+    storage = get_storage()
 
-    # Input section
+   
     st.markdown("### 1. Input Feedback")
     
-    input_method = st.radio("Choose input method:", ["Upload File (.txt, .csv)", "Paste Text"])
+    input_method = st.radio("Choose input method:", ["Analyze System Feedback", "Upload File (.txt, .csv)", "Paste Text"])
     
     feedbacks = []
     
-    if input_method == "Upload File (.txt, .csv)":
+    if input_method == "Analyze System Feedback":
+        st.info("Fetching feedback from system storage...")
+        all_feedback = storage.get_feedback()
+        
+        if not all_feedback:
+            st.warning("No feedback found in the system.")
+        else:
+            # Extract text from feedback objects
+            # Handle both legacy (simple text) and new (comprehensive) formats
+            for f in all_feedback:
+                if 'written_feedback' in f and isinstance(f['written_feedback'], dict):
+                    # New format: use combined text
+                    text = f['written_feedback'].get('combined_text', '')
+                    if text:
+                        feedbacks.append(text)
+                elif 'text' in f:
+                    # Legacy format
+                    text = f['text']
+                    if text:
+                        feedbacks.append(text)
+            
+            st.success(f"✅ Loaded {len(feedbacks)} feedback items from system storage.")
+            
+            # Optional: Filter by course or lecture (future enhancement)
+            # st.expander("Filter Options")...
+
+    elif input_method == "Upload File (.txt, .csv)":
         uploaded_file = st.file_uploader("Upload a file containing feedbacks (one per line for .txt)", type=['txt', 'csv'])
         if uploaded_file is not None:
             if uploaded_file.name.endswith('.txt'):
@@ -37,7 +62,7 @@ def show_bulk_analysis():
                 feedbacks = [line.strip() for line in stringio.split('\n') if line.strip()]
             elif uploaded_file.name.endswith('.csv'):
                 df = pd.read_csv(uploaded_file)
-                # Try to find a text column
+                
                 text_cols = [col for col in df.columns if 'text' in col.lower() or 'feedback' in col.lower() or 'comment' in col.lower()]
                 if text_cols:
                     feedbacks = df[text_cols[0]].dropna().astype(str).tolist()
@@ -53,21 +78,19 @@ def show_bulk_analysis():
             feedbacks = [line.strip() for line in text_input.split('\n') if line.strip()]
             st.info(f"Loaded {len(feedbacks)} feedback items.")
 
-    # Analysis section
+   
     if feedbacks:
         if st.button("🚀 Analyze Feedback"):
             with st.spinner("Analyzing sentiments and extracting themes..."):
-                # Perform batch analysis
-                # We can use analyze_feedback_batch from nlp_service if it exists, or loop manually
-                # Checking nlp.py content from previous turns, it has analyze_feedback_batch(feedback_texts)
+               
                 
                 results = nlp_service.analyze_feedback_batch(feedbacks)
                 
-                # Display Results
+                
                 st.markdown("---")
                 st.markdown("### 2. Analysis Results")
                 
-                # Summary Metrics
+                
                 col1, col2, col3, col4 = st.columns(4)
                 with col1:
                     st.metric("Total Feedbacks", results['total_count'])
@@ -78,12 +101,12 @@ def show_bulk_analysis():
                 with col4:
                     st.metric("Avg Sentiment", f"{results['avg_compound']:.2f}")
 
-                # Charts
+                
                 col1, col2 = st.columns(2)
                 
                 with col1:
                     st.subheader("Sentiment Distribution")
-                    # Pie chart
+                    
                     labels = ['Positive', 'Neutral', 'Negative']
                     values = [results['positive_count'], results['neutral_count'], results['negative_count']]
                     colors = ['#2ecc71', '#f1c40f', '#e74c3c']

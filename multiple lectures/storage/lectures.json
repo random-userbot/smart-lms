@@ -1,1 +1,28 @@
-{}
+{
+  "lec_99983acc": {
+    "lecture_id": "lec_99983acc",
+    "title": "Lecture 1: Introduction",
+    "course_id": "iot101",
+    "video_path": "https://youtu.be/om-5QTbLCCs?si=c-tKTA8aFIxDLaL8",
+    "duration": 780,
+    "materials": [],
+    "created_at": "2025-11-25T15:32:25.453012",
+    "is_active": true,
+    "description": "Introduction to PS-IOT",
+    "uploaded_by": "teacher_2",
+    "video_type": "youtube"
+  },
+  "lec_0857dbe3": {
+    "lecture_id": "lec_0857dbe3",
+    "title": "Lecture-1",
+    "course_id": "cn123",
+    "video_path": "https://youtu.be/VwN91x5i25g?si=hg1KqZaTOLQaKmSs",
+    "duration": 600,
+    "materials": [],
+    "created_at": "2026-02-10T12:19:01.520251",
+    "is_active": true,
+    "description": "This lecture gives a brief information about computer networks",
+    "uploaded_by": "teacher_3",
+    "video_type": "youtube"
+  }
+}
